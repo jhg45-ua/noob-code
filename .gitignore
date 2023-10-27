@@ -1,0 +1,16 @@
+# Ignore all executables
+*.out
+*.exe
+*.app
+
+# Ignore object files
+*.o
+*.obj
+
+# Ignore compiled libraries
+*.a
+
+# Ignore any other binary files you want to exclude
+
+*.DS_Store
+*.sh
