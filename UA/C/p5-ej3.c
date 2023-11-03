@@ -9,23 +9,21 @@ int main() {
   int op;
   float tempI, tempF;
 
-  menu(&op);
+  do {
+    menu(&op);
+    switch (op) {
+    case 1:
+      CelToFar(&tempI, &tempF);
+      printf("El resultado en Farhenheit es: %.2f\n", tempF);
+      break;
+    case 2:
+      FarToCel(&tempI, &tempF);
+      printf("El resultado en Celcius es: %.2f\n", tempF);
+      break;
+    }
+  } while (op != 3);
 
-  switch (op) {
-  case 1:
-    printf("Caso 1\n");
-    CelToFar(&tempI, &tempF);
-    printf("El resultado en Farhenheit es: %.2f\n", tempF);
-    break;
-  case 2:
-    printf("Caso 2\n");
-    FarToCel(&tempI, &tempF);
-    printf("El resultado en Celsius : %.2f\n", tempF);
-    break;
-  case 3:
-    printf("Bye\n");
-    break;
-  }
+  printf("GoodBye\n");
 
   return 0;
 }
