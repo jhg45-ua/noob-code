@@ -28,17 +28,14 @@ int main() {
 void leerParametros(char *sim, char *opt, int *size) {
 
   printf("Introduce un simbolo para dibujar: ");
-  scanf("%c", sim);
-  getchar(); // Usamos getchar() para capturar el input del ENTER
+  scanf(" %c", sim);
 
   printf("Introduce si quieres la figura Rellena o Vacia(R/V): ");
   scanf(" %c", opt);
-  getchar();
   while (*opt != 'R' && *opt != 'V') {
     printf("Tu opcion es: %c. Solo se permien opciones R o V\n", *opt);
     printf("Introduce si quieres la figura Rellena o Vacia(R/V): ");
     scanf(" %c", opt);
-    getchar();
   }
 
   printf("Introduce la longitud deseada entre 4-20 pixeles: ");
