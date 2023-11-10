@@ -9,7 +9,7 @@
 
 // Prototipos
 void leerParametros(char *sim, char *opt, int *lado); // [X]
-void dibujar(char sim, char opt, int size);           // [X]
+void dibujar(char *sim, char *opt, int *size);        // [X]
 
 // Main
 
@@ -25,7 +25,7 @@ int main() {
   leerParametros(&sim, &opt, &size);
   printf("Los valores introducidos son: %c, %c, %ix%i\n", sim, opt, size, size);
 
-  dibujar(sim, opt, size);
+  dibujar(&sim, &opt, &size);
 
   return 1;
 }
@@ -52,24 +52,24 @@ void leerParametros(char *sim, char *opt, int *size) {
   }
 }
 
-void dibujar(char sim, char opt, int size) {
+void dibujar(char *sim, char *opt, int *size) {
   int i, j;
 
-  printf("El tamaño del cuadrado sera: %ix%i\n", size, size);
+  printf("El tamaño del cuadrado sera: %ix%i\n", *size, *size);
 
-  if (opt == 'R') {
-    for (i = 1; i <= size; i++) {
-      for (j = 1; j <= size; j++) {
-        printf("%c", sim);
+  if (*opt == 'R') {
+    for (i = 1; i <= *size; i++) {
+      for (j = 1; j <= *size; j++) {
+        printf("%c", *sim);
       }
 
       printf("\n");
     }
-  } else if (opt == 'V') {
-    for (i = 1; i <= size; i++) {
-      for (j = 1; j <= size; j++) {
-        if (i == 1 || i == size || j == 1 || j == size) {
-          printf("%c", sim);
+  } else if (*opt == 'V') {
+    for (i = 1; i <= *size; i++) {
+      for (j = 1; j <= *size; j++) {
+        if (i == 1 || i == *size || j == 1 || j == *size) {
+          printf("%c", *sim);
         } else {
           printf(" ");
         }
