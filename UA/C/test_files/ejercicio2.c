@@ -37,6 +37,10 @@ void ej1_proc(char *cadena, int matriz[MAX_PALABRAS][3]) {
     int longitud = 0;
     int inicio = 0;
 
+    //scanf("%[^\n]%*c", cadena);
+    printf("Introduce una cadena de caracteres: ");
+    fgets(cadena, MAX_CARACTERES, stdin);
+
     while (cadena[i] != '\0') {
         if (cadena[i] == ' ') {
             matriz[palabra][0] = inicio;
@@ -64,7 +68,7 @@ void ej1_muestra(int matriz[MAX_PALABRAS][3]) {
 }
 
 int main() {
-    char cadena[MAX_CARACTERES] = "Esta es una cadena de prueba";
+    char cadena[MAX_CARACTERES];
     int matriz[MAX_PALABRAS][3] = {0};
     int cantidad;
     float media;
