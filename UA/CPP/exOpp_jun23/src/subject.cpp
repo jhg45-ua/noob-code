@@ -41,6 +41,7 @@ void Subject::addGroup(string group)
                 throw invalid_argument(name);
             }
 
+
             bool stuExists = false;
             for (int i = 0; i < students.size(); i++)
             {
@@ -94,8 +95,6 @@ void Subject::setGroupMark(uint group, float mark)
 
 ostream &operator<<(ostream &os, const Subject &subj)
 {
-    os << subj.name << endl;
-
     // Mostrar la lista de estudiantes
     for (const Student &student : subj.students)
     {
