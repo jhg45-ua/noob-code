@@ -1,3 +1,0 @@
-/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/examenes/exOpp_jun23/cmake-build-debug/CMakeFiles/ex_jun23.dir
-/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/examenes/exOpp_jun23/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/examenes/exOpp_jun23/cmake-build-debug/CMakeFiles/rebuild_cache.dir
