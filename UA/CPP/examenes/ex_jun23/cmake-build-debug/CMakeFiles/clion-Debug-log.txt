@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -G Ninja -S /Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/ex_jun23 -B /Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/ex_jun23/cmake-build-debug
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/ex_jun23/cmake-build-debug
