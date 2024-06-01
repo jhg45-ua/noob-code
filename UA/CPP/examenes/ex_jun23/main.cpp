@@ -14,7 +14,7 @@ struct Task
 
 struct Database
 {
-    unsigned int nextId = 0;
+    unsigned int nextId;
     vector<Task> tasks;
 };
 
@@ -180,4 +180,3 @@ int main(int argc, char *argv[])
     } while (option != 'q');
     return 0;
 }
-

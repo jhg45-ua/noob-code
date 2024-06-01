@@ -6,4 +6,7 @@ En el archivo [INFO.md](INFO.md) se encuentra información detallada sobre el fu
 Este repositorio está abierto a cualquier propuesta que queráis realizar. Para más información ver el archivo [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Incorporación 6/11/23
-Las carpetas ´´´PR2, PR3, PR4´´´ salen direcitamente de moodle
+Las carpetas ***PR2, PR3, PR4*** salen direcitamente de moodle
+
+### Incorporación 1/07/24
+Añadidas las practicas a la carpeta CPP, más practicas para el examen de programación
