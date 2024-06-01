@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/ex_jun23/cmake-build-debug"
+			"value" : "/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/examenes/ex_jun23/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -151,11 +151,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "CXX compiler"
 				}
 			],
-			"type" : "UNINITIALIZED",
-			"value" : "clang++"
+			"type" : "STRING",
+			"value" : "/usr/bin/clang++"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS",
@@ -247,11 +247,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "C compiler"
 				}
 			],
-			"type" : "UNINITIALIZED",
-			"value" : "clang"
+			"type" : "STRING",
+			"value" : "/usr/bin/clang"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -479,7 +479,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/ex_jun23/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/examenes/ex_jun23/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -539,7 +539,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/ex_jun23"
+			"value" : "/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/examenes/ex_jun23"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -1127,7 +1127,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/ex_jun23/cmake-build-debug"
+			"value" : "/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/examenes/ex_jun23/cmake-build-debug"
 		},
 		{
 			"name" : "ex_jun23_IS_TOP_LEVEL",
@@ -1151,7 +1151,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/ex_jun23"
+			"value" : "/Users/julianhinojosagil/Documents/Dev/noob-code/UA/CPP/examenes/ex_jun23"
 		}
 	],
 	"kind" : "cache",

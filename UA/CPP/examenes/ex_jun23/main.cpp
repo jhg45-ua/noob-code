@@ -1,3 +1,4 @@
+#include <cstring>
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -47,9 +48,14 @@ void addTask(Database &data)
     string min = time.substr(colonPos + 1);
 
     // Crear la nueva tarea
-    Task newTask = {data.nextId, hour, min, desc};
-    data.nextId++;
+    Task newTask = {data.nextId++, hour, min, desc};
     data.tasks.push_back(newTask);
+
+    // Reasignar los IDs para asegurar que sean secuenciales
+    for (int i = 0; i < data.tasks.size(); i++)
+    {
+        data.tasks[i].id = i + 1;
+    }
 
     //cout << "Tarea añadida: " << hour << ":" << min << "," << desc << endl; // Debug
 }
@@ -75,9 +81,9 @@ void deleteTasks(Database &data)
         data.tasks.erase(data.tasks.begin() + (taskId - 1));
 
         for (int i = 0; i < data.tasks.size(); i++)
-        {
             data.tasks[i].id = i + 1;
-        }
+
+        data.nextId = data.tasks.size() + 1; // Ajustar el nextId
     } else
     {
         cout << "Error: wrong number" << endl;
@@ -125,10 +131,21 @@ void fileHandle(string fileName, Database &data, const char *mode)
         while (fichero.read(reinterpret_cast<char *>(&hour), sizeof(hour)))
         {
             fichero.read(reinterpret_cast<char *>(&min), sizeof(min));
-            fichero.getline(desc, 101);
+            fichero.read(desc, 101);
+            desc[100] = '\0'; // Asegurarse de que la descripción esté terminada en nulo
+
+            Task task = {data.nextId++, to_string(hour), to_string(min), string(desc)};
+            data.tasks.push_back(task);
+
             cout << hour << ":" << min << " " << desc << endl;
         }
         fichero.close();
+
+        // Reasignar los IDs para asegurar que sean secuenciales
+        for (int i = 0; i < data.tasks.size(); i++)
+        {
+            data.tasks[i].id = i + 1;
+        }
     }
 }
 
@@ -151,6 +168,10 @@ int main(int argc, char *argv[])
                 fileHandle(argName, data, "save");
                 i++;
             }
+        }
+        else if (strcmp(argv[i], "-a") == 0)
+        {
+            addTask(data);
         }
     }
 
