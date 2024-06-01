@@ -31,6 +31,15 @@ void showMenu()
          << "Option: ";
 }
 
+void reorderId(Database &data)
+{
+    // Reasignar los ID para asegurar que sean secuenciales
+    for (int i = 0; i < data.tasks.size(); i++)
+    {
+        data.tasks[i].id = i + 1;
+    }
+}
+
 void addTask(Database &data)
 {
     string strInput, time, desc;
@@ -51,11 +60,7 @@ void addTask(Database &data)
     Task newTask = {data.nextId++, hour, min, desc};
     data.tasks.push_back(newTask);
 
-    // Reasignar los IDs para asegurar que sean secuenciales
-    for (int i = 0; i < data.tasks.size(); i++)
-    {
-        data.tasks[i].id = i + 1;
-    }
+    reorderId(data);
 
     //cout << "Tarea añadida: " << hour << ":" << min << "," << desc << endl; // Debug
 }
@@ -63,7 +68,7 @@ void addTask(Database &data)
 void deleteTasks(Database &data)
 {
     string strTaskId;
-    uint taskId, pos = 0;
+    uint taskId;
 
     for (int i = 0; i < data.tasks.size(); i++)
     {
@@ -141,11 +146,7 @@ void fileHandle(string fileName, Database &data, const char *mode)
         }
         fichero.close();
 
-        // Reasignar los IDs para asegurar que sean secuenciales
-        for (int i = 0; i < data.tasks.size(); i++)
-        {
-            data.tasks[i].id = i + 1;
-        }
+        reorderId(data);
     }
 }
 
