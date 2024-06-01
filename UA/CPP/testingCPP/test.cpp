@@ -1,46 +1,27 @@
+// Error handling
 #include <iostream>
+#include <stdexcept>
 
-// Base class 1
-class Animal
+int divide(int a, int b)
 {
-    public:
-        void eat()
-        {
-            std::cout << "I can eat!" << std::endl;
-        }
-};
+    if (b == 0)
+        throw std::runtime_error("Division by zero!");
 
-// Base class 2
-class Mammal
-{
-    public:
-        void breathe()
-        {
-            std::cout << "I can breathe" << std::endl;
-        }
-};
-
-// Derived class inheriting from both animal and Mammal
-class Dog : public Animal, public Mammal
-{
-public:
-    void bark()
-    {
-        std::cout << "I can bark! Woof, Woof!" << std::endl;
-    }
-};
+    return a / b;
+}
 
 int main()
 {
+    int num1, num2;
 
-    Dog myDog;
+    std::cout << "Enter two numbers for division: ";
+    std::cin >> num1 >> num2;
 
-    // Calling members from both base classes
-    myDog.eat();
-    myDog.breathe();
-
-    // Calling member from derived class
-    myDog.bark();
-
-    return 0;
+    try
+    {
+        int result = divide(num1, num2);
+        std::cout << "The result is: " << result << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
 }
