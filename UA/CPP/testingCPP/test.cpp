@@ -1,27 +1,44 @@
-// Error handling
 #include <iostream>
-#include <stdexcept>
+#include <unistd.h>  // Para getopt
 
-int divide(int a, int b)
+int main(int argc, char* argv[])
 {
-    if (b == 0)
-        throw std::runtime_error("Division by zero!");
+    int opt;
+    std::string valorB, valorC;
+    bool opcionA = false;
 
-    return a / b;
-}
-
-int main()
-{
-    int num1, num2;
-
-    std::cout << "Enter two numbers for division: ";
-    std::cin >> num1 >> num2;
-
-    try
-    {
-        int result = divide(num1, num2);
-        std::cout << "The result is: " << result << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+    // Procesar las opciones
+    while ((opt = getopt(argc, argv, "ab:c:")) != -1) {
+        switch (opt)
+        {
+            case 'a':
+                opcionA = true;
+                break;
+            case 'b':
+                valorB = optarg;
+                break;
+            case 'c':
+                valorC = optarg;
+                break;
+            default:
+                std::cerr << "Uso: " << argv[0] << " [-a] [-b valor] [-c valor]" << std::endl;
+                return 1;
+        }
     }
+
+    // Mostrar los resultados
+    if (opcionA)
+    {
+        std::cout << "Opción a activada" << std::endl;
+    }
+    if (!valorB.empty())
+    {
+        std::cout << "Opción b con valor: " << valorB << std::endl;
+    }
+    if (!valorC.empty())
+    {
+        std::cout << "Opción c con valor: " << valorC << std::endl;
+    }
+
+    return 0;
 }
