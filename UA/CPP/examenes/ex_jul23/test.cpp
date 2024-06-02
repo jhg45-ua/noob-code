@@ -1,7 +1,3 @@
-//
-// Created by Julián Hinojosa Gil on 2/6/24.
-//
-
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -15,58 +11,58 @@ struct Employee
     char dni[10];
     char name[100];
     unsigned int bruteSalary;
-    unsigned int startedYear;
+    int startedYear;
 };
 
-bool loadEmployee(const char *filename, vector<Employee> &employees)
+bool loadEmployees(const char *filename, vector<Employee> &employees)
 {
-    ifstream inputFile(filename, ios::binary);
-    if(!inputFile.is_open())
+    ifstream infile(filename, ios::binary);
+    if (!infile)
     {
-        cerr << "Error: Cannot open file!" << endl;
+        cout << "ERROR: cannot open file" << endl;
         return false;
     }
 
     Employee emp;
-    while (inputFile.read(reinterpret_cast<char *>(&emp), sizeof(Employee)))
+    while (infile.read(reinterpret_cast<char *>(&emp), sizeof(Employee)))
     {
         employees.push_back(emp);
     }
 
-    inputFile.close();
+    infile.close();
     return true;
 }
 
-double calculateAverageSalary(vector<Employee> &employees)
+double calculateAverageSalary(const vector<Employee> &employees)
 {
     double totalSalary = 0;
-    for (int i = 0; i < employees.size(); i++)
+    for (const auto &emp : employees)
     {
-        totalSalary += employees[i].bruteSalary;
+        totalSalary += emp.bruteSalary;
     }
-
     return totalSalary / employees.size();
 }
 
-void writeAptEmployee(const char *filename, const vector<Employee> &employees, double averageSalary)
+void writeAptEmployees(const char *filename, const vector<Employee> &employees, double averageSalary)
 {
-    ofstream outputFile(filename);
-    if (!outputFile.is_open())
+    ofstream outfile(filename);
+    if (!outfile)
     {
-        cerr << "Error: Cannot open file!" << endl;
+        cout << "ERROR: cannot open file" << endl;
+        return;
     }
 
     int id = 1;
-    for (int i = 0; i < employees.size(); i++)
+    for (const auto &emp : employees)
     {
-        if (2023 - employees[i].startedYear > 3 && employees[i].bruteSalary >= averageSalary)
+        if (2023 - emp.startedYear > 3 && emp.bruteSalary >= averageSalary)
         {
-            outputFile << id << "-" << employees[i].dni << endl;
-            id++;
+            outfile << id << "-" << emp.dni << endl;
+            ++id;
         }
     }
 
-    outputFile.close();
+    outfile.close();
 }
 
 int main(int argc, char *argv[])
@@ -85,7 +81,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                cerr << "Error: wrong arguments!" << endl;
+                cout << "ERROR: wrong arguments" << endl;
                 return 1;
             }
         }
@@ -94,44 +90,46 @@ int main(int argc, char *argv[])
             if (i + 1 < argc)
             {
                 averageSalary = atof(argv[i + 1]);
-                if (averageSalary < 10000 || averageSalary > 10000)
+                if (averageSalary < 10000 || averageSalary > 100000)
                 {
-                    cerr << "Error: wrong arguments" << endl;
+                    cout << "ERROR: wrong arguments" << endl;
                     return 1;
                 }
                 i++;
             }
             else
             {
-                cerr << "Error: wrong arguments" << endl;
+                cout << "ERROR: wrong arguments" << endl;
                 return 1;
             }
         }
         else
         {
-            cerr << "Error: wrong arguments" << endl;
+            cout << "ERROR: wrong arguments" << endl;
             return 1;
         }
     }
 
     if (inputFilename == nullptr)
     {
-        cerr << "Error: wrong arguments" << endl;
+        cout << "ERROR: wrong arguments" << endl;
         return 1;
     }
 
     const char *outputFilename = "aptos.txt";
 
     vector<Employee> employees;
-    if (!loadEmployee(inputFilename, employees))
+    if (!loadEmployees(inputFilename, employees))
+    {
         return 1;
+    }
 
     if (employees.empty())
     {
         ofstream outfile(outputFilename);
-        if(!outfile.is_open())
+        if (!outfile)
         {
-            cerr << "Error: cannot open file!" << endl;
+            cout << "ERROR: cannot open file" << endl;
             return 1;
         }
         outfile.close();
@@ -139,9 +137,11 @@ int main(int argc, char *argv[])
     }
 
     if (averageSalary == -1)
+    {
         averageSalary = calculateAverageSalary(employees);
+    }
 
-    writeAptEmployee(outputFilename, employees, averageSalary);
+    writeAptEmployees(outputFilename, employees, averageSalary);
 
     return 0;
 }
