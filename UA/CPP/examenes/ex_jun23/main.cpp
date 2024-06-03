@@ -113,10 +113,13 @@ void fileHandle(string fileName, Database &data, const char *mode)
 
         for (int i = 0; i < data.tasks.size(); i++)
         {
+            // Pasamos las horas y minutos a enteros
             int hour = stoi(data.tasks[i].hour);
             int minutes = stoi(data.tasks[i].min);
+            // Los escribimos de la forma común
             fichero.write(reinterpret_cast<const char*>(&hour), sizeof(hour));
             fichero.write(reinterpret_cast<const char*>(&minutes), sizeof(minutes));
+            // Desc al ser string simplemente lo pasamos a una string de c, con su tamaño + 1 para el carácter final
             fichero.write(data.tasks[i].desc.c_str(), 101);
         }
     }
@@ -133,12 +136,15 @@ void fileHandle(string fileName, Database &data, const char *mode)
         int hour, min;
         char desc[101];
 
+        // Mientras vaya leyendo la hora
         while (fichero.read(reinterpret_cast<char *>(&hour), sizeof(hour)))
         {
+            // Lee los minutos y la descripción
             fichero.read(reinterpret_cast<char *>(&min), sizeof(min));
             fichero.read(desc, 101);
             desc[100] = '\0'; // Asegurarse de que la descripción esté terminada en nulo
 
+            // Lo añade a la estructura en su tipo de dato correcto
             Task task = {data.nextId++, to_string(hour), to_string(min), string(desc)};
             data.tasks.push_back(task);
 
@@ -176,6 +182,7 @@ int main(int argc, char *argv[])
         }
     }
 
+    // Menu en bucle infinito hasta que se elige opción para salir
     do
     {
         showMenu();
