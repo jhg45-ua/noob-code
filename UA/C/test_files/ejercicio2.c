@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 #define MAX_PALABRAS 6
 #define MAX_CARACTERES 60
@@ -13,7 +12,7 @@ long long factorial(int n) {
     return fact;
 }
 
-void ej2(int *cantidad, float *media) {
+void ej2(int *cantidad) {
     int num;
     *cantidad = 0;
 
@@ -71,11 +70,10 @@ int main() {
     char cadena[MAX_CARACTERES];
     int matriz[MAX_PALABRAS][3] = {0};
     int cantidad;
-    float media;
 
     ej1_proc(cadena, matriz);
     ej1_muestra(matriz);
 
-    ej2(&cantidad, &media);
+    ej2(&cantidad);
     return 0;
 }
