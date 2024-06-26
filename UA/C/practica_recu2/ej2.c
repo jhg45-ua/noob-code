@@ -9,8 +9,10 @@ void findSubmatrix(int *mat1, int *mat2, int filas, int columnas, int *res)
 
     for (int i = 0; i <= filas - 3; i++)
     {
+        printf("Fila: %i ", i);
         for (int j = 0; j <= columnas - 3; j++)
         {
+            printf("Columna: %i\n", i);
             found = 1;
             for (int k = 0; k < 3; k++)
             {
@@ -41,20 +43,21 @@ int main(void)
 {
     printf("Hello World\n");
 
-    int mat1[3][4] = {
+    int mat1[4][4] = {
         {4, 6, 7, 9},
         {0, 1, 6, 6},
-        {2, 3, 5, 7}
+        {2, 3, 5, 7},
+        {1, 3, 6, 2}
     };
 
     int mat2[3][3] = {
-        {6, 7, 9},
         {1, 6, 6},
-        {3, 5, 7}
+        {3, 5, 7},
+        {3, 6, 7}
     };
 
     int res[2];
-    findSubmatrix((int *)mat1, (int *)mat2, 3, 4, res);
+    findSubmatrix((int *)mat1, (int *)mat2, 4, 4, res);
     printf("Result: %d %d\n", res[0], res[1]);
 
     return 0;
