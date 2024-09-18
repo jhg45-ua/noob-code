@@ -6,27 +6,27 @@
 */
 #include <stdio.h>
 
-int main() {
-  int a, b, c; // las tres variables para recoger los tres números
-  int aux;     // variable auxiliar para el intercambio
+int main() 
+{
+    int cantidad, m1e, m50cent, m5cent, m1cent;
 
-  // Se piden los números al usuario
-  printf("Valor de a: ");
-  scanf("%d", &a);
-  printf("Valor de b: ");
-  scanf("%d", &b);
-  printf("Valor de c: ");
-  scanf("%d", &c);
+    printf("Intruduce la cantidad a cambiar (€): ");
+    scanf("%d", &cantidad);
 
-  printf("Valores antes del intercambio: a=%d  b=%d  c=%d\n", a, b, c);
+    m1e = cantidad / 100; // Cantidad de euros
+    cantidad = cantidad % 100;
+    printf("%d monedas de 1 euro\n", m1e);
+    
+    m50cent = cantidad / 50;
+    cantidad %= 50;
+    printf("%d monedas de 50 cent\n", m50cent);
 
-  // Intercambio
-  aux = b;
-  b = c;
-  c = a;
-  a = aux;
+    m5cent = cantidad / 5;
+    cantidad %= 5;
+    printf("%d monedas de 5 cent\n", m5cent);
 
-  printf("Valores después del intercambio: a=%d  b=%d  c=%d\n", a, b, c);
+    m1cent = cantidad;
+    printf("%d monedas de 1 cent\n", m1cent);
 
-  return 0;
+    return 0;
 }

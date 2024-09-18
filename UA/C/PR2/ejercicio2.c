@@ -6,19 +6,24 @@
 */
 #include <stdio.h>
 
-int main() {
-  float litros, consumo, kms;
+int main() 
+{
+	float pesoBolsa, monedaRef, pesoMoneda;
 
-  printf("Introduce los litros de combustible que hay en el depósito: ");
-  scanf("%f", &litros);
+	// Se piden los datos
+	printf("Introduce el peso de la saca (Kg): ");
+	scanf("%f", &pesoBolsa);
 
-  printf("Introduce el consumo medio de litros a los 100 kms: ");
-  scanf("%f", &consumo);
+	printf("Introduce el valor de las monedas (€): ");
+	scanf("%f", &monedaRef);
 
-  // Se calcula la autonomía del vehículo en kms
-  kms = (litros * 100) / consumo;
+	printf("Introduce el peso de la moneda (g): ");
+	scanf("%f", &pesoMoneda);
 
-  printf("La autonomía de tu vehículo son %.2f kms\n", kms);
+	// Calculamos la cantidad de monedas segun el peso de la bolsa y el peso individual de la monedas
+	int cantidadMonedas = (pesoBolsa * 1000) / pesoMoneda; // cantidad de monedas
+	float valorTotal = cantidadMonedas * monedaRef; //valor total de la bolsa
 
-  return 0;
+	printf("La bolsa de %.0f que pesa %f tiene un valor: %.2f€\n", monedaRef, pesoBolsa, valorTotal);
+  	return 0;
 }
