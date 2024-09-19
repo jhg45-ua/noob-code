@@ -6,24 +6,21 @@
 */
 #include <stdio.h>
 
-int main() {
-  int nPiezas;
-  int horas, minutos, segundos;
+int main() 
+{
+    int capacidadGen;
+    float consumoGen;
 
-  printf("¿Cuántas piezas caben en la caja? ");
-  scanf("%d", &nPiezas);
+    printf("Introduce la capacidad del deposito del generador (L): ");
+    scanf("%d", &capacidadGen);
 
-  // se calcula el número de horas dividiendo por 3600 segundos que tiene una
-  // hora
-  horas = nPiezas / 3600;
-  // los segundos restantes de la operación anterior se dividen por 60 segundos
-  // que tiene un minuto para calcular los minutos
-  minutos = (nPiezas % 3600) / 60;
-  // se calculan los segundos restantes
-  segundos = (nPiezas % 3600) % 60;
+    printf("Introduce el consumo medio del generador (L/H): ");
+    scanf("%f", &consumoGen);
 
-  printf("Tiempo hasta que se llene el cubo: %dh, %dm y %ds\n", horas, minutos,
-         segundos);
+    float tiempoUso = capacidadGen/consumoGen; // Resultado en horas (con decimales)
+    int dias = (int)tiempoUso / 24;
+    int horas = (int)tiempoUso % 24;
+    int minutos = (int)((tiempoUso - (int)tiempoUso) * 60);
 
-  return 0;
+    printf("El generador se mantendrá encendido por:\n %d días, %d horas y %d minutos\n", dias, horas, minutos);
 }
