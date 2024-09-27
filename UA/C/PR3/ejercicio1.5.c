@@ -5,73 +5,29 @@
     { cc = compilador }
 */
 #include <stdio.h>
+#include <math.h>
 
 int main() 
 {
+    // IMC = peso/(altura*altura) | peso/(pow(altura, 2))
+    float peso, altura, imc;
 
-    int a, b, c;
-    int aux;
-    char sentido;
-    
-    printf("Introduce el valor de a: ");
-    scanf("%d", &a);
+    printf("Introduce el peso (kg): ");
+    scanf("%f", &peso);
 
-    printf("Introduce el valor de b: ");
-    scanf("%d", &b);
+    printf("Introduce la altura (m): ");
+    scanf("%f", &altura);
 
-    printf("Introduce el valor de c: ");
-    scanf("%d", &c);
+    imc = peso/pow(altura, 2);
 
-    printf("Ordenar en sentido Ascendente (A) o Descendente (D): ");
-    scanf(" %c", &sentido);
-
-    printf("Valores antes del intercambio: a=%d, b=%d, c=%d\n", a, b, c);
-
-    if (sentido == 'A')
-    {
-        // Ordenar numeros en sentido ascendente
-        if (b > a) 
-        {
-            aux = a;
-            a = b;
-            b = aux;
-        }
-        if (c > a) 
-        {
-            aux = a;
-            a = c;
-            c = aux;
-        }
-        if (c > b) 
-        {
-            aux = b;
-            b = c;
-            c = aux;
-        }
-    } else if (sentido == 'D')
-    {
-        // Ordenar numeros en sentido descendente
-        if (b < a) 
-        {
-            aux = a;
-            a = b;
-            b = aux;
-        }
-        if (c < a) 
-        {
-            aux = a;
-            a = c;
-            c = aux;
-        }
-        if (c < b) 
-        {
-            aux = b;
-            b = c;
-            c = aux;
-        }
-    }
-
-    printf("Valores despues del intercambio en sentido %c: a=%d, b=%d, c=%d\n", sentido, a, b, c);
+    if (imc < 18.0) // IMC Inferior al Normal
+        printf("Valor de IMC: %.2f - Inferior al Normal\n", imc);
+    else if (imc >= 18.1 && imc <= 24.9) // IMC Normal 
+        printf("Valor de IMC: %.2f - Normal\n", imc);
+    else if (imc >= 25.0 && imc <= 29.9)
+        printf("Valor de IMC: %.2f - Sobrepeso\n", imc);
+    else
+        printf("Valor de IMC: %.2f - Obesidad\n", imc);
 
     return 0;
 }

@@ -8,8 +8,7 @@
 
 int main() 
 {
-    float op1, op2;
-    float result;
+    float op1, op2, result;
     char operador;
 
     printf("Introduce el primer operador: ");
@@ -21,29 +20,26 @@ int main()
     printf("Introduce el operando (+, -, *, /): ");
     scanf(" %c", &operador);
 
-
-    if (operador == '+')
+    switch (operador)
     {
-        result = op1 + op2;
-    }
-
-    if (operador == '-')
-    {
-        result = op1 - op2;
-    }
-
-    if (operador == '*')
-    {
-        result = op1 * op2;
-    }
-
-    if (operador == '/')
-    {
-        result = op1 / op2;
+        case '+':
+            result = op1 + op2;
+            break;
+        case '-':
+            result = op1 - op2;
+            break;
+        case '*':
+            result = op1 * op2;
+            break;
+        case '/':
+            result = op1 / op2; 
+            break;
+        default:
+            printf("No es una operación correcta\n");
+            break;
     }
 
     printf("El resultado de la operación %.2f %c %.2f es: %.2f\n", op1, operador, op2, result);
-
 
     return 0;
 }

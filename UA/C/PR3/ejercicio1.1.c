@@ -23,5 +23,6 @@ int main()
 
     if (numero1 == numero2)
         printf("El numero %d y el numero %d son iguales", numero1, numero2);
+        
     return 0;
 }
