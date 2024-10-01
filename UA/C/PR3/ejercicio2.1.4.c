@@ -8,7 +8,7 @@
 
 int main() 
 {
-    int ops;
+    int ops, size;
 
     printf("MENU\n");
     printf("------------\n");
@@ -21,7 +21,28 @@ int main()
 
     printf("Elige una opcion: ");
     scanf("%d", &ops);
+
+    printf("Introduce el tamaño de la figura (4 a 15): ");
+    scanf("%d", &size);
     
+
+    switch (ops)
+    {
+    case 1:
+        for (int i = 1; i <= size; i++)
+        {
+            for (int j = 1; j <= i; j++)
+            {
+                printf("*");
+            }
+            printf("\n");
+        }
+        break;
+    
+    default:
+        printf("Opcion incorrecta\n");
+        break;
+    }
 
     return 0;
 }
