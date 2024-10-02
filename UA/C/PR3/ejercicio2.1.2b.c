@@ -8,17 +8,21 @@
 
 int main() 
 {
-    int numero, divisores;
+    int potencia, valor;
 
     printf("Introduce un numero entero: ");
-    scanf("%d", &numero);
+    scanf("%d", &valor);
 
-    printf("Divisores del numero %d: ", numero);
-    for (int i = 1; i<=numero; i++)
+    potencia = 1;
+    printf("<");
+    while(potencia <= valor) 
     {
-        if (numero%i == 0)
-            printf("%d ", i);
+        printf("%d", potencia);
+        potencia = potencia * 2;
+        if (potencia <= valor)
+            printf(", ");
     }
+    printf(">");
     printf("\n");
 
     return 0;

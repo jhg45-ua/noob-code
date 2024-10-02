@@ -25,23 +25,35 @@ int main()
     printf("Introduce el tamaño de la figura (4 a 15): ");
     scanf("%d", &size);
     
-
-    switch (ops)
-    {
-    case 1:
-        for (int i = 1; i <= size; i++)
-        {
-            for (int j = 1; j <= i; j++)
-            {
-                printf("*");
+    switch (ops) {
+        case 1:
+            for (int i = 1; i <= size; i++) {
+                for (int j = 1; j <= i; j++) {
+                    printf("*");
+                }
+                printf("\n");
             }
-            printf("\n");
-        }
-        break;
-    
-    default:
-        printf("Opcion incorrecta\n");
-        break;
+            break;
+        
+        case 2:
+            printf("Opción 2\n");
+            break;
+
+        case 3:
+            printf("Opción 3\n");
+            break;
+
+        case 4:
+            printf("Opción 4\n");
+            break;
+
+        case 5:
+            printf("Opción 5\n");
+            break;
+
+        default:
+            printf("Opcion incorrecta\n");
+            break;
     }
 
     return 0;
