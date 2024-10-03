@@ -1,7 +1,7 @@
 /*
-            PRÁCTICA 3. EJERCICIO 2.1.3
-    Para compilar: cc ejercicio2.1.3.c -o ejercicio2.1.3
-    Para ejecutar: ./ejercicio2.1.3
+            PRÁCTICA 3. EJERCICIO 2.1.4
+    Para compilar: cc ejercicio2.1.4.c -o ejercicio2.1.4
+    Para ejecutar: ./ejercicio2.1.4
     { cc = compilador }
 */
 #include <stdio.h>
