@@ -1,34 +1,18 @@
 #include <stdio.h>
 
-int main()
+int main() 
 {
-    int a, b, incremento;
-    char separador;
+	int i = 1;
+	while (i <= 8) {
+		printf("%d => ", i);
+		int j = 1;
+		while (j <= 8) {
+			printf("(%d, %d) ", i, j);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 
-    printf("Introduce a: ");
-    scanf("%d", &a);
-
-    printf("Introduce b: ");
-    scanf("%d", &b);
-
-    printf("Introduce el incremento: ");
-    scanf("%d", &incremento);
-
-    printf("Introduce el separador: ");
-    scanf(" %c", &separador);
-
-    int i = a;
-
-    while (i <= b)
-    {
-        printf("%d", i);
-        i += incremento;
-        if (i <= b)
-            printf("%c ", separador);
-
-    }
-
-    printf("\n");
-
-    return 0;
+	return 0;
 }
