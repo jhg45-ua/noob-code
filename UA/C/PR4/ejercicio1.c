@@ -8,7 +8,7 @@
 */
 #include <stdio.h>
 
-void convKmHtoMs(float *kmh, float *ms) { *ms = *kmh / 3.6; }
+void convKmHtoMs(float kmh, float *ms) { *ms = kmh / 3.6; } // Recomendable que cuando se devuelva unicamente un valor se use funciones de paso por valor (no punteros)
 
 int main() {
 	float velokms=0.0, veloms=0.0;
@@ -16,7 +16,7 @@ int main() {
 	printf("Introduce la velocidad (Km/H): ");
 	scanf("%f", &velokms);
 
-	convKmHtoMs(&velokms, &veloms);
+	convKmHtoMs(velokms, &veloms);
 
 	printf("La velocidad en m/s: %.2f\n", veloms);
 

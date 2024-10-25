@@ -11,19 +11,10 @@
 } */
 
 bool contarCifras(int num) {
-	int cifra, totalCifras = 0;
-
-	while (num > 0) {
-		cifra = num % 10;
-		totalCifras++;
-		num /= 10;
-	}
-	/* digitOfNum(num, &cifra); */
-
-	if (totalCifras == 7)
+	if (num >= 1000000 && num <= 9999999)
 		return true;
-
-	return false;
+	else 
+		return false;
 }
 
 int sumarCifrasPares(int num) {
