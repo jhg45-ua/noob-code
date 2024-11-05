@@ -13,7 +13,7 @@
 
 int main()
 {
-	// Para numeros aleatiorios positivos -> en el rango [a, A] n= a + rand()%(A+1)
+	// Para numeros aleatiorios positivos -> en el rango [a, A] n[a, A] = a + rand()%(A+1)
 	int numeroMisterioso, input, counter = 0;
 
 	printf("Adivina el número oculto en el menor numero de intentos posibles\n");

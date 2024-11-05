@@ -9,67 +9,19 @@
 #include<stdbool.h>
 #include <stdlib.h>
 
-int pedirNumero();
-bool esDivisor(int, int);
-void divisores(int num, int *nDivs, bool *esPrimo);
+int main()
+{
+	int numero, digitos;
 
-int main(){
-    int num, nDivs;
-    bool esPrimo;
+	printf("Introduce un numero entero: ");
+	scanf("%d", &numero);
 
-    num = pedirNumero();
+	while (numero >= 0)
+	{
+		numero %= 10;
+		digitos++;
+		numero /= 10;
+	}
 
-    printf("El número %d tiene los siguientes divisores: ", num);
-
-    divisores(num, &nDivs, &esPrimo);
-
-    if(!esPrimo)
-        printf("Y NO es primo\n");
-    else
-        printf("Y ES primo\n");
-
-    return 0;
-}
-
-
-int pedirNumero(){
-    int num;
-
-    do{
-        printf("\nIntroduce un entero positivo > 0: ");
-        scanf(" %d", &num);
-    }while(num<1);
-
-    return num;
-}
-
-bool esDivisor(int num, int d){
-    bool divisor;
-
-    if( num % d == 0)
-        divisor = true;
-    else
-        divisor = false;
-    
-    return divisor;
-}
-
-void divisores(int num, int *nDivs, bool *esPrimo){
-    int i;
-
-    *nDivs = 1;
-    printf("1");
-    for(i = 2; i <= num / 2; i++){
-        if(esDivisor(num, i)){ // es divisor
-            printf(", %d", i);
-            (*nDivs)++;
-        }
-    }
-    (*nDivs)++; // el propio número
-    printf(", %d\n", num);
-
-    if(*nDivs == 2)
-        (*esPrimo) = true;
-    else
-        (*esPrimo) = false;
+	printf("Digitos del numero: %d\n", digitos);
 }
