@@ -8,21 +8,23 @@
 #include <stdlib.h>
 #include <time.h>
 
-int randNumInRange(int min, int max) {
-	srand(time(NULL));
-
-	int randNum = min + rand() % (max + 1);
-	return randNum;
-}
+int randNumInRange(int min, int max) { return min + rand() % (max - min + 1); }
 
 int main() {
+	int min, max, nNum;
 
-	int min, max;
+	srand(time(NULL)); // La semilla solo hace falta iniciarla una vez
 
 	printf("Introduce el minimo y maximo del rango para generar un numero: ");
 	scanf("%d %d", &min, &max);
 
-	printf("El numero generado es: %d\n", randNumInRange(min, max));
+	printf("Cuantos numeros pseudoaleatorios quieres: ");
+	scanf("%d", &nNum);
+
+	for (int i = 1; i <= nNum; i++)
+	{
+		printf("El numero generado es: %d\n", randNumInRange(min, max));
+	}
 
 	return 0;
 }

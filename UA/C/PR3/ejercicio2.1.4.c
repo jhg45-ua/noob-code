@@ -26,30 +26,71 @@ int main()
     scanf("%d", &size);
     
     switch (ops) {
-        case 1:
-            for (int i = 1; i <= size; i++) {
-                for (int j = 1; j <= i; j++) {
-                    printf("*");
-                }
-                printf("\n");
-            }
-            break;
+        case 1: // Piramide
+        	for (int i = 1; i <= size; i++) {
+        		for (int j = 1; j <= i; j++) {
+                		printf("*");
+                	}
+                	printf("\n");
+            	}
+        	break;
         
-        case 2:
-            printf("Opción 2\n");
-            break;
+        case 2: // Triangulo
+        	for (int i = 0; i < size; i++) {
+			for (int j = 0; j < 2 * size; j++) {
+				if (j > i && j < 2 * size - i)
+					printf("*");
+				else
+					printf(" ");	
+			}
+			printf("\n");
+		}
+        	break;
 
-        case 3:
-            printf("Opción 3\n");
-            break;
+        case 3: // Piramide espejo
+        	for (int i = 0; i < size; i++) {
+			for (int j = 0; j < 2 * size - 1; j++) {
+				if (j <= i || j >= 2 * size - 2 - i)
+					printf("*");
+				else
+					printf(" ");
+			}
+			printf("\n");
+		}
+            	break;
 
-        case 4:
-            printf("Opción 4\n");
-            break;
+        case 4: // Flecha
+        	for (int i = 0; i < 2 * size - 1; i++) {
+			for (int j = 0; j < 2 * size; j++) {
+				if ((i < size && j >= size - 1 - (i % size) && j < 2 * size - (i % size) - 1)
+					|| (i == size - 1 && j < 2 * size - 1)
+					|| (i >= size && j > i - size && j < i + 1)
+				)
+					printf("*");
+				else
+					printf(" ");
+			}
+			printf("\n");
+		}
+		break;
 
-        case 5:
-            printf("Opción 5\n");
-            break;
+        case 5: // Rombo
+            	for (int i = 1; i <= size; i++) {
+			printf("%*s", size - i + 1, "");
+			for (int j = 0; j < 2 * i - 1; j++) {
+				printf("*");
+			}
+			printf("\n");
+		}
+
+		for (int i = size - 1; i > 0; i--) {
+			printf("%*s", size - i + 1, "");
+			for (int j = 0; j < 2 * i - 1; j++) {
+				printf("*");
+			}
+			printf("\n");
+		}
+		break;
 
         default:
             printf("Opcion incorrecta\n");

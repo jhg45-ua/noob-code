@@ -5,9 +5,18 @@
     { cc = compilador }
 */
 
-#include<stdio.h>
-#include<stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
+
+int contarDig(int num)
+{
+	// Caso base |-> Si el numero es menor que 10, siempre tiene 1 digito
+	if (num < 10)
+		return 1;
+	else 
+		return 1 + contarDig(num/10);
+	
+}
 
 int main()
 {
@@ -16,12 +25,5 @@ int main()
 	printf("Introduce un numero entero: ");
 	scanf("%d", &numero);
 
-	while (numero >= 0)
-	{
-		numero %= 10;
-		digitos++;
-		numero /= 10;
-	}
-
-	printf("Digitos del numero: %d\n", digitos);
+	printf("Funcion para contar digitos: %d\n", contarDig(numero));
 }
