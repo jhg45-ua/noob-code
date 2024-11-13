@@ -60,18 +60,27 @@ int main()
             	break;
 
         case 4: // Flecha
-        	for (int i = 0; i < 2 * size - 1; i++) {
-			for (int j = 0; j < 2 * size; j++) {
-				if ((i < size && j >= size - 1 - (i % size) && j < 2 * size - (i % size) - 1)
-					|| (i == size - 1 && j < 2 * size - 1)
-					|| (i >= size && j > i - size && j < i + 1)
-				)
-					printf("*");
-				else
-					printf(" ");
+        	for (int i = size; i > 0; i--) { // Parte de arriba
+			printf("%*s", i, "");
+			for (int j = 0; j < size; j++) {
+				printf("*");
 			}
 			printf("\n");
 		}
+		
+		printf("%*s", 2, "");
+		for (int j = 0; j <= size + 4; j++) {
+			printf("*");
+		}
+		printf("\n");
+
+		for (int i = 2; i <= size; i++) {
+			printf("%*s", i, "");
+			for (int j = 0; j < size; j++) {
+				printf("*");
+			}
+			printf("\n");
+		}	
 		break;
 
         case 5: // Rombo
