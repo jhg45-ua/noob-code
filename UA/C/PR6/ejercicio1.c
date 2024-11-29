@@ -1,66 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/resource.h>
 
-// void divisores(int n);
-//
-// int main() {
-//
-//   int num;
-//
-//   printf("Introduce un numero entero positivo: ");
-//   scanf("%d", &num);
-//
-//   divisores(num);
-//
-//   return 0;
-// }
-//
-// void divisores(int num) {
-//
-//   int nd = 1;
-//
-//   printf("Divisores: 1");
-//   for (int i = 2; i <= num; i++) {
-//     nd = (nd + 1);
-//     if (num % i == 0) {
-//       printf(", %d", i);
-//     }
-//   }
-//   printf("\nNumero de divisores: %d\n", nd / 2);
-// }
+void check(char userInput[], int *words, int *vocals, int *con)
+{
+	
+	int i = 0;
+	while (userInput[i] != '\0') {
+		if(userInput[i] == 'a' || userInput[i] == 'e' || userInput[i] == 'i' || userInput[i] == 'o' || userInput[i] == 'u' 
+		|| userInput[i] == 'A' || userInput[i] == 'E' || userInput[i] == 'I' || userInput[i] == 'O' || userInput[i] == 'U')
+			(*vocals)++;
+		i++;
+	}
 
-void encontrarDivisores(int *numero, int divisores, int *counter);
-
-int main() {
-
-  int numero, counter = 0;
-
-  printf("Introduce un numero positivo: ");
-  scanf("%d", &numero);
-
-  if (numero < 1) {
-    printf("Por favor introduce un numero positio");
-    return 1;
-  }
-
-  printf("Divisores de %d: ", numero);
-  encontrarDivisores(&numero, 1, &counter);
-  printf("\n");
-
-  printf("Total: %d\n", counter);
-
-  return 0;
+	i = 0;
+	while (userInput[i] != '\0') {
+		if ((userInput[i] >= 'b' || userInput[i] >= 'B') && (userInput[i] <= 'z' || userInput[i] <= 'Z'))
+			if (userInput[i] != 'a' || userInput[i] != 'e' || userInput[i] != 'i' || userInput[i] != 'o' || userInput[i] != 'u' 
+			 || userInput[i] != 'A' || userInput[i] != 'E' || userInput[i] != 'I' || userInput[i] != 'O' || userInput[i] != 'U')
+				(*con)++;
+		i++;
+	}
 }
 
-void encontrarDivisores(int *numero, int divisor, int *counter) {
+void askUser(char userInput[], int SIZE)
+{
+	if (!(strlen(userInput) >= SIZE)) {
+		printf("Introduce un texto de 200 caracteres maximo: ");
+		scanf("%[^\n]", userInput);
+	} else
+		perror("ERROR: superas el maximo permitido\n");
+}
 
-  if (divisor > *numero)
-    return;
+int main(void)
+{
+	char userText[200];
+	int palabras = 0, vocales = 0, consonantes = 0;
 
-  if (*numero % divisor == 0) {
-    printf("%d ", divisor);
-    (*counter)++;
-  }
+	askUser(userText, 200);
+	check(userText, &palabras, &vocales, &consonantes);
+	
+	printf("Texto: %s\n", userText);
+	printf("* Palabras: %d\n", palabras);
+	printf("* Vocales: %d\n", vocales);
+	printf("* Consonantes: %d\n", consonantes);
 
-  encontrarDivisores(numero, divisor + 1, counter);
+	return EXIT_SUCCESS;
 }

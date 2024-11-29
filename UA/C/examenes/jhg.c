@@ -164,6 +164,10 @@ void jugar (int filas, int columnas, bool debugFlag)
 		// Imprime el tablero en cada turno
 		imprimir_tablero(filas, columnas, jugadorY, jugadorX, direccion, tesoroY, tesoroX, debugFlag);
 
+		if (debugFlag)
+			// DEBUG: se muestra la situacion del jugador
+			printf("(DEBUG) Posición: (%d, %d), Dirección: %d\n", jugadorX, jugadorY, direccion);
+		
 		int opGameMenu;
 		printf("¿Qué haces? Avanzar (A/a), girar (G/g), o terminar (T/t): ");
 		getchar();
@@ -179,12 +183,12 @@ void jugar (int filas, int columnas, bool debugFlag)
 
 			for (int i = 0; i < distancia; i++) {
 				avanzar(&jugadorY, &jugadorX, direccion, filas, columnas);
-				acciones++;
 				if (jugadorY == tesoroY && jugadorX == tesoroX) {
 					encontrado = true;
 					break;
 				}
 			}
+			acciones++;
 		} 
 		// Se pide cuanto se quiere girar y se realiza el giro, cuenta como una accion
 		else if (opGameMenu == 'G' || opGameMenu == 'g') {
@@ -201,11 +205,7 @@ void jugar (int filas, int columnas, bool debugFlag)
 			break;
 		}
 
-		
-		if (debugFlag)
-			// DEBUG: se muestra la situacion del jugador
-			printf("(DEBUG) Posición: (%d, %d), Dirección: %d\n", jugadorX, jugadorY, direccion);
-		
+		system("clear");
 	}
 
 	if (encontrado)
