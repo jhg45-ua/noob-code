@@ -1,3 +1,4 @@
+#include <stdatomic.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +8,7 @@
 #define MAX_PRODUCT_CODE 5 // 3 letters + 1 num + \0
 #define MAX_DESCRIPTION 30
 #define MAX_TICKET_LINES 100
+#define MAX_PRODUCT 50
 #define SLEEP_TIME 1
 
 // Data types
@@ -38,26 +40,30 @@ typedef struct
 
 // Function prototypes
 void mainMenu();
-int  newProduct(TProduct newProduct[], bool debugFlag);
+int  newProduct(TProduct products[], int* index, bool debugFlag);
+bool checkCodeDesc(TProduct products[], int index, const char* productCode, const char* desc);
+void showProduct(TProduct products[], int prodCount);
 
 int main(void)
 {
     char     option;
     TProduct products[50];
+    int      prodCount = 0;
 
     while (1) {
         mainMenu();
 
         if (scanf(" %c", &option) != 1) {
             fprintf(stderr, "Error leyendo el input. Pruebe otra vez\n");
-            while (getchar() != '\n');
+           	fflush(stdin); 
             return EXIT_FAILURE;
         }
 
         switch (option) {
             case '1':
-                printf("Alta de nuevo producto (WIP)\n");
-                newProduct(products, true);
+                printf("Alta de nuevo producto\n");
+				fflush(stdin);	
+                newProduct(products, &prodCount, true);
                 sleep(SLEEP_TIME);
                 system("clear");
                 break;
@@ -72,9 +78,11 @@ int main(void)
                 system("clear");
                 break;
             case '4':
-                printf("Busqueda de un producto (WIP)\n");
-                sleep(SLEEP_TIME);
-                system("clear");
+                printf("Busqueda de un producto\n");
+				fflush(stdin);
+				showProduct(products, prodCount);
+				printf("Presione cualquier tecla para continuar");
+				getchar();
                 break;
             case '5':
                 printf("Crear un nuevo ticket (WIP)\n");
@@ -119,40 +127,87 @@ void mainMenu()
     printf("Introduce la opcion: ");
 }
 
-int newProduct(TProduct newProduct[], bool debugFlag)
+bool checkCodeDesc(TProduct products[], int index, const char* productCode, const char* desc)
 {
-    char codProd[MAX_PRODUCT_CODE], desc[MAX_DESCRIPTION];
-	int stock, minStock;
-	float unitPrice, disc;
+    for (int i = 0; i < index; i++) {
+        if (strcmp(products[i].prodCode, productCode) == 0)
+            return true;
+        if (strcmp(products[i].desc, desc) == 0)
+            return true;
+    }
+    return false;
+}
+
+int newProduct(TProduct products[], int* index, bool debugFlag)
+{
+    TProduct newProduct;
 
     printf("Código de producto (Ej: ABC1): ");
-    scanf("%s", codProd);
-    if (debugFlag)
-        printf("(DEBUG) codProd: %s\n", codProd);
-    while (getchar() != '\n');
+	fgets(newProduct.prodCode, sizeof(newProduct.prodCode), stdin);
+	fflush(stdin);	
+
+    while (checkCodeDesc(products, *index, newProduct.prodCode, newProduct.desc)) {
+        printf("Código de producto ya existente. Introduce otro: ");
+        scanf("%4s", newProduct.prodCode);
+		fflush(stdin);	
+    }
 
     printf("Descripción: ");
-    if (fgets(desc, sizeof(desc), stdin) == NULL) {
-        fprintf(stderr, "Error leyendo el input. Pruebe otra vez\n");
-        return EXIT_FAILURE;
+
+    if (fgets(newProduct.desc, sizeof(newProduct.desc), stdin) != NULL) {
+        size_t len = strlen(newProduct.desc);
+        if (len > 0 && newProduct.desc[len - 1] == '\n')
+            newProduct.desc[len - 1] = '\0';
     }
-    int len = strlen(desc);
-    if (len > 0 && desc[len - 1] == '\n')
-        desc[len - 1] = '\0';
-    if (debugFlag)
-        printf("(DEBUG): desc: %s\n", desc);
 
-	printf("Introduce el stock actual: ");
-	scanf("%d", &stock);
+    while (checkCodeDesc(products, *index, newProduct.prodCode, newProduct.desc)) {
+        printf("Descripción ya existente. Introduce otra: ");
+        if (fgets(newProduct.desc, sizeof(newProduct.desc), stdin) != NULL) {
+        	size_t len = strlen(newProduct.desc);
+            if (len > 0 && newProduct.desc[len - 1] == '\n')
+                newProduct.desc[len - 1] = '\0';
+        }
+    }
 
-	printf("Introduce el stock minimo: ");
-	scanf("%d", &minStock);
+    printf("Introduce el stock actual: ");
+    scanf("%d", &newProduct.stock);
 
-	printf("Introduce el precio por unidad: ");
-	scanf("%f", &unitPrice);
+    printf("Introduce el stock minimo: ");
+    scanf("%d", &newProduct.minStock);
 
-	printf("Introduce el descuento del producto: ");
-	scanf("%f", &disc);
+    printf("Introduce el precio por unidad: ");
+    scanf("%f", &newProduct.unitPrice);
+
+    printf("Introduce el descuento del producto: ");
+    scanf("%f", &newProduct.disc);
+
+    products[*index] = newProduct;
+    (*index)++;
+    printf("Producto guardado correctamente\n");
 
     return EXIT_SUCCESS;
+}
+
+void showProduct(TProduct products[], int prodCount)
+{
+	char searchProdCode[MAX_PRODUCT_CODE];
+	printf("Introduce el código de producto: ");
+	fgets(searchProdCode, sizeof(searchProdCode), stdin);
+	fflush(stdin);
+
+	for (int i = 0; i < prodCount; i++) {
+		if (strcmp(products[i].prodCode, searchProdCode) == 0) {
+			printf("Código: %s\n", products[i].prodCode);
+			printf("Descripción: %s\n", products[i].desc);
+			printf("Stock: %d\n", products[i].stock);
+			printf("Stock mínimo: %d\n", products[i].minStock);
+			printf("Precio unitario: %.2f\n", products[i].unitPrice);
+			printf("Descuento: %.2f\n", products[i].disc);
+		}
+		else {	
+			printf("Error: El producto que buscas no existe\n");
+			return;
+		}
+	}
+
 }
