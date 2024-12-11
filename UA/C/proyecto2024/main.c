@@ -6,7 +6,8 @@
 
 #define MAX_PRODUCT_CODE 5 // 3 letters + 1 num + \0
 #define MAX_DESCRIPTION 30
-#define MAX_TICKET_LINES 100
+#define MAX_TICKET_LINES 10
+#define MAX_TICKET 100
 #define MAX_PRODUCT 50
 #define SLEEP_TIME 1
 
@@ -45,15 +46,17 @@ void modProd(TProduct products[], int prodCount);
 void checkStock(TProduct products[], int prodCount);
 void mainMenu();
 bool checkCodeDesc(TProduct products[], int index, const char* productCode, const char* desc);
-int searchProd(TProduct products[], int productCount, const char* productCode);
-void showProduct(TProduct products[], int prodCount, const char *prodCode);
-void yesOrNo(char *selection);
+int  searchProd(TProduct products[], int productCount, const char* productCode);
+void showProduct(TProduct products[], int prodCount, const char* prodCode);
+void yesOrNo(char* selection);
 
 int main(void)
 {
     char     option;
-    TProduct products[50];
+    TProduct products[MAX_PRODUCT];
     int      prodCount = 0;
+    Tticket  tickets[MAX_TICKET];
+    int      ticketCount = 0;
 
     while (1) {
         mainMenu();
@@ -164,9 +167,9 @@ int newProduct(TProduct products[], int* prodCount, bool debugFlag)
     return EXIT_SUCCESS;
 }
 
-void deleteProduct(TProduct products[], int *prodCount)
+void deleteProduct(TProduct products[], int* prodCount)
 {
-    char searchProdCode[MAX_PRODUCT_CODE], searchProdDesc[MAX_DESCRIPTION];
+    char searchProdCode[MAX_PRODUCT_CODE];
     printf("Introduce el código de producto: ");
     scanf(" %[^\n]", searchProdCode);
 
@@ -185,28 +188,9 @@ void deleteProduct(TProduct products[], int *prodCount)
             }
             (*prodCount)--;
         }
-    } else
-        printf("Borrado de producto cancelado\n");
-}
-
-void checkStock(TProduct products[], int prodCount)
-{
-    if (prodCount == 0)
-        printf("No existen productos en la tienda\n");
-    else {
-        printf("Productos por debajo del stock mínimo\n");
-        for (int i = 0; i < prodCount; i++) {
-            if (products[i].stock < products[i].minStock) {
-                printf("Código: %s\n", products[i].prodCode);
-                printf("Descripción: %s\n", products[i].desc);
-                printf("Stock: %d\n", products[i].stock);
-                printf("Stock mínimo: %d\n", products[i].minStock);
-                printf("Precio unitario: %.2f\n", products[i].unitPrice);
-                printf("Descuento: %.2f\n", products[i].disc);
-                printf("\n");
-            }
-        }
     }
+    else
+        printf("Borrado de producto cancelado\n");
 }
 
 void modProd(TProduct products[], int prodCount)
@@ -215,7 +199,7 @@ void modProd(TProduct products[], int prodCount)
     printf("Introduce el código de producto: ");
     scanf(" %[^\n]", searchProdCode);
 
-    showProduct(products,prodCount, searchProdCode);
+    showProduct(products, prodCount, searchProdCode);
 
     char sel[5];
     yesOrNo(sel);
@@ -244,8 +228,58 @@ void modProd(TProduct products[], int prodCount)
 
             printf("Producto modificado con exito\n");
         }
-    } else
+    }
+    else
         printf("Modificación del producto cancelada\n");
+}
+
+void createTicket(TProduct *products, int prodCount, Tticket tickets[], int ticketCount)
+{
+    TticketLine ticketLines[MAX_TICKET_LINES];
+    int ticketLinesCount = 0;
+
+    char sel[5];
+    printf("Añadiendo lineas de ticket\n");
+
+    do {
+        yesOrNo(sel);
+
+        for (int i = 0; i < MAX_TICKET_LINES; i++) {
+            char searchProdCode[MAX_PRODUCT_CODE];
+            printf("Introduce el código de producto: ");
+            scanf(" %[^\n]", searchProdCode);
+            int pos = searchProd(products, prodCount, searchProdCode);
+
+
+
+            strcpy(ticketLines[i].prodCode, products[pos].prodCode);
+            strcpy(ticketLines[i].desc, products[pos].desc);
+
+        }
+
+
+
+    } while (strcmp(sel, "si") == 0 || strcmp(sel,  "s") == 0);
+}
+
+void checkStock(TProduct products[], int prodCount)
+{
+    if (prodCount == 0)
+        printf("No existen productos en la tienda\n");
+    else {
+        printf("Productos por debajo del stock mínimo\n");
+        for (int i = 0; i < prodCount; i++) {
+            if (products[i].stock < products[i].minStock) {
+                printf("Código: %s\n", products[i].prodCode);
+                printf("Descripción: %s\n", products[i].desc);
+                printf("Stock: %d\n", products[i].stock);
+                printf("Stock mínimo: %d\n", products[i].minStock);
+                printf("Precio unitario: %.2f\n", products[i].unitPrice);
+                printf("Descuento: %.2f\n", products[i].disc);
+                printf("\n");
+            }
+        }
+    }
 }
 
 void mainMenu()
@@ -287,9 +321,8 @@ int searchProd(TProduct products[], int productCount, const char* productCode)
     return pos;
 }
 
-void showProduct(TProduct products[], int prodCount, const char *prodCode)
+void showProduct(TProduct products[], int prodCount, const char* prodCode)
 {
-
     int pos = searchProd(products, prodCount, prodCode);
     printf("(DEBUG) Product position in vector: %d\n", pos);
 
@@ -307,7 +340,7 @@ void showProduct(TProduct products[], int prodCount, const char *prodCode)
     }
 }
 
-void yesOrNo(char *selection)
+void yesOrNo(char* selection)
 {
     printf("Confirmar borrado (si-s/no-n): ");
     scanf(" %[^\n]", selection);
