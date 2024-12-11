@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -271,5 +272,24 @@ void checkStock(TProduct products[], int prodCount)
                 printf("\n");
             }
         }
+    }
+}
+
+void modProd(TProduct products[], int prodCount)
+{
+    char searchProdCode[MAX_PRODUCT_CODE], searchProdDesc[MAX_DESCRIPTION];
+    printf("Introduce el código de producto: ");
+    scanf(" %[^\n]", searchProdCode);
+    printf("Introduce la descripción del producto: ");
+    scanf(" %[^\n]", searchProdDesc);
+    fflush(stdin);
+
+    int pos = searchProd(products, prodCount, searchProdCode, searchProdDesc);
+    printf("(DEBUG) Product position in vector: %d\n", pos);
+
+    if (pos == -1)
+        printf("Error: producto no encontrado\n");
+    else if (pos > -1) {
+
     }
 }
