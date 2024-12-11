@@ -88,7 +88,7 @@ int main(void)
                 break;
             case '4':
                 printf("Busqueda de un producto\n");
-                char searchProdCode[MAX_PRODUCT_CODE], searchProdDesc[MAX_DESCRIPTION];
+                char searchProdCode[MAX_PRODUCT_CODE];
                 printf("Introduce el código de producto: ");
                 scanf(" %[^\n]", searchProdCode);
                 fflush(stdin);
@@ -109,7 +109,8 @@ int main(void)
             case '7':
                 printf("Comprobar Stock\n");
                 checkStock(products, prodCount);
-                sleep(SLEEP_TIME + 1);
+                printf("Presione cualquier tecla para continuar");
+                getchar();
                 system("clear");
                 break;
             case 'q':
@@ -233,7 +234,7 @@ void modProd(TProduct products[], int prodCount)
         printf("Modificación del producto cancelada\n");
 }
 
-void createTicket(TProduct *products, int prodCount, Tticket tickets[], int ticketCount)
+void createTicket(TProduct products[], int prodCount, Tticket tickets[], int ticketCount)
 {
     TticketLine ticketLines[MAX_TICKET_LINES];
     int ticketLinesCount = 0;
