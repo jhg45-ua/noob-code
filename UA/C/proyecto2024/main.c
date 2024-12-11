@@ -3,7 +3,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdbool.h>
-#include <time.h>
 
 #define MAX_PRODUCT_CODE 5 // 3 letters + 1 num + \0
 #define MAX_DESCRIPTION 30
@@ -43,7 +42,7 @@ void mainMenu();
 int  newProduct(TProduct products[], int* index, bool debugFlag);
 bool checkCodeDesc(TProduct products[], int index, const char* productCode, const char* desc);
 int  searchProd(TProduct products[], int productCount, const char* productCode, const char* desc);
-void showProduct(TProduct products[], int prodCount);
+void showProduct(TProduct products[], int prodCount, const char *prodCode, const char *desc);
 void deleteProduct(TProduct products[], int* prodCount);
 void checkStock(TProduct products[], int prodCount);
 
@@ -70,7 +69,7 @@ int main(void)
                 system("clear");
                 break;
             case '2':
-                printf("Baja de un producto (WIP)\n");
+                printf("Baja de un producto\n");
                 deleteProduct(products, &prodCount);
                 sleep(SLEEP_TIME);
                 system("clear");
@@ -82,8 +81,13 @@ int main(void)
                 break;
             case '4':
                 printf("Busqueda de un producto\n");
+                char searchProdCode[MAX_PRODUCT_CODE], searchProdDesc[MAX_DESCRIPTION];
+                printf("Introduce el código de producto: ");
+                scanf(" %[^\n]", searchProdCode);
+                printf("Introduce la descripción del producto: ");
+                scanf(" %[^\n]", searchProdDesc);
                 fflush(stdin);
-                showProduct(products, prodCount);
+                showProduct(products, prodCount, searchProdCode, searchProdDesc);
                 printf("Presione cualquier tecla para continuar");
                 getchar();
                 break;
@@ -98,7 +102,7 @@ int main(void)
                 system("clear");
                 break;
             case '7':
-                printf("Comprobar Stock (WIP)\n");
+                printf("Comprobar Stock\n");
                 checkStock(products, prodCount);
                 sleep(SLEEP_TIME + 1);
                 system("clear");
@@ -208,7 +212,7 @@ void deleteProduct(TProduct products[], int *prodCount)
 
     for (int i = 0; i < *prodCount; i++) {
         if (strcmp(products[i].prodCode, searchProdCode) == 0) {
-            showProduct(products, *prodCount);
+            showProduct(products, *prodCount, searchProdCode, searchProdDesc);
 
             char sel[5];
             printf("Confirmar borrado (si-s/no-n): ");
@@ -230,16 +234,10 @@ void deleteProduct(TProduct products[], int *prodCount)
     }
 }
 
-void showProduct(TProduct products[], int prodCount)
+void showProduct(TProduct products[], int prodCount, const char *prodCode, const char *desc)
 {
-    char searchProdCode[MAX_PRODUCT_CODE], searchProdDesc[MAX_DESCRIPTION];
-    printf("Introduce el código de producto: ");
-    scanf(" %[^\n]", searchProdCode);
-    printf("Introduce la descripción del producto: ");
-    scanf(" %[^\n]", searchProdDesc);
-    fflush(stdin);
 
-    int pos = searchProd(products, prodCount, searchProdCode, searchProdDesc);
+    int pos = searchProd(products, prodCount, prodCode, desc);
     printf("(DEBUG) Product position in vector: %d\n", pos);
 
     if (pos == -1) {
