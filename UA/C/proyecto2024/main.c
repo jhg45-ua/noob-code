@@ -148,13 +148,10 @@ int newProduct(TProduct products[], int* prodCount, bool debugFlag)
 
     printf("Introduce el stock actual: ");
     scanf("%d", &newProduct.stock);
-
     printf("Introduce el stock minimo: ");
     scanf("%d", &newProduct.minStock);
-
     printf("Introduce el precio por unidad: ");
     scanf("%f", &newProduct.unitPrice);
-
     printf("Introduce el descuento del producto: ");
     scanf("%f", &newProduct.disc);
 
