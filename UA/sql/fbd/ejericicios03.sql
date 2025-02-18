@@ -1,9 +1,11 @@
 USE tiendaonline;
 
+-- DIFICULTAD 1
 -- T03.001- Código de los artículos que pertenecen a algún pack.
 SELECT articulo FROM ptienea;
 
 
+-- DIFICULTAD A
 -- T03.002- Número de pack, nombre y precio del mismo.
 SELECT p.cod, a.nombre, a.pvp FROM articulo a, pack p WHERE a.cod = p.cod;
 -- T03.003- Código, nombre y marca de los artículos que pertenecen a algún pack.
@@ -30,6 +32,7 @@ SELECT a.nombre FROM camara c, articulo a WHERE c.cod = a.cod and a.marca NOT LI
 SELECT t.cod FROM tv t WHERE t.panel LIKE '%LCD%' OR t.panel LIKE '%LED%';
 
 
+-- DIFICULTAD B
 -- T03.007- Código, nombre y resolución de los televisores cuya pantalla no esté entre 22 y 42.
 SELECT a.cod, a.nombre, t.resolucion FROM articulo a, tv t WHERE a.cod = t.cod AND t.pantalla BETWEEN 22 AND 42;
 -- T03.008- Código y nombre de los televisores cuyo panel sea tipo LED y su precio no supere los 1000 euros.
@@ -52,6 +55,25 @@ SELECT u.email FROM usuario u WHERE u.dni LIKE '%B' OR u.dni LIKE '%L' OR u.dni 
 SELECT a.nombre FROM articulo a, cesta c WHERE a.cod = c.articulo AND c.fecha BETWEEN '2010-11-01' AND '2010-12-31';
 -- T03.037- Número identificador de los pedidos en los que se han incluido artículos a un importe menor que su pvp, eliminando duplicados.
 SELECT DISTINCT l.numPedido FROM articulo a, linped l WHERE a.cod = l.articulo AND l.importe < a.pvp;
+
+-- DIFICULTAD C
+-- T03.016- Nombre, marca y resolucion de las cámaras que nunca se han solicitado.
+SELECT a.nombre, a.marca, c.resolucion FROM camara c, articulo a WHERE c.cod = a.cod AND c.cod NOT IN (SELECT l.articulo FROM linped l);
+-- T03.017- Código, nombre, tipo y marca de las cámaras de marca Nikon, LG o Sigma.
+SELECT a.cod, a.nombre, c.tipo, a.marca FROM articulo a, camara c WHERE a.cod = c.cod AND a.marca IN ('Nikon', 'LG', 'Sigma');
+-- T03.029- Nombre de los televisores que tengan una pantalla mayor que el televisor de código A0686.
+SELECT a.nombre FROM articulo a, tv t WHERE a.cod = t.cod AND t.pantalla > (SELECT t2.pantalla FROM tv t2 WHERE t2.cod = 'A0686');
+-- T03.036- Nombre de los artículos que hayan sido seleccionados en alguna cesta por usuarios de las provincias de Valencia o Alicante.
+SELECT DISTINCT a.nombre FROM articulo a, cesta c, usuario u, provincia p WHERE a.cod = c.articulo AND c.usuario = u.email 
+														 AND u.provincia IN (SELECT p2.codp FROM provincia p2 WHERE p2.nombre LIKE 'Alicante%' OR p2.nombre LIKE 'Valencia%');
+-- T03.038- Número de pack, nombre y precio del mismo, y código, nombre y marca de los artículos que pertenezcan a ellos.
+SELECT a.cod, a.nombre, a.pvp, a2.cod, a2.nombre, a2.marca FROM articulo a, articulo a2, ptienea p WHERE p.pack = a.cod AND p.articulo = a2.cod;
+
+
+
+
+
+
 
 
 
