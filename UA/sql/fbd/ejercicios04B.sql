@@ -21,3 +21,30 @@ SELECT * FROM pedido p WHERE p.usuario LIKE '%cazurren%' AND p.fecha = '2010-03-
 SELECT DISTINCT c.usuario, DATEDIFF(c.fecha, p.fecha) dias FROM cesta c, pedido p, linped l WHERE c.usuario = p.usuario 
 															AND l.numPedido = p.numPedido AND l.articulo = c.articulo;
 -- T04B.009- Códigos de articulos solicitados en pedidos de septiembre de 2010, y semana del año (la semana comienza en lunes) y año del pedido, ordenado por semana.
+SELECT l.articulo, DATE_FORMAT(p.fecha, '%u') semana, YEAR(p.fecha) año FROM linped l, pedido p WHERE l.numPedido = p.numPedido 
+								AND MONTH(p.fecha)=9 AND YEAR(p.fecha)=2010 ORDER BY semana;
+-- T04B.010- Número de pedido, usuario y fecha (dd/mm/aaaa) al que se le solicitó para los pedidos que se realizaron durante la semana del 7 de noviembre de 2010.
+SELECT numpedido, usuario, DATE_FORMAT(fecha,'%d/%m/%Y') cuando
+FROM pedido WHERE YEAR(fecha) = 2010 AND DATE_FORMAT(fecha,'%u') = DATE_FORMAT('2010-11-07','%u');
+-- T04B.011- Nombre, apellidos y edad (aproximada) de los usuarios del dominio "dlsi.ua.es", ordenado descendentemente por edad.
+SELECT nombre, apellidos, YEAR(NOW()) - YEAR(nacido) edad FROM usuario WHERE email like '%@dlsi.ua.es' ORDER BY edad DESC; 
+-- T04B.012- Email y cantidad de días que han pasado desde los pedidos realizados por cada usuario hasta la fecha de cada cesta que también sea suya. Eliminad duplicados.
+SELECT DISTINCT c.usuario, DATEDIFF(c.fecha,p.fecha) dias FROM cesta c, pedido p WHERE c.usuario=p.usuario;
+
+-- DIFICULTAD C
+-- T04B.013- Código, nombre, panel y pantalla de los televisores que no se hayan solicitado ni en lo que va de año, ni en los últimos seis meses del año pasado.
+SELECT a.cod, nombre, panel, pantalla
+FROM articulo a, tv 
+WHERE a.cod=tv.cod 
+   AND a.cod NOT IN (select articulo 
+                     FROM linped l, pedido p
+                     WHERE l.numpedido=p.numpedido
+                       AND (
+                            (YEAR(fecha) = YEAR(NOW())-1 
+                             AND MONTH(fecha) BETWEEN 7 AND 12)
+                           ) OR YEAR(fecha) = YEAR(NOW())
+                    );
+
+
+
+

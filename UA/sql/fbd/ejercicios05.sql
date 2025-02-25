@@ -33,3 +33,16 @@ SELECT p.numPedido, u.email, u.nombre, u.apellidos, l.pueblo, p2.nombre FROM ped
 													JOIN localidad l ON (l.provincia = u.provincia AND l.codm = u.pueblo)
 													JOIN provincia p2 ON (p2.codp = l.provincia );
 -- T05.004- Nombre de provincia y nombre de localidad ordenados por provincia y localidad (usando join) de las provincias de Aragón y de localidades cuyo nombre comience por "B".
+SELECT p.nombre, l.pueblo FROM provincia p JOIN localidad l ON (l.provincia = p.codp) WHERE p.nombre IN ('huesca', 'zaragoza', 'teruel')
+										AND l.pueblo LIKE 'B%' ORDER BY p.nombre, l.pueblo;
+-- T05.009- Muestra toda la información de los artículos. Si alguno aparece en una cesta del año 2010 muestra esta información.
+SELECT a.*, c.* FROM articulo a LEFT JOIN cesta c ON (c.articulo = a.cod AND YEAR(c.fecha) = 2010);
+-- T05.013- Código, nombre, marca y empresa responsable de la misma de todos los artículos. Si algún artículo no tiene marca debe aparecer en el listado con esta información vacía.
+SELECT cod, nombre, a.marca, empresa FROM articulo a LEFT JOIN marca m ON (a.marca = m.marca);
+-- T05.014- Información de todos los usuarios de la comunidad valenciana cuyo nombre empiece por 'P' incluyendo la dirección de envío en caso de que la tenga.
+SELECT u.*, d.* FROM usuario u JOIN provincia p ON (u.provincia = codp)
+				LEFT JOIN direnvio d ON (d.email=u.email)
+				WHERE (p.nombre LIKE '%Alicante%' 
+    				OR p.nombre LIKE '%Valencia%' 
+    				OR p.nombre LIKE '%Castell%') 
+				AND u.nombre LIKE 'P%';
