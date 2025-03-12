@@ -46,3 +46,10 @@ SELECT u.*, d.* FROM usuario u JOIN provincia p ON (u.provincia = codp)
     				OR p.nombre LIKE '%Valencia%' 
     				OR p.nombre LIKE '%Castell%') 
 				AND u.nombre LIKE 'P%';
+
+-- DIFICULTAD C
+-- T05.017- Información de aquellos usuarios de la comunidad valenciana (códigos 03, 12 y 46) cuyo nombre empiece por 'P' que tienen dirección de envío pero mostrando, a la derecha, todas las direcciones de envío de la base de datos.
+
+
+
+
