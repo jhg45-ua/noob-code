@@ -22,14 +22,14 @@
         bgt $t0, 9, fin_bucle # se acaba cuando $t0 es mayor que los elementos de la matriz
         
         lb $t3, ($a0)
-        bgt $t3, $t2, ac_mayor
+        bgt $t3, $t2, actualizar_mayor
         j comp_menor
-        ac_mayor:
+        actualizar_mayor:
             move $t2, $t3
         comp_menor:
-            blt $t3, $t1, ac_menor
+            blt $t3, $t1, actualizar_menor
             j seguir
-        ac_menor: 
+        actualizar_menor: 
             move $t1, $t3
         seguir:
             addi $t0, $t0, 1
