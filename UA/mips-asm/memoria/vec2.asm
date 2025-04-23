@@ -14,6 +14,8 @@
     li $v0, 4
     syscall
     
+    jal print_newline
+    
     la $a0, matrix
     lb $a1, n
 

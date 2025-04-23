@@ -18,28 +18,32 @@
 
         bltz $v0, pedir_menor
         bgt $v0, 255, pedir_menor
-        move $s0, $v0
+        move $s0, $v0 # numero menor
     pedir_mayor:
         la $a0, msg2 # Dir msg1
         li $v0, 4
         syscall
+
         li $v0, 5
         syscall
 
         bltz $v0, pedir_mayor
         bgt $v0, 255, pedir_mayor
-        move $s1, $v0
+        move $s1, $v0 # numero mayor
 
     bucle_impares:
         bgt $s0, $s1, fin_bucle_impares # si $menor es mas que $mayor -> fin
+
         andi $s2, $s0, 1
         beqz $s2, next
-        li $v0, 1
+
         move $a0, $s0
+        li $v0, 1
         syscall
+        li $a0, ' '
         li $v0, 11
-        li $v0, ' '
         syscall
+
         next:
             addi $s0, $s0, 1
             j bucle_impares
