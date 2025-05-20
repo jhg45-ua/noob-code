@@ -4,7 +4,7 @@ SELECT COUNT(*) FROM camara WHERE sensor LIKE '%CMOS%';
 -- T09.016- Cantidad de artículos con stock 0
 SELECT COUNT(*) FROM stock WHERE disponible=0;
 
--- DIFICULTAD A
+-- DIFICULTAD B
 -- T09.001- ¿Cuántos artículos de cada marca hay?
 SELECT marca, COUNT(*) FROM articulo GROUP BY marca;
 -- T09.012- Ha habido un error en Tiendaonline y se han colado varios artículos sin stock, con cero unidades disponibles, en la cesta. Averigua el código de esos artículos y las veces que aparece cada uno en cesta.
