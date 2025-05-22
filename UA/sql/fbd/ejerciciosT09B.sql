@@ -19,4 +19,7 @@ SELECT nombre, COUNT(*) FROM provincia GROUP BY nombre HAVING COUNT(*)>1;
 SELECT pueblo, COUNT(*) FROM localidad GROUP BY pueblo HAVING COUNT(*)>1;
 -- T09B.011- Obtener el código y nombre de las provincias que tengan más de 100 pueblos.
 SELECT p.nombre, p.codp FROM provincia p, localidad l WHERE p.codp=l.provincia GROUP BY p.nombre, p.codp HAVING COUNT(*)>100;
--- 
+-- T09B.013- Clientes que hayan adquirido (pedido) más de 2 tv
+SELECT p.usuario, SUM(l.cantidad) FROM pedido p, linped l, tv WHERE p.numPedido=l.numPedido AND l.articulo=tv.cod
+    GROUP BY p.usuario HAVING SUM(l.cantidad)>2;
+-- T09B.015- Código y nombre de las provincias que tienen más de 50 usuarios (provincia del usuario, no de la dirección de envío).
