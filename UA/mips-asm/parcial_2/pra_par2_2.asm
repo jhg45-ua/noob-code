@@ -3,7 +3,7 @@
 # y luego lo convierte de nuevo a una cadena de caracteres. 
 # Finalmente, imprime la cadena resultante.
 .data
-	cad_num: .asciiz "112"
+	cad_num: .asciiz "1412"
 	cad_res: .space 30 # Resultado no tendra mas de 30 bytes
     msg_1:   .asciiz "Cadena a entero: \n"
     msg_2:   .asciiz "\nEntero a cadena: \n"
@@ -62,10 +62,11 @@
             sb $t2, ($t0)
             
         # Ahora se le da la vuelta a la cadena resultante
-            subi $t0, $t0, 1
-            la $t1, cad_res
+            subi $t0, $t0, 1 # Puntero al final de la cadena
+            la $t1, cad_res # Puntero al inicio de la cadena
     reverse:
-        bge $t1, $t0, end_reverse
+        bge $t1, $t0, end_reverse # Si el puntero de inicio es mayor que el de fin, se acaba
+        # Intercambiamos los caracteres
         lb $t2, ($t0)
         lb $t3, ($t1)
         

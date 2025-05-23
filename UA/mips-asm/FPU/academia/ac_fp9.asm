@@ -6,24 +6,24 @@
 	l.s $f1, ($a0)	# # el primero lo pongo en f1 (mayor encontrado hasta el momento)
 	addi $a0, $a0, 4
 	li $s1, 1	# cuantos elementos he evaluado
-loop:
-	beq $s1, 7, end
-	l.s $f12, ($a0)
-	mov.s $f10, $f1
-	mov.s $f11, $f12
-	jal get_max
-	mov.s $f1, $f12
-next:
-	addi $s1, $s1, 1
-	addi $a0, $a0, 4
-	j loop
-end:
-	li $v0, 2
-	mov.s $f12, $f1
-	syscall
-	
-	li $v0, 10
-	syscall
+	loop:
+		beq $s1, 7, end
+		l.s $f12, ($a0)
+		mov.s $f10, $f1
+		mov.s $f11, $f12
+		jal get_max
+		mov.s $f1, $f12
+	next:
+		addi $s1, $s1, 1
+		addi $a0, $a0, 4
+		j loop
+	end:
+		li $v0, 2
+		mov.s $f12, $f1
+		syscall
+		
+		li $v0, 10
+		syscall
 
 # $f10 => a
 # $f11 => b
