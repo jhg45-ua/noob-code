@@ -1,0 +1,477 @@
+\documentclass[11pt,a4paper]{article}
+
+% Paquetes necesarios
+\usepackage{fontspec}
+\setmainfont{Myriad Pro} % Fuente principal
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows, positioning, quotes, calc, decorations.pathreplacing}
+
+% Configuración de márgenes
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=3cm,
+    headheight=14.5pt
+}
+
+% Configuración de colores para el código
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Configuración de listings para código C
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    frame=single,
+    language=C,
+    extendedchars=true,
+    inputencoding=utf8,
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+             {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+             {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+}
+
+\lstset{style=mystyle}
+
+% Configuración de enlaces
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={Memoria Práctica},
+    pdfpagemode=FullScreen,
+}
+
+% Configuración de encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Sistemas Operativos - Práctica 1}
+\fancyhead[R]{Octubre 2025}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{Julián Hinojosa Gil}
+
+% Definición de un estilo para comandos en monoespaciado y color naranja oscuro
+\newcommand{\command}[1]{\texttt{\textcolor{orange!80!black}{#1}}}
+
+\begin{document}
+
+\setlength{\parindent}{0.5cm} % Sangría más pequeña
+
+% --- Portada y índice sin numeración ---
+\pagenumbering{gobble} % no mostrar números de página en preliminares
+\pagestyle{empty}      % sin encabezados ni pies en portada/índice
+
+% Página de portada - Imagen ocupando la mayor parte de la página pero un poco reducida
+\newgeometry{margin=0cm} % quitar márgenes solo para la portada
+\thispagestyle{empty}
+% uso de makebox + raisebox para centrar horizontal y verticalmente,
+% y reducción al 96% para evitar que la imagen sobresalga y cause páginas en blanco
+\noindent\raisebox{0pt}[\paperheight][0pt]{%
+  \makebox[\paperwidth][c]{%
+    \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{portada.png}%
+  }%
+}
+\restoregeometry
+
+\newpage
+
+% Tabla de contenidos
+\tableofcontents
+\newpage
+
+% --- A partir de aquí numeración normal ---
+\pagenumbering{arabic}   % cambiar a 1,2,3...
+\setcounter{page}{1}     % empezar en 1
+\pagestyle{fancy}        % restaurar encabezados/pies definidos en el preámbulo
+
+% Inicio del documento
+\section{Gestión básica de procesos.}
+
+\subsection{Introducción}
+
+Se pide realizar un programa en C que cree un árbol de procesos con la siguiente estructura:
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[
+        level 1/.style={sibling distance=60mm},
+        level 2/.style={sibling distance=30mm},
+        every node/.style={circle, draw, minimum size=8mm}
+    ]
+        \node {arb}
+            child { node {A}
+                child { node {B}
+                    child { node {X} }
+                    child { node {Y} }
+                    child { node {Z} }
+                }
+            };
+    \end{tikzpicture}
+    \caption{Árbol de procesos}
+    \label{fig:arbol-procesos}
+\end{figure}
+
+El programa tambien recibira dos argumentos, el primero servira para determinar si se ejecuta el comando \command{pstree -l 1} 
+(si el argumento es \command{A} o \command{B}) o \command{ls -la} (si el argumento es \command{X} o \command{Y}) y 
+el segundo argumento sera el tiempo en segundos que esperara Z para mandar las señales.
+
+\subsection{Planteamiento}
+
+El codigo se plantea implementando una jerarquia de procesos mediante llamadas a \textit{fork()}, creando 6 procesos como se muestra
+en la figura \ref{fig:arbol-procesos}. La comunicacion entre procesos se realiza mediante señales, usando \textit{SIGUSR1} para ejecutar los comandos
+y \textit{SIGUSR2} para despertar a los procesos que esten en estado de espera.
+
+Tambien se definen dos funciones void manejadoras de señales para ejecutar los comandos \command{pstree -l 1} y \command{ls -la} y en 
+cada proceso con la llamada a \textit{signal()} se asignan a estos mismos, donde SIGUSR1 es para el manejador de los comandos y SIGUSR2 
+es para el manejador de despertar.
+
+El proceso Z coordina el envío de señales a los demás procesos para que ejecuten los comandos o terminen su espera, dependiendo del 
+argumento recibido, por tanto el flujo de ejecuccion de Z sigue un patron, donde primero espera el tiempo definido por el segundo 
+argumento, luego envia la señal SIGUSR1 al proceso correspondiente para que ejecute el comando, espera un segundo mediante \textit{alarm()} 
+y finalmente envia la señal SIGUSR2 a los procesos que esten en estado de espera.
+
+Todo esta sincronizado mediante \textit{pause()} y \textit{wait()}, donde los procesos padres esperan con \textit{wait(NULL)} a que sus 
+hijos terminen y los procesos hijos esperan con \textit{pause()} a que les llegue la señal para ejecutar el comando o terminar su espera.
+De esta forma se consigue garantizar el orden predecible desde las hojas del árbol hasta la raíz.
+
+\subsection{Análisis de código fuente}
+
+El ejercicio a realizar trata sobre la simulación de un árbol de procesos, tal y como se muestra en la figura \ref{fig:arbol-procesos} y 
+dependiendo de los argumentos recibidos por el programa se ejecutarán los siguientes comandos:
+
+\vspace{0.3cm}
+
+\begin{lstlisting}[caption={Manejo de señales SIGUSR1 y SIGUSR2}]
+// Maneja la señal SIGUSR1, que ejecuta el comando pstree
+void pstree_command() {
+    pid_t pid;
+    if ((pid = fork()) == 0)
+        execlp("pstree", "pstree", "-l 1", NULL);
+    else
+        wait(NULL);
+}
+
+// Maneja la señal SIGUSR1, que ejecuta el comando ls
+void ls_command() {
+    pid_t pid;
+    if ((pid = fork()) == 0)
+        execlp("ls", "ls", "-la", NULL);
+    else
+        wait(NULL);
+}
+\end{lstlisting}
+
+Como se indica estas funciones pasaran a ser manejadores de las señales definidas por usuario \textit{SIGUSR1}. Es importante destacar que 
+dentro de los manejadores se utiliza \textit{fork()} seguido de \textit{execlp()} para ejecutar los comandos en un proceso hijo separado. 
+Esto es necesario porque \textit{execlp()} reemplaza completamente la imagen del proceso actual, por lo que si se ejecutara directamente en 
+el manejador, el proceso original se perdería. Al crear un proceso hijo con \textit{fork()}, permitimos que el padre continúe su ejecución 
+normal tras ejecutar el comando en el hijo, esperando su finalización con \textit{wait()}. La señal SIGUSR2 simplemente sirve para despertar a 
+los procesos a través de un manejador vacío:
+
+\begin{lstlisting}[caption={Registro de manejadores de señales}]
+signal(SIGUSR1, pstree_command); // En el caso de A y B
+signal(SIGUSR1, ls_command);    // En el caso de X e Y
+\end{lstlisting}
+
+
+Para la creación de los procesos X, Y y Z simplemente usaremos un bucle for y accederemos a su ejecución con un switch en base a la iteración en 
+cuestión, ademas previamente a entrar al switch guardaremos los pids de los procesos X e Y, ya que Z al ser hermanos de estos dos no podra acceder 
+a ellos directamente:
+
+\vspace{0.3cm}
+
+\begin{lstlisting}[caption={Creación de procesos}]
+process = fork(); // Se crea el proceso B
+...
+for (int i = 1; i <= 3; i++) {
+    process = fork(); // Se crea los procesos X, Y y Z
+    ...
+    // Se utiliza despues para mandarles señales, ya que Z no conoce los Pid
+    // de X e Y
+    if (process != 0) {
+        // El proceso B guarda el Pid de X e Y
+        if (i == 1)
+            pid_X = process;
+        if (i == 2)
+            pid_Y = process;
+    } else { // Esta en ejecucion los 3 (X, Y, Z)
+        switch (i) {
+            ...
+        }
+        ...
+    }
+}
+\end{lstlisting}
+
+\newpage
+
+Y por último mediante \textit{kill()} mandamos las señales respectivas según los argumentos del programa, primero el comando a ejecutar y luego 
+a despertar el resto de procesos dormidos para que acaben, es la misma estructura para A y B como para X e Y:
+
+\vspace{0.3cm}
+
+\begin{lstlisting}[caption={Control de argumentos y envío de señales}]
+// Control de Argumentos
+if (strcmp(argv[1], "A") == 0 || strcmp(argv[1], "B") == 0) {
+    if (strcmp(argv[1], "A") == 0) {
+        kill(pid_A, SIGUSR1); // Se manda la señal a A ya que es el argumento recibido
+    } else {
+        kill(pid_B, SIGUSR1); // Se manda la señal a B ya que es el argumento recibido
+    }
+
+    signal(SIGALRM, end_sleep); // Cuando suene la alarma, se despierta
+    alarm(1);
+    pause();
+
+    kill(pid_Y, SIGUSR2); // Ya que habia hecho pause antes
+    kill(pid_X, SIGUSR2); // Se manda la señal a X e Y para que
+                            // terminen su sleep
+    
+    if (strcmp(argv[1], "A") == 0) {
+        kill(pid_B, SIGUSR2); // Se manda la señal a B para que termine su sleep
+    } else {
+        kill(pid_A, SIGUSR2); // Se manda la señal a A para que termine su sleep
+    }
+}
+\end{lstlisting}
+
+\section{Comunicación entre procesos: tuberías.}
+
+\subsection{Introducción}
+
+Se pide realizar un programa en C que, recibiendo dos argumentos (archivo de entrada y archivo de salida), copie el contenido del primer archivo
+en el segundo usando tuberías para simular la comunicación entre procesos.
+
+\subsection{Planteamiento}
+
+Se crea un array de enteros de tamaño 2 para almacenar los descriptores de las dos puntas de la tubería (lectura y escritura). Se crea una tubería 
+con la llamada a \textit{pipe()}. A continuación, se hace un \textit{fork()} para crear un proceso hijo. El proceso padre se encarga de leer el archivo 
+de entrada y escribir su contenido en la tubería, mientras que el proceso hijo lee de la tubería y escribe en el archivo de salida. Ambos procesos cierran 
+los extremos de la tubería que no utilizan para evitar bloqueos.
+
+La lecturas y escrituras se realizan de char en char hasta llegar al final del archivo (EOF), utilizando bucles \textit{while} que leen y escriben un 
+carácter a la vez.
+
+\subsection{Análisis de código fuente}
+
+El ejercicio pretende copiar los contenidos de un archivo a otro nuevo, todo esto como argumentos del programa. Creamos una arreglo de enteros que contenga 
+los dos descriptores de pipe y creamos las tuberías con \textit{pipe()}:
+
+\begin{lstlisting}[caption={Creación de pipes}]
+int pipes[2], file_in, file_out;
+pipe(pipes);
+\end{lstlisting}
+
+Crearemos un fork para poder demostrar la comunicación entre padre e hijo por tuberías. Para la ejecución del padre cerraremos el pipe de lectura y abriremos 
+el archivo origen como lectura, con un bucle while lo leeremos y a su vez escribiremos en el pipe de escritura:
+
+\vspace{0.3cm}
+
+\begin{lstlisting}[caption={Proceso padre - lectura del archivo y escritura en pipe}]
+if (fork() != 0) { // Ejecucion del padre
+    char read_char;
+    close(pipes[0]); // Cierra el extremo de lectura del pipe
+    
+    file_in = open(argv[1], O_RDONLY); // Abre el archivo de entrada
+    
+    // Leemos el archivo hasta que devuelva 0 y por tanto EOF
+    while ((read(file_in, &read_char, sizeof(char))) > 0) {
+        write(pipes[1], &read_char, sizeof(char)); // Escribimos en
+                                                    // el pipe de escritura
+    }
+    
+    // Cerramos los descriptores
+    ...
+}
+\end{lstlisting}
+
+Realizaremos el proceso inverso para el hijo, que se encarga de escribir el contenido en el archivo que hay como segundo argumento del programa:
+
+\vspace{0.3cm}
+
+\begin{lstlisting}[caption={Proceso hijo - lectura del pipe y escritura en archivo}]
+else {
+    char write_char;
+    
+    close(pipes[1]); // Cierra el extremo de escritura del pipe
+    
+    file_out = creat(argv[2], 0666); // Crea el archivo de salida con
+                                      // permisos de lectura y escritura
+    
+    // Al igual que en el padre, leemos hasta EOF
+    while((read(pipes[0], &write_char, sizeof(char))) > 0) {
+        write(file_out, &write_char, sizeof(char)); // Escribimos en el
+                                                     // archivo de salida
+    }
+    
+    // Cerramos los descriptores
+    ...
+}
+\end{lstlisting}
+
+\newpage
+
+\section{Comunicación entre procesos: memoria compartida.}
+
+\subsection{Introducción}
+
+Se pide realizar un programa en C que cree un árbol de procesos en base a dos argumentos X e Y, creando por un lado hijos de forma vertical y de forma
+horizontal respectivamente, usando memoria compartida para almacenar los pids y así poder mostrar la relación de los procesos.
+
+\subsection{Planteamiento}
+
+El programa crea una estructura de procesos en dos dimensiones: una cadena vertical de X procesos y una horizontal de Y procesos, 
+como se muestra en la figura \ref{fig:arbol-hijos}. El proceso padre original (hijos) crea primero una cadena vertical de X procesos, 
+donde cada hijo se convierte en padre del siguiente, formando la rama vertical. El último proceso de esta cadena vertical 
+es el que luego crea Y procesos hermanos de forma horizontal.
+
+\begin{figure}[h!]
+    \centering
+    \shorthandoff{>}\shorthandoff{<}
+    \begin{tikzpicture}[
+        procnode/.style={circle, draw, fill=teal!30, minimum size=12mm},
+        myarrow/.style={->, thick}
+    ]
+        % Nodo superior (hijos)
+        \node[procnode] (hijosnode) at (0, 0) {hijos};
+        
+        % Cadena vertical (X procesos)
+        \node[procnode] (x1) at (0, -2) {};
+        \node[procnode] (x2) at (0, -3.8) {};
+        \node[procnode] (x3) at (0, -5.6) {};
+        
+        % Puntos suspensivos verticales
+        \node at (0, -6.8) {\Large $\vdots$};
+        
+        % Último nodo de la cadena vertical
+        \node[procnode] (xn) at (0, -8.8) {};
+        
+        % Etiqueta X con llave
+        \draw[decorate, decoration={brace, amplitude=10pt, mirror}] 
+            (-1.2, -1.6) -- (-1.2, -9.2) node[midway, left=12pt] {\Large \textbf{x}};
+        
+        % Nodos horizontales (Y procesos)
+        \node[procnode] (y1) at (-3, -11) {};
+        \node[procnode] (y2) at (-1.5, -11) {};
+        \node[procnode] (y3) at (0, -11) {};
+        
+        % Puntos suspensivos horizontales
+        \node at (1.2, -11) {\Large $\cdots$};
+        
+        \node[procnode] (yn) at (3, -11) {};
+        
+        % Etiqueta Y con llave
+        \draw[decorate, decoration={brace, amplitude=10pt, mirror}] 
+            (-3.3, -11.7) -- (3.3, -11.7) node[midway, below=12pt] {\Large \textbf{y}};
+        
+        % Flechas verticales
+        \draw[myarrow] (hijosnode) -- (x1);
+        \draw[myarrow] (x1) -- (x2);
+        \draw[myarrow] (x2) -- (x3);
+        \draw[myarrow] (x3) -- (0, -6.6);
+        \draw[myarrow] (0, -7.2) -- (xn);
+        
+        % Flechas desde el último nodo vertical a los horizontales
+        \draw[myarrow] (xn) -- (y1);
+        \draw[myarrow] (xn) -- (y2);
+        \draw[myarrow] (xn) -- (y3);
+        \draw[myarrow] (xn) -- (yn);
+        
+    \end{tikzpicture}
+    \shorthandon{>}\shorthandon{<}
+    \caption{Estructura del árbol de procesos con ramas vertical (x) y horizontal (y)}
+    \label{fig:arbol-hijos}
+\end{figure}
+
+Para lograr esto, se utiliza memoria compartida que permite a todos los procesos acceder a los PIDs de sus antecesores. 
+Se crean dos segmentos de memoria compartida: uno para almacenar los PIDs de la cadena vertical (X) y otro para la cadena 
+horizontal (Y). Esto permite que cada proceso pueda imprimir su genealogía completa.
+
+\subsection{Análisis de código fuente}
+
+Esta vez se trata de crear un árbol variable de procesos en base a los argumentos X e Y, creando por un lado hijos de forma vertical y de forma horizontal 
+respectivamente.
+
+Lo haremos usando memoria compartida para almacenar los pids y así poder mostrar la relación de los procesos. Empezaremos resaltando primero la creación 
+de la memoria compartida una para X y otra para Y y asignándole sus respectivos punteros:
+
+\begin{lstlisting}[caption={Creación de memoria compartida}]
+// Crear memoria compartida para X e Y
+shm1 = shmget(IPC_PRIVATE, sizeof(int)*(x_childs+1), IPC_CREAT|0666);
+shm2 = shmget(IPC_PRIVATE, sizeof(int)*y_childs, IPC_CREAT|0666);
+// Punteros a la memoria compartida
+X_pointer = (int *)shmat(shm1, 0, 0);
+Y_pointer = (int *)shmat(shm2, 0, 0);
+\end{lstlisting}
+
+Se guarda el pid del padre origen en la primera posición de X y se crea la rama vertical en base al primer argumento:
+
+\begin{lstlisting}[caption={Creación de rama vertical}]
+// Crear la rama vertical de x_childs procesos
+for(i = 1; i <= x_childs; i++) {
+    process = fork();
+    
+    if(process != 0) // El padre sale para que el hijo continue la cadena
+        break;
+    else {
+        printf("Soy el subhijo %d, mis padres son: ", getpid());
+        
+        // Imprimir los PIDs de los padres desde el array X
+        for (childs = 0; childs < i; childs++) {
+            printf("%d", X_pointer[childs]);
+            if (childs != i-1) printf(", ");
+        }
+        printf("\n");
+        
+        // Guardar el PID del hijo actual en el array X
+        X_pointer[i] = getpid();
+    }
+}
+\end{lstlisting}
+
+Repetiremos el mismo proceso con y para crear la rama horizontal
+
+\begin{lstlisting}[caption={Creación de rama horizontal}]
+for (i = 1; i <= y_childs; i++) {
+    process = fork();
+    
+    if (process == 0) {
+        Y_pointer[i-1] = getpid();
+        sleep(20);
+        break;
+    }
+    
+    // El padre espera a que terminen todos los hijos de Y
+    if (i == y_childs + 1)
+        for (i = 1; i <= y_childs; i++)
+            wait(NULL);
+}
+\end{lstlisting}
+
+\end{document}

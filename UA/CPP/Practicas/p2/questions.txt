@@ -1,7 +1,0 @@
-1|Que es una matriz?|Un array bidimensional
-1|No entiendo lo que es un booleano|
-
-2||La pregunta esta vacia
-1|Para que sirve break?
-5|Como se implementa la herencia|No se estudia en esta asignatura
-7|||
