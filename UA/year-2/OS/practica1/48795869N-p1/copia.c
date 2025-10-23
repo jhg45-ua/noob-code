@@ -1,7 +1,5 @@
-#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
 #include <fcntl.h>
 
 int main(int argc, char *argv[]) {
@@ -32,7 +30,7 @@ int main(int argc, char *argv[]) {
 
         // Al igual que en el padre, leemos hasta EOF
         while((read(pipes[0], &write_char, sizeof(char))) > 0) {
-            write(file_out, &write_char, sizeof(char)); // Escribimos en el archivo de salida 
+            write(file_out, &write_char, sizeof(char)); // Escribimos en el archivo de salida
         }
 
         // Cerramos los descriptores

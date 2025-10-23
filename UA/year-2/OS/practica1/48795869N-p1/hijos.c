@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
-#include <signal.h>
+#include <sys/wait.h>
 #include <sys/shm.h>
 
 int main(int argc, char *argv[]) {
@@ -57,7 +56,7 @@ int main(int argc, char *argv[]) {
             if (i <= x_childs) {
                 wait(NULL); // Esperar a que termine el ultimo hijo de X
                             // Para que no se cree la rama Y varias veces
-                
+
                 // Si es el superpadre, imprimir los PIDs de todos los hijos
                 if (i == 1) {
                     printf("Soy el superpadre(%d): mis hijos son: ", getpid());
@@ -85,7 +84,7 @@ int main(int argc, char *argv[]) {
 
                         // El padre espera a que terminen todos los hijos de Y
                         if (i == y_childs + 1)
-                            for (i = 1; i <= y_childs; i++) 
+                            for (i = 1; i <= y_childs; i++)
                                 wait(NULL);
                     }
                 }

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/wait.h>
 #include <sys/types.h>
 
 /*
@@ -23,7 +24,7 @@ void end_sleep() { }
 void pstree_command() {
     pid_t pid;
     if ((pid = fork()) == 0)
-        execlp("pstree", "pstree", "-l 1", NULL);
+        execlp("pstree", "pstree", NULL);
     else
         wait(NULL);
 }
@@ -144,7 +145,7 @@ int main(int argc, char* argv[]) {
                             kill(pid_Y, SIGUSR2); // Ya que habia hecho pause antes
                             kill(pid_X, SIGUSR2); // Se manda la señal a X e Y para que
                                                   // terminen su sleep
-                            
+
                             if (strcmp(argv[1], "A") == 0) {
                                 kill(pid_B, SIGUSR2); // Se manda la señal a B para que termine su sleep
                             } else {
@@ -158,7 +159,7 @@ int main(int argc, char* argv[]) {
                                 kill(pid_Y, SIGUSR1); // Se le manda la señal a X y no a Y porque X es
                                                   // el primer hijo de B y esta por encima de Y
                             }
-                            
+
                             signal(SIGALRM, end_sleep); // Cuando suene la alarma, se despierta
                             alarm(1);
                             pause();
@@ -174,7 +175,7 @@ int main(int argc, char* argv[]) {
                                 kill(pid_X, SIGUSR2); // Se le manda la señal a X y no a Y porque X es
                                                   // el primer hijo de B y esta por encima de Y
                             }
-                            
+
                         }
                         printf("Soy Z(%d) y muero\n", pid_Z);
                         exit(0);

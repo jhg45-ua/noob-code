@@ -1,31 +1,31 @@
-# Makefile adaptado para subcarpetas
+# Makefile adaptado para subcarpetas, binarios en raíz
 
 CC = gcc
 CFLAGS = -std=c99
 
 .DEFAULT_GOAL := help
 
-# Compilar cualquier archivo .c en cualquier subcarpeta
+# Compilar cualquier archivo .c en cualquier subcarpeta, binario en raíz
 %: %.c
-	$(CC) $(CFLAGS) -o $@ $<
-	@echo "Compilado exitosamente: $@"
+	$(CC) $(CFLAGS) -o $(notdir $*) $<
+	@echo "Compilado exitosamente: $(notdir $*)"
 
-# Compilar todos los .c en subcarpetas
+# Compilar todos los .c en subcarpetas, binarios en raíz
 all:
 	@find . -name '*.c' | while read file; do \
-    	exe=$${file%.c}; \
+    	exe=$$(basename $${file%.c}); \
     	echo "Compilando $$file -> $$exe"; \
     	$(CC) $(CFLAGS) -o "$$exe" "$$file"; \
 	done
-	@echo "Todos los archivos compilados"
+	@echo "Todos los archivos compilados en el directorio raíz"
 
-# Ejecutar un programa compilado
+# Ejecutar un programa compilado desde la raíz
 run-%:
-	@if [ ! -f "$*" ]; then \
-    	echo "Error: El binario $* no existe. Compile primero con 'make $*'"; \
+	@if [ ! -f "$(notdir $*)" ]; then \
+    	echo "Error: El binario $(notdir $*) no existe. Compile primero con 'make $*'"; \
     	exit 1; \
 	fi
-	./$*
+	./$(notdir $*)
 
 clean:
 	@find . -type f -perm +111 -not -name '*.c' -not -name 'Makefile' -not -name '*.pdf' -not -name '.clang-format' -exec rm -f {} +
@@ -33,12 +33,12 @@ clean:
 	@echo "Archivos limpiados"
 
 help:
-	@echo "Makefile para compilar programas C en subcarpetas"
+	@echo "Makefile para compilar programas C en subcarpetas, binarios en raíz"
 	@echo ""
 	@echo "Comandos disponibles:"
 	@echo "  make ruta/ejecutable        - Compilar un archivo específico (ej: make ejemplos/1_procesos/creaproc1)"
-	@echo "  make all                    - Compilar todos los archivos .c"
-	@echo "  make run-ruta/ejecutable    - Ejecutar un programa compilado (ej: make run-ejemplos/1_procesos/creaproc1)"
+	@echo "  make all                    - Compilar todos los archivos .c (binarios en raíz)"
+	@echo "  make run-ejecutable         - Ejecutar un programa compilado desde la raíz (ej: make run-creaproc1)"
 	@echo "  make clean                  - Limpiar archivos compilados y debug"
 	@echo "  make help                   - Mostrar esta ayuda"
 	@echo ""
