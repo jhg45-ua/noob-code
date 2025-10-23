@@ -95,7 +95,6 @@ int main(int argc, char* argv[]) {
                         signal(SIGUSR2, end_sleep);
                         pause(); // Sirve para esperar a que llegue una señal
 
-                        //pause();
 
                         printf("Soy X(%d) y muero\n", pid_X);
                         exit(0);
