@@ -72,24 +72,23 @@ int main(int argc, char *argv[]) {
                     }
 
                     printf("\n");
-                } else { // Si no es el superpadre, crear la rama horizontal de y_childs procesos
-                    for (i = 1; i <= y_childs; i++) {
-                        process = fork();
+                }
+            } else { // Si no es el superpadre, crear la rama horizontal de y_childs procesos
+                for (i = 1; i <= y_childs; i++) {
+                    process = fork();
 
-                        if (process == 0) {
-                            Y_pointer[i-1] = getpid();
-                            sleep(20);
-                            break;
-                        }
-
-                        // El padre espera a que terminen todos los hijos de Y
-                        if (i == y_childs + 1)
-                            for (i = 1; i <= y_childs; i++)
-                                wait(NULL);
+                    if (process == 0) {
+                        Y_pointer[i-1] = getpid();
+                        sleep(20);
+                        break;
                     }
+
+                    // El padre espera a que terminen todos los hijos de Y
+                    if (i == y_childs + 1)
+                        for (i = 1; i <= y_childs; i++)
+                            wait(NULL);
                 }
             }
-
         }
     }
     return EXIT_SUCCESS;
