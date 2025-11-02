@@ -35,9 +35,6 @@ int main(int argc, char const* argv[])
     listen(sockfd, 5);
 
     while(1) {
-
-        printf("Esperando nuevas conexiones...\n");
-
         size = sizeof(clientAddr);
         newSocketfd = accept(sockfd, (struct sockaddr *)&clientAddr, &size);
         if (newSocketfd == -1) {
@@ -53,6 +50,7 @@ int main(int argc, char const* argv[])
             close(sockfd);
 
             printf("El hijo maneja la conexion...\n");
+            printf("Usa la tecla Ctrl+C para cerrar el servidor\n");
 
             close(newSocketfd);
             exit(EXIT_SUCCESS);
@@ -62,6 +60,8 @@ int main(int argc, char const* argv[])
             fprintf(stderr, "Error al crear el proceso hijo");
             close(newSocketfd);
         }
+
+        printf("Esperando nuevas conexiones...\n");
     }
 
     return 0;
