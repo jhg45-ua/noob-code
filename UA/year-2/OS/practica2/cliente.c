@@ -27,8 +27,8 @@ int main(int argc, char const* argv[])
         exit(EXIT_FAILURE);
     }
 
-    printf("Conexion realizada con exito...");
-    sleep(10);
+    printf("Conexion realizada con exito...\n");
+    sleep(5);
 
     return 0;
 }
