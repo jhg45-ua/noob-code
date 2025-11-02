@@ -13,7 +13,7 @@ int main(int argc, char const* argv[])
 
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd == -1) {
-        fprintf(stderr, "Error al crear el socket");
+        fprintf(stderr, "Error al crear el socket\n");
         exit(EXIT_FAILURE);
     }
     fprintf(stdout, "Socket creado con exito\n");
@@ -23,7 +23,7 @@ int main(int argc, char const* argv[])
     serverAddr.sin_addr.s_addr = inet_addr(argv[1]);
 
     if (connect(sockfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != 0) {
-        fprintf(stderr, "Error al conectar");
+        fprintf(stderr, "Error al conectar\n");
         exit(EXIT_FAILURE);
     }
 
