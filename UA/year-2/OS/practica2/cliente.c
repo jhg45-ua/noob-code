@@ -58,6 +58,12 @@ int main(int argc, char const* argv[])
             printf("Archivo recibido y guardado como 'Google_recibido.html'\n");
         }
 
+        #ifdef __APPLE__
+            system("open Google_recibido.html");
+        #elif __linux__
+            system("xdg-open Google_recibido.html");
+        #endif
+
         close(filefd);
         close(socketfd);
 
