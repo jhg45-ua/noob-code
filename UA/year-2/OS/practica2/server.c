@@ -64,7 +64,7 @@ int main(int argc, char const* argv[])
 
             //Leer y enviar el archivo poco a poco
             while((bytesRead = read(filefd, buffer, sizeof(buffer))) > 0) {
-                bytesSent = send(clientSocketfd, buffer, bytesRead, 0);
+                bytesSent = write(clientSocketfd, buffer, bytesRead);
                 if (bytesSent == -1) {
                     fprintf(stderr, "Error en la transferencia del archivo\n");
                     break;

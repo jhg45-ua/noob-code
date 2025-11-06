@@ -43,7 +43,7 @@ int main(int argc, char const* argv[])
         printf("Recibiendo archivo...\n");
 
         // Recibir el contenido del archivo y guardarlo
-        while((bytesRecived = recv(socketfd, buffer, sizeof(buffer), 0)) > 0) {
+        while((bytesRecived = read(socketfd, buffer, sizeof(buffer))) > 0) {
             if (write(filefd, buffer, bytesRecived) == -1) {
                 fprintf(stderr, "Error al escribir en el archivo\n");
                 close(filefd);
