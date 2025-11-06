@@ -5,14 +5,16 @@
 #include <sys/types.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 int main(int argc, char const* argv[])
 {
-    int sockfd;
+    int socketfd, bytesRecived, filefd;
     struct sockaddr_in serverAddr;
+    char buffer[260];
 
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd == -1) {
+    socketfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (socketfd == -1) {
         fprintf(stderr, "Error al crear el socket\n");
         exit(EXIT_FAILURE);
     }
@@ -22,13 +24,42 @@ int main(int argc, char const* argv[])
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_addr.s_addr = inet_addr(argv[1]);
 
-    if (connect(sockfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != 0) {
+    if (connect(socketfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != 0) {
         fprintf(stderr, "Error al conectar\n");
         exit(EXIT_FAILURE);
     }
 
     printf("Conexion realizada con exito...\n");
-    sleep(5);
+    printf("\n===== CONTENIDO DEL ARCHIVO =====\n\n");
+
+    // Crear el archivo donde se guardará el contenido recibido
+        filefd = open("Google_recibido.html", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+        if (filefd == -1) {
+            fprintf(stderr, "Error al crear el archivo de destino\n");
+            close(socketfd);
+            exit(EXIT_FAILURE);
+        }
+
+        printf("Recibiendo archivo...\n");
+
+        // Recibir el contenido del archivo y guardarlo
+        while((bytesRecived = recv(socketfd, buffer, sizeof(buffer), 0)) > 0) {
+            if (write(filefd, buffer, bytesRecived) == -1) {
+                fprintf(stderr, "Error al escribir en el archivo\n");
+                close(filefd);
+                close(socketfd);
+                exit(EXIT_FAILURE);
+            }
+        }
+
+        if (bytesRecived == -1) {
+            fprintf(stderr, "Error al recibir datos\n");
+        } else {
+            printf("Archivo recibido y guardado como 'Google_recibido.html'\n");
+        }
+
+        close(filefd);
+        close(socketfd);
 
     return 0;
 }

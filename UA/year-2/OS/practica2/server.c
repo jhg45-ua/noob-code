@@ -1,18 +1,18 @@
 #include <netinet/in.h> //structure for storing address information
 #include <stdio.h>
 #include <stdlib.h>
-// #include <string.h>
 #include <sys/socket.h> //for socket APIs
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <fcntl.h>
 
 int main(int argc, char const* argv[])
 {
 
     socklen_t size;
     struct sockaddr_in serverAddr, clientAddr;
-    int sockfd, newSocketfd, fdfile;
+    int sockfd, clientSocketfd, filefd, bytesRead, bytesSent;
     char buffer[260];
     pid_t pid;
 
@@ -39,8 +39,8 @@ int main(int argc, char const* argv[])
         printf("Esperando nuevas conexiones...\n");
 
         size = sizeof(clientAddr);
-        newSocketfd = accept(sockfd, (struct sockaddr *)&clientAddr, &size);
-        if (newSocketfd == -1) {
+        clientSocketfd = accept(sockfd, (struct sockaddr *)&clientAddr, &size);
+        if (clientSocketfd == -1) {
             fprintf(stderr, "Error aceptando la conexion\n");
             continue;
         }
@@ -54,13 +54,38 @@ int main(int argc, char const* argv[])
 
             printf("El hijo maneja la conexion...\n");
 
-            close(newSocketfd);
+            //Abrimos el archivo
+            filefd = open("Google.html", O_RDONLY);
+            if (filefd == -1) {
+                fprintf(stderr, "Error al abrir el archivo Google.html\n");
+                close(clientSocketfd);
+                exit(EXIT_FAILURE);
+            }
+
+            printf("Enviando el archivo al cliente...\n");
+
+            //Leer y enviar el archivo poco a poco
+            while((bytesRead = read(filefd, buffer, sizeof(buffer))) > 0) {
+                bytesSent = send(clientSocketfd, buffer, bytesRead, 0);
+                if (bytesSent == -1) {
+                    fprintf(stderr, "Error en la transferencia del archivo\n");
+                    break;
+                }
+            }
+
+            if (bytesRead == -1)
+                fprintf(stderr, "Error al leer el archivo\n");
+            else
+             printf("Archivo enviado correctamente\n");
+
+            close(filefd);
+            close(clientSocketfd);
             exit(EXIT_SUCCESS);
         } else if (pid > 0) {
-            close(newSocketfd);
+            close(clientSocketfd);
         } else {
             fprintf(stderr, "Error al crear el proceso hijo");
-            close(newSocketfd);
+            close(clientSocketfd);
         }
     }
 
