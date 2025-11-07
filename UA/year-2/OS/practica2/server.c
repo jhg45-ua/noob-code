@@ -34,6 +34,8 @@ int main(int argc, char const* argv[])
 
     listen(sockfd, 5);
 
+    printf("Esperando nuevas conexiones...\n");
+
     while(1) {
         size = sizeof(clientAddr);
         clientSocketfd = accept(sockfd, (struct sockaddr *)&clientAddr, &size);
@@ -74,7 +76,7 @@ int main(int argc, char const* argv[])
             if (bytesRead == -1)
                 fprintf(stderr, "Error al leer el archivo\n");
             else
-             printf("Archivo enviado correctamente\n");
+                printf("Archivo enviado correctamente\n");
 
             close(filefd);
             close(clientSocketfd);

@@ -6,6 +6,8 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <string.h>
+#include <errno.h>
 
 int main(int argc, char const* argv[])
 {
@@ -13,9 +15,14 @@ int main(int argc, char const* argv[])
     struct sockaddr_in serverAddr;
     char buffer[260];
 
+    if (argc < 2) {
+        fprintf(stderr, "Uso: %s <direccion_ip>\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
     socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if (socketfd == -1) {
-        fprintf(stderr, "Error al crear el socket\n");
+        fprintf(stderr, "Error al crear el socket: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
     fprintf(stdout, "Socket creado con exito\n");
@@ -24,8 +31,11 @@ int main(int argc, char const* argv[])
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_addr.s_addr = inet_addr(argv[1]);
 
+    printf("Intentando conectar a %s:9999...\n", argv[1]);
+
     if (connect(socketfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != 0) {
-        fprintf(stderr, "Error al conectar\n");
+        fprintf(stderr, "Error al conectar: %s\n", strerror(errno));
+        close(socketfd);
         exit(EXIT_FAILURE);
     }
 
