@@ -6,12 +6,14 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#define DEFAULT_PORT 9999
+
 int main(int argc, char const* argv[])
 {
     socklen_t size;
     struct sockaddr_in serverAddr, clientAddr;
     int sockfd, clientSocketfd, filefd, bytesRead, bytesSent;
-    char buffer[260];
+    char buffer[20480];
     pid_t pid;
 
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -21,7 +23,7 @@ int main(int argc, char const* argv[])
     }
     printf("Socket creado con exito\n");
 
-    serverAddr.sin_port = htons(9999);
+    serverAddr.sin_port = htons(DEFAULT_PORT);
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_addr.s_addr = INADDR_ANY;
 
