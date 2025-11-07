@@ -76,7 +76,7 @@ int main(int argc, char const* argv[])
             if (bytesRead == -1)
                 fprintf(stderr, "Error al leer el archivo\n");
             else
-                printf("Archivo enviado correctamente\n");
+                printf("Archivo enviado correctamente\n\n");
 
             close(filefd);
             close(clientSocketfd);
