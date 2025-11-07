@@ -6,14 +6,58 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <time.h>
 
 #define DEFAULT_PORT 9999
+#define BUFFER_SIZE 20480 // 20480
+
+// Opción 1: Retornar el file descriptor
+int receiveFile(int socketfd, const char *filename, char *buffer, size_t buffer_size) {
+    int bytesReceived;
+    int filefd;
+
+    printf("\n===== CONTENIDO DEL ARCHIVO =====\n\n");
+
+    // Crear el archivo donde se guardará el contenido recibido
+    filefd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (filefd == -1) {
+        fprintf(stderr, "Error al crear el archivo de destino\n");
+        return -1;
+    }
+
+    printf("Recibiendo archivo...\n");
+
+    // Recibir el contenido del archivo y guardarlo
+    while((bytesReceived = read(socketfd, buffer, buffer_size)) > 0) {
+        if (write(filefd, buffer, bytesReceived) == -1) {
+            fprintf(stderr, "Error al escribir en el archivo\n");
+            close(filefd);
+            return -1;
+        }
+    }
+
+    if (bytesReceived == -1) {
+        fprintf(stderr, "Error al recibir datos\n");
+        close(filefd);
+        return -1;
+    }
+
+    printf("Archivo recibido y guardado como '%s'\n", filename);
+
+    #ifdef __APPLE__
+        system("open Google_recibido.html");
+    #elif __linux__
+        system("xdg-open Google_recibido.html");
+    #endif
+
+    return filefd;
+}
 
 int main(int argc, char const* argv[])
 {
-    int socketfd, bytesRecived, filefd;
+    int socketfd, filefd;
     struct sockaddr_in serverAddr;
-    char buffer[20480]; // 10240 -> 10KB
+    char buffer[BUFFER_SIZE];
 
     if (argc < 2) {
         fprintf(stderr, "Uso: %s <direccion_ip>\n", argv[0]);
@@ -34,45 +78,25 @@ int main(int argc, char const* argv[])
     printf("Intentando conectar a %s:9999...\n", argv[1]);
 
     if (connect(socketfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != 0) {
-        fprintf(stderr, "Error al conectarn");
+        fprintf(stderr, "Error al conectar\n");
         close(socketfd);
         exit(EXIT_FAILURE);
     }
 
     printf("Conexion realizada con exito...\n");
-    printf("\n===== CONTENIDO DEL ARCHIVO =====\n\n");
 
-    // Crear el archivo donde se guardará el contenido recibido
-    filefd = open("Google_recibido.html", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    clock_t t;
+    t = clock();
+    // Usar la función
+    filefd = receiveFile(socketfd, "Google_recibido.html", buffer, BUFFER_SIZE);
+    t = clock() - t;
+    double time_taken = ((double)t)/CLOCKS_PER_SEC;
+    printf("reviceFile() took %f seconds to execute \n", time_taken);
+
     if (filefd == -1) {
-        fprintf(stderr, "Error al crear el archivo de destino\n");
         close(socketfd);
         exit(EXIT_FAILURE);
     }
-
-    printf("Recibiendo archivo...\n");
-
-    // Recibir el contenido del archivo y guardarlo
-    while((bytesRecived = read(socketfd, buffer, sizeof(buffer))) > 0) {
-        if (write(filefd, buffer, bytesRecived) == -1) {
-            fprintf(stderr, "Error al escribir en el archivo\n");
-            close(filefd);
-            close(socketfd);
-            exit(EXIT_FAILURE);
-        }
-    }
-
-    if (bytesRecived == -1) {
-        fprintf(stderr, "Error al recibir datos\n");
-    } else {
-        printf("Archivo recibido y guardado como 'Google_recibido.html'\n");
-    }
-
-    #ifdef __APPLE__
-        system("open Google_recibido.html");
-    #elif __linux__
-        system("xdg-open Google_recibido.html");
-    #endif
 
     close(filefd);
     close(socketfd);
