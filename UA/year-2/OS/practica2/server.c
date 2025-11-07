@@ -4,12 +4,10 @@
 #include <sys/socket.h> //for socket APIs
 #include <sys/types.h>
 #include <unistd.h>
-#include <sys/wait.h>
 #include <fcntl.h>
 
 int main(int argc, char const* argv[])
 {
-
     socklen_t size;
     struct sockaddr_in serverAddr, clientAddr;
     int sockfd, clientSocketfd, filefd, bytesRead, bytesSent;

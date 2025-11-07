@@ -6,8 +6,6 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <string.h>
-#include <errno.h>
 
 int main(int argc, char const* argv[])
 {
@@ -22,7 +20,7 @@ int main(int argc, char const* argv[])
 
     socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if (socketfd == -1) {
-        fprintf(stderr, "Error al crear el socket: %s\n", strerror(errno));
+        fprintf(stderr, "Error al crear el socket:\n");
         exit(EXIT_FAILURE);
     }
     fprintf(stdout, "Socket creado con exito\n");
@@ -34,7 +32,7 @@ int main(int argc, char const* argv[])
     printf("Intentando conectar a %s:9999...\n", argv[1]);
 
     if (connect(socketfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != 0) {
-        fprintf(stderr, "Error al conectar: %s\n", strerror(errno));
+        fprintf(stderr, "Error al conectarn");
         close(socketfd);
         exit(EXIT_FAILURE);
     }
