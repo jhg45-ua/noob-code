@@ -1,0 +1,205 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% PAQUETES BÁSICOS
+% ============================================================
+\usepackage{fontspec}
+\setmainfont{Myriad Pro} % Fuente principal
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath}      % Para ecuaciones matemáticas
+\usepackage{float}        % Para mejor control de posición de figuras
+\usepackage{caption}      % Para personalizar captions
+\usepackage{subcaption}   % Para subfiguras si se necesitan
+\usepackage{microtype}     % Mejora el espaciado y reduce overfull
+
+% ============================================================
+% CONFIGURACIONES BÁSICAS
+% ============================================================
+
+% Configuración de márgenes
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2cm,
+    right=2cm,
+    headheight=14.5pt
+}
+
+% Configuración de enlaces
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={Memoria Práctica},
+    pdfpagemode=FullScreen,
+}
+
+% Configuración de encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Asignatura - Nº Práctica}
+\fancyhead[R]{Mes - Año}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{Nombre del Estudiante}
+
+% ============================================================
+% CONFIGURACIONES ESPECÍFICAS POR ASIGNATURA
+% ============================================================
+
+% --- [SISTEMAS OPERATIVOS] Configuración de listings para código ---
+\usepackage{listings}
+
+% Configuración de colores para el código
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codeorange}{rgb}{0.8,0.4,0}
+\definecolor{framecolor}{rgb}{0.7,0.7,0.7}
+
+% Configuración de listings para código C
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen}\itshape,
+    keywordstyle=\color{blue}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=8pt,
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{framecolor},
+    framesep=4pt,
+    xleftmargin=15pt,
+    xrightmargin=5pt,
+    language=C,
+    extendedchars=true,
+    inputencoding=utf8,
+    escapeinside={(*@}{@*)},
+    morecomment=[l][\color{codeorange}]{\#},
+    columns=flexible,
+    aboveskip=15pt,
+    belowskip=10pt,
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+             {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+             {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 {¡}{{!`}}1
+}
+
+\lstset{style=mystyle}
+
+% Configuración para el caption de los listings
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing, labelfont=white, textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
+% --- FIN [SISTEMAS OPERATIVOS] ---
+
+\begin{document}
+
+% --- Portada y índice sin numeración ---
+\pagenumbering{gobble} % no mostrar números de página en preliminares
+
+% Página de portada - Imagen ocupando la mayor parte de la página pero un poco reducida
+\newgeometry{margin=0cm} % quitar márgenes solo para la portada
+\thispagestyle{empty}
+% uso de makebox + raisebox para centrar horizontal y verticalmente
+\noindent\raisebox{0pt}[\paperheight][0pt]{%
+  \makebox[\paperwidth][c]{%
+    \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{portada.png}%
+  }
+}
+\restoregeometry
+
+\newpage
+
+% Tabla de contenidos
+\tableofcontents
+\newpage
+
+% --- A partir de aquí numeración normal ---
+\pagenumbering{arabic}   % cambiar a 1,2,3...
+\setcounter{page}{1}     % empezar en 1
+\pagestyle{fancy}        % restaurar encabezados/pies definidos en el preámbulo
+
+% Inicio del documento
+\section{Introducción}
+
+Aquí va la introducción de la memoria. Este documento presenta el desarrollo y resultados de la práctica de Sistemas Operativos, donde se abordan 
+diversos ejercicios relacionados con [completar según el tema de la práctica].
+
+\section{Objetivos}
+
+Los objetivos de esta práctica son:
+
+\begin{itemize}
+    \item Comprender los conceptos fundamentales de [completar]
+    \item Implementar soluciones prácticas utilizando [completar]
+    \item Analizar el comportamiento y rendimiento de [completar]
+\end{itemize}
+
+\section{Desarrollo}
+
+\subsection{Ejercicio 1}
+
+En este ejercicio se desarrolla [descripción del ejercicio]. A continuación se presenta el análisis y la implementación realizada.
+
+Como se puede observar en la Figura \ref{fig:ejercicio1}, [explicación de la imagen]. Este ejercicio requiere una comprensión profunda de los conceptos
+fundamentales estudiados en clase, así como la capacidad de aplicarlos en situaciones prácticas.
+
+El desarrollo de este ejercicio implica varios pasos importantes que deben seguirse cuidadosamente. Primero, es necesario analizar el problema planteado
+y comprender todos sus requisitos. Luego, se debe diseñar una solución apropiada que cumpla con todos los criterios especificados.
+
+\section{Código Fuente}
+
+A continuación se presenta el código implementado para los ejercicios:
+
+\subsection{Código del Ejercicio 1}
+
+\begin{lstlisting}[caption={Implementación del Ejercicio 1}, label={lst:ejercicio1}]
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    // Código de ejemplo - reemplazar con tu implementación
+    printf("Ejercicio 1: Hola Mundo\n");
+    
+    // Tu código aquí
+    
+    return 0;
+}
+\end{lstlisting}
+
+\section{Conclusiones}
+
+Tras la realización de esta práctica, se pueden extraer las siguientes conclusiones:
+
+\begin{itemize}
+    \item Conclusión 1
+    \item Conclusión 2
+    \item Conclusión 3
+\end{itemize}
+
+\section{Bibliografía}
+
+\begin{itemize}
+  \item Referencia 1: [Autor]. [Título]. [Editorial], [Año].
+  \item Referencia 2: [Autor]. [Título]. [Editorial], [Año].
+  \item Documentación oficial de [herramienta/lenguaje utilizado]
+\end{itemize}
+  
+\end{document}
