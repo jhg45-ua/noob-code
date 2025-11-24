@@ -1,7 +1,7 @@
-#include <netinet/in.h> //structure for storing address information
+#include <netinet/in.h> // estructura para almacenar información de dirección
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/socket.h> //for socket APIs
+#include <sys/socket.h> // para las APIs de socket
 #include <sys/types.h>
 #include <arpa/inet.h>
 #include <unistd.h>
@@ -11,7 +11,6 @@
 #define DEFAULT_PORT 9999
 #define BUFFER_SIZE 20480 // 20480
 
-// Opción 1: Retornar el file descriptor
 int receiveFile(int socketfd, const char *filename, char *buffer, size_t buffer_size) {
     int bytesReceived;
     int filefd;
@@ -55,15 +54,17 @@ int receiveFile(int socketfd, const char *filename, char *buffer, size_t buffer_
 
 int main(int argc, char const* argv[])
 {
-    int socketfd, filefd;
-    struct sockaddr_in serverAddr;
-    char buffer[BUFFER_SIZE];
+    int socketfd, filefd; // descriptores de archivo para el socket y el archivo recibido
+    struct sockaddr_in serverAddr; // estructura para almacenar información de dirección del servidor
+    char buffer[BUFFER_SIZE]; // buffer para almacenar datos recibidos
 
+    // Verificar que se haya proporcionado la dirección IP del servidor
     if (argc < 2) {
         fprintf(stderr, "Uso: %s <direccion_ip>\n", argv[0]);
         exit(EXIT_FAILURE);
     }
 
+    // Crear el socket para la conexión al servidor
     socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if (socketfd == -1) {
         fprintf(stderr, "Error al crear el socket:\n");
@@ -71,12 +72,14 @@ int main(int argc, char const* argv[])
     }
     fprintf(stdout, "Socket creado con exito\n");
 
-    serverAddr.sin_port = htons(DEFAULT_PORT);
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_addr.s_addr = inet_addr(argv[1]);
+    // Configurar la estructura sockaddr_in del servidor
+    serverAddr.sin_port = htons(DEFAULT_PORT); // puerto del servidor
+    serverAddr.sin_family = AF_INET; // familia de direcciones IPv4
+    serverAddr.sin_addr.s_addr = inet_addr(argv[1]); // dirección IP del servidor
 
     printf("Intentando conectar a %s:9999...\n", argv[1]);
 
+    // Conectar al servidor, con gestión de errores
     if (connect(socketfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != 0) {
         fprintf(stderr, "Error al conectar\n");
         close(socketfd);
@@ -85,21 +88,23 @@ int main(int argc, char const* argv[])
 
     printf("Conexion realizada con exito...\n");
 
+    // Region para probar el tiempo de ejecución de la función receiveFile
     clock_t t;
     t = clock();
     // Usar la función
     filefd = receiveFile(socketfd, "Google_recibido.html", buffer, BUFFER_SIZE);
     t = clock() - t;
     double time_taken = ((double)t)/CLOCKS_PER_SEC;
-    printf("reviceFile() took %f seconds to execute \n", time_taken);
+    printf("receiveFile() tardo %f segundos en ejecutar\n", time_taken);
 
+    // Si hubo un error en la recepción del archivo, cerrar el socket y salir
     if (filefd == -1) {
         close(socketfd);
         exit(EXIT_FAILURE);
     }
 
+    // Cerrar descriptores de archivo y socket
     close(filefd);
     close(socketfd);
-
     return 0;
 }
