@@ -211,7 +211,6 @@ Ahora el servidor se pone a escuchar conexiones entrantes y acepta una conexion 
 \begin{lstlisting}[caption={El servidor acepta conexiones}, label={lst:ejercicio1_2}]
 // Poner el socket en modo escucha para aceptar conexiones entrantes, maximo 5 conexiones en cola
 listen(sockfd, 5);
-
 printf("Esperando nuevas conexiones...\n");
 
 // Bucle infinito para aceptar y manejar conexiones entrantes
@@ -223,7 +222,6 @@ while(1) {
     fprintf(stderr, "Error aceptando la conexion\n");
     continue;
   }
-
   printf("Conexion aceptada!!!\n");
   ....
 }
