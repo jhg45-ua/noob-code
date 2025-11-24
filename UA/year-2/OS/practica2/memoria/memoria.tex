@@ -159,12 +159,14 @@ Los objetivos de esta práctica son:
 \subsection{Ejercicio 1}
 
 En este ejercicio se nos pide desarrollar una aplicacion cliente-servidor para poder transferrir un archivo desde el servidor al cliente utilizando 
-sockets en C. Usaremos una version de la pagina de inicio de google como archivo de prueba. 
-\newline
+sockets en C. Usaremos una version de la pagina de inicio de google como archivo de prueba.
+
+
 El servidor se encargara de escuchar las conexiones entrantes y un proceso hijo dentro del mismo servidor se encargara de enviar el archivo al cliente 
 una vez este se haya conectado. El archivo se enviara en bloques configurados por la macro \command{BUFFER\_SIZE}. El servidor estara constantemente escuchando
 nuevas conexiones con un maximo de 5 conexiones en cola.
-\newline
+
+
 Mientras tanto, el cliente se encargara de conectarse al servidor y recibir el archivo en bloques, escribiendo cada bloque recibido en un archivo local. Una vez 
 completado abrira el archivo en el navegador por defecto del sistema.
 
