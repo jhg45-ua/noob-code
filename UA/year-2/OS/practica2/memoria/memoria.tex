@@ -107,6 +107,8 @@
 \DeclareCaptionFont{white}{\color{white}}
 \DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{#1#2#3}}}
 \captionsetup[lstlisting]{format=listing, labelfont=white, textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
+
+\newcommand{\command}[1]{{\ttfamily\textcolor{orange!80!black}{\detokenize{#1}}}}
 % --- FIN [SISTEMAS OPERATIVOS] ---
 
 \begin{document}
@@ -156,33 +158,88 @@ Los objetivos de esta práctica son:
 
 \subsection{Ejercicio 1}
 
-En este ejercicio se desarrolla [descripción del ejercicio]. A continuación se presenta el análisis y la implementación realizada.
+En este ejercicio se nos pide desarrollar una aplicacion cliente-servidor para poder transferrir un archivo desde el servidor al cliente utilizando 
+sockets en C. Usaremos una version de la pagina de inicio de google como archivo de prueba. 
+\newline
+El servidor se encargara de escuchar las conexiones entrantes y un proceso hijo dentro del mismo servidor se encargara de enviar el archivo al cliente 
+una vez este se haya conectado. El archivo se enviara en bloques configurados por la macro \command{BUFFER\_SIZE}. El servidor estara constantemente escuchando
+nuevas conexiones con un maximo de 5 conexiones en cola.
+\newline
+Mientras tanto, el cliente se encargara de conectarse al servidor y recibir el archivo en bloques, escribiendo cada bloque recibido en un archivo local. Una vez 
+completado abrira el archivo en el navegador por defecto del sistema.
 
-Este ejercicio requiere una comprensión profunda de los conceptos fundamentales estudiados en clase, así como la capacidad de aplicarlos en situaciones prácticas.
-
-El desarrollo de este ejercicio implica varios pasos importantes que deben seguirse cuidadosamente. Primero, es necesario analizar el problema planteado
-y comprender todos sus requisitos. Luego, se debe diseñar una solución apropiada que cumpla con todos los criterios especificados.
+\subsection{Ejercicio 2}
+El ejercicio 2 busca implementar mediante el simulador jBACI el problema del productor-consumidor utilizando semáforos para la sincronización entre procesos. Para este
+ejercicio he reproducido el ejemplo de la transparencia vista en clase, adaptándolo al entorno de jBACI y añadiendo comentarios explicativos en el código para mayor 
+claridad.
 
 \section{Código Fuente}
 
 A continuación se presenta el código implementado para los ejercicios:
 
 \subsection{Código del Ejercicio 1}
+Empezando con la parte del servidor, el siguiente codigo muestra la configuracion del socket, del servidor y su enlaze:
 
-\begin{lstlisting}[caption={Implementación del Ejercicio 1}, label={lst:ejercicio1}]
-#include <stdio.h>
-#include <stdlib.h>
+\begin{lstlisting}[caption={Configuracion del servidor}, label={lst:ejercicio1_1}]
+// Creación del socket, se gestiona el error si no se puede crear
+sockfd = socket(AF_INET, SOCK_STREAM, 0);
+if (sockfd == -1) {
+  fprintf(stderr, "Error al crear el socket");
+  exit(EXIT_FAILURE);
+}
+printf("Socket creado con exito\n");
 
-int main() {
-    // Código de ejemplo - reemplazar con tu implementación
-    printf("Ejercicio 1: Hola Mundo\n");
-    
-    // Tu código aquí
-    
-    return 0;
+// Configuración de la estructura sockaddr_in
+serverAddr.sin_port = htons(DEFAULT_PORT); // puerto del servidor
+serverAddr.sin_family = AF_INET; // familia de direcciones IPv4
+serverAddr.sin_addr.s_addr = INADDR_ANY; // aceptar conexiones en cualquier interfaz de red
+
+// Enlazar el socket a la dirección y puerto especificados, con gestión de errores
+if (bind(sockfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != 0) {
+  fprintf(stderr, "Error al enlazar el socket");
+  exit(EXIT_FAILURE);
 }
 \end{lstlisting}
 
+El \command{sin_port} se configura con la función \command{htons} para convertir el número de puerto al formato de red adecuado, \command{sin_family} 
+se establece en \command{AF_INET} para indicar que se utilizará IPv4, y \command{sin_addr.s_addr} se configura con \command{INADDR_ANY} para aceptar 
+conexiones en cualquier interfaz de red disponible.
+
+Ahora el servidor se pone a escuchar conexiones entrantes y acepta una conexion cuando llega una nueva:
+\begin{lstlisting}[caption={El servidor acepta conexiones}, label={lst:ejercicio1_2}]
+// Poner el socket en modo escucha para aceptar conexiones entrantes, maximo 5 conexiones en cola
+listen(sockfd, 5);
+
+printf("Esperando nuevas conexiones...\n");
+
+// Bucle infinito para aceptar y manejar conexiones entrantes
+while(1) {
+  // Aceptar una nueva conexión de cliente
+  size = sizeof(clientAddr);
+  clientSocketfd = accept(sockfd, (struct sockaddr *)&clientAddr, &size);
+  if (clientSocketfd == -1) {
+    fprintf(stderr, "Error aceptando la conexion\n");
+    continue;
+  }
+
+  printf("Conexion aceptada!!!\n");
+  ....
+}
+\end{lstlisting}
+
+Luego de aceptar la conexion, se crea un proceso hijo para manejar la transferencia del archivo al cliente, y se envia el archivo en bloques:
+\begin{lstlisting}[caption={Envio del archivo en bloques}, label={lst:ejercicio1_3}]
+//Leer y enviar el archivo por trozos en base al tamaño del buffer
+while((bytesRead = read(filefd, buffer, sizeof(buffer))) > 0) {
+    bytesSent = write(clientSocketfd, buffer, bytesRead);
+    if (bytesSent == -1) {
+        fprintf(stderr, "Error en la transferencia del archivo\n");
+        break;
+    }
+}
+\end{lstlisting}
+
+Ya despues de eso simplemente se cierra el archivo y el socket del cliente en el proceso hijo, y el servidor vuelve a esperar nuevas conexiones.
 \section{Conclusiones}
 
 Tras la realización de esta práctica, se pueden extraer las siguientes conclusiones:

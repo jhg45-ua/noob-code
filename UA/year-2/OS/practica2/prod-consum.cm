@@ -1,0 +1,54 @@
+//semaphore buffer = 4;
+//semaphore accesoBuffer = 1;
+//semaphore consumer = 0;
+semaphore productores, consumidores;
+binarysem accesoBuffer;
+
+const int bufferSize = 4;
+int buffer = 0;
+
+void producir() {cout << "se produce" << endl;}
+void consumir() {cout << "se consume" << endl;}
+
+void anadir_buffer() {
+	cout << "se incrementa el buffer" << endl;
+	buffer++;
+}
+
+void coger_buffer() {
+	cout << "se saca el buffer" << endl;
+	buffer--;
+}
+
+void productor(){
+	while(1) {
+		producir();
+		wait(productores); // P(buffer)
+		wait(accesoBuffer); // P(accesoBuffer)
+		anadir_buffer();
+		signal(accesoBuffer); // V(accesoBuffer)
+		signal(consumidores); // V(consumer)
+	}
+}
+
+void consumidor() {
+	while(1) {
+		wait(consumidores); //P(consumer)
+		wait(accesoBuffer); //P(accesoBuffer)
+		coger_buffer();
+		signal(accesoBuffer); //V(accesoBuffer)
+		signal(productores); //V(buffer)
+		consumir();
+	}
+}
+
+void main() {
+	initialsem(productores, bufferSize);
+	initialsem(accesoBuffer, 1);
+	initialsem(consumidores, 0);
+
+	cobegin{
+		productor();
+		consumidor();
+	}
+}
