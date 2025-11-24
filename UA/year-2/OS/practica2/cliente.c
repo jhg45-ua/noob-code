@@ -43,6 +43,7 @@ int receiveFile(int socketfd, const char *filename, char *buffer, size_t buffer_
 
     printf("Archivo recibido y guardado como '%s'\n", filename);
 
+    // Abrir el archivo recibido en el navegador predeterminado en base a macros del sistema operativo
     #ifdef __APPLE__
         system("open Google_recibido.html");
     #elif __linux__

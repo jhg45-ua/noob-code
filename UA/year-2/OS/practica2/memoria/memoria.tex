@@ -44,10 +44,10 @@
 % Configuración de encabezados y pies de página
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{Asignatura - Nº Práctica}
-\fancyhead[R]{Mes - Año}
+\fancyhead[L]{Sistemas Operativos - Práctica 2}
+\fancyhead[R]{Noviembre - 2025}
 \fancyfoot[R]{\thepage}
-\fancyfoot[L]{Nombre del Estudiante}
+\fancyfoot[L]{Julián Hinojosa}
 
 % ============================================================
 % CONFIGURACIONES ESPECÍFICAS POR ASIGNATURA
@@ -141,55 +141,91 @@
 % Inicio del documento
 \section{Introducción}
 
-Aquí va la introducción de la memoria. Este documento presenta el desarrollo y resultados de la práctica de Sistemas Operativos, donde se abordan 
-diversos ejercicios relacionados con [completar según el tema de la práctica].
+Este documento presenta el desarrollo y los resultados de la práctica de Sistemas Operativos sobre comunicaciones en red y concurrencia. La práctica consta de dos 
+ejercicios fundamentales que abordan conceptos clave en el desarrollo de sistemas distribuidos y la sincronización de procesos.
+
+El primer ejercicio se centra en las comunicaciones en red mediante sockets, implementando una aplicación cliente-servidor que permite la transmisión de archivos. 
+El servidor se ejecutará en el puerto 9999, esperando conexiones entrantes, mientras que el cliente se conectará para recibir el contenido de un archivo HTML 
+(en este caso, una versión de la página de inicio de Google) y posteriormente lo abrirá en el navegador local.
+
+El segundo ejercicio aborda el problema clásico de concurrencia del productor-consumidor con buffer limitado, implementándolo mediante semáforos en el simulador 
+jBACI. Este problema ilustra los desafíos de la sincronización entre procesos que comparten recursos, aplicando mecanismos de exclusión mutua y señalización para 
+evitar condiciones de carrera y garantizar la correcta operación del sistema.
 
 \section{Objetivos}
 
 Los objetivos de esta práctica son:
 
 \begin{itemize}
-    \item Comprender los conceptos fundamentales de [completar]
-    \item Implementar soluciones prácticas utilizando [completar]
-    \item Analizar el comportamiento y rendimiento de [completar]
+    \item Comprender y aplicar los conceptos fundamentales de comunicación en red mediante sockets TCP/IP
+    \item Implementar correctamente una arquitectura cliente-servidor capaz de transferir archivos a través de la red
+    \item Utilizar las llamadas al sistema relacionadas con comunicaciones en red en el lenguaje C
+    \item Entender y aplicar los mecanismos de sincronización de procesos mediante semáforos
+    \item Resolver el problema clásico del productor-consumidor con buffer limitado
+    \item Dominar el uso correcto de semáforos para garantizar la exclusión mutua y evitar condiciones de carrera
+    \item Desarrollar habilidades en la depuración y análisis de sistemas concurrentes
 \end{itemize}
 
 \section{Desarrollo}
 
-\subsection{Ejercicio 1}
+\subsection{Ejercicio 1: Comunicaciones en Red}
 
-En este ejercicio se nos pide desarrollar una aplicacion cliente-servidor para poder transferrir un archivo desde el servidor al cliente utilizando 
-sockets en C. Usaremos una version de la pagina de inicio de google como archivo de prueba.
+\subsubsection{Descripción del problema}
 
+En este ejercicio se desarrolla una aplicación cliente-servidor para transferir un archivo desde el servidor al cliente utilizando sockets en C. Se utiliza una
+versión de la página de inicio de Google como archivo de prueba para demostrar la transferencia de contenido HTML.
 
-El servidor se encargara de escuchar las conexiones entrantes y un proceso hijo dentro del mismo servidor se encargara de enviar el archivo al cliente 
-una vez este se haya conectado. El archivo se enviara en bloques configurados por la macro \command{BUFFER\_SIZE}. El servidor estara constantemente escuchando
-nuevas conexiones con un maximo de 5 conexiones en cola.
+\subsubsection{Arquitectura del servidor}
 
+El servidor se encarga de escuchar las conexiones entrantes en el puerto 9999. Cuando llega una nueva conexión, se crea un proceso hijo que gestiona la transferencia
+del archivo al cliente conectado. Esta arquitectura permite que el servidor continúe aceptando nuevas conexiones mientras se realizan las transferencias.
 
-Mientras tanto, el cliente se encargara de conectarse al servidor y recibir el archivo en bloques, escribiendo cada bloque recibido en un archivo local. Una vez 
-completado abrira el archivo en el navegador por defecto del sistema.
+El archivo se envía en bloques de tamaño definido por la macro \command{BUFFER_SIZE}, lo que optimiza el uso de memoria y permite transferir archivos de cualquier
+tamaño. El servidor mantiene un máximo de 5 conexiones en cola esperando ser atendidas.
 
-\subsection{Ejercicio 2}
-El ejercicio 2 busca implementar mediante el simulador jBACI el problema del productor-consumidor utilizando semáforos para la sincronización entre procesos. Para este
-ejercicio he reproducido el ejemplo de la transparencia vista en clase, adaptándolo al entorno de jBACI y añadiendo comentarios explicativos en el código para mayor 
-claridad.
+\subsubsection{Arquitectura del cliente}
+
+El cliente se encarga de conectarse al servidor especificado mediante su dirección IP (pasada como argumento). Una vez establecida la conexión, recibe el archivo en 
+bloques y lo escribe en un archivo local llamado \texttt{Google\_recibido.html}. Al completar la recepción, el cliente automáticamente abre el archivo en el navegador 
+predeterminado del sistema.
+
+\subsection{Ejercicio 2: Problema del Productor-Consumidor}
+
+\subsubsection{Descripción del problema}
+
+El ejercicio 2 implementa el problema clásico del productor-consumidor con buffer limitado utilizando semáforos en el simulador jBACI. Este problema ilustra la 
+sincronización entre procesos concurrentes que comparten un recurso común (el buffer).
+
+\subsubsection{Mecanismos de sincronización}
+
+La solución utiliza tres semáforos:
+\begin{itemize}
+    \item \textbf{productores}: Semáforo contador que representa los espacios disponibles en el buffer (inicializado a 4).
+    \item \textbf{consumidores}: Semáforo contador que representa los ítems disponibles para consumir (inicializado a 0).
+    \item \textbf{accesoBuffer}: Semáforo binario que garantiza exclusión mutua en el acceso al buffer compartido (inicializado a 1).
+\end{itemize}
+
+Esta implementación reproduce el ejemplo de la transparencia vista en clase, adaptándolo al entorno de jBACI con comentarios explicativos para facilitar su comprensión.
 
 \section{Código Fuente}
 
-A continuación se presenta el código implementado para los ejercicios:
+A continuación se presenta el código implementado para ambos ejercicios, junto con las explicaciones de los fragmentos más relevantes.
 
-\subsection{Código del Ejercicio 1}
-Empezando con la parte del servidor, el siguiente codigo muestra la configuracion del socket, del servidor y su enlaze:
+\subsection{Ejercicio 1: Comunicaciones en Red}
 
-\begin{lstlisting}[caption={Configuracion del servidor}, label={lst:ejercicio1_1}]
+\subsubsection{Implementación del servidor}
+
+El servidor comienza creando y configurando el socket que utilizará para aceptar conexiones. Este proceso incluye la creación del socket, su configuración y el enlace
+a una dirección y puerto específicos:
+
+\begin{lstlisting}[caption={Configuración del servidor}, label={lst:ejercicio1_1}]
 // Creación del socket, se gestiona el error si no se puede crear
 sockfd = socket(AF_INET, SOCK_STREAM, 0);
 if (sockfd == -1) {
   fprintf(stderr, "Error al crear el socket");
   exit(EXIT_FAILURE);
 }
-printf("Socket creado con exito\n");
+printf("Socket creado con éxito\n");
 
 // Configuración de la estructura sockaddr_in
 serverAddr.sin_port = htons(DEFAULT_PORT); // puerto del servidor
@@ -203,13 +239,17 @@ if (bind(sockfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != 0) {
 }
 \end{lstlisting}
 
-El \command{sin_port} se configura con la función \command{htons} para convertir el número de puerto al formato de red adecuado, \command{sin_family} 
-se establece en \command{AF_INET} para indicar que se utilizará IPv4, y \command{sin_addr.s_addr} se configura con \command{INADDR_ANY} para aceptar 
-conexiones en cualquier interfaz de red disponible.
+La estructura \texttt{sockaddr\_in} se configura estableciendo:
+\begin{itemize}
+    \item \command{sin_port}: Convertido al formato de red mediante \command{htons}
+    \item \command{sin_family}: Establecido en \command{AF_INET} para indicar el uso de IPv4
+    \item \command{sin_addr.s_addr}: Configurado con \command{INADDR_ANY} para aceptar conexiones en cualquier interfaz de red
+\end{itemize}
 
-Ahora el servidor se pone a escuchar conexiones entrantes y acepta una conexion cuando llega una nueva:
+\vspace{0.3cm}
+\noindent Una vez configurado, el servidor entra en un bucle infinito para aceptar y gestionar conexiones entrantes:
 \begin{lstlisting}[caption={El servidor acepta conexiones}, label={lst:ejercicio1_2}]
-// Poner el socket en modo escucha para aceptar conexiones entrantes, maximo 5 conexiones en cola
+// Poner el socket en modo escucha para aceptar conexiones entrantes, máximo 5 conexiones en cola
 listen(sockfd, 5);
 printf("Esperando nuevas conexiones...\n");
 
@@ -219,16 +259,18 @@ while(1) {
   size = sizeof(clientAddr);
   clientSocketfd = accept(sockfd, (struct sockaddr *)&clientAddr, &size);
   if (clientSocketfd == -1) {
-    fprintf(stderr, "Error aceptando la conexion\n");
+    fprintf(stderr, "Error aceptando la conexión\n");
     continue;
   }
-  printf("Conexion aceptada!!!\n");
+  printf("Conexión aceptada!!!\n");
   ....
 }
 \end{lstlisting}
 
-Luego de aceptar la conexion, se crea un proceso hijo para manejar la transferencia del archivo al cliente, y se envia el archivo en bloques:
-\begin{lstlisting}[caption={Envio del archivo en bloques}, label={lst:ejercicio1_3}]
+\vspace{0.3cm}
+\noindent Tras aceptar la conexión, el servidor crea un proceso hijo mediante \command{fork()} para gestionar la transferencia. Este proceso hijo se encarga de leer
+el archivo y enviarlo al cliente en bloques:
+\begin{lstlisting}[caption={Envío del archivo en bloques}, label={lst:ejercicio1_3}]
 //Leer y enviar el archivo por trozos en base al tamaño del buffer
 while((bytesRead = read(filefd, buffer, sizeof(buffer))) > 0) {
     bytesSent = write(clientSocketfd, buffer, bytesRead);
@@ -239,23 +281,201 @@ while((bytesRead = read(filefd, buffer, sizeof(buffer))) > 0) {
 }
 \end{lstlisting}
 
-Ya despues de eso simplemente se cierra el archivo y el socket del cliente en el proceso hijo, y el servidor vuelve a esperar nuevas conexiones.
+\vspace{0.3cm}
+\noindent Una vez completada la transferencia, el proceso hijo cierra el descriptor de archivo y el socket del cliente, finalizando su ejecución. El proceso padre 
+del servidor continúa en el bucle, esperando nuevas conexiones.
+
+\subsubsection{Implementación del cliente}
+
+El cliente comienza creando su socket y configurándolo para conectarse al servidor. La dirección IP del servidor se proporciona como argumento en la línea de comandos:
+\begin{lstlisting}[caption={Configuración del socket del cliente}, label={lst:cliente1}]
+// Crear el socket para la conexión al servidor
+socketfd = socket(AF_INET, SOCK_STREAM, 0);
+if (socketfd == -1) {
+    fprintf(stderr, "Error al crear el socket:\n");
+    exit(EXIT_FAILURE);
+}
+fprintf(stdout, "Socket creado con éxito\n");
+
+// Configurar la estructura sockaddr_in del servidor
+serverAddr.sin_port = htons(DEFAULT_PORT); // puerto del servidor
+serverAddr.sin_family = AF_INET; // familia de direcciones IPv4
+serverAddr.sin_addr.s_addr = inet_addr(argv[1]); // dirección IP del servidor
+\end{lstlisting}
+
+\vspace{0.3cm}
+\noindent La configuración es similar a la del servidor, con la diferencia de que \command{sin_addr.s_addr} se establece mediante \command{inet_addr()}, que convierte
+la dirección IP en formato de texto a su representación numérica.
+
+A continuación, el cliente establece la conexión con el servidor:
+\begin{lstlisting}[caption={Conexión al servidor}, label={lst:cliente2}]
+// Conectar al servidor, con gestión de errores
+if (connect(socketfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != 0) {
+    fprintf(stderr, "Error al conectar\n");
+    close(socketfd);
+    exit(EXIT_FAILURE);
+}
+\end{lstlisting}
+
+\vspace{0.3cm}
+\noindent Con la conexión establecida, el cliente procede a recibir el contenido del archivo. Se crea un archivo local donde se almacenará el contenido recibido, y 
+luego se lee y escribe en bloques:
+\begin{lstlisting}[caption={Recepción del archivo en bloques}, label={lst:ejercicio1_4}]
+// Crear el archivo donde se guardará el contenido recibido
+filefd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+if (filefd == -1) {
+    fprintf(stderr, "Error al crear el archivo de destino\n");
+    return -1;
+}
+
+printf("Recibiendo archivo...\n");
+
+// Recibir el contenido del archivo y guardarlo
+while((bytesReceived = read(socketfd, buffer, buffer_size)) > 0) {
+    if (write(filefd, buffer, bytesReceived) == -1) {
+        fprintf(stderr, "Error al escribir en el archivo\n");
+        close(filefd);
+        return -1;
+    }
+}
+\end{lstlisting}
+
+\vspace{0.3cm}
+\noindent Finalmente, una vez completada la recepción del archivo, el cliente automáticamente lo abre en el navegador predeterminado. Se utilizan directivas del 
+preprocesador para ejecutar el comando apropiado según el sistema operativo:
+\begin{lstlisting}[caption={Abrir el archivo en el navegador por defecto}, label={lst:ejercicio1_5}]
+#ifdef __APPLE__
+    system("open Google_recibido.html");
+#elif __linux__
+    system("xdg-open Google_recibido.html");
+#endif
+\end{lstlisting}
+
+\subsection{Ejercicio 2: Problema del Productor-Consumidor}
+
+\subsubsection{Declaraciones globales}
+
+La implementación comienza declarando los semáforos y variables globales que serán compartidas entre los procesos productor y consumidor:
+\begin{lstlisting}[caption={Definición de semáforos y variables globales}, label={lst:ejercicio2_1}]
+semaphore productores, consumidores;
+binarysem accesoBuffer;
+
+const int bufferSize = 4;
+int buffer = 0;
+\end{lstlisting}
+
+\vspace{0.3cm}
+\noindent Los semáforos declarados cumplen las siguientes funciones:
+\begin{itemize}
+    \item \textbf{productores}: Semáforo contador que controla los espacios disponibles en el buffer
+    \item \textbf{consumidores}: Semáforo contador que controla los ítems disponibles para consumir
+    \item \textbf{accesoBuffer}: Semáforo binario para exclusión mutua en el acceso al buffer
+\end{itemize}
+
+\subsubsection{Funciones auxiliares}
+
+Se definen funciones auxiliares para simular las operaciones de producción y consumo, así como las operaciones sobre el buffer compartido:
+\begin{lstlisting}[caption={Funciones para el productor y consumidor}, label={lst:ejercicio2_2}]
+void producir() {cout << "se produce" << endl;}
+void consumir() {cout << "se consume" << endl;}
+
+void anadir_buffer() {
+	cout << "se incrementa el buffer" << endl;
+	buffer++;
+}
+
+void coger_buffer() {
+	cout << "se saca el buffer" << endl;
+	buffer--;
+}
+\end{lstlisting}
+
+\vspace{0.3cm}
+\noindent Estas funciones se dividen en dos categorías:
+\begin{itemize}
+    \item \textbf{Simulación}: \command{producir()} y \command{consumir()} simulan las operaciones externas de producción y consumo
+    \item \textbf{Gestión del buffer}: \command{anadir_buffer()} y \command{coger_buffer()} manejan las operaciones sobre el buffer compartido, incrementando o 
+    decrementando el contador
+\end{itemize}
+
+\subsubsection{Procesos concurrentes}
+
+Los procesos productor y consumidor utilizan los semáforos para sincronizar el acceso al buffer compartido y evitar condiciones de carrera:
+\begin{lstlisting}[caption={Procesos de productor y consumidor}, label={lst:ejercicio2_3}]
+void productor(){
+	while(1) {
+		producir();
+		wait(productores); // P(buffer)
+		wait(accesoBuffer); // P(accesoBuffer)
+		anadir_buffer();
+		signal(accesoBuffer); // V(accesoBuffer)
+		signal(consumidores); // V(consumer)
+	}
+}
+
+void consumidor() {
+	while(1) {
+		wait(consumidores); //P(consumer)
+		wait(accesoBuffer); //P(accesoBuffer)
+		coger_buffer();
+		signal(accesoBuffer); //V(accesoBuffer)
+		signal(productores); //V(buffer)
+		consumir();
+	}
+}
+\end{lstlisting}
+
+\vspace{0.3cm}
+\noindent El patrón de sincronización implementado garantiza:
+\begin{itemize}
+    \item Exclusión mutua en el acceso al buffer mediante \command{accesoBuffer}
+    \item Prevención de desbordamiento del buffer mediante el semáforo \command{productores}
+    \item Prevención de acceso a buffer vacío mediante el semáforo \command{consumidores}
+\end{itemize}
+
+\subsubsection{Función principal}
+
+La función principal inicializa los semáforos con los valores apropiados y lanza los procesos concurrentes:
+\begin{lstlisting}[caption={Inicialización y creación de procesos}, label={lst:ejercicio2_4}]
+void main() {
+	initialsem(productores, bufferSize);
+	initialsem(accesoBuffer, 1);
+	initialsem(consumidores, 0);
+
+	cobegin{
+		productor();
+		consumidor();
+	}
+}
+\end{lstlisting}
+
 \section{Conclusiones}
 
 Tras la realización de esta práctica, se pueden extraer las siguientes conclusiones:
 
 \begin{itemize}
-    \item Conclusión 1
-    \item Conclusión 2
-    \item Conclusión 3
+    \item La programación con sockets TCP/IP permite implementar sistemas distribuidos robustos y eficientes. La correcta configuración de las estructuras 
+    \texttt{sockaddr\_in} y el uso adecuado de las llamadas al sistema son fundamentales para establecer comunicaciones fiables entre procesos en diferentes máquinas.
+    
+    \item El modelo cliente-servidor implementado demuestra la importancia de una correcta gestión de errores y del uso de procesos hijo para atender múltiples 
+    conexiones simultáneas, permitiendo que el servidor continúe aceptando nuevas peticiones mientras se transfieren archivos.
+    
+    \item Los semáforos son herramientas esenciales para la sincronización de procesos concurrentes. En el problema del productor-consumidor, el uso correcto de 
+    semáforos contadores y binarios garantiza la exclusión mutua en el acceso al buffer compartido y evita situaciones de interbloqueo o inanición.
+    
+    \item La sincronización mediante semáforos requiere un diseño cuidadoso del orden de las operaciones \texttt{wait} y \texttt{signal} para evitar condiciones de 
+    carrera. El patrón implementado (esperar por recursos, adquirir el mutex, operar, liberar el mutex, señalizar disponibilidad) es fundamental en sistemas 
+    concurrentes.
+    
+    \item La práctica refuerza la comprensión de conceptos fundamentales de sistemas operativos como la comunicación entre procesos (IPC), la gestión de recursos 
+    compartidos y los mecanismos de sincronización, habilidades esenciales para el desarrollo de sistemas complejos y distribuidos.
 \end{itemize}
 
 \section{Bibliografía}
 
 \begin{itemize}
-  \item Referencia 1: [Autor]. [Título]. [Editorial], [Año].
-  \item Referencia 2: [Autor]. [Título]. [Editorial], [Año].
-  \item Documentación oficial de [herramienta/lenguaje utilizado]
+  \item Stallings, W. (2005). \textit{Sistemas Operativos: Aspectos internos y principios de diseño} (5ª ed.). Madrid: Pearson Educación.
+  \item Transparencias del Tema 3: Concurrencia - Sincronización y Comunicación de Procesos. Material docente de la asignatura de Sistemas Operativos.
 \end{itemize}
   
 \end{document}
