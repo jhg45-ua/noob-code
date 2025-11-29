@@ -1,41 +1,25 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include "../../lib/file_utils.h"
 
 int main(int argc, char *argv[]) {
-    int pipes[2], file_in, file_out;
+    int pipes[2], file_fd;
 
     pipe(pipes);
 
-    if (fork() != 0) { // Ejeccucion del padre
-        char read_char;
-        close(pipes[0]); // Cierra el extremo de lectura del pipe
-
-        file_in = open(argv[1], O_RDONLY); // Abre el archivo de entrada
-
-        // Leemos el archivo hasta que devuelva 0 y por tanto EOF
-        while ((read(file_in, &read_char, sizeof(char))) > 0) {
-            write(pipes[1], &read_char, sizeof(char)); // Escribimos en el pipe de escritura
+    if (fork() != 0) { // Padre: lee archivo -> escribe en pipe
+            close(pipes[0]);
+            file_fd = open(argv[1], O_RDONLY);
+            transfer_all(file_fd, pipes[1]);
+            close(file_fd);
+            close(pipes[1]);
+        } else { // Hijo: lee de pipe -> escribe en archivo
+            close(pipes[1]);
+            file_fd = creat(argv[2], 0666);
+            transfer_all(pipes[0], file_fd);
+            close(file_fd);
+            close(pipes[0]);
         }
-
-        // Cerramos los descriptores
-        close(file_in);
-        close(pipes[1]);
-    } else {
-        char write_char;
-
-        close(pipes[1]); // Cierra el extremo de escritura del pipe
-
-        file_out = creat(argv[2], 0666); // Crea el archivo de salida con permisos de lectura y escritura
-
-        // Al igual que en el padre, leemos hasta EOF
-        while((read(pipes[0], &write_char, sizeof(char))) > 0) {
-            write(file_out, &write_char, sizeof(char)); // Escribimos en el archivo de salida
-        }
-
-        // Cerramos los descriptores
-        close(file_out);
-        close(pipes[0]);
-    }
-    return EXIT_SUCCESS;
+        return EXIT_SUCCESS;
 }
