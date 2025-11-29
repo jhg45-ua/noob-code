@@ -1,12 +1,35 @@
 # Noob Code Repository
-Este repositorio consiste en una colección de código escrito en C o C++, que sirve como fuente de ejemplos para la realización de ejercicios prácticos. Se divide en dos partes: los archivos que he creado a lo largo de mi trayectoria universitaria, donde por ahora solo hay código en C, y los archivos que tenía previamente, donde sí se incluye tanto código en C como en C++.
 
-En el archivo [INFO.md](INFO.md) se encuentra información detallada sobre el funcionamiento de GitLab.
+Este repositorio documenta mi trayectoria de aprendizaje en programación, desde mis inicios autodidactas hasta mis estudios universitarios. Aquí encontrarás una colección de ejercicios, prácticas y proyectos organizados cronológicamente y por materias.
 
-Este repositorio está abierto a cualquier propuesta que queráis realizar. Para más información ver el archivo [CONTRIBUTING.md](CONTRIBUTING.md).
+## Estructura del Repositorio
 
-### Incorporación 6/11/23
-Las carpetas ***PR2, PR3, PR4*** salen direcitamente de moodle
+El código está organizado en dos grandes bloques principales:
 
-### Incorporación 1/07/24
-Añadidas las practicas a la carpeta CPP, más practicas para el examen de programación
+### 📂 pre-UA (Etapa Pre-Universitaria)
+Contiene el material de estudio y práctica realizado antes del ingreso a la universidad.
+- **C**: Algoritmos fundamentales (búsqueda binaria, ordenación), manejo de punteros, structs y pequeñas aplicaciones CLI (calculadoras, juegos).
+- **C++**: Ejercicios de sintaxis básica, estructuras de control y una introducción a la Programación Orientada a Objetos (POO).
+
+### 📂 UA (Universidad)
+Código desarrollado durante los cursos del grado universitario, organizado por años y asignaturas.
+
+#### Year 1 (Primer Año)
+- **EC (Estructura de Computadores)**: Ejercicios en Ensamblador (`.asm`) sobre gestión de memoria, bucles y la FPU.
+- **FBD (Fundamentos de Bases de Datos)**: Scripts SQL para la creación y manipulación de bases de datos.
+- **M2 (Matemáticas II)**: Uso de Python y Jupyter Notebooks para cálculo, resolución de ecuaciones e interpolación.
+- **P1 (Programación I)**: Proyectos en C, incluyendo el uso de la librería gráfica `gfx` y gestión de memoria dinámica.
+- **P2 (Programación II)**: Prácticas y exámenes relacionados con la continuación de la programación estructurada y modular.
+
+#### Year 2 (Segundo Año)
+- **OS (Sistemas Operativos)**: Prácticas de sistemas que incluyen el uso de `Makefiles`, gestión de procesos y llamadas al sistema.
+
+## Historial de Actualizaciones
+- **29/11/2025**: Nuevas librerías de utilidades y actualización de documentación.
+- **24/11/2025**: Actualizaciones menores y correcciones en gestión de memoria.
+- **1/07/24**: Añadidas las prácticas a la carpeta C++ y más ejercicios de preparación para el examen de programación.
+- **6/11/23**: Incorporación de las carpetas PR2, PR3 y PR4 importadas directamente de la plataforma Moodle.
+
+## Contribución e Información Adicional
+- En el archivo [INFO.md](INFO.md) se encuentra información detallada sobre el funcionamiento de Git.
+- Este repositorio está abierto a cualquier propuesta. Para más información ver el archivo [CONTRIBUTING.md](CONTRIBUTING.md).
