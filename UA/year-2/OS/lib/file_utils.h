@@ -7,6 +7,28 @@
 #define DEFAULT_BUFFER_SIZE 4096
 
 /**
+ * Escribe todos los bytes del buffer al descriptor.
+ * Maneja escrituras parciales.
+ *
+ * @param fd Descriptor de destino
+ * @param buffer Datos a escribir
+ * @param size Cantidad de bytes a escribir
+ * @return 0 en éxito, -1 en error
+ */
+int write_all(int fd, const void* buffer, size_t size);
+
+/**
+ * Lee exactamente 'size' bytes de un descriptor.
+ * Funciona con buffers, structs o arrays.
+ *
+ * @param fd Descriptor de origen
+ * @param buffer Destino (buffer, struct, array)
+ * @param size Bytes a leer
+ * @return Bytes leídos, -1 en error, 0 si EOF antes de leer nada
+ */
+ssize_t read_all(int fd, void *buffer, size_t size);
+
+/**
  * Transfiere datos de un descriptor de origen a uno de destino.
  * Funciona con archivos, pipes o sockets.
  *
@@ -27,17 +49,6 @@ ssize_t transfer_data(int fd_src, int fd_dst, char *buffer, ssize_t buffer_size)
  * @return Bytes totales transferidos, -1 en caso de error
  */
 ssize_t transfer_all(int fd_src, int fd_dst);
-
-/**
- * Escribe todos los bytes del buffer al descriptor.
- * Maneja escrituras parciales.
- *
- * @param fd Descriptor de destino
- * @param buffer Datos a escribir
- * @param size Cantidad de bytes a escribir
- * @return 0 en éxito, -1 en error
- */
-int write_all(int fd, const char* buffer, size_t size);
 
 /**
  * Copia un archivo a otro usando la función de transferencia.
