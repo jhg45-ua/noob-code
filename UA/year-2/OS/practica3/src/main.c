@@ -1,5 +1,4 @@
 #include <raylib.h>
-
 #define RAYGUI_IMPLEMENTATION
 #include "raygui.h"
 
@@ -7,6 +6,50 @@
 
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 450
+
+void test_sim() {
+    Memoria m;
+    inicializar_memoria(&m);
+
+    TipoAlgo algoritmo_actual = ALGO_PRIMER_HUECO;
+    
+    // Simulamos procesos falsos para probar
+    Proceso p1 = {"P1", 0, 300, 10, 10, false, false}; // Pide 300
+    Proceso p2 = {"P2", 0, 200, 10, 10, false, false}; // Pide 200
+    Proceso p3 = {"P3", 0, 200, 10, 10, false, false}; // Pide 200
+
+    // 1. Llenamos con P1 y P2
+    asignar_proceso(&m, p1, algoritmo_actual);
+    asignar_proceso(&m, p2, algoritmo_actual);
+    
+    printf("Estado tras asignar P1 y P2:\n");
+    mostrar_estado(&m);
+    // [0 P1 300] [300 P2 300] [600 HUECO 1400]
+
+    // 2. Liberamos P1 (creando hueco al inicio)
+    liberar_proceso(&m, "P1");
+    printf("\nEstado tras liberar P1 (Hueco al inicio):\n");
+    mostrar_estado(&m);
+    // [0 HUECO 300] [300 P2 300] [600 HUECO 1400]
+    
+    // --- MOMENTO DE LA VERDAD ---
+    // 3. Insertamos P3
+    printf("\nIntentando asignar P3...\n");
+    asignar_proceso(&m, p3, algoritmo_actual);
+    mostrar_estado(&m);
+
+    /* RESULTADOS ESPERADOS:
+       
+       Si es PRIMER HUECO:
+       P3 ocupa el hueco del 0.
+       [0 P3 300] [300 P2 300] [600 HUECO 1400]
+
+       Si es SIGUIENTE HUECO:
+       El puntero estaba en P2 (300). Busca DESPUÉS de P2.
+       Ignora el hueco 0 y se va al final.
+       [0 HUECO 300] [300 P2 300] [600 P3 300] [900 HUECO 1100]
+    */
+}
 
 int main(int argc, char const* argv[])
 {
@@ -39,30 +82,7 @@ int main(int argc, char const* argv[])
     // //--------------------------------------------------------------------------------------
 
 
-    Memoria m;
-    inicializar_memoria(&m);
-    
-    // Simulamos procesos falsos para probar
-    Proceso p1 = {"P1", 0, 300, 10, 10, false, false}; // Pide 300
-    Proceso p2 = {"P2", 0, 200, 10, 10, false, false}; // Pide 200
-
-    printf("--- FASE 1: LLENADO ---\n");
-    ocupar_memoria(&m, 0, p1); // P1 en 0
-    ocupar_memoria(&m, 1, p2); // P2 en 300
-    mostrar_estado(&m);
-    // Esperado: [0 P1 300] [300 P2 200] [500 HUECO 1500]
-
-    printf("\n--- FASE 2: LIBERAR P1 (Fragmentacion) ---\n");
-    liberar_proceso(&m, "P1");
-    mostrar_estado(&m);
-    // Esperado: [0 HUECO 300] [300 P2 200] [500 HUECO 1500]
-    // (Nota: No se fusionan porque P2 está en medio estorbando)
-
-    printf("\n--- FASE 3: LIBERAR P2 (Fusion Total) ---\n");
-    liberar_proceso(&m, "P2");
-    mostrar_estado(&m);
-    // Esperado: [0 HUECO 2000]
-    // (Explicación: P2 se vuelve hueco -> Se funde con el de izq -> Se funde con el de der)
+    test_sim();
 
     return 0;
 }
