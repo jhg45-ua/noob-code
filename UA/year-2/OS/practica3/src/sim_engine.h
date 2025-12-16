@@ -1,5 +1,5 @@
-#ifndef ENGINE_H
-#define ENGINE_H
+#ifndef SIM_ENGINE_H
+#define SIM_ENGINE_H
 
 #include <stdbool.h>
 
@@ -8,15 +8,17 @@
 #define MAX_PARTICIONES 50
 #define MAX_PROCESOS 100
 
-
+/**
+ * Estructura que representa un proceso.
+ */
 typedef struct {
     char nombre[10];
     int t_llegada;
     int mem_requerida;
     int t_ejecucion;
-    int t_final;
 
     // Variables de control
+    int t_final;
     int t_restante;
     bool en_memoria;
     bool finalizado;
@@ -95,6 +97,13 @@ bool liberar_proceso(Memoria *m, char *nombre_proceso);
 int buscar_hueco(Memoria *m, int mem_requerida, TipoAlgo tipo_algo);
 
 /**
+ * Alinea el tamaño solicitado a múltiplos de UNIDAD_MINIMA (100).
+ * @param size Tamaño solicitado
+ * @return Tamaño alineado
+ */
+int alinear_size(int size);
+
+/**
  * Asigna un proceso a la memoria según el algoritmo especificado.
  * @param m Puntero a la estructura de memoria
  * @param p Proceso a asignar
@@ -102,5 +111,16 @@ int buscar_hueco(Memoria *m, int mem_requerida, TipoAlgo tipo_algo);
  * @return true si se asignó correctamente, false en caso de error
  */
 bool asignar_proceso(Memoria *m, Proceso p, TipoAlgo tipo_algo);
+
+/**
+ * Avanza el tiempo de la simulación, gestionando procesos y memoria.
+ * @param m Puntero a la estructura de memoria
+ * @param agenda Array de procesos a gestionar
+ * @param num_procesos Número de procesos en el array
+ * @param reloj_actual Puntero al reloj actual de la simulación
+ * @param algo Algoritmo de asignación de memoria a utilizar
+ * @return nada
+ */
+void avanzar_tiempo(Memoria *m, Proceso agenda[], int num_procesos, int *reloj_actual, TipoAlgo algo);
 
 #endif // ENGINE_H

@@ -2,54 +2,12 @@
 #define RAYGUI_IMPLEMENTATION
 #include "raygui.h"
 
-#include "engine.h"
+#include "sim_engine.h"
 
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 450
 
-void test_sim() {
-    Memoria m;
-    inicializar_memoria(&m);
-
-    TipoAlgo algoritmo_actual = ALGO_PRIMER_HUECO;
-    
-    // Simulamos procesos falsos para probar
-    Proceso p1 = {"P1", 0, 300, 10, 10, false, false}; // Pide 300
-    Proceso p2 = {"P2", 0, 200, 10, 10, false, false}; // Pide 200
-    Proceso p3 = {"P3", 0, 200, 10, 10, false, false}; // Pide 200
-
-    // 1. Llenamos con P1 y P2
-    asignar_proceso(&m, p1, algoritmo_actual);
-    asignar_proceso(&m, p2, algoritmo_actual);
-    
-    printf("Estado tras asignar P1 y P2:\n");
-    mostrar_estado(&m);
-    // [0 P1 300] [300 P2 300] [600 HUECO 1400]
-
-    // 2. Liberamos P1 (creando hueco al inicio)
-    liberar_proceso(&m, "P1");
-    printf("\nEstado tras liberar P1 (Hueco al inicio):\n");
-    mostrar_estado(&m);
-    // [0 HUECO 300] [300 P2 300] [600 HUECO 1400]
-    
-    // --- MOMENTO DE LA VERDAD ---
-    // 3. Insertamos P3
-    printf("\nIntentando asignar P3...\n");
-    asignar_proceso(&m, p3, algoritmo_actual);
-    mostrar_estado(&m);
-
-    /* RESULTADOS ESPERADOS:
-       
-       Si es PRIMER HUECO:
-       P3 ocupa el hueco del 0.
-       [0 P3 300] [300 P2 300] [600 HUECO 1400]
-
-       Si es SIGUIENTE HUECO:
-       El puntero estaba en P2 (300). Busca DESPUÉS de P2.
-       Ignora el hueco 0 y se va al final.
-       [0 HUECO 300] [300 P2 300] [600 P3 300] [900 HUECO 1100]
-    */
-}
+void test_sim();
 
 int main(int argc, char const* argv[])
 {
@@ -85,4 +43,48 @@ int main(int argc, char const* argv[])
     test_sim();
 
     return 0;
+}
+
+void test_sim() {
+    Memoria m;
+    inicializar_memoria(&m);
+
+    TipoAlgo algoritmo_actual = ALGO_PRIMER_HUECO;
+    
+    // Simulamos procesos falsos para probar
+    Proceso procesos[4] = {
+        {"P1", 0, 500, 5, 5, false, false}, // ID, Llegada, Tam, Duracion, Restante...
+        {"P2", 1, 500, 2, 2, false, false},
+        {"P3", 2, 500, 5, 5, false, false},
+        {"P4", 3, 800, 3, 3, false, false}
+    };
+
+    int reloj = 0;
+
+    // --- BUCLE DE SIMULACIÓN (10 Instantes) ---
+    printf("=== INICIO DE LA SIMULACIÓN COMPLEJA ===\n");
+    printf("Memoria Total: %d\n\n", MEMORIA_TOTAL);
+
+    for (int i = 0; i < 10; i++) {
+        // Llamamos a tu motor de tiempo
+        avanzar_tiempo(&m, procesos, 4, &reloj, algoritmo_actual);
+        
+        // Visualizamos la memoria
+        printf("MEMORIA: ");
+        mostrar_estado(&m); // Tu función con formato [0 P1 500]...
+
+        // Visualizamos quién está esperando (Cola de espera)
+        printf("COLA ESPERA: ");
+        int esperando = 0;
+        for(int j=0; j<4; j++) {
+            if (!procesos[j].en_memoria && !procesos[j].finalizado && procesos[j].t_llegada <= reloj-1) {
+                printf("[%s req:%d] ", procesos[j].nombre, procesos[j].mem_requerida);
+                esperando++;
+            }
+        }
+        if(esperando == 0) printf("(Nadie)");
+        printf("\n----------------------------------------------------\n");
+        
+        getchar(); // Descomenta para ir paso a paso con ENTER
+    }
 }

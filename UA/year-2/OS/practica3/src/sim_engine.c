@@ -1,4 +1,4 @@
-#include "engine.h"
+#include "sim_engine.h"
 #include "file_utils.h"
 #include <stdio.h>
 #include <string.h>
@@ -45,7 +45,7 @@ int ocupar_memoria(Memoria *m, int indice_hueco, Proceso p) {
     
     if (hueco->estado != 0 || hueco->tamano < p.mem_requerida) {
         printf("ERROR: no se puede asignar el proceso \n");
-        return 1;
+        return 0;
     }
 
     // CASO A: Ajuste Exacto (El proceso ocupa todo el hueco)
@@ -83,7 +83,7 @@ int ocupar_memoria(Memoria *m, int indice_hueco, Proceso p) {
     // Actualizamos el puntero para Next Fit (para cuando lo implementemos)
     m->ultimo_indice_asignado = indice_hueco;
     
-    return 0; // Éxito
+    return 1; // Éxito
 }
 
 /**
@@ -177,6 +177,27 @@ int buscar_hueco(Memoria *m, int mem_requerida, TipoAlgo tipo_algo) {
 }
 
 /**
+ * Alinea el tamaño solicitado a múltiplos de UNIDAD_MINIMA (100).
+ * @param size Tamaño solicitado
+ * @return Tamaño alineado
+ */
+int alinear_size(int size) {
+    int tam_final; // Variable para el tamaño final alineado
+
+    // Si el tamaño es mayor que la unidad mínima, lo alineamos
+    if (size > UNIDAD_MINIMA) {
+        int bloques = size / 100; // Cantidad de bloques completos de 100
+        if (size % 100 != 0) // Si hay resto
+            tam_final = UNIDAD_MINIMA * bloques + 100; // Sumamos un bloque más
+        else 
+            tam_final = UNIDAD_MINIMA * 100; // Exacto, no hay resto
+    } else 
+        tam_final = UNIDAD_MINIMA; // Si es menor o igual a 100, lo ajustamos a 100
+    
+    return tam_final;
+}
+
+/**
  * Asigna un proceso a la memoria según el algoritmo especificado.
  * @param m Puntero a la estructura de memoria
  * @param p Proceso a asignar
@@ -184,10 +205,79 @@ int buscar_hueco(Memoria *m, int mem_requerida, TipoAlgo tipo_algo) {
  * @return true si se asignó correctamente, false en caso de error
  */
 bool asignar_proceso(Memoria *m, Proceso p, TipoAlgo tipo_algo) {
-    int pos_mem = buscar_hueco(m, p.mem_requerida, tipo_algo);
+    // Calculamos el tamaño real alineado
+    int tam_real = alinear_size(p.mem_requerida);
 
+    // [Opcional] Debug para ver el cambio
+    if (tam_real != p.mem_requerida)
+        printf("[DEBUG Alineacion] Proceso %s pide %d pero ocupara %d\n", p.nombre, p.mem_requerida, tam_real);
+    
+    // Buscamos un hueco adecuado con el tamaño real y el algoritmo indicado
+    int pos_mem = buscar_hueco(m, tam_real, tipo_algo);
+
+    // Si no se encontró hueco, devolvemos false
     if (pos_mem == -1)
         return false;
     
+    // Actualizamos el requerimiento de memoria del proceso al tamaño real
+    p.mem_requerida = tam_real;
+    
+    // Intentamos ocupar el hueco encontrado
     return ocupar_memoria(m, pos_mem, p);
+}
+
+/**
+ * Avanza el tiempo de la simulación, gestionando procesos y memoria.
+ * @param m Puntero a la estructura de memoria
+ * @param agenda Array de procesos a gestionar
+ * @param num_procesos Número de procesos en el array
+ * @param reloj_actual Puntero al reloj actual de la simulación
+ * @param algo Algoritmo de asignación de memoria a utilizar
+ * @return nada
+ */
+void avanzar_tiempo(Memoria *m, Proceso procesos[], int num_procesos, int *reloj_actual, TipoAlgo algo) {
+    printf("\n-----INSTANTE %d----\n", *reloj_actual);
+
+    // Paso 1 y 2 -> Envejecimiento y finalización de procesos
+    for (int i = 0; i < num_procesos; i++) {
+        // Solo procesamos los que están en memoria y no han finalizado
+        if (procesos[i].en_memoria && !procesos[i].finalizado) {
+            // DEBUG: Ver cuánto le queda antes de restar ---
+            printf("[DEBUG Vida] %s tiene %d ticks restantes.\n", procesos[i].nombre    , procesos[i].t_restante);
+            procesos[i].t_restante--; // Disminuimos su tiempo restante
+
+            // Si ya no le queda tiempo, lo finalizamos
+            if (procesos[i].t_restante <= 0) {
+                printf("-> FIN: El proceso %s ha terminado. Liberando memoria...\n", procesos[i].nombre);
+
+                // Liberamos su memoria
+                liberar_proceso(m, procesos[i].nombre);
+
+                // Marcamos el proceso como finalizado
+                procesos[i].en_memoria = false;
+                procesos[i].finalizado = true;
+            }
+        }
+    }
+
+    // Paso 3 -> Llegada de nuevos procesos
+    for (int i = 0; i < num_procesos; i++) {
+        // Se busca proceso que no esté en memoria, no finalizado y que haya llegado o su momento ya haya pasado
+        if (!procesos[i].en_memoria && !procesos[i].finalizado && procesos[i].t_llegada <= *reloj_actual) {
+            printf("-> LLEGADA: %s intenta entrar (Requiere %d)\n", procesos[i].nombre, procesos[i].mem_requerida);
+
+            // Intentamos asignarlo en memoria
+            if (asignar_proceso(m, procesos[i], algo)) {
+                printf("EXITO: %s asignado en memoria \n", procesos[i].nombre);
+                procesos[i].en_memoria = true;
+                // Inicializamos su tiempo restante
+                procesos[i].t_restante = procesos[i].t_ejecucion;
+            } else {
+                // No se pudo asignar, se queda esperando, al ser t_llegada <= reloj_actual, volverá a intentar en el siguiente tick
+                printf("ESPERA: No hay hueco para %s. Esperara al siguente tick \n", procesos[i].nombre);
+            }
+        }
+    }
+
+    (*reloj_actual)++;
 }
