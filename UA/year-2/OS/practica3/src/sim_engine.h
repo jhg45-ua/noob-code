@@ -121,6 +121,6 @@ bool asignar_proceso(Memoria *m, Proceso p, TipoAlgo tipo_algo);
  * @param algo Algoritmo de asignación de memoria a utilizar
  * @return nada
  */
-void avanzar_tiempo(Memoria *m, Proceso agenda[], int num_procesos, int *reloj_actual, TipoAlgo algo);
+void avanzar_tiempo(Memoria *m, Proceso procesos[], int num_procesos, int *reloj_actual, TipoAlgo algo);
 
 #endif // ENGINE_H

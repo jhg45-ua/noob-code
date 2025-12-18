@@ -1,4 +1,5 @@
 #include "sim_engine.h"
+#include "ficheros.h"
 #include "file_utils.h"
 #include <stdio.h>
 #include <string.h>
@@ -26,7 +27,6 @@ void inicializar_memoria(Memoria *m) {
  * @return nada
  */
 void mostrar_estado(Memoria *m) {
-    printf("Estado memoria: ");
     for (int i = 0; i < m->cant_particiones; i++) {
         printf("[%d %s %d]", m->particiones[i].dir_inicio, m->particiones[i].nombre_proceso, m->particiones[i].tamano);
     }
@@ -107,7 +107,7 @@ void compactar(Memoria *m) {
             // 4. Retrocedemos el índice para revisar la nueva partición fusionada
             i--;
 
-            printf("[DEBUG] Compactacion realizada\n");
+            printf("[DEBUG] Compactacion realizada del proceso %s\n", m->particiones[i].nombre_proceso);
         }
     }
 }
@@ -190,7 +190,7 @@ int alinear_size(int size) {
         if (size % 100 != 0) // Si hay resto
             tam_final = UNIDAD_MINIMA * bloques + 100; // Sumamos un bloque más
         else 
-            tam_final = UNIDAD_MINIMA * 100; // Exacto, no hay resto
+            tam_final = bloques * 100; // Exacto, no hay resto
     } else 
         tam_final = UNIDAD_MINIMA; // Si es menor o igual a 100, lo ajustamos a 100
     
@@ -278,6 +278,8 @@ void avanzar_tiempo(Memoria *m, Proceso procesos[], int num_procesos, int *reloj
             }
         }
     }
+
+    guardar_estado("particiones.txt", m, *reloj_actual);
 
     (*reloj_actual)++;
 }
