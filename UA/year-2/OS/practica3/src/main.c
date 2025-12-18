@@ -13,117 +13,18 @@
 #define MARGEN_DER 50
 
 void test_sim();
+void run_gui(Memoria *m, Proceso *procesos, int num_procesos);
 
 int main(int argc, char const* argv[])
 {
-    InitWindow(WIN_WIDTH, WIN_HEIGHT, "Gestomemoria - Memory Simulator");
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-
+    // PROCESO PADRE: GUI (Raylib)
     Memoria m;
     inicializar_memoria(&m);
-    
+        
     Proceso procesos[MAX_PROCESOS];
     int num_procesos = cargar_procesos("entrada.txt", procesos);
 
-    limpiar_log("particiones.txt");
-
-    int reloj_sim = 0;
-    TipoAlgo algoritmo_actual = ALGO_PRIMER_HUECO;
-
-    //Variables para repro automatica
-    bool auto_play = false;
-    float tiempo_acumulado = 0.0f;
-    float velocidad = 1.0f; // 1 segundo por tick
-
-    // Main app loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
-    {
-        // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
-
-        // Opcion A: Paso Manual(Tecla espacio)
-        if (IsKeyPressed(KEY_SPACE))
-            avanzar_tiempo(&m, procesos, num_procesos, &reloj_sim, algoritmo_actual);
-
-        // Opcion B: Auto Play(Tecla P)
-        if (IsKeyPressed(KEY_P))
-            auto_play = !auto_play;
-
-        // Logica del auto play
-        if (auto_play) {
-            tiempo_acumulado += GetFrameTime();
-            if (tiempo_acumulado >= velocidad) {
-                avanzar_tiempo(&m, procesos, num_procesos, &reloj_sim, algoritmo_actual);
-                tiempo_acumulado = 0.0f;
-            }
-        }
-
-        // Opcion C: Resetear (Tecla R)
-        if (IsKeyPressed(KEY_R)) {
-            inicializar_memoria(&m);
-            num_procesos = cargar_procesos("entrada.txt", procesos);
-            reloj_sim = 0;
-            limpiar_log("particiones.txt");
-            auto_play = false;
-        }
-        
-        // Draw
-        //----------------------------------------------------------------------------------
-        BeginDrawing();
-
-            ClearBackground(RAYWHITE);
-            
-            // 1. Textos de informacion
-            DrawText("Simulador de Gestion de Memoria", 20, 20, 30, DARKGRAY);
-            DrawText(TextFormat("Instante Actual: %d", reloj_sim), 20, 60, 20, BLACK);
-
-            if (auto_play) DrawText("Auto Play: ON (P para OFF)", 20, 90, 20, DARKGREEN);
-            else DrawText("Auto Play: OFF (P para ON)", 20, 90, 20, RED);
-
-            DrawText(TextFormat("Procesos Cargados: %d", num_procesos), 20, 120, 10, DARKGRAY);
-
-            // 2. Dibujar la barra de memoria
-            // Escala: Pantalla / Memoria -> WIN_WIDTH / MEMORIA_TOTAL
-            float ancho_util = WIN_WIDTH - MARGEN_IZQ - MARGEN_DER;
-            float escala = ancho_util / MEMORIA_TOTAL;
-
-            for (int i = 0; i < m.cant_particiones; i++) {
-                Particion p = m.particiones[i];
-
-                // Coordenadas
-                float x = MARGEN_IZQ + (p.dir_inicio * escala);
-                float ancho = p.tamano * escala;
-
-                // Colores: Verde (HUECO) vs Rojo/Azul (Proceso)
-                Color colorBloque = (p.estado == 0) ? GREEN : SKYBLUE; // Cambiar colores por pid con un switch
-
-                // Dibujar el rectangulo
-                DrawRectangle(x, Y_BARRA, ancho, ALTO_BARRA, colorBloque);
-                DrawRectangleLines(x, Y_BARRA, ancho, ALTO_BARRA, Fade(BLACK, 0.5f));
-
-                // Informacion del bloque (si cabe)
-                if (ancho > 40) {
-                    DrawText(p.nombre_proceso, x + 5, Y_BARRA + 35, 10, BLACK);
-                    DrawText(TextFormat("%d", p.tamano), x + 5, Y_BARRA + 50, 10, DARKGRAY);
-                }
-
-                // Direccion de memoria (arriba del bloque)
-                DrawText(TextFormat("%d", p.dir_inicio), x, Y_BARRA - 15, 10, BLACK);
-            }
-
-            // Marca final (2000)
-            DrawText("2000", MARGEN_IZQ + ancho_util - 30, Y_BARRA - 15, 10, BLACK);
-
-        EndDrawing();
-        //----------------------------------------------------------------------------------
-    }
-
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
-    //--------------------------------------------------------------------------------------
+    run_gui(&m, procesos, num_procesos);
 
 
     test_sim();
@@ -137,7 +38,7 @@ void test_sim() {
 
     TipoAlgo algoritmo_actual = ALGO_PRIMER_HUECO;
     
-    limpiar_log("particiones.txt");
+    limpiar_log("particiones_tui.txt");
     
 
     // // Simulamos procesos falsos para probar
@@ -160,7 +61,7 @@ void test_sim() {
 
     for (int i = 0; i < 11; i++) {
         // Llamamos al motor de tiempo
-        avanzar_tiempo(&m, procesos, num_procesos, &reloj, algoritmo_actual);
+        avanzar_tiempo(&m, procesos, num_procesos, &reloj, algoritmo_actual, "particiones_tui.txt");
         
         // Visualizamos la memoria
         printf("MEMORIA: ");
@@ -180,4 +81,106 @@ void test_sim() {
         
         getchar(); // Descomenta para ir paso a paso con ENTER
     }
+}
+
+
+void run_gui(Memoria *m, Proceso *procesos, int num_procesos) {
+    InitWindow(WIN_WIDTH, WIN_HEIGHT, "Gestomemoria - Memory Simulator");
+    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+
+    limpiar_log("particiones.txt");
+
+    int reloj_sim = 0;
+    TipoAlgo algoritmo_actual = ALGO_PRIMER_HUECO;
+
+    //Variables para repro automatica
+    bool auto_play = false;
+    float tiempo_acumulado = 0.0f;
+    float velocidad = 1.0f; // 1 segundo por tick
+
+    // Main app loop
+    while (!WindowShouldClose())    // Detect window close button or ESC key
+    {
+        // Update
+
+        // Opcion A: Paso Manual(Tecla espacio)
+        if (IsKeyPressed(KEY_SPACE))
+            avanzar_tiempo(m, procesos, num_procesos, &reloj_sim, algoritmo_actual, "particiones.txt");
+
+        // Opcion B: Auto Play(Tecla P)
+        if (IsKeyPressed(KEY_P))
+            auto_play = !auto_play;
+
+        // Logica del auto play
+        if (auto_play) {
+            tiempo_acumulado += GetFrameTime();
+            if (tiempo_acumulado >= velocidad) {
+                avanzar_tiempo(m, procesos, num_procesos, &reloj_sim, algoritmo_actual, "particiones.txt");
+                tiempo_acumulado = 0.0f;
+            }
+        }
+
+        // Opcion C: Resetear (Tecla R)
+        if (IsKeyPressed(KEY_R)) {
+            inicializar_memoria(m);
+            num_procesos = cargar_procesos("entrada.txt", procesos);
+            reloj_sim = 0;
+            limpiar_log("particiones.txt");
+            auto_play = false;
+        }
+        
+        // Draw
+        //----------------------------------------------------------------------------------
+        BeginDrawing();
+
+            ClearBackground(RAYWHITE);
+            
+            // 1. Textos de informacion
+            DrawText("Simulador de Gestion de Memoria", 20, 20, 30, DARKGRAY);
+            DrawText(TextFormat("Instante Actual: %d", reloj_sim), 20, 60, 20, BLACK);
+
+            if (auto_play) DrawText("Auto Play: ON (P para Desactivar)", 20, 90, 20, DARKGREEN);
+            else DrawText("Auto Play: OFF (P para Activar)", 20, 90, 20, RED);
+
+            DrawText(TextFormat("Procesos Cargados: %d", num_procesos), 20, 120, 15, DARKGRAY);
+
+            // 2. Dibujar la barra de memoria
+            // Escala: Pantalla / Memoria -> WIN_WIDTH / MEMORIA_TOTAL
+            float ancho_util = WIN_WIDTH - MARGEN_IZQ - MARGEN_DER;
+            float escala = ancho_util / MEMORIA_TOTAL;
+
+            for (int i = 0; i < m->cant_particiones; i++) {
+                Particion p = m->particiones[i];
+
+                // Coordenadas
+                float x = MARGEN_IZQ + (p.dir_inicio * escala);
+                float ancho = p.tamano * escala;
+
+                // Colores: Verde (HUECO) vs Rojo/Azul (Proceso)
+                Color colorBloque = (p.estado == 0) ? GREEN : SKYBLUE; // Cambiar colores por pid con un switch
+
+                // Dibujar el rectangulo
+                DrawRectangle(x, Y_BARRA, ancho, ALTO_BARRA, colorBloque);
+                DrawRectangleLines(x, Y_BARRA, ancho, ALTO_BARRA, Fade(BLACK, 0.5f));
+
+                // Informacion del bloque (si cabe)
+                if (ancho > 40) {
+                    DrawText(p.nombre_proceso, x + 5, Y_BARRA + 35, 15, BLACK);
+                    DrawText(TextFormat("%d", p.tamano), x + 5, Y_BARRA + 50, 15, DARKGRAY);
+                }
+
+                // Direccion de memoria (arriba del bloque)
+                DrawText(TextFormat("%d", p.dir_inicio), x, Y_BARRA - 15, 15, BLACK);
+            }
+
+            // Marca final (2000)
+            DrawText("2000", MARGEN_IZQ + ancho_util - 30, Y_BARRA - 15, 15, BLACK);
+        EndDrawing();
+        //----------------------------------------------------------------------------------
+    }
+
+    // De-Initialization
+    //--------------------------------------------------------------------------------------
+    CloseWindow();        // Close window and OpenGL context
+    //--------------------------------------------------------------------------------------
 }

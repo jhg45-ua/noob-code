@@ -235,7 +235,7 @@ bool asignar_proceso(Memoria *m, Proceso p, TipoAlgo tipo_algo) {
  * @param algo Algoritmo de asignación de memoria a utilizar
  * @return nada
  */
-void avanzar_tiempo(Memoria *m, Proceso procesos[], int num_procesos, int *reloj_actual, TipoAlgo algo) {
+void avanzar_tiempo(Memoria *m, Proceso procesos[], int num_procesos, int *reloj_actual, TipoAlgo algo, const char* ruta_log) {
     printf("\n-----INSTANTE %d----\n", *reloj_actual);
 
     // Paso 1 y 2 -> Envejecimiento y finalización de procesos
@@ -279,7 +279,7 @@ void avanzar_tiempo(Memoria *m, Proceso procesos[], int num_procesos, int *reloj
         }
     }
 
-    guardar_estado("particiones.txt", m, *reloj_actual);
+    guardar_estado(ruta_log, m, *reloj_actual);
 
     (*reloj_actual)++;
 }
