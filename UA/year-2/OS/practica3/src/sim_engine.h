@@ -3,49 +3,63 @@
 
 #include <stdbool.h>
 
+/**
+ * @file sim_engine.h
+ * @brief Declaraciones del motor de simulación de gestión de memoria.
+ * @author Julian Hinojosa Gil
+ * @date 2025
+ */
+
+/** @brief Tamaño total de la memoria simulada */
 #define MEMORIA_TOTAL 2000
+/** @brief Unidad mínima de asignación de memoria */
 #define UNIDAD_MINIMA 100
+/** @brief Máximo número de particiones en la memoria */
 #define MAX_PARTICIONES 50
+/** @brief Máximo número de procesos en la simulación */
 #define MAX_PROCESOS 100
 
 /**
- * Estructura que representa un proceso.
+ * @brief Estructura que representa un proceso.
  */
 typedef struct {
-    char nombre[10];
-    int t_llegada;
-    int mem_requerida;
-    int t_ejecucion;
+    char nombre[10];            /**< Nombre del proceso */
+    int t_llegada;              /**< Tiempo de llegada del proceso */
+    int mem_requerida;          /**< Memoria requerida por el proceso */
+    int t_ejecucion;            /**< Tiempo de ejecución del proceso */
 
     // Variables de control
-    int t_final;
-    int t_restante;
-    bool en_memoria;
-    bool finalizado;
+    int t_final;                /**< Tiempo de finalización del proceso */
+    int t_restante;             /**< Tiempo restante de ejecución */
+    bool en_memoria;            /**< Indica si el proceso está en memoria */
+    bool finalizado;            /**< Indica si el proceso ha finalizado */
 } Proceso;
 
 /**
- * Estructura que representa una partición de memoria.
+ * @brief  que representa una partición de memoria.
  */
 typedef struct {
-    int dir_inicio;
-    int tamano;
-    int estado; // 0 -> HUECO || 1 -> PROCESO
-    char nombre_proceso[10];
+    int dir_inicio;             /**< Dirección de inicio de la partición */
+    int tamano;                 /**< Tamaño de la partición */
+    int estado;                 /**< Estado de la partición 0 -> HUECO || 1 -> PROCESO  */
+    char nombre_proceso[10];    /**< Nombre del proceso asignado o "HUECO" si está libre */
 } Particion;
 
 /**
- * Estructura que representa la memoria del sistema.
+ * @brief Estructura que representa la memoria del sistema.
  */
 typedef struct {
-    Particion particiones[MAX_PARTICIONES];
-    int cant_particiones;
-    int ultimo_indice_asignado;
+    Particion particiones[MAX_PARTICIONES]; /**< Array de particiones de memoria */
+    int cant_particiones;                   /**< Cantidad de particiones actuales */
+    int ultimo_indice_asignado;             /**< Último índice asignado en particiones */
 } Memoria;
 
+/**
+ * @brief Tipos de algoritmos de asignación de memoria.
+ */
 typedef enum {
-    ALGO_PRIMER_HUECO,
-    ALGO_SIGUIENTE_HUECO
+    ALGO_PRIMER_HUECO,      /**< Algoritmo de Primer Hueco */
+    ALGO_SIGUIENTE_HUECO    /**< Algoritmo de Siguiente Hueco */
 } TipoAlgo;
 
 /**

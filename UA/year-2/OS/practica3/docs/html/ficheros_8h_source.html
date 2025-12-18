@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Memoria - Práctica 3 OS: Archivo de código fuente src/ficheros.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS
+   </div>
+   <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('ficheros_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">ficheros.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ficheros_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FICHEROS_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FICHEROS_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="sim__engine_8h.html">sim_engine.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keywordtype">int</span> <a class="code hl_function" href="ficheros_8h.html#af760c80ad550bdf7a5312163e4c9b2d6">cargar_procesos</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* ruta, <a class="code hl_struct" href="struct_proceso.html">Proceso</a> procesos[]);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keywordtype">void</span> <a class="code hl_function" href="ficheros_8h.html#af7e2e00877e94e16b9c6f0f76103214b">guardar_estado</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* ruta, <a class="code hl_struct" href="struct_memoria.html">Memoria</a> *m, <span class="keywordtype">int</span> instante);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">void</span> <a class="code hl_function" href="ficheros_8h.html#a695ae3585fde2a3664394810b70fe928">limpiar_log</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* ruta);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif </span><span class="comment">// FICHEROS_H</span></div>
+<div class="ttc" id="aficheros_8h_html_a695ae3585fde2a3664394810b70fe928"><div class="ttname"><a href="ficheros_8h.html#a695ae3585fde2a3664394810b70fe928">limpiar_log</a></div><div class="ttdeci">void limpiar_log(const char *ruta)</div><div class="ttdef"><b>Definition</b> ficheros.c:94</div></div>
+<div class="ttc" id="aficheros_8h_html_af760c80ad550bdf7a5312163e4c9b2d6"><div class="ttname"><a href="ficheros_8h.html#af760c80ad550bdf7a5312163e4c9b2d6">cargar_procesos</a></div><div class="ttdeci">int cargar_procesos(const char *ruta, Proceso procesos[])</div><div class="ttdef"><b>Definition</b> ficheros.c:11</div></div>
+<div class="ttc" id="aficheros_8h_html_af7e2e00877e94e16b9c6f0f76103214b"><div class="ttname"><a href="ficheros_8h.html#af7e2e00877e94e16b9c6f0f76103214b">guardar_estado</a></div><div class="ttdeci">void guardar_estado(const char *ruta, Memoria *m, int instante)</div><div class="ttdef"><b>Definition</b> ficheros.c:64</div></div>
+<div class="ttc" id="asim__engine_8h_html"><div class="ttname"><a href="sim__engine_8h.html">sim_engine.h</a></div><div class="ttdoc">Declaraciones del motor de simulación de gestión de memoria.</div></div>
+<div class="ttc" id="astruct_memoria_html"><div class="ttname"><a href="struct_memoria.html">Memoria</a></div><div class="ttdoc">Estructura que representa la memoria del sistema.</div><div class="ttdef"><b>Definition</b> sim_engine.h:51</div></div>
+<div class="ttc" id="astruct_proceso_html"><div class="ttname"><a href="struct_proceso.html">Proceso</a></div><div class="ttdoc">Estructura que representa un proceso.</div><div class="ttdef"><b>Definition</b> sim_engine.h:25</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>src</b></li><li class="navelem"><a href="ficheros_8h.html">ficheros.h</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>

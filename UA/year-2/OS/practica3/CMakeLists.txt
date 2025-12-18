@@ -6,9 +6,6 @@ set(CMAKE_C_STANDARD 17)
 # Buscar Raylib
 find_package(raylib REQUIRED)
 
-# Incluir raygui (header-only)
-include_directories(${CMAKE_SOURCE_DIR}/vendor/raygui/src)
-
 include_directories(../lib)
 
 # Definir fuentes

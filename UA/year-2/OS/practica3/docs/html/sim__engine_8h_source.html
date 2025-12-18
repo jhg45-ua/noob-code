@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Memoria - Práctica 3 OS: Archivo de código fuente src/sim_engine.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS
+   </div>
+   <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('sim__engine_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">sim_engine.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="sim__engine_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SIM_ENGINE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SIM_ENGINE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="sim__engine_8h.html#a6264fff1e0ed016a7ce3d58e0534ea00">   14</a></span><span class="preprocessor">#define MEMORIA_TOTAL 2000</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="sim__engine_8h.html#a6bb334d2cae8f7d1d61c25b3eba5e9b5">   16</a></span><span class="preprocessor">#define UNIDAD_MINIMA 100</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="sim__engine_8h.html#ae420f0bf3db242485c8c837356c6ebba">   18</a></span><span class="preprocessor">#define MAX_PARTICIONES 50</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="sim__engine_8h.html#ab0f17287f3a9af76ef9109ec1dfce7a9">   20</a></span><span class="preprocessor">#define MAX_PROCESOS 100</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="struct_proceso.html">   25</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_proceso.html#a30e36b0957cc834bd7bd581f999390c0">   26</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="struct_proceso.html#a30e36b0957cc834bd7bd581f999390c0">nombre</a>[10];            </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct_proceso.html#a3bdfce3dc9521ae195f824b63fa39177">   27</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_proceso.html#a3bdfce3dc9521ae195f824b63fa39177">t_llegada</a>;              </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_proceso.html#a89677fcfc2c31a180618d3ecdf9d6da0">   28</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_proceso.html#a89677fcfc2c31a180618d3ecdf9d6da0">mem_requerida</a>;          </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct_proceso.html#a4c0f04511fcff56f38175cf4486f09a7">   29</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_proceso.html#a4c0f04511fcff56f38175cf4486f09a7">t_ejecucion</a>;            </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// Variables de control</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="struct_proceso.html#afb542b331040d95376c0ddb6809ff748">   32</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_proceso.html#afb542b331040d95376c0ddb6809ff748">t_final</a>;                </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="struct_proceso.html#a50600ea4ddd8f2d410dbffb5138e9939">   33</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_proceso.html#a50600ea4ddd8f2d410dbffb5138e9939">t_restante</a>;             </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="struct_proceso.html#a8a5539157dd188274a43e5543fef3494">   34</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_proceso.html#a8a5539157dd188274a43e5543fef3494">en_memoria</a>;            </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct_proceso.html#a6e82a92ffdba51e1f513a4b462d2c7f6">   35</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_proceso.html#a6e82a92ffdba51e1f513a4b462d2c7f6">finalizado</a>;            </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>} <a class="code hl_struct" href="struct_proceso.html">Proceso</a>;</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_particion.html">   41</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct_particion.html#ae1cc803e8a591302bcc4cfb0145fee53">   42</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_particion.html#ae1cc803e8a591302bcc4cfb0145fee53">dir_inicio</a>;             </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_particion.html#a44d43efa08e89cb916c4a465a77d6399">   43</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_particion.html#a44d43efa08e89cb916c4a465a77d6399">tamano</a>;                 </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct_particion.html#af3af9ca204c38ee3a6b1bc426df16e7a">   44</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_particion.html#af3af9ca204c38ee3a6b1bc426df16e7a">estado</a>;                 </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="struct_particion.html#a6a9530f295bf5f859a4ebe469751dfa9">   45</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="struct_particion.html#a6a9530f295bf5f859a4ebe469751dfa9">nombre_proceso</a>[10];    </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <a class="code hl_struct" href="struct_particion.html">Particion</a>;</div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="struct_memoria.html">   51</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="struct_memoria.html#a5172c2be2a019c0176b997b11e91655e">   52</a></span>    <a class="code hl_struct" href="struct_particion.html">Particion</a> <a class="code hl_variable" href="struct_memoria.html#a5172c2be2a019c0176b997b11e91655e">particiones</a>[<a class="code hl_define" href="sim__engine_8h.html#ae420f0bf3db242485c8c837356c6ebba">MAX_PARTICIONES</a>]; </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="struct_memoria.html#ae398c8e61b3aade21c6118c6cedf879d">   53</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_memoria.html#ae398c8e61b3aade21c6118c6cedf879d">cant_particiones</a>;                   </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="struct_memoria.html#a281aeea839c28dcef311e9902a74cccb">   54</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_memoria.html#a281aeea839c28dcef311e9902a74cccb">ultimo_indice_asignado</a>;             </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>} <a class="code hl_struct" href="struct_memoria.html">Memoria</a>;</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6">   60</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002">   61</a></span>    <a class="code hl_enumvalue" href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002">ALGO_PRIMER_HUECO</a>,      </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426">   62</a></span>    <a class="code hl_enumvalue" href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426">ALGO_SIGUIENTE_HUECO</a>    </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <a class="code hl_enumeration" href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6">TipoAlgo</a>;</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keywordtype">void</span> <a class="code hl_function" href="sim__engine_8h.html#a7525ea6570ccf752c8e9394b62042380">inicializar_memoria</a>(<a class="code hl_struct" href="struct_memoria.html">Memoria</a> *m);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keywordtype">void</span> <a class="code hl_function" href="sim__engine_8h.html#a6df7a5ff87dd2abca3c64b3dcc88cf5a">mostrar_estado</a>(<a class="code hl_struct" href="struct_memoria.html">Memoria</a> *m);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keywordtype">int</span> <a class="code hl_function" href="sim__engine_8h.html#a6a1089ddf1a175f89c026b773722dcd2">ocupar_memoria</a>(<a class="code hl_struct" href="struct_memoria.html">Memoria</a> *m, <span class="keywordtype">int</span> indice_hueco, <a class="code hl_struct" href="struct_proceso.html">Proceso</a> p);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="keywordtype">void</span> <a class="code hl_function" href="sim__engine_8h.html#a949ea609798d43a638d95faf7de9f681">compactar</a>(<a class="code hl_struct" href="struct_memoria.html">Memoria</a> *m);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keywordtype">bool</span> <a class="code hl_function" href="sim__engine_8h.html#a9a4646e9f9e8b178131b41945f7a8544">liberar_proceso</a>(<a class="code hl_struct" href="struct_memoria.html">Memoria</a> *m, <span class="keywordtype">char</span> *nombre_proceso);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keywordtype">int</span> <a class="code hl_function" href="sim__engine_8h.html#a8f367671cb683a6dd983d657251a170b">buscar_hueco</a>(<a class="code hl_struct" href="struct_memoria.html">Memoria</a> *m, <span class="keywordtype">int</span> mem_requerida, <a class="code hl_enumeration" href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6">TipoAlgo</a> tipo_algo);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keywordtype">int</span> <a class="code hl_function" href="sim__engine_8h.html#ab6fef50a2cde39099d3c051aa7975738">alinear_size</a>(<span class="keywordtype">int</span> size);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keywordtype">bool</span> <a class="code hl_function" href="sim__engine_8h.html#a47eaa39f311ae4f19e76eb9baca390d7">asignar_proceso</a>(<a class="code hl_struct" href="struct_memoria.html">Memoria</a> *m, <a class="code hl_struct" href="struct_proceso.html">Proceso</a> p, <a class="code hl_enumeration" href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6">TipoAlgo</a> tipo_algo);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keywordtype">void</span> <a class="code hl_function" href="sim__engine_8h.html#a099adf88ebe7183b00ddc648cc1ffa5b">avanzar_tiempo</a>(<a class="code hl_struct" href="struct_memoria.html">Memoria</a> *m, <a class="code hl_struct" href="struct_proceso.html">Proceso</a> procesos[], <span class="keywordtype">int</span> num_procesos, <span class="keywordtype">int</span> *reloj_actual, <a class="code hl_enumeration" href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6">TipoAlgo</a> algo, <span class="keyword">const</span> <span class="keywordtype">char</span>* ruta_log);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">#endif </span><span class="comment">// ENGINE_H</span></div>
+<div class="ttc" id="asim__engine_8h_html_a099adf88ebe7183b00ddc648cc1ffa5b"><div class="ttname"><a href="sim__engine_8h.html#a099adf88ebe7183b00ddc648cc1ffa5b">avanzar_tiempo</a></div><div class="ttdeci">void avanzar_tiempo(Memoria *m, Proceso procesos[], int num_procesos, int *reloj_actual, TipoAlgo algo, const char *ruta_log)</div><div class="ttdef"><b>Definition</b> sim_engine.c:181</div></div>
+<div class="ttc" id="asim__engine_8h_html_a186bb3e10a143cf48bda6c8d819869a6"><div class="ttname"><a href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6">TipoAlgo</a></div><div class="ttdeci">TipoAlgo</div><div class="ttdoc">Tipos de algoritmos de asignación de memoria.</div><div class="ttdef"><b>Definition</b> sim_engine.h:60</div></div>
+<div class="ttc" id="asim__engine_8h_html_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002"><div class="ttname"><a href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002">ALGO_PRIMER_HUECO</a></div><div class="ttdeci">@ ALGO_PRIMER_HUECO</div><div class="ttdef"><b>Definition</b> sim_engine.h:61</div></div>
+<div class="ttc" id="asim__engine_8h_html_a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426"><div class="ttname"><a href="sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426">ALGO_SIGUIENTE_HUECO</a></div><div class="ttdeci">@ ALGO_SIGUIENTE_HUECO</div><div class="ttdef"><b>Definition</b> sim_engine.h:62</div></div>
+<div class="ttc" id="asim__engine_8h_html_a47eaa39f311ae4f19e76eb9baca390d7"><div class="ttname"><a href="sim__engine_8h.html#a47eaa39f311ae4f19e76eb9baca390d7">asignar_proceso</a></div><div class="ttdeci">bool asignar_proceso(Memoria *m, Proceso p, TipoAlgo tipo_algo)</div><div class="ttdef"><b>Definition</b> sim_engine.c:159</div></div>
+<div class="ttc" id="asim__engine_8h_html_a6a1089ddf1a175f89c026b773722dcd2"><div class="ttname"><a href="sim__engine_8h.html#a6a1089ddf1a175f89c026b773722dcd2">ocupar_memoria</a></div><div class="ttdeci">int ocupar_memoria(Memoria *m, int indice_hueco, Proceso p)</div><div class="ttdef"><b>Definition</b> sim_engine.c:25</div></div>
+<div class="ttc" id="asim__engine_8h_html_a6df7a5ff87dd2abca3c64b3dcc88cf5a"><div class="ttname"><a href="sim__engine_8h.html#a6df7a5ff87dd2abca3c64b3dcc88cf5a">mostrar_estado</a></div><div class="ttdeci">void mostrar_estado(Memoria *m)</div><div class="ttdef"><b>Definition</b> sim_engine.c:18</div></div>
+<div class="ttc" id="asim__engine_8h_html_a7525ea6570ccf752c8e9394b62042380"><div class="ttname"><a href="sim__engine_8h.html#a7525ea6570ccf752c8e9394b62042380">inicializar_memoria</a></div><div class="ttdeci">void inicializar_memoria(Memoria *m)</div><div class="ttdef"><b>Definition</b> sim_engine.c:7</div></div>
+<div class="ttc" id="asim__engine_8h_html_a8f367671cb683a6dd983d657251a170b"><div class="ttname"><a href="sim__engine_8h.html#a8f367671cb683a6dd983d657251a170b">buscar_hueco</a></div><div class="ttdeci">int buscar_hueco(Memoria *m, int mem_requerida, TipoAlgo tipo_algo)</div><div class="ttdef"><b>Definition</b> sim_engine.c:110</div></div>
+<div class="ttc" id="asim__engine_8h_html_a949ea609798d43a638d95faf7de9f681"><div class="ttname"><a href="sim__engine_8h.html#a949ea609798d43a638d95faf7de9f681">compactar</a></div><div class="ttdeci">void compactar(Memoria *m)</div><div class="ttdef"><b>Definition</b> sim_engine.c:71</div></div>
+<div class="ttc" id="asim__engine_8h_html_a9a4646e9f9e8b178131b41945f7a8544"><div class="ttname"><a href="sim__engine_8h.html#a9a4646e9f9e8b178131b41945f7a8544">liberar_proceso</a></div><div class="ttdeci">bool liberar_proceso(Memoria *m, char *nombre_proceso)</div><div class="ttdef"><b>Definition</b> sim_engine.c:92</div></div>
+<div class="ttc" id="asim__engine_8h_html_ab6fef50a2cde39099d3c051aa7975738"><div class="ttname"><a href="sim__engine_8h.html#ab6fef50a2cde39099d3c051aa7975738">alinear_size</a></div><div class="ttdeci">int alinear_size(int size)</div><div class="ttdef"><b>Definition</b> sim_engine.c:143</div></div>
+<div class="ttc" id="asim__engine_8h_html_ae420f0bf3db242485c8c837356c6ebba"><div class="ttname"><a href="sim__engine_8h.html#ae420f0bf3db242485c8c837356c6ebba">MAX_PARTICIONES</a></div><div class="ttdeci">#define MAX_PARTICIONES</div><div class="ttdoc">Máximo número de particiones en la memoria.</div><div class="ttdef"><b>Definition</b> sim_engine.h:18</div></div>
+<div class="ttc" id="astruct_memoria_html"><div class="ttname"><a href="struct_memoria.html">Memoria</a></div><div class="ttdoc">Estructura que representa la memoria del sistema.</div><div class="ttdef"><b>Definition</b> sim_engine.h:51</div></div>
+<div class="ttc" id="astruct_memoria_html_a281aeea839c28dcef311e9902a74cccb"><div class="ttname"><a href="struct_memoria.html#a281aeea839c28dcef311e9902a74cccb">Memoria::ultimo_indice_asignado</a></div><div class="ttdeci">int ultimo_indice_asignado</div><div class="ttdef"><b>Definition</b> sim_engine.h:54</div></div>
+<div class="ttc" id="astruct_memoria_html_a5172c2be2a019c0176b997b11e91655e"><div class="ttname"><a href="struct_memoria.html#a5172c2be2a019c0176b997b11e91655e">Memoria::particiones</a></div><div class="ttdeci">Particion particiones[MAX_PARTICIONES]</div><div class="ttdef"><b>Definition</b> sim_engine.h:52</div></div>
+<div class="ttc" id="astruct_memoria_html_ae398c8e61b3aade21c6118c6cedf879d"><div class="ttname"><a href="struct_memoria.html#ae398c8e61b3aade21c6118c6cedf879d">Memoria::cant_particiones</a></div><div class="ttdeci">int cant_particiones</div><div class="ttdef"><b>Definition</b> sim_engine.h:53</div></div>
+<div class="ttc" id="astruct_particion_html"><div class="ttname"><a href="struct_particion.html">Particion</a></div><div class="ttdoc">que representa una partición de memoria.</div><div class="ttdef"><b>Definition</b> sim_engine.h:41</div></div>
+<div class="ttc" id="astruct_particion_html_a44d43efa08e89cb916c4a465a77d6399"><div class="ttname"><a href="struct_particion.html#a44d43efa08e89cb916c4a465a77d6399">Particion::tamano</a></div><div class="ttdeci">int tamano</div><div class="ttdef"><b>Definition</b> sim_engine.h:43</div></div>
+<div class="ttc" id="astruct_particion_html_a6a9530f295bf5f859a4ebe469751dfa9"><div class="ttname"><a href="struct_particion.html#a6a9530f295bf5f859a4ebe469751dfa9">Particion::nombre_proceso</a></div><div class="ttdeci">char nombre_proceso[10]</div><div class="ttdef"><b>Definition</b> sim_engine.h:45</div></div>
+<div class="ttc" id="astruct_particion_html_ae1cc803e8a591302bcc4cfb0145fee53"><div class="ttname"><a href="struct_particion.html#ae1cc803e8a591302bcc4cfb0145fee53">Particion::dir_inicio</a></div><div class="ttdeci">int dir_inicio</div><div class="ttdef"><b>Definition</b> sim_engine.h:42</div></div>
+<div class="ttc" id="astruct_particion_html_af3af9ca204c38ee3a6b1bc426df16e7a"><div class="ttname"><a href="struct_particion.html#af3af9ca204c38ee3a6b1bc426df16e7a">Particion::estado</a></div><div class="ttdeci">int estado</div><div class="ttdef"><b>Definition</b> sim_engine.h:44</div></div>
+<div class="ttc" id="astruct_proceso_html"><div class="ttname"><a href="struct_proceso.html">Proceso</a></div><div class="ttdoc">Estructura que representa un proceso.</div><div class="ttdef"><b>Definition</b> sim_engine.h:25</div></div>
+<div class="ttc" id="astruct_proceso_html_a30e36b0957cc834bd7bd581f999390c0"><div class="ttname"><a href="struct_proceso.html#a30e36b0957cc834bd7bd581f999390c0">Proceso::nombre</a></div><div class="ttdeci">char nombre[10]</div><div class="ttdef"><b>Definition</b> sim_engine.h:26</div></div>
+<div class="ttc" id="astruct_proceso_html_a3bdfce3dc9521ae195f824b63fa39177"><div class="ttname"><a href="struct_proceso.html#a3bdfce3dc9521ae195f824b63fa39177">Proceso::t_llegada</a></div><div class="ttdeci">int t_llegada</div><div class="ttdef"><b>Definition</b> sim_engine.h:27</div></div>
+<div class="ttc" id="astruct_proceso_html_a4c0f04511fcff56f38175cf4486f09a7"><div class="ttname"><a href="struct_proceso.html#a4c0f04511fcff56f38175cf4486f09a7">Proceso::t_ejecucion</a></div><div class="ttdeci">int t_ejecucion</div><div class="ttdef"><b>Definition</b> sim_engine.h:29</div></div>
+<div class="ttc" id="astruct_proceso_html_a50600ea4ddd8f2d410dbffb5138e9939"><div class="ttname"><a href="struct_proceso.html#a50600ea4ddd8f2d410dbffb5138e9939">Proceso::t_restante</a></div><div class="ttdeci">int t_restante</div><div class="ttdef"><b>Definition</b> sim_engine.h:33</div></div>
+<div class="ttc" id="astruct_proceso_html_a6e82a92ffdba51e1f513a4b462d2c7f6"><div class="ttname"><a href="struct_proceso.html#a6e82a92ffdba51e1f513a4b462d2c7f6">Proceso::finalizado</a></div><div class="ttdeci">bool finalizado</div><div class="ttdef"><b>Definition</b> sim_engine.h:35</div></div>
+<div class="ttc" id="astruct_proceso_html_a89677fcfc2c31a180618d3ecdf9d6da0"><div class="ttname"><a href="struct_proceso.html#a89677fcfc2c31a180618d3ecdf9d6da0">Proceso::mem_requerida</a></div><div class="ttdeci">int mem_requerida</div><div class="ttdef"><b>Definition</b> sim_engine.h:28</div></div>
+<div class="ttc" id="astruct_proceso_html_a8a5539157dd188274a43e5543fef3494"><div class="ttname"><a href="struct_proceso.html#a8a5539157dd188274a43e5543fef3494">Proceso::en_memoria</a></div><div class="ttdeci">bool en_memoria</div><div class="ttdef"><b>Definition</b> sim_engine.h:34</div></div>
+<div class="ttc" id="astruct_proceso_html_afb542b331040d95376c0ddb6809ff748"><div class="ttname"><a href="struct_proceso.html#afb542b331040d95376c0ddb6809ff748">Proceso::t_final</a></div><div class="ttdeci">int t_final</div><div class="ttdef"><b>Definition</b> sim_engine.h:32</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>src</b></li><li class="navelem"><a href="sim__engine_8h.html">sim_engine.h</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>
