@@ -1,5 +1,13 @@
 var searchData=
 [
-  ['ejemplo_0',['Ejemplo',['../index.html#autotoc_md7',1,'']]],
-  ['entrada_1',['Formato del Archivo de Entrada',['../index.html#autotoc_md6',1,'']]]
+  ['añadido_0',['Añadido',['../changelog.html#autotoc_md39',1,'']]],
+  ['algoritmos_1',['Algoritmos',['../changelog.html#autotoc_md43',1,'']]],
+  ['algoritmos_20de_20asignación_2',['Algoritmos de Asignación',['../architecture.html#autotoc_md31',1,'']]],
+  ['algoritmos_20implementados_3',['Algoritmos Implementados',['../index.html#autotoc_md3',1,'']]],
+  ['alineación_4',['Alineación',['../architecture.html#autotoc_md35',1,'']]],
+  ['archivo_20de_20entrada_5',['Formato del Archivo de Entrada',['../index.html#autotoc_md8',1,'']]],
+  ['arquitectura_20del_20proyecto_6',['Arquitectura del Proyecto',['../index.html#autotoc_md10',1,'']]],
+  ['arquitectura_20del_20sistema_7',['Arquitectura del Sistema',['../architecture.html',1,'']]],
+  ['asignación_8',['Algoritmos de Asignación',['../architecture.html#autotoc_md31',1,'']]],
+  ['autor_9',['Autor',['../index.html#autotoc_md13',1,'']]]
 ];

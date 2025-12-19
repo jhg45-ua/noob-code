@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['compilación_0',['Compilación',['../index.html#autotoc_md3',1,'']]],
-  ['configuración_1',['Constantes de Configuración',['../index.html#autotoc_md9',1,'']]],
-  ['constantes_20de_20configuración_2',['Constantes de Configuración',['../index.html#autotoc_md9',1,'']]],
-  ['controles_20gui_3',['Controles (GUI)',['../index.html#autotoc_md5',1,'']]]
+  ['1_200_200_202025_2012_2019_0',['[1.0.0] - 2025-12-19',['../changelog.html#autotoc_md38',1,'']]],
+  ['12_2019_1',['[1.0.0] - 2025-12-19',['../changelog.html#autotoc_md38',1,'']]],
+  ['19_2',['[1.0.0] - 2025-12-19',['../changelog.html#autotoc_md38',1,'']]]
 ];

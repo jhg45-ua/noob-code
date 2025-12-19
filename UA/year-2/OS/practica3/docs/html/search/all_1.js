@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['buscar_5fhueco_0',['buscar_hueco',['../sim__engine_8c.html#a8f367671cb683a6dd983d657251a170b',1,'buscar_hueco(Memoria *m, int mem_requerida, TipoAlgo tipo_algo):&#160;sim_engine.c'],['../sim__engine_8h.html#a8f367671cb683a6dd983d657251a170b',1,'buscar_hueco(Memoria *m, int mem_requerida, TipoAlgo tipo_algo):&#160;sim_engine.c']]]
+  ['1_200_200_202025_2012_2019_0',['[1.0.0] - 2025-12-19',['../changelog.html#autotoc_md38',1,'']]],
+  ['12_2019_1',['[1.0.0] - 2025-12-19',['../changelog.html#autotoc_md38',1,'']]],
+  ['19_2',['[1.0.0] - 2025-12-19',['../changelog.html#autotoc_md38',1,'']]]
 ];

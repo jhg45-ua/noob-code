@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Memoria - Práctica 3 OS: Arquitectura del Sistema</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('architecture.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Arquitectura del Sistema </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_docs_2_a_r_c_h_i_t_e_c_t_u_r_e"></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
+Diagrama de Módulos</h1>
+<div class="fragment"><div class="line">┌─────────────────────────────────────────────────────────┐</div>
+<div class="line">│                        main.c                           │</div>
+<div class="line">│  ┌─────────────────┐       ┌─────────────────────────┐  │</div>
+<div class="line">│  │   TUI (padre)   │       │      GUI (hijo)         │  │</div>
+<div class="line">│  │   test_sim()    │       │      run_gui()          │  │</div>
+<div class="line">│  └────────┬────────┘       └───────────┬─────────────┘  │</div>
+<div class="line">└───────────┼────────────────────────────┼────────────────┘</div>
+<div class="line">            │                            │</div>
+<div class="line">            ▼                            ▼</div>
+<div class="line">┌─────────────────────────────────────────────────────────┐</div>
+<div class="line">│                    sim_engine.c                         │</div>
+<div class="line">│  ┌──────────────┐ ┌──────────────┐ ┌──────────────────┐ │</div>
+<div class="line">│  │ Asignación   │ │ Liberación   │ │  Compactación    │ │</div>
+<div class="line">│  │ de memoria   │ │ de procesos  │ │  de huecos       │ │</div>
+<div class="line">│  └──────────────┘ └──────────────┘ └──────────────────┘ │</div>
+<div class="line">└─────────────────────────────────────────────────────────┘</div>
+<div class="line">            │                            │</div>
+<div class="line">            ▼                            ▼</div>
+<div class="line">┌─────────────────────────────────────────────────────────┐</div>
+<div class="line">│                     ficheros.c                          │</div>
+<div class="line">│  ┌──────────────────┐       ┌─────────────────────────┐ │</div>
+<div class="line">│  │ cargar_procesos  │       │    guardar_estado       │ │</div>
+<div class="line">│  │ (entrada.txt)    │       │    (particiones.txt)    │ │</div>
+<div class="line">│  └──────────────────┘       └─────────────────────────┘ │</div>
+<div class="line">└─────────────────────────────────────────────────────────┘</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+Flujo de Ejecución</h1>
+<ol type="1">
+<li><b>Inicio</b>: <span class="tt"><a class="el" href="main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="Punto de entrada principal del programa.">main()</a></span> ejecuta <span class="tt">fork()</span></li>
+<li><b><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> hijo</b> (pid == 0): Ejecuta la GUI con Raylib</li>
+<li><b><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> padre</b> (pid &gt; 0): Ejecuta la TUI en terminal y espera al hijo</li>
+<li><b>Cada tick de simulación</b>:<ul>
+<li>Se envejecen los procesos en memoria (decrementan t_restante)</li>
+<li>Se liberan procesos que han terminado (t_restante == 0)</li>
+<li>Se intentan asignar procesos de la cola de espera</li>
+<li>Se guarda el estado en el log</li>
+</ul>
+</li>
+</ol>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+Estructuras de Datos Principales</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+Memoria</h2>
+<p>La estructura central que gestiona las particiones:</p>
+<div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">    <a class="code hl_struct" href="struct_particion.html">Particion</a> particiones[<a class="code hl_define" href="group__constantes.html#gae420f0bf3db242485c8c837356c6ebba">MAX_PARTICIONES</a>];  <span class="comment">// Array de particiones</span></div>
+<div class="line">    <span class="keywordtype">int</span> cant_particiones;                     <span class="comment">// Número actual</span></div>
+<div class="line">    <span class="keywordtype">int</span> ultimo_indice_asignado;               <span class="comment">// Para Next Fit</span></div>
+<div class="line">} <a class="code hl_struct" href="struct_memoria.html">Memoria</a>;</div>
+<div class="ttc" id="agroup__constantes_html_gae420f0bf3db242485c8c837356c6ebba"><div class="ttname"><a href="group__constantes.html#gae420f0bf3db242485c8c837356c6ebba">MAX_PARTICIONES</a></div><div class="ttdeci">#define MAX_PARTICIONES</div><div class="ttdoc">Máximo número de particiones simultáneas en memoria.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00042">sim_engine.h:42</a></div></div>
+<div class="ttc" id="astruct_memoria_html"><div class="ttname"><a href="struct_memoria.html">Memoria</a></div><div class="ttdoc">Estructura principal que representa la memoria del sistema.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00090">sim_engine.h:90</a></div></div>
+<div class="ttc" id="astruct_particion_html"><div class="ttname"><a href="struct_particion.html">Particion</a></div><div class="ttdoc">Estructura que representa una partición de memoria.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00077">sim_engine.h:77</a></div></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+Proceso</h2>
+<p>Representa un proceso en la simulación:</p>
+<div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">    <span class="keywordtype">char</span> nombre[10];      <span class="comment">// Identificador único (ej: &quot;P1&quot;)</span></div>
+<div class="line">    <span class="keywordtype">int</span> t_llegada;        <span class="comment">// Instante de llegada</span></div>
+<div class="line">    <span class="keywordtype">int</span> mem_requerida;    <span class="comment">// Memoria solicitada</span></div>
+<div class="line">    <span class="keywordtype">int</span> t_ejecucion;      <span class="comment">// Tiempo total de ejecución</span></div>
+<div class="line">    <span class="keywordtype">int</span> t_restante;       <span class="comment">// Ticks restantes</span></div>
+<div class="line">    <span class="keywordtype">bool</span> en_memoria;      <span class="comment">// ¿Está cargado?</span></div>
+<div class="line">    <span class="keywordtype">bool</span> finalizado;      <span class="comment">// ¿Ha terminado?</span></div>
+<div class="line">} <a class="code hl_struct" href="struct_proceso.html">Proceso</a>;</div>
+<div class="ttc" id="astruct_proceso_html"><div class="ttname"><a href="struct_proceso.html">Proceso</a></div><div class="ttdoc">Estructura que representa un proceso en el simulador.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00057">sim_engine.h:57</a></div></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
+Partición</h2>
+<p>Representa un bloque de memoria (hueco o proceso):</p>
+<div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">    <span class="keywordtype">int</span> dir_inicio;           <span class="comment">// Dirección base</span></div>
+<div class="line">    <span class="keywordtype">int</span> tamano;               <span class="comment">// Tamaño del bloque</span></div>
+<div class="line">    <span class="keywordtype">int</span> estado;               <span class="comment">// 0=HUECO, 1=OCUPADO</span></div>
+<div class="line">    <span class="keywordtype">char</span> nombre_proceso[10];  <span class="comment">// Nombre o &quot;HUECO&quot;</span></div>
+<div class="line">} <a class="code hl_struct" href="struct_particion.html">Particion</a>;</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
+Algoritmos de Asignación</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+First Fit (Primer Hueco)</h2>
+<p>Busca secuencialmente desde el inicio de la memoria:</p>
+<div class="fragment"><div class="line">Para i = 0 hasta cant_particiones:</div>
+<div class="line">    Si particiones[i].estado == HUECO Y </div>
+<div class="line">       particiones[i].tamano &gt;= mem_requerida:</div>
+<div class="line">        Retornar i</div>
+<div class="line">Retornar -1 (no encontrado)</div>
+</div><!-- fragment --><p><b>Ventajas</b>: Simple, rápido para memorias pequeñas <b>Desventajas</b>: Fragmentación al inicio de la memoria</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
+Next Fit (Siguiente Hueco)</h2>
+<p>Busca desde la última posición asignada (circular):</p>
+<div class="fragment"><div class="line">inicio = ultimo_indice_asignado</div>
+<div class="line">Para j = 0 hasta cant_particiones:</div>
+<div class="line">    i = (inicio + j) % cant_particiones</div>
+<div class="line">    Si particiones[i].estado == HUECO Y </div>
+<div class="line">       particiones[i].tamano &gt;= mem_requerida:</div>
+<div class="line">        ultimo_indice_asignado = i</div>
+<div class="line">        Retornar i</div>
+<div class="line">Retornar -1 (no encontrado)</div>
+</div><!-- fragment --><p><b>Ventajas</b>: Distribuye mejor la fragmentación <b>Desventajas</b>: Puede ser más lento en el peor caso</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
+Gestión de Memoria</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
+Alineación</h2>
+<p>Toda memoria se alinea a múltiplos de <span class="tt"><a class="el" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5" title="Unidad mínima de asignación. Toda memoria se alinea a múltiplos de este valor.">UNIDAD_MINIMA</a></span> (100):</p>
+<div class="fragment"><div class="line"><span class="comment">// Ejemplo: solicitar 243 → se asignan 300</span></div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="sim__engine_8c.html#ab6fef50a2cde39099d3c051aa7975738">alinear_size</a>(<span class="keywordtype">int</span> size) {</div>
+<div class="line">    <span class="keywordtype">int</span> bloques = size / <a class="code hl_define" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a>;</div>
+<div class="line">    <span class="keywordflow">if</span> (size % <a class="code hl_define" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a> != 0)</div>
+<div class="line">        bloques++;</div>
+<div class="line">    <span class="keywordflow">return</span> bloques * <a class="code hl_define" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a>;</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__constantes_html_ga6bb334d2cae8f7d1d61c25b3eba5e9b5"><div class="ttname"><a href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a></div><div class="ttdeci">#define UNIDAD_MINIMA</div><div class="ttdoc">Unidad mínima de asignación. Toda memoria se alinea a múltiplos de este valor.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00039">sim_engine.h:39</a></div></div>
+<div class="ttc" id="asim__engine_8c_html_ab6fef50a2cde39099d3c051aa7975738"><div class="ttname"><a href="sim__engine_8c.html#ab6fef50a2cde39099d3c051aa7975738">alinear_size</a></div><div class="ttdeci">int alinear_size(int size)</div><div class="ttdoc">Alinea un tamaño a múltiplos de UNIDAD_MINIMA.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8c_source.html#l00151">sim_engine.c:151</a></div></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+Compactación</h2>
+<p>Cuando se libera un proceso, se fusionan huecos adyacentes:</p>
+<div class="fragment"><div class="line">Para cada par de particiones consecutivas:</div>
+<div class="line">    Si ambas son HUECO:</div>
+<div class="line">        Fusionar (sumar tamaños)</div>
+<div class="line">        Eliminar la segunda</div>
+<div class="line">        Repetir desde el inicio</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+Uso de fork()</h1>
+<p>El programa usa <span class="tt">fork()</span> para ejecutar GUI y TUI en paralelo:</p>
+<div class="fragment"><div class="line">pid_t pid = fork();</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">if</span> (pid == 0) {</div>
+<div class="line">    <span class="comment">// Hijo: GUI con Raylib</span></div>
+<div class="line">    <a class="code hl_function" href="main_8c.html#aafb6af6e9fab822accd3e0f7133214bd">run_gui</a>(&amp;m, procesos, num_procesos);</div>
+<div class="line">    _exit(0);</div>
+<div class="line">} <span class="keywordflow">else</span> {</div>
+<div class="line">    <span class="comment">// Padre: TUI en terminal</span></div>
+<div class="line">    <a class="code hl_function" href="main_8c.html#a0739302f77016ac122f50d59015cfa1f">test_sim</a>();</div>
+<div class="line">    waitpid(pid, NULL, 0);  <span class="comment">// Esperar al hijo</span></div>
+<div class="line">}</div>
+<div class="ttc" id="amain_8c_html_a0739302f77016ac122f50d59015cfa1f"><div class="ttname"><a href="main_8c.html#a0739302f77016ac122f50d59015cfa1f">test_sim</a></div><div class="ttdeci">void test_sim()</div><div class="ttdoc">Ejecuta la simulación en modo terminal (TUI).</div><div class="ttdef"><b>Definition</b> <a href="main_8c_source.html#l00095">main.c:95</a></div></div>
+<div class="ttc" id="amain_8c_html_aafb6af6e9fab822accd3e0f7133214bd"><div class="ttname"><a href="main_8c.html#aafb6af6e9fab822accd3e0f7133214bd">run_gui</a></div><div class="ttdeci">void run_gui(Memoria *m, Proceso *procesos, int num_procesos)</div><div class="ttdoc">Ejecuta la interfaz gráfica con Raylib.</div><div class="ttdef"><b>Definition</b> <a href="main_8c_source.html#l00173">main.c:173</a></div></div>
+</div><!-- fragment --><p>Esto permite depurar en terminal mientras se visualiza en la GUI. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>

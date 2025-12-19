@@ -1,0 +1,169 @@
+\chapter{Arquitectura del Sistema }
+\hypertarget{architecture}{}\label{architecture}\index{Arquitectura del Sistema@{Arquitectura del Sistema}}
+\label{architecture_md_docs_2_a_r_c_h_i_t_e_c_t_u_r_e}%
+\Hypertarget{architecture_md_docs_2_a_r_c_h_i_t_e_c_t_u_r_e}%
+\hypertarget{architecture_autotoc_md25}{}\doxysection{\texorpdfstring{Diagrama de Módulos}{Diagrama de Módulos}}\label{architecture_autotoc_md25}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{┌─────────────────────────────────────────────────────────┐}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ main.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ ┌─────────────────┐\ \ \ \ \ \ \ ┌─────────────────────────┐\ \ │}
+\DoxyCodeLine{│\ \ │\ \ \ TUI\ (padre)\ \ \ │\ \ \ \ \ \ \ │\ \ \ \ \ \ GUI\ (hijo)\ \ \ \ \ \ \ \ \ │\ \ │}
+\DoxyCodeLine{│\ \ │\ \ \ test\_sim()\ \ \ \ │\ \ \ \ \ \ \ │\ \ \ \ \ \ run\_gui()\ \ \ \ \ \ \ \ \ \ │\ \ │}
+\DoxyCodeLine{│\ \ └────────┬────────┘\ \ \ \ \ \ \ └───────────┬─────────────┘\ \ │}
+\DoxyCodeLine{└───────────┼────────────────────────────┼────────────────┘}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ▼\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ▼}
+\DoxyCodeLine{┌─────────────────────────────────────────────────────────┐}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sim\_engine.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ ┌──────────────┐\ ┌──────────────┐\ ┌──────────────────┐\ │}
+\DoxyCodeLine{│\ \ │\ Asignación\ \ \ │\ │\ Liberación\ \ \ │\ │\ \ Compactación\ \ \ \ │\ │}
+\DoxyCodeLine{│\ \ │\ de\ memoria\ \ \ │\ │\ de\ procesos\ \ │\ │\ \ de\ huecos\ \ \ \ \ \ \ │\ │}
+\DoxyCodeLine{│\ \ └──────────────┘\ └──────────────┘\ └──────────────────┘\ │}
+\DoxyCodeLine{└─────────────────────────────────────────────────────────┘}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ▼\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ▼}
+\DoxyCodeLine{┌─────────────────────────────────────────────────────────┐}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ficheros.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ ┌──────────────────┐\ \ \ \ \ \ \ ┌─────────────────────────┐\ │}
+\DoxyCodeLine{│\ \ │\ cargar\_procesos\ \ │\ \ \ \ \ \ \ │\ \ \ \ guardar\_estado\ \ \ \ \ \ \ │\ │}
+\DoxyCodeLine{│\ \ │\ (entrada.txt)\ \ \ \ │\ \ \ \ \ \ \ │\ \ \ \ (particiones.txt)\ \ \ \ │\ │}
+\DoxyCodeLine{│\ \ └──────────────────┘\ \ \ \ \ \ \ └─────────────────────────┘\ │}
+\DoxyCodeLine{└─────────────────────────────────────────────────────────┘}
+
+\end{DoxyCode}
+\hypertarget{architecture_autotoc_md26}{}\doxysection{\texorpdfstring{Flujo de Ejecución}{Flujo de Ejecución}}\label{architecture_autotoc_md26}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Inicio}}\+: {\ttfamily \doxylink{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{main()}} ejecuta {\ttfamily fork()}
+\item {\bfseries{\doxylink{struct_proceso}{Proceso} hijo}} (pid == 0)\+: Ejecuta la GUI con Raylib
+\item {\bfseries{\doxylink{struct_proceso}{Proceso} padre}} (pid \texorpdfstring{$>$}{>} 0)\+: Ejecuta la TUI en terminal y espera al hijo
+\item {\bfseries{Cada tick de simulación}}\+:
+\begin{DoxyItemize}
+\item Se envejecen los procesos en memoria (decrementan t\+\_\+restante)
+\item Se liberan procesos que han terminado (t\+\_\+restante == 0)
+\item Se intentan asignar procesos de la cola de espera
+\item Se guarda el estado en el log
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{architecture_autotoc_md27}{}\doxysection{\texorpdfstring{Estructuras de Datos Principales}{Estructuras de Datos Principales}}\label{architecture_autotoc_md27}
+\hypertarget{architecture_autotoc_md28}{}\doxysubsection{\texorpdfstring{Memoria}{Memoria}}\label{architecture_autotoc_md28}
+La estructura central que gestiona las particiones\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_particion}{Particion}}\ particiones[\mbox{\hyperlink{group__constantes_gae420f0bf3db242485c8c837356c6ebba}{MAX\_PARTICIONES}}];\ \ \textcolor{comment}{//\ Array\ de\ particiones}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ cant\_particiones;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Número\ actual}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ ultimo\_indice\_asignado;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Para\ Next\ Fit}}
+\DoxyCodeLine{\}\ \mbox{\hyperlink{struct_memoria}{Memoria}};}
+
+\end{DoxyCode}
+\hypertarget{architecture_autotoc_md29}{}\doxysubsection{\texorpdfstring{Proceso}{Proceso}}\label{architecture_autotoc_md29}
+Representa un proceso en la simulación\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ nombre[10];\ \ \ \ \ \ \textcolor{comment}{//\ Identificador\ único\ (ej:\ "{}P1"{})}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ t\_llegada;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Instante\ de\ llegada}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ mem\_requerida;\ \ \ \ \textcolor{comment}{//\ Memoria\ solicitada}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ t\_ejecucion;\ \ \ \ \ \ \textcolor{comment}{//\ Tiempo\ total\ de\ ejecución}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ t\_restante;\ \ \ \ \ \ \ \textcolor{comment}{//\ Ticks\ restantes}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ en\_memoria;\ \ \ \ \ \ \textcolor{comment}{//\ ¿Está\ cargado?}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ finalizado;\ \ \ \ \ \ \textcolor{comment}{//\ ¿Ha\ terminado?}}
+\DoxyCodeLine{\}\ \mbox{\hyperlink{struct_proceso}{Proceso}};}
+
+\end{DoxyCode}
+\hypertarget{architecture_autotoc_md30}{}\doxysubsection{\texorpdfstring{Partición}{Partición}}\label{architecture_autotoc_md30}
+Representa un bloque de memoria (hueco o proceso)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ dir\_inicio;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dirección\ base}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ tamano;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tamaño\ del\ bloque}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ estado;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0=HUECO,\ 1=OCUPADO}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ nombre\_proceso[10];\ \ \textcolor{comment}{//\ Nombre\ o\ "{}HUECO"{}}}
+\DoxyCodeLine{\}\ \mbox{\hyperlink{struct_particion}{Particion}};}
+
+\end{DoxyCode}
+\hypertarget{architecture_autotoc_md31}{}\doxysection{\texorpdfstring{Algoritmos de Asignación}{Algoritmos de Asignación}}\label{architecture_autotoc_md31}
+\hypertarget{architecture_autotoc_md32}{}\doxysubsection{\texorpdfstring{First Fit (Primer Hueco)}{First Fit (Primer Hueco)}}\label{architecture_autotoc_md32}
+Busca secuencialmente desde el inicio de la memoria\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Para\ i\ =\ 0\ hasta\ cant\_particiones:}
+\DoxyCodeLine{\ \ \ \ Si\ particiones[i].estado\ ==\ HUECO\ Y\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ particiones[i].tamano\ >=\ mem\_requerida:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Retornar\ i}
+\DoxyCodeLine{Retornar\ -\/1\ (no\ encontrado)}
+
+\end{DoxyCode}
+
+
+{\bfseries{Ventajas}}\+: Simple, rápido para memorias pequeñas {\bfseries{Desventajas}}\+: Fragmentación al inicio de la memoria\hypertarget{architecture_autotoc_md33}{}\doxysubsection{\texorpdfstring{Next Fit (Siguiente Hueco)}{Next Fit (Siguiente Hueco)}}\label{architecture_autotoc_md33}
+Busca desde la última posición asignada (circular)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{inicio\ =\ ultimo\_indice\_asignado}
+\DoxyCodeLine{Para\ j\ =\ 0\ hasta\ cant\_particiones:}
+\DoxyCodeLine{\ \ \ \ i\ =\ (inicio\ +\ j)\ \%\ cant\_particiones}
+\DoxyCodeLine{\ \ \ \ Si\ particiones[i].estado\ ==\ HUECO\ Y\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ particiones[i].tamano\ >=\ mem\_requerida:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ultimo\_indice\_asignado\ =\ i}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Retornar\ i}
+\DoxyCodeLine{Retornar\ -\/1\ (no\ encontrado)}
+
+\end{DoxyCode}
+
+
+{\bfseries{Ventajas}}\+: Distribuye mejor la fragmentación {\bfseries{Desventajas}}\+: Puede ser más lento en el peor caso\hypertarget{architecture_autotoc_md34}{}\doxysection{\texorpdfstring{Gestión de Memoria}{Gestión de Memoria}}\label{architecture_autotoc_md34}
+\hypertarget{architecture_autotoc_md35}{}\doxysubsection{\texorpdfstring{Alineación}{Alineación}}\label{architecture_autotoc_md35}
+Toda memoria se alinea a múltiplos de {\ttfamily \doxylink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\+\_\+\+MINIMA}} (100)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Ejemplo:\ solicitar\ 243\ →\ se\ asignan\ 300}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sim__engine_8c_ab6fef50a2cde39099d3c051aa7975738}{alinear\_size}}(\textcolor{keywordtype}{int}\ size)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ bloques\ =\ size\ /\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (size\ \%\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}}\ !=\ 0)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ bloques++;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ bloques\ *\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{architecture_autotoc_md36}{}\doxysubsection{\texorpdfstring{Compactación}{Compactación}}\label{architecture_autotoc_md36}
+Cuando se libera un proceso, se fusionan huecos adyacentes\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Para\ cada\ par\ de\ particiones\ consecutivas:}
+\DoxyCodeLine{\ \ \ \ Si\ ambas\ son\ HUECO:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Fusionar\ (sumar\ tamaños)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Eliminar\ la\ segunda}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Repetir\ desde\ el\ inicio}
+
+\end{DoxyCode}
+\hypertarget{architecture_autotoc_md37}{}\doxysection{\texorpdfstring{Uso de fork()}{Uso de fork()}}\label{architecture_autotoc_md37}
+El programa usa {\ttfamily fork()} para ejecutar GUI y TUI en paralelo\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pid\_t\ pid\ =\ fork();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (pid\ ==\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Hijo:\ GUI\ con\ Raylib}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{run\_gui}}(\&m,\ procesos,\ num\_procesos);}
+\DoxyCodeLine{\ \ \ \ \_exit(0);}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Padre:\ TUI\ en\ terminal}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{main_8c_a0739302f77016ac122f50d59015cfa1f}{test\_sim}}();}
+\DoxyCodeLine{\ \ \ \ waitpid(pid,\ NULL,\ 0);\ \ \textcolor{comment}{//\ Esperar\ al\ hijo}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Esto permite depurar en terminal mientras se visualiza en la GUI. 

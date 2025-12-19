@@ -199,8 +199,8 @@ Punto de entrada principal del programa.
 
 Crea dos procesos mediante fork()\+:
 \begin{DoxyItemize}
-\item \doxylink{struct_proceso}{Proceso} hijo\+: Ejecuta la interfaz gráfica (GUI)
-\item \doxylink{struct_proceso}{Proceso} padre\+: Ejecuta la interfaz de terminal (TUI)
+\item \doxylink{struct_proceso}{Proceso} hijo (pid == 0)\+: Ejecuta la interfaz gráfica (GUI)
+\item \doxylink{struct_proceso}{Proceso} padre (pid \texorpdfstring{$>$}{>} 0)\+: Ejecuta la interfaz de terminal (TUI) y espera al hijo
 \end{DoxyItemize}
 
 

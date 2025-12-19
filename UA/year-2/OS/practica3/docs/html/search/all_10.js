@@ -1,6 +1,13 @@
 var searchData=
 [
-  ['ultimo_5findice_5fasignado_0',['ultimo_indice_asignado',['../struct_memoria.html#a281aeea839c28dcef311e9902a74cccb',1,'Memoria']]],
-  ['unidad_5fminima_1',['UNIDAD_MINIMA',['../group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5',1,'sim_engine.h']]],
-  ['uso_2',['Uso',['../index.html#autotoc_md4',1,'']]]
+  ['partición_0',['Partición',['../architecture.html#autotoc_md30',1,'']]],
+  ['particion_1',['Particion',['../struct_particion.html',1,'']]],
+  ['particiones_2',['particiones',['../struct_memoria.html#a5172c2be2a019c0176b997b11e91655e',1,'Memoria']]],
+  ['pendiente_20todo_3',['Pendiente (TODO)',['../changelog.html#autotoc_md42',1,'']]],
+  ['primer_20hueco_4',['First Fit (Primer Hueco)',['../architecture.html#autotoc_md32',1,'']]],
+  ['principales_5',['Estructuras de Datos Principales',['../architecture.html#autotoc_md27',1,'']]],
+  ['problemas_20comunes_6',['Problemas comunes',['../install.html#autotoc_md21',1,'']]],
+  ['proceso_7',['Proceso',['../struct_proceso.html',1,'Proceso'],['../architecture.html#autotoc_md29',1,'Proceso']]],
+  ['proyecto_8',['Arquitectura del Proyecto',['../index.html#autotoc_md10',1,'']]],
+  ['proyecto_9',['proyecto',['../install.html#autotoc_md18',1,'Compilar el proyecto'],['../changelog.html#autotoc_md49',1,'Estructura del proyecto']]]
 ];

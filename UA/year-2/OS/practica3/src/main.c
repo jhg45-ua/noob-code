@@ -44,8 +44,8 @@ void run_gui(Memoria *m, Proceso *procesos, int num_procesos);
  * @brief Punto de entrada principal del programa.
  * 
  * Crea dos procesos mediante fork():
- * - Proceso hijo: Ejecuta la interfaz gráfica (GUI)
- * - Proceso padre: Ejecuta la interfaz de terminal (TUI)
+ * - Proceso hijo (pid == 0): Ejecuta la interfaz gráfica (GUI)
+ * - Proceso padre (pid > 0): Ejecuta la interfaz de terminal (TUI) y espera al hijo
  * 
  * @param argc Número de argumentos (no utilizado)
  * @param argv Array de argumentos (no utilizado)
@@ -70,13 +70,13 @@ int main(int argc, char const* argv[])
         int num_procesos = cargar_procesos("entrada.txt", procesos);
 
         run_gui(&m, procesos, num_procesos);
-
-        // Esperar al hijo que termine
-        waitpid(pid, NULL, 0);
+        _exit(0); // El hijo termina después de cerrar la GUI
     } else {
         // Proceso Padre: TUI (Terminal)
         test_sim();
-        _exit(0);
+        
+        // Esperar a que el hijo (GUI) termine
+        waitpid(pid, NULL, 0);
     }
 
     return 0;

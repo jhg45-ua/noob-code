@@ -42,13 +42,13 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_procesos\ =\ \mbox{\hyperlink{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}{cargar\_procesos}}(\textcolor{stringliteral}{"{}entrada.txt"{}},\ procesos);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00071}00071\ }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00072}00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{run\_gui}}(\&m,\ procesos,\ num\_procesos);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00073}00073\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Esperar\ al\ hijo\ que\ termine}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ waitpid(pid,\ NULL,\ 0);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00076}00076\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Proceso\ Padre:\ TUI\ (Terminal)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_a0739302f77016ac122f50d59015cfa1f}{test\_sim}}();}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00079}00079\ \ \ \ \ \ \ \ \ \_exit(0);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00073}00073\ \ \ \ \ \ \ \ \ \_exit(0);\ \textcolor{comment}{//\ El\ hijo\ termina\ después\ de\ cerrar\ la\ GUI}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00074}00074\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Proceso\ Padre:\ TUI\ (Terminal)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_a0739302f77016ac122f50d59015cfa1f}{test\_sim}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00077}00077\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Esperar\ a\ que\ el\ hijo\ (GUI)\ termine}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00079}00079\ \ \ \ \ \ \ \ \ waitpid(pid,\ NULL,\ 0);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00080}00080\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00081}00081\ }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}

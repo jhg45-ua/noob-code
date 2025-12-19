@@ -2,21 +2,40 @@
 \hypertarget{index}{}\label{index}\index{Gestomemoria -\/ Simulador de Gestión de Memoria@{Gestomemoria -\/ Simulador de Gestión de Memoria}}
 \label{index_mainpage}%
 \Hypertarget{index_mainpage}%
-\hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{Descripción}{Descripción}}\label{index_autotoc_md0}
-Simulador visual de algoritmos de gestión de memoria dinámica con particiones variables. Proyecto de la asignatura {\bfseries{Sistemas Operativos}} -\/ Universidad de Alicante.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Algoritmos Implementados}{Algoritmos Implementados}}\label{index_autotoc_md1}
+
+
+  \hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{Descripción}{Descripción}}\label{index_autotoc_md0}
+Simulador visual de algoritmos de gestión de memoria dinámica con particiones variables. Proyecto de la asignatura {\bfseries{Sistemas Operativos}} -\/ Universidad de Alicante.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{🚀 Inicio Rápido}{🚀 Inicio Rápido}}\label{index_autotoc_md1}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Compilar}
+\DoxyCodeLine{mkdir\ build\ \&\&\ cd\ build}
+\DoxyCodeLine{cmake\ ..\ \&\&\ make}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Ejecutar}
+\DoxyCodeLine{./gestomemoria}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{📖 Documentación}{📖 Documentación}}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item \doxylink{_i_n_s_t_a_l_l_8md}{Guía de Instalación}
+\item \doxylink{_a_r_c_h_i_t_e_c_t_u_r_e_8md}{Arquitectura del Sistema}
+\item \doxylink{_c_h_a_n_g_e_l_o_g_8md}{Changelog}
+\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Algoritmos Implementados}{Algoritmos Implementados}}\label{index_autotoc_md3}
 
 \begin{DoxyTable}{2}{}{}{1}
 \SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Algoritmo  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Descripción  \\
 {\bfseries{First Fit}}  &Asigna el primer hueco que sea suficientemente grande  \\
 {\bfseries{Next Fit}}  &Como First Fit, pero empieza desde la última posición asignada  \\
 \end{DoxyTable}
-\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Requisitos}{Requisitos}}\label{index_autotoc_md2}
+\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Requisitos}{Requisitos}}\label{index_autotoc_md4}
 
 \begin{DoxyItemize}
 \item CMake 3.\+11+
 \item \href{https://www.raylib.com/}{\texttt{Raylib}} (para la interfaz gráfica)
 \item Compilador C con soporte C17
-\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Compilación}{Compilación}}\label{index_autotoc_md3}
+\end{DoxyItemize}\hypertarget{index_autotoc_md5}{}\doxysection{\texorpdfstring{Compilación}{Compilación}}\label{index_autotoc_md5}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{mkdir\ build\ \&\&\ cd\ build}
@@ -24,13 +43,19 @@ Simulador visual de algoritmos de gestión de memoria dinámica con particiones 
 \DoxyCodeLine{make}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Uso}{Uso}}\label{index_autotoc_md4}
+\hypertarget{index_autotoc_md6}{}\doxysection{\texorpdfstring{Uso}{Uso}}\label{index_autotoc_md6}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{./gestomemoria}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{Controles (GUI)}{Controles (GUI)}}\label{index_autotoc_md5}
+
+
+El programa ejecuta dos procesos en paralelo\+:
+\begin{DoxyItemize}
+\item {\bfseries{\doxylink{struct_proceso}{Proceso} hijo}}\+: Interfaz gráfica (GUI) con Raylib
+\item {\bfseries{\doxylink{struct_proceso}{Proceso} padre}}\+: Interfaz de terminal (TUI) para depuración
+\end{DoxyItemize}\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{Controles (GUI)}{Controles (GUI)}}\label{index_autotoc_md7}
 
 \begin{DoxyTable}{2}{}{}{1}
 \SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Tecla  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Acción  \\
@@ -39,7 +64,7 @@ Simulador visual de algoritmos de gestión de memoria dinámica con particiones 
 {\ttfamily R}  &Reiniciar simulación  \\
 {\ttfamily ESC}  &Salir  \\
 \end{DoxyTable}
-\hypertarget{index_autotoc_md6}{}\doxysection{\texorpdfstring{Formato del Archivo de Entrada}{Formato del Archivo de Entrada}}\label{index_autotoc_md6}
+\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{Formato del Archivo de Entrada}{Formato del Archivo de Entrada}}\label{index_autotoc_md8}
 El archivo {\ttfamily entrada.\+txt} debe seguir este formato\+:
 
 
@@ -47,7 +72,7 @@ El archivo {\ttfamily entrada.\+txt} debe seguir este formato\+:
 \DoxyCodeLine{<nombre\_proceso>\ <instante\_llegada>\ <memoria\_requerida>\ <tiempo\_ejecucion>}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{Ejemplo}{Ejemplo}}\label{index_autotoc_md7}
+\hypertarget{index_autotoc_md9}{}\doxysubsection{\texorpdfstring{Ejemplo}{Ejemplo}}\label{index_autotoc_md9}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{P1\ 0\ 243\ 5}
@@ -55,16 +80,25 @@ El archivo {\ttfamily entrada.\+txt} debe seguir este formato\+:
 \DoxyCodeLine{P3\ 2\ 500\ 4}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{Arquitectura del Proyecto}{Arquitectura del Proyecto}}\label{index_autotoc_md8}
+\hypertarget{index_autotoc_md10}{}\doxysection{\texorpdfstring{Arquitectura del Proyecto}{Arquitectura del Proyecto}}\label{index_autotoc_md10}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{src/}
-\DoxyCodeLine{├──\ main.c\ \ \ \ \ \ \ \ \ \ \#\ Punto\ de\ entrada,\ GUI\ (Raylib)\ y\ TUI}
-\DoxyCodeLine{├──\ sim\_engine.c/h\ \ \#\ Motor\ de\ simulación\ (asignación,\ liberación,\ compactación)}
-\DoxyCodeLine{└──\ ficheros.c/h\ \ \ \ \#\ Entrada/Salida\ de\ archivos}
+\DoxyCodeLine{practica3/}
+\DoxyCodeLine{├──\ src/}
+\DoxyCodeLine{│\ \ \ ├──\ main.c\ \ \ \ \ \ \ \ \ \ \#\ Punto\ de\ entrada,\ GUI\ (hijo)\ y\ TUI\ (padre)}
+\DoxyCodeLine{│\ \ \ ├──\ sim\_engine.c/h\ \ \#\ Motor\ de\ simulación}
+\DoxyCodeLine{│\ \ \ └──\ ficheros.c/h\ \ \ \ \#\ Entrada/Salida\ de\ archivos}
+\DoxyCodeLine{├──\ docs/}
+\DoxyCodeLine{│\ \ \ ├──\ INSTALL.md\ \ \ \ \ \ \#\ Guía\ de\ instalación}
+\DoxyCodeLine{│\ \ \ ├──\ ARCHITECTURE.md\ \#\ Arquitectura\ del\ sistema}
+\DoxyCodeLine{│\ \ \ └──\ CHANGELOG.md\ \ \ \ \#\ Historial\ de\ cambios}
+\DoxyCodeLine{├──\ entrada.txt\ \ \ \ \ \ \ \ \ \#\ Archivo\ de\ procesos\ de\ ejemplo}
+\DoxyCodeLine{├──\ CMakeLists.txt\ \ \ \ \ \ \#\ Configuración\ de\ CMake}
+\DoxyCodeLine{├──\ Doxyfile\ \ \ \ \ \ \ \ \ \ \ \ \#\ Configuración\ de\ Doxygen}
+\DoxyCodeLine{└──\ README.md\ \ \ \ \ \ \ \ \ \ \ \#\ Este\ archivo}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md9}{}\doxysection{\texorpdfstring{Constantes de Configuración}{Constantes de Configuración}}\label{index_autotoc_md9}
+\hypertarget{index_autotoc_md11}{}\doxysection{\texorpdfstring{Constantes de Configuración}{Constantes de Configuración}}\label{index_autotoc_md11}
 
 \begin{DoxyTable}{3}{}{}{1}
 \SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Constante  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Valor  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Descripción  \\
@@ -73,6 +107,13 @@ El archivo {\ttfamily entrada.\+txt} debe seguir este formato\+:
 {\ttfamily \doxylink{group__constantes_gae420f0bf3db242485c8c837356c6ebba}{MAX\+\_\+\+PARTICIONES}}  &50  &Máximo de particiones simultáneas  \\
 {\ttfamily \doxylink{group__constantes_gab0f17287f3a9af76ef9109ec1dfce7a9}{MAX\+\_\+\+PROCESOS}}  &100  &Máximo de procesos en simulación  \\
 \end{DoxyTable}
-\hypertarget{index_autotoc_md10}{}\doxysection{\texorpdfstring{Autor}{Autor}}\label{index_autotoc_md10}
-{\bfseries{Julian Hinojosa Gil}} -\/ 2025\hypertarget{index_autotoc_md11}{}\doxysection{\texorpdfstring{Licencia}{Licencia}}\label{index_autotoc_md11}
+\hypertarget{index_autotoc_md12}{}\doxysection{\texorpdfstring{📊 Estadísticas Futuras}{📊 Estadísticas Futuras}}\label{index_autotoc_md12}
+
+\begin{DoxyItemize}
+\item Fragmentación externa
+\item Tiempo medio de espera
+\item Uso de memoria a lo largo del tiempo
+\end{DoxyItemize}\hypertarget{index_autotoc_md13}{}\doxysection{\texorpdfstring{Autor}{Autor}}\label{index_autotoc_md13}
+{\bfseries{Julian Hinojosa Gil}} -\/ 2025\hypertarget{index_autotoc_md14}{}\doxysection{\texorpdfstring{Licencia}{Licencia}}\label{index_autotoc_md14}
+Proyecto académico -\/ Universidad de Alicante\hypertarget{index_autotoc_md15}{}\doxysection{\texorpdfstring{Licencia}{Licencia}}\label{index_autotoc_md15}
 Proyecto académico -\/ Universidad de Alicante 

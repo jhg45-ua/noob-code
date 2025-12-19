@@ -309,8 +309,8 @@ Funciones</h2></td></tr>
 
 <p>Punto de entrada principal del programa. </p>
 <p>Crea dos procesos mediante fork():</p><ul>
-<li><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> hijo: Ejecuta la interfaz gráfica (GUI)</li>
-<li><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> padre: Ejecuta la interfaz de terminal (TUI)</li>
+<li><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> hijo (pid == 0): Ejecuta la interfaz gráfica (GUI)</li>
+<li><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> padre (pid &gt; 0): Ejecuta la interfaz de terminal (TUI) y espera al hijo</li>
 </ul>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">

@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['sim_5fengine_2ec_0',['sim_engine.c',['../sim__engine_8c.html',1,'']]],
-  ['sim_5fengine_2eh_1',['sim_engine.h',['../sim__engine_8h.html',1,'']]],
-  ['simulador_20de_20gestión_20de_20memoria_2',['Gestomemoria - Simulador de Gestión de Memoria',['../index.html',1,'']]],
-  ['size_5fbuffer_5flectura_3',['SIZE_BUFFER_LECTURA',['../ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64',1,'ficheros.c']]]
+  ['next_20fit_20siguiente_20hueco_0',['Next Fit (Siguiente Hueco)',['../architecture.html#autotoc_md33',1,'']]],
+  ['nombre_1',['nombre',['../struct_proceso.html#a30e36b0957cc834bd7bd581f999390c0',1,'Proceso']]],
+  ['nombre_5fproceso_2',['nombre_proceso',['../struct_particion.html#a6a9530f295bf5f859a4ebe469751dfa9',1,'Particion']]],
+  ['not_20found_3',['Error: &quot;raylib not found&quot;',['../install.html#autotoc_md22',1,'']]],
+  ['notas_20de_20desarrollo_4',['Notas de Desarrollo',['../changelog.html#autotoc_md48',1,'']]]
 ];

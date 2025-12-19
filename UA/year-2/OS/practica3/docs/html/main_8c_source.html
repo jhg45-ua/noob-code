@@ -133,13 +133,13 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordtype">int</span> num_procesos = <a class="code hl_function" href="ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6">cargar_procesos</a>(<span class="stringliteral">&quot;entrada.txt&quot;</span>, procesos);</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <a class="code hl_function" href="main_8c.html#aafb6af6e9fab822accd3e0f7133214bd">run_gui</a>(&amp;m, procesos, num_procesos);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="comment">// Esperar al hijo que termine</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        waitpid(pid, NULL, 0);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="comment">// Proceso Padre: TUI (Terminal)</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <a class="code hl_function" href="main_8c.html#a0739302f77016ac122f50d59015cfa1f">test_sim</a>();</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        _exit(0);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        _exit(0); <span class="comment">// El hijo termina después de cerrar la GUI</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="comment">// Proceso Padre: TUI (Terminal)</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <a class="code hl_function" href="main_8c.html#a0739302f77016ac122f50d59015cfa1f">test_sim</a>();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="comment">// Esperar a que el hijo (GUI) termine</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        waitpid(pid, NULL, 0);</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">return</span> 0;</div>

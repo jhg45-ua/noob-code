@@ -1,0 +1,109 @@
+\chapter{Changelog }
+\hypertarget{changelog}{}\label{changelog}\index{Changelog@{Changelog}}
+\label{changelog_md_docs_2_c_h_a_n_g_e_l_o_g}%
+\Hypertarget{changelog_md_docs_2_c_h_a_n_g_e_l_o_g}%
+
+
+Todos los cambios notables de este proyecto se documentan aquí.
+
+El formato está basado en \href{https://keepachangelog.com/es-ES/1.0.0/}{\texttt{Keep a Changelog}}.\hypertarget{changelog_autotoc_md38}{}\doxysection{\texorpdfstring{\mbox{[}1.\+0.\+0\mbox{]} -\/ 2025-\/12-\/19}{\mbox{[}1.\+0.\+0\mbox{]} -\/ 2025-\/12-\/19}}\label{changelog_autotoc_md38}
+\hypertarget{changelog_autotoc_md39}{}\doxysubsection{\texorpdfstring{Añadido}{Añadido}}\label{changelog_autotoc_md39}
+
+\begin{DoxyItemize}
+\item Simulador de memoria con particiones variables
+\item Algoritmo {\bfseries{First Fit}} (Primer Hueco)
+\item Algoritmo {\bfseries{Next Fit}} (Siguiente Hueco)
+\item Interfaz gráfica con Raylib
+\begin{DoxyItemize}
+\item Visualización de barra de memoria con colores
+\item Lista de procesos y su estado
+\item Controles interactivos (ESPACIO, P, R, ESC)
+\item Auto-\/play con velocidad configurable
+\end{DoxyItemize}
+\item Interfaz de terminal (TUI) para depuración
+\item Sistema de logging a archivo ({\ttfamily particiones.\+txt})
+\item Compactación automática de huecos adyacentes
+\item Alineación de memoria a múltiplos de 100
+\item Ejecución paralela con {\ttfamily fork()} (GUI hijo, TUI padre)
+\item Documentación completa con Doxygen
+\begin{DoxyItemize}
+\item Grafos de llamadas (call graphs)
+\item Navegador de código fuente
+\item Página principal con README
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{changelog_autotoc_md40}{}\doxysubsection{\texorpdfstring{Características Técnicas}{Características Técnicas}}\label{changelog_autotoc_md40}
+
+\begin{DoxyItemize}
+\item Uso de llamadas POSIX ({\ttfamily open}, {\ttfamily read}, {\ttfamily write}, {\ttfamily fork})
+\item \doxylink{struct_memoria}{Memoria} máxima\+: 2000 unidades
+\item Hasta 50 particiones simultáneas
+\item Hasta 100 procesos por simulación
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{changelog_autotoc_md42}{}\doxysection{\texorpdfstring{Pendiente (TODO)}{Pendiente (TODO)}}\label{changelog_autotoc_md42}
+\hypertarget{changelog_autotoc_md43}{}\doxysubsection{\texorpdfstring{Algoritmos}{Algoritmos}}\label{changelog_autotoc_md43}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Best Fit (Mejor Hueco)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Worst Fit (Peor Hueco)
+\end{DoxyItemize}\hypertarget{changelog_autotoc_md44}{}\doxysubsection{\texorpdfstring{Estadísticas}{Estadísticas}}\label{changelog_autotoc_md44}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Cálculo de fragmentación externa
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Tiempo medio de espera
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Tiempo medio de retorno
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Uso de memoria a lo largo del tiempo
+\end{DoxyItemize}\hypertarget{changelog_autotoc_md45}{}\doxysubsection{\texorpdfstring{Interfaz}{Interfaz}}\label{changelog_autotoc_md45}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Cargar archivo de entrada desde GUI (file picker)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Selector de algoritmo en GUI
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Modo paso a paso con retroceso (undo)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Zoom en la barra de memoria
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Exportar estadísticas a CSV
+\end{DoxyItemize}\hypertarget{changelog_autotoc_md46}{}\doxysubsection{\texorpdfstring{Testing}{Testing}}\label{changelog_autotoc_md46}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Tests unitarios con CUnit o similar
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Tests de regresión para algoritmos
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{changelog_autotoc_md48}{}\doxysection{\texorpdfstring{Notas de Desarrollo}{Notas de Desarrollo}}\label{changelog_autotoc_md48}
+\hypertarget{changelog_autotoc_md49}{}\doxysubsection{\texorpdfstring{Estructura del proyecto}{Estructura del proyecto}}\label{changelog_autotoc_md49}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{practica3/}
+\DoxyCodeLine{├──\ src/\ \ \ \ \ \ \ \ \ \ \ \#\ Código\ fuente}
+\DoxyCodeLine{├──\ docs/\ \ \ \ \ \ \ \ \ \ \#\ Documentación}
+\DoxyCodeLine{├──\ build/\ \ \ \ \ \ \ \ \ \#\ Archivos\ compilados}
+\DoxyCodeLine{└──\ entrada.txt\ \ \ \ \#\ Archivo\ de\ prueba}
+
+\end{DoxyCode}
+\hypertarget{changelog_autotoc_md50}{}\doxysubsection{\texorpdfstring{Generar documentación}{Generar documentación}}\label{changelog_autotoc_md50}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{doxygen\ Doxyfile}
+\DoxyCodeLine{open\ docs/html/index.html}
+
+\end{DoxyCode}
+ 

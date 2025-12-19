@@ -1,0 +1,73 @@
+\chapter{Guía de Instalación }
+\hypertarget{install}{}\label{install}\index{Guía de Instalación@{Guía de Instalación}}
+\label{install_md_docs_2_i_n_s_t_a_l_l}%
+\Hypertarget{install_md_docs_2_i_n_s_t_a_l_l}%
+\hypertarget{install_autotoc_md16}{}\doxysection{\texorpdfstring{mac\+OS}{mac\+OS}}\label{install_autotoc_md16}
+\hypertarget{install_autotoc_md17}{}\doxysubsection{\texorpdfstring{Instalar dependencias con Homebrew}{Instalar dependencias con Homebrew}}\label{install_autotoc_md17}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Instalar\ Raylib}
+\DoxyCodeLine{brew\ install\ raylib}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Instalar\ CMake\ (si\ no\ lo\ tienes)}
+\DoxyCodeLine{brew\ install\ cmake}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Opcional:\ Graphviz\ para\ generar\ documentación\ con\ diagramas}
+\DoxyCodeLine{brew\ install\ graphviz}
+
+\end{DoxyCode}
+\hypertarget{install_autotoc_md18}{}\doxysubsection{\texorpdfstring{Compilar el proyecto}{Compilar el proyecto}}\label{install_autotoc_md18}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ /ruta/al/proyecto}
+\DoxyCodeLine{mkdir\ build\ \&\&\ cd\ build}
+\DoxyCodeLine{cmake\ ..}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+\hypertarget{install_autotoc_md19}{}\doxysubsection{\texorpdfstring{Ejecutar}{Ejecutar}}\label{install_autotoc_md19}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./gestomemoria}
+
+\end{DoxyCode}
+\hypertarget{install_autotoc_md20}{}\doxysection{\texorpdfstring{Linux (Ubuntu/\+Debian)}{Linux (Ubuntu/\+Debian)}}\label{install_autotoc_md20}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Instalar\ dependencias}
+\DoxyCodeLine{sudo\ apt\ update}
+\DoxyCodeLine{sudo\ apt\ install\ cmake\ libraylib-\/dev}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Compilar}
+\DoxyCodeLine{mkdir\ build\ \&\&\ cd\ build}
+\DoxyCodeLine{cmake\ ..}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+\hypertarget{install_autotoc_md21}{}\doxysection{\texorpdfstring{Problemas comunes}{Problemas comunes}}\label{install_autotoc_md21}
+\hypertarget{install_autotoc_md22}{}\doxysubsection{\texorpdfstring{Error\+: "{}raylib not found"{}}{Error\+: "{}raylib not found"{}}}\label{install_autotoc_md22}
+Asegúrate de que Raylib está instalado correctamente\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ macOS}
+\DoxyCodeLine{brew\ reinstall\ raylib}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Linux}
+\DoxyCodeLine{sudo\ apt\ install\ libraylib-\/dev}
+
+\end{DoxyCode}
+\hypertarget{install_autotoc_md23}{}\doxysubsection{\texorpdfstring{Error\+: "{}fork() failed"{}}{Error\+: "{}fork() failed"{}}}\label{install_autotoc_md23}
+El sistema no tiene recursos suficientes. Cierra otras aplicaciones.\hypertarget{install_autotoc_md24}{}\doxysubsection{\texorpdfstring{Error de compilación con C17}{Error de compilación con C17}}\label{install_autotoc_md24}
+Asegúrate de tener un compilador compatible\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ macOS\ (Xcode\ Command\ Line\ Tools)}
+\DoxyCodeLine{xcode-\/select\ -\/-\/install}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Linux}
+\DoxyCodeLine{sudo\ apt\ install\ build-\/essential}
+
+\end{DoxyCode}
+ 

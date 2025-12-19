@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ficheros_2ec_0',['ficheros.c',['../ficheros_8c.html',1,'']]],
-  ['ficheros_2eh_1',['ficheros.h',['../ficheros_8h.html',1,'']]]
+  ['architecture_2emd_0',['ARCHITECTURE.md',['../_a_r_c_h_i_t_e_c_t_u_r_e_8md.html',1,'']]]
 ];

@@ -93,10 +93,26 @@ $(function(){initNavTree('index.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="mainpage"></a></p>
+<p><img src="https://img.shields.io/badge/C-17-blue" alt="C" class="inline"/> <img src="https://img.shields.io/badge/Raylib-4.5-green" alt="Raylib" class="inline"/> <img src="https://img.shields.io/badge/Platform-macOS%20%7C%20Linux-lightgrey" alt="Platform" class="inline"/></p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
 Descripción</h1>
 <p>Simulador visual de algoritmos de gestión de memoria dinámica con particiones variables. Proyecto de la asignatura <b>Sistemas Operativos</b> - Universidad de Alicante.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+🚀 Inicio Rápido</h1>
+<div class="fragment"><div class="line"># Compilar</div>
+<div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake .. &amp;&amp; make</div>
+<div class="line"> </div>
+<div class="line"># Ejecutar</div>
+<div class="line">./gestomemoria</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+📖 Documentación</h1>
+<ul>
+<li><a class="el" href="_i_n_s_t_a_l_l_8md.html">Guía de Instalación</a></li>
+<li><a class="el" href="_a_r_c_h_i_t_e_c_t_u_r_e_8md.html">Arquitectura del Sistema</a></li>
+<li><a class="el" href="_c_h_a_n_g_e_l_o_g_8md.html">Changelog</a></li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Algoritmos Implementados</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -106,22 +122,26 @@ Algoritmos Implementados</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><b>Next Fit</b>  </td><td class="markdownTableBodyNone">Como First Fit, pero empieza desde la última posición asignada  </td></tr>
 </table>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 Requisitos</h1>
 <ul>
 <li>CMake 3.11+</li>
 <li><a href="https://www.raylib.com/">Raylib</a> (para la interfaz gráfica)</li>
 <li>Compilador C con soporte C17</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 Compilación</h1>
 <div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
 <div class="line">cmake ..</div>
 <div class="line">make</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 Uso</h1>
 <div class="fragment"><div class="line">./gestomemoria</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+</div><!-- fragment --><p>El programa ejecuta dos procesos en paralelo:</p><ul>
+<li><b><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> hijo</b>: Interfaz gráfica (GUI) con Raylib</li>
+<li><b><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> padre</b>: Interfaz de terminal (TUI) para depuración</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
 Controles (GUI)</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -135,22 +155,31 @@ Controles (GUI)</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><span class="tt">ESC</span>  </td><td class="markdownTableBodyNone">Salir  </td></tr>
 </table>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
 Formato del Archivo de Entrada</h1>
 <p>El archivo <span class="tt">entrada.txt</span> debe seguir este formato:</p>
 <div class="fragment"><div class="line">&lt;nombre_proceso&gt; &lt;instante_llegada&gt; &lt;memoria_requerida&gt; &lt;tiempo_ejecucion&gt;</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
 Ejemplo</h2>
 <div class="fragment"><div class="line">P1 0 243 5</div>
 <div class="line">P2 1 150 3</div>
 <div class="line">P3 2 500 4</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
 Arquitectura del Proyecto</h1>
-<div class="fragment"><div class="line">src/</div>
-<div class="line">├── main.c          # Punto de entrada, GUI (Raylib) y TUI</div>
-<div class="line">├── sim_engine.c/h  # Motor de simulación (asignación, liberación, compactación)</div>
-<div class="line">└── ficheros.c/h    # Entrada/Salida de archivos</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+<div class="fragment"><div class="line">practica3/</div>
+<div class="line">├── src/</div>
+<div class="line">│   ├── main.c          # Punto de entrada, GUI (hijo) y TUI (padre)</div>
+<div class="line">│   ├── sim_engine.c/h  # Motor de simulación</div>
+<div class="line">│   └── ficheros.c/h    # Entrada/Salida de archivos</div>
+<div class="line">├── docs/</div>
+<div class="line">│   ├── INSTALL.md      # Guía de instalación</div>
+<div class="line">│   ├── ARCHITECTURE.md # Arquitectura del sistema</div>
+<div class="line">│   └── CHANGELOG.md    # Historial de cambios</div>
+<div class="line">├── entrada.txt         # Archivo de procesos de ejemplo</div>
+<div class="line">├── CMakeLists.txt      # Configuración de CMake</div>
+<div class="line">├── Doxyfile            # Configuración de Doxygen</div>
+<div class="line">└── README.md           # Este archivo</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
 Constantes de Configuración</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -164,10 +193,20 @@ Constantes de Configuración</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><span class="tt"><a class="el" href="group__constantes.html#gab0f17287f3a9af76ef9109ec1dfce7a9" title="Máximo número de procesos que puede manejar la simulación.">MAX_PROCESOS</a></span>  </td><td class="markdownTableBodyNone">100  </td><td class="markdownTableBodyNone">Máximo de procesos en simulación  </td></tr>
 </table>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+📊 Estadísticas Futuras</h1>
+<ul>
+<li>Fragmentación externa</li>
+<li>Tiempo medio de espera</li>
+<li>Uso de memoria a lo largo del tiempo</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
 Autor</h1>
 <p><b>Julian Hinojosa Gil</b> - 2025</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
+Licencia</h1>
+<p>Proyecto académico - Universidad de Alicante</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
 Licencia</h1>
 <p>Proyecto académico - Universidad de Alicante </p>
 </div></div><!-- PageDoc -->

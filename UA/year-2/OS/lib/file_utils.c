@@ -1,3 +1,14 @@
+/**
+ * @file file_utils.c
+ * @brief Implementación de utilidades para operaciones de E/S con descriptores.
+ * 
+ * @author Julian Hinojosa Gil
+ * @date 2025
+ * @version 1.0
+ * 
+ * @see file_utils.h para la documentación de la API pública.
+ */
+
 #include "file_utils.h"
 #include <sys/fcntl.h>
 #include <unistd.h>
