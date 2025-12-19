@@ -6,7 +6,7 @@ var searchData=
   ['de_20compilación_20con_20c17_3',['Error de compilación con C17',['../install.html#autotoc_md24',1,'']]],
   ['de_20configuración_4',['de Configuración',['../group__constantes.html',1,'Constantes de Configuración'],['../index.html#autotoc_md11',1,'Constantes de Configuración']]],
   ['de_20datos_20principales_5',['Estructuras de Datos Principales',['../architecture.html#autotoc_md27',1,'']]],
-  ['de_20desarrollo_6',['Notas de Desarrollo',['../changelog.html#autotoc_md48',1,'']]],
+  ['de_20desarrollo_6',['Notas de Desarrollo',['../changelog.html#autotoc_md52',1,'']]],
   ['de_20ejecución_7',['Flujo de Ejecución',['../architecture.html#autotoc_md26',1,'']]],
   ['de_20entrada_8',['Formato del Archivo de Entrada',['../index.html#autotoc_md8',1,'']]],
   ['de_20escritura_9',['Funciones de Escritura',['../group__escritura.html',1,'']]],
@@ -21,13 +21,13 @@ var searchData=
   ['default_5fbuffer_5fsize_18',['DEFAULT_BUFFER_SIZE',['../group__constantes.html#ga6e576a3c6530636d68b7a220480bcd32',1,'file_utils.h']]],
   ['del_20archivo_20de_20entrada_19',['Formato del Archivo de Entrada',['../index.html#autotoc_md8',1,'']]],
   ['del_20proyecto_20',['Arquitectura del Proyecto',['../index.html#autotoc_md10',1,'']]],
-  ['del_20proyecto_21',['Estructura del proyecto',['../changelog.html#autotoc_md49',1,'']]],
+  ['del_20proyecto_21',['Estructura del proyecto',['../changelog.html#autotoc_md53',1,'']]],
   ['del_20sistema_22',['Arquitectura del Sistema',['../architecture.html',1,'']]],
   ['dependencias_20con_20homebrew_23',['Instalar dependencias con Homebrew',['../install.html#autotoc_md17',1,'']]],
-  ['desarrollo_24',['Notas de Desarrollo',['../changelog.html#autotoc_md48',1,'']]],
+  ['desarrollo_24',['Notas de Desarrollo',['../changelog.html#autotoc_md52',1,'']]],
   ['descripción_25',['Descripción',['../index.html#autotoc_md0',1,'']]],
   ['diagrama_20de_20módulos_26',['Diagrama de Módulos',['../architecture.html#autotoc_md25',1,'']]],
   ['dir_5finicio_27',['dir_inicio',['../struct_particion.html#ae1cc803e8a591302bcc4cfb0145fee53',1,'Particion']]],
   ['documentación_28',['📖 Documentación',['../index.html#autotoc_md2',1,'']]],
-  ['documentación_29',['Generar documentación',['../changelog.html#autotoc_md50',1,'']]]
+  ['documentación_29',['Generar documentación',['../changelog.html#autotoc_md54',1,'']]]
 ];

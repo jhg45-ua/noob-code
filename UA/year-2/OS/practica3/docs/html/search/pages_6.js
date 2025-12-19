@@ -8,8 +8,8 @@ var searchData=
   ['error_20de_20compilación_20con_20c17_5',['Error de compilación con C17',['../install.html#autotoc_md24',1,'']]],
   ['error_3a_20fork_20failed_6',['Error: &quot;fork() failed&quot;',['../install.html#autotoc_md23',1,'']]],
   ['error_3a_20raylib_20not_20found_7',['Error: &quot;raylib not found&quot;',['../install.html#autotoc_md22',1,'']]],
-  ['estadísticas_8',['Estadísticas',['../changelog.html#autotoc_md44',1,'']]],
+  ['estadísticas_8',['Estadísticas',['../changelog.html#autotoc_md48',1,'']]],
   ['estadísticas_20futuras_9',['📊 Estadísticas Futuras',['../index.html#autotoc_md12',1,'']]],
-  ['estructura_20del_20proyecto_10',['Estructura del proyecto',['../changelog.html#autotoc_md49',1,'']]],
+  ['estructura_20del_20proyecto_10',['Estructura del proyecto',['../changelog.html#autotoc_md53',1,'']]],
   ['estructuras_20de_20datos_20principales_11',['Estructuras de Datos Principales',['../architecture.html#autotoc_md27',1,'']]]
 ];

@@ -6,5 +6,5 @@ var searchData=
   ['instalación_3',['Guía de Instalación',['../install.html',1,'']]],
   ['instalar_20dependencias_20con_20homebrew_4',['Instalar dependencias con Homebrew',['../install.html#autotoc_md17',1,'']]],
   ['install_2emd_5',['INSTALL.md',['../_i_n_s_t_a_l_l_8md.html',1,'']]],
-  ['interfaz_6',['Interfaz',['../changelog.html#autotoc_md45',1,'']]]
+  ['interfaz_6',['Interfaz',['../changelog.html#autotoc_md49',1,'']]]
 ];

@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['añadido_0',['Añadido',['../changelog.html#autotoc_md39',1,'']]],
+  ['añadido_0',['Añadido',['../changelog.html#autotoc_md43',1,'']]],
   ['algo_5fprimer_5fhueco_1',['ALGO_PRIMER_HUECO',['../sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002',1,'sim_engine.h']]],
   ['algo_5fsiguiente_5fhueco_2',['ALGO_SIGUIENTE_HUECO',['../sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426',1,'sim_engine.h']]],
-  ['algoritmos_3',['Algoritmos',['../changelog.html#autotoc_md43',1,'']]],
+  ['algoritmos_3',['Algoritmos',['../changelog.html#autotoc_md47',1,'']]],
   ['algoritmos_20de_20asignación_4',['Algoritmos de Asignación',['../architecture.html#autotoc_md31',1,'']]],
   ['algoritmos_20implementados_5',['Algoritmos Implementados',['../index.html#autotoc_md3',1,'']]],
   ['alineación_6',['Alineación',['../architecture.html#autotoc_md35',1,'']]],

@@ -125,7 +125,10 @@ Flujo de Ejecución</h1>
 <ol type="1">
 <li><b>Inicio</b>: <span class="tt"><a class="el" href="main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="Punto de entrada principal del programa.">main()</a></span> ejecuta <span class="tt">fork()</span></li>
 <li><b><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> hijo</b> (pid == 0): Ejecuta la GUI con Raylib</li>
-<li><b><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> padre</b> (pid &gt; 0): Ejecuta la TUI en terminal y espera al hijo</li>
+<li><b><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> padre</b> (pid &gt; 0): Espera con <span class="tt">waitpid()</span> a que el hijo termine</li>
+<li><b>Después de cerrar GUI</b>: El padre ejecuta la TUI en terminal (modo paso a paso)</li>
+</ol>
+<ol type="1">
 <li><b>Cada tick de simulación</b>:<ul>
 <li>Se envejecen los procesos en memoria (decrementan t_restante)</li>
 <li>Se liberan procesos que han terminado (t_restante == 0)</li>
@@ -229,7 +232,7 @@ Uso de fork()</h1>
 <div class="line">    waitpid(pid, NULL, 0);  <span class="comment">// Esperar al hijo</span></div>
 <div class="line">}</div>
 <div class="ttc" id="amain_8c_html_a0739302f77016ac122f50d59015cfa1f"><div class="ttname"><a href="main_8c.html#a0739302f77016ac122f50d59015cfa1f">test_sim</a></div><div class="ttdeci">void test_sim()</div><div class="ttdoc">Ejecuta la simulación en modo terminal (TUI).</div><div class="ttdef"><b>Definition</b> <a href="main_8c_source.html#l00095">main.c:95</a></div></div>
-<div class="ttc" id="amain_8c_html_aafb6af6e9fab822accd3e0f7133214bd"><div class="ttname"><a href="main_8c.html#aafb6af6e9fab822accd3e0f7133214bd">run_gui</a></div><div class="ttdeci">void run_gui(Memoria *m, Proceso *procesos, int num_procesos)</div><div class="ttdoc">Ejecuta la interfaz gráfica con Raylib.</div><div class="ttdef"><b>Definition</b> <a href="main_8c_source.html#l00173">main.c:173</a></div></div>
+<div class="ttc" id="amain_8c_html_aafb6af6e9fab822accd3e0f7133214bd"><div class="ttname"><a href="main_8c.html#aafb6af6e9fab822accd3e0f7133214bd">run_gui</a></div><div class="ttdeci">void run_gui(Memoria *m, Proceso *procesos, int num_procesos)</div><div class="ttdoc">Ejecuta la interfaz gráfica con Raylib.</div><div class="ttdef"><b>Definition</b> <a href="main_8c_source.html#l00177">main.c:177</a></div></div>
 </div><!-- fragment --><p>Esto permite depurar en terminal mientras se visualiza en la GUI. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

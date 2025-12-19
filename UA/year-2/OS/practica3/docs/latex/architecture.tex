@@ -37,7 +37,10 @@
 \begin{DoxyEnumerate}
 \item {\bfseries{Inicio}}\+: {\ttfamily \doxylink{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{main()}} ejecuta {\ttfamily fork()}
 \item {\bfseries{\doxylink{struct_proceso}{Proceso} hijo}} (pid == 0)\+: Ejecuta la GUI con Raylib
-\item {\bfseries{\doxylink{struct_proceso}{Proceso} padre}} (pid \texorpdfstring{$>$}{>} 0)\+: Ejecuta la TUI en terminal y espera al hijo
+\item {\bfseries{\doxylink{struct_proceso}{Proceso} padre}} (pid \texorpdfstring{$>$}{>} 0)\+: Espera con {\ttfamily waitpid()} a que el hijo termine
+\item {\bfseries{Después de cerrar GUI}}\+: El padre ejecuta la TUI en terminal (modo paso a paso)
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
 \item {\bfseries{Cada tick de simulación}}\+:
 \begin{DoxyItemize}
 \item Se envejecen los procesos en memoria (decrementan t\+\_\+restante)

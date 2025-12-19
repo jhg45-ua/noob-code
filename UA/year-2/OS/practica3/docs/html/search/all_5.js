@@ -2,7 +2,7 @@ var searchData=
 [
   ['c17_0',['Error de compilación con C17',['../install.html#autotoc_md24',1,'']]],
   ['cant_5fparticiones_1',['cant_particiones',['../struct_memoria.html#ae398c8e61b3aade21c6118c6cedf879d',1,'Memoria']]],
-  ['características_20técnicas_2',['Características Técnicas',['../changelog.html#autotoc_md40',1,'']]],
+  ['características_20técnicas_2',['Características Técnicas',['../changelog.html#autotoc_md44',1,'']]],
   ['cargar_5fprocesos_3',['cargar_procesos',['../ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6',1,'cargar_procesos(const char *ruta, Proceso procesos[]):&#160;ficheros.c'],['../ficheros_8h.html#af760c80ad550bdf7a5312163e4c9b2d6',1,'cargar_procesos(const char *ruta, Proceso procesos[]):&#160;ficheros.c']]],
   ['changelog_4',['Changelog',['../changelog.html',1,'']]],
   ['changelog_2emd_5',['CHANGELOG.md',['../_c_h_a_n_g_e_l_o_g_8md.html',1,'']]],
@@ -17,5 +17,6 @@ var searchData=
   ['configuración_14',['Configuración',['../group__constantes.html',1,'Constantes de Configuración'],['../index.html#autotoc_md11',1,'Constantes de Configuración']]],
   ['constantes_20de_20configuración_15',['Constantes de Configuración',['../group__constantes.html',1,'Constantes de Configuración'],['../index.html#autotoc_md11',1,'Constantes de Configuración']]],
   ['controles_20gui_16',['Controles (GUI)',['../index.html#autotoc_md7',1,'']]],
-  ['copy_5ffile_17',['copy_file',['../group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938',1,'copy_file(const char *src_path, const char *dst_path):&#160;file_utils.c'],['../group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938',1,'copy_file(const char *src_path, const char *dst_path):&#160;file_utils.c']]]
+  ['copy_5ffile_17',['copy_file',['../group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938',1,'copy_file(const char *src_path, const char *dst_path):&#160;file_utils.c'],['../group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938',1,'copy_file(const char *src_path, const char *dst_path):&#160;file_utils.c']]],
+  ['corregido_18',['Corregido',['../changelog.html#autotoc_md39',1,'']]]
 ];

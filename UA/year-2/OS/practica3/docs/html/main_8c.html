@@ -99,6 +99,7 @@ $(function(){initNavTree('main_8c.html','',''); });
 <code>#include &quot;<a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ficheros_8h_source.html">ficheros.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;sys/wait.h&gt;</code><br />
@@ -107,21 +108,23 @@ Gráfico de dependencias incluidas en main.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8c__incl.png" border="0" usemap="#asrc_2main_8c" loading="lazy" alt=""/></div>
 <map name="asrc_2main_8c" id="asrc_2main_8c">
-<area shape="rect" title="Punto de entrada del simulador de gestión de memoria." alt="" coords="234,5,317,31"/>
+<area shape="rect" title="Punto de entrada del simulador de gestión de memoria." alt="" coords="277,5,360,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,69,105"/>
-<area shape="poly" title=" " alt="" coords="234,34,85,79,83,74,236,29"/>
+<area shape="poly" title=" " alt="" coords="276,33,85,81,83,76,278,27"/>
 <area shape="rect" href="sim__engine_8h.html" title="Motor de simulación de gestión de memoria con particiones variables." alt="" coords="94,153,193,178"/>
-<area shape="poly" title=" " alt="" coords="232,26,208,33,180,44,154,59,134,80,128,94,127,108,134,138,129,137,122,108,123,92,129,78,151,55,177,39,206,28,236,23"/>
+<area shape="poly" title=" " alt="" coords="275,21,241,26,201,36,164,53,147,66,134,80,128,94,127,108,134,139,129,138,121,109,123,92,129,78,144,62,161,49,199,31,240,21,279,18"/>
 <area shape="rect" href="ficheros_8h.html" title="Módulo de entrada/salida para la simulación de memoria." alt="" coords="143,79,222,105"/>
-<area shape="poly" title=" " alt="" coords="258,33,212,72,208,67,262,30"/>
+<area shape="poly" title=" " alt="" coords="293,33,220,74,218,69,297,30"/>
 <area shape="rect" title=" " alt="" coords="246,79,306,105"/>
-<area shape="poly" title=" " alt="" coords="277,29,278,64,273,62,274,34"/>
-<area shape="rect" title=" " alt="" coords="330,79,394,105"/>
-<area shape="poly" title=" " alt="" coords="291,29,339,69,334,69,290,34"/>
-<area shape="rect" title=" " alt="" coords="418,79,485,105"/>
-<area shape="poly" title=" " alt="" coords="306,29,410,72,405,74,305,34"/>
-<area shape="rect" title=" " alt="" coords="510,79,591,105"/>
-<area shape="poly" title=" " alt="" coords="317,28,497,75,492,77,317,33"/>
+<area shape="poly" title=" " alt="" coords="313,29,293,67,289,64,309,33"/>
+<area shape="rect" title=" " alt="" coords="329,79,393,105"/>
+<area shape="poly" title=" " alt="" coords="326,29,349,66,343,65,325,34"/>
+<area shape="rect" title=" " alt="" coords="417,79,481,105"/>
+<area shape="poly" title=" " alt="" coords="341,29,417,71,411,72,340,34"/>
+<area shape="rect" title=" " alt="" coords="505,79,572,105"/>
+<area shape="poly" title=" " alt="" coords="356,29,493,74,487,76,356,34"/>
+<area shape="rect" title=" " alt="" coords="596,79,678,105"/>
+<area shape="poly" title=" " alt="" coords="360,26,583,77,579,79,360,31"/>
 <area shape="rect" title=" " alt="" coords="106,226,181,252"/>
 <area shape="poly" title=" " alt="" coords="145,177,146,212,141,209,142,181"/>
 <area shape="poly" title=" " alt="" coords="178,103,160,140,155,137,174,107"/>
@@ -181,9 +184,9 @@ Funciones</h2></td></tr>
 
 <p>Alto de la barra de memoria. </p>
 
-<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00033">33</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00034">34</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
-<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
+<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00177">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -201,9 +204,9 @@ Funciones</h2></td></tr>
 
 <p>Margen derecho de la interfaz. </p>
 
-<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00037">37</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00038">38</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
-<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
+<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00177">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -221,9 +224,9 @@ Funciones</h2></td></tr>
 
 <p>Margen izquierdo de la interfaz. </p>
 
-<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00035">35</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00036">36</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
-<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
+<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00177">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -241,9 +244,9 @@ Funciones</h2></td></tr>
 
 <p>Alto de la ventana gráfica en píxeles. </p>
 
-<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00029">29</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00030">30</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
-<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
+<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00177">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -261,9 +264,9 @@ Funciones</h2></td></tr>
 
 <p>Ancho de la ventana gráfica en píxeles. </p>
 
-<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00027">27</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00028">28</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
-<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
+<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00177">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -281,9 +284,9 @@ Funciones</h2></td></tr>
 
 <p>Posición Y de la barra de memoria. </p>
 
-<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00031">31</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00032">32</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
-<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
+<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00177">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -323,9 +326,9 @@ Funciones</h2></td></tr>
 <dd>
 -1 si hubo error en fork() </dd></dl>
 
-<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00056">56</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00057">57</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
-<p class="reference">Hace referencia a <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="sim__engine_8h_source.html#l00045">MAX_PROCESOS</a>, <a class="el" href="main_8c_source.html#l00173">run_gui()</a> y <a class="el" href="main_8c_source.html#l00095">test_sim()</a>.</p>
+<p class="reference">Hace referencia a <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="sim__engine_8h_source.html#l00045">MAX_PROCESOS</a>, <a class="el" href="main_8c_source.html#l00177">run_gui()</a> y <a class="el" href="main_8c_source.html#l00095">test_sim()</a>.</p>
 <div class="dynheader">
 Gráfico de llamadas de esta función:</div>
 <div class="dyncontent">
@@ -424,11 +427,11 @@ Gráfico de llamadas de esta función:</div>
 <dd>
 Velocidad auto-play: 1 tick/segundo </dd></dl>
 
-<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00173">173</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00177">177</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
-<p class="reference">Hace referencia a <a class="el" href="sim__engine_8h_source.html#l00103">ALGO_PRIMER_HUECO</a>, <a class="el" href="main_8c_source.html#l00033">ALTO_BARRA</a>, <a class="el" href="sim__engine_8c_source.html#l00189">avanzar_tiempo()</a>, <a class="el" href="sim__engine_8h_source.html#l00092">Memoria::cant_particiones</a>, <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a>, <a class="el" href="sim__engine_8h_source.html#l00078">Particion::dir_inicio</a>, <a class="el" href="sim__engine_8h_source.html#l00080">Particion::estado</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="ficheros_8c_source.html#l00094">limpiar_log()</a>, <a class="el" href="main_8c_source.html#l00037">MARGEN_DER</a>, <a class="el" href="main_8c_source.html#l00035">MARGEN_IZQ</a>, <a class="el" href="sim__engine_8h_source.html#l00036">MEMORIA_TOTAL</a>, <a class="el" href="sim__engine_8h_source.html#l00081">Particion::nombre_proceso</a>, <a class="el" href="sim__engine_8h_source.html#l00091">Memoria::particiones</a>, <a class="el" href="sim__engine_8h_source.html#l00079">Particion::tamano</a>, <a class="el" href="main_8c_source.html#l00029">WIN_HEIGHT</a>, <a class="el" href="main_8c_source.html#l00027">WIN_WIDTH</a> y <a class="el" href="main_8c_source.html#l00031">Y_BARRA</a>.</p>
+<p class="reference">Hace referencia a <a class="el" href="sim__engine_8h_source.html#l00103">ALGO_PRIMER_HUECO</a>, <a class="el" href="main_8c_source.html#l00034">ALTO_BARRA</a>, <a class="el" href="sim__engine_8c_source.html#l00189">avanzar_tiempo()</a>, <a class="el" href="sim__engine_8h_source.html#l00092">Memoria::cant_particiones</a>, <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a>, <a class="el" href="sim__engine_8h_source.html#l00078">Particion::dir_inicio</a>, <a class="el" href="sim__engine_8h_source.html#l00080">Particion::estado</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="ficheros_8c_source.html#l00094">limpiar_log()</a>, <a class="el" href="main_8c_source.html#l00038">MARGEN_DER</a>, <a class="el" href="main_8c_source.html#l00036">MARGEN_IZQ</a>, <a class="el" href="sim__engine_8h_source.html#l00036">MEMORIA_TOTAL</a>, <a class="el" href="sim__engine_8h_source.html#l00081">Particion::nombre_proceso</a>, <a class="el" href="sim__engine_8h_source.html#l00091">Memoria::particiones</a>, <a class="el" href="sim__engine_8h_source.html#l00079">Particion::tamano</a>, <a class="el" href="main_8c_source.html#l00030">WIN_HEIGHT</a>, <a class="el" href="main_8c_source.html#l00028">WIN_WIDTH</a> y <a class="el" href="main_8c_source.html#l00032">Y_BARRA</a>.</p>
 
-<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00056">main()</a>.</p>
+<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00057">main()</a>.</p>
 <div class="dynheader">
 Gráfico de llamadas de esta función:</div>
 <div class="dyncontent">
@@ -503,7 +506,7 @@ Usa algoritmo First Fit por defecto </dd></dl>
 
 <p class="reference">Hace referencia a <a class="el" href="sim__engine_8h_source.html#l00103">ALGO_PRIMER_HUECO</a>, <a class="el" href="sim__engine_8c_source.html#l00189">avanzar_tiempo()</a>, <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="ficheros_8c_source.html#l00094">limpiar_log()</a>, <a class="el" href="sim__engine_8h_source.html#l00045">MAX_PROCESOS</a>, <a class="el" href="sim__engine_8h_source.html#l00036">MEMORIA_TOTAL</a>, <a class="el" href="sim__engine_8c_source.html#l00023">mostrar_estado()</a> y <a class="el" href="sim__engine_8h_source.html#l00061">Proceso::t_ejecucion</a>.</p>
 
-<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00056">main()</a>.</p>
+<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00057">main()</a>.</p>
 <div class="dynheader">
 Gráfico de llamadas de esta función:</div>
 <div class="dyncontent">

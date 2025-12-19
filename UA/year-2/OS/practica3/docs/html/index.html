@@ -137,10 +137,13 @@ Compilación</h1>
 </div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 Uso</h1>
 <div class="fragment"><div class="line">./gestomemoria</div>
-</div><!-- fragment --><p>El programa ejecuta dos procesos en paralelo:</p><ul>
+</div><!-- fragment --><p>El programa ejecuta dos procesos de forma secuencial:</p><ol type="1">
 <li><b><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> hijo</b>: Interfaz gráfica (GUI) con Raylib</li>
-<li><b><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> padre</b>: Interfaz de terminal (TUI) para depuración</li>
-</ul>
+<li><b><a class="el" href="struct_proceso.html" title="Estructura que representa un proceso en el simulador.">Proceso</a> padre</b>: Espera a que la GUI termine, luego ejecuta la TUI para depuración</li>
+</ol>
+<blockquote class="doxtable">
+<p><b>Nota</b>: Cierra la ventana de la GUI para iniciar la TUI en terminal </p>
+</blockquote>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
 Controles (GUI)</h2>
 <table class="markdownTable">

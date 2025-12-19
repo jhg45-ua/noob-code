@@ -58,19 +58,23 @@ var NAVTREE =
       [ "Uso de fork()", "architecture.html#autotoc_md37", null ]
     ] ],
     [ "Changelog", "changelog.html", [
-      [ "[1.0.0] - 2025-12-19", "changelog.html#autotoc_md38", [
-        [ "Añadido", "changelog.html#autotoc_md39", null ],
-        [ "Características Técnicas", "changelog.html#autotoc_md40", null ]
+      [ "[1.0.1] - 2025-12-19", "changelog.html#autotoc_md38", [
+        [ "Corregido", "changelog.html#autotoc_md39", null ],
+        [ "Mejorado", "changelog.html#autotoc_md40", null ]
       ] ],
-      [ "Pendiente (TODO)", "changelog.html#autotoc_md42", [
-        [ "Algoritmos", "changelog.html#autotoc_md43", null ],
-        [ "Estadísticas", "changelog.html#autotoc_md44", null ],
-        [ "Interfaz", "changelog.html#autotoc_md45", null ],
-        [ "Testing", "changelog.html#autotoc_md46", null ]
+      [ "[1.0.0] - 2025-12-19", "changelog.html#autotoc_md42", [
+        [ "Añadido", "changelog.html#autotoc_md43", null ],
+        [ "Características Técnicas", "changelog.html#autotoc_md44", null ]
       ] ],
-      [ "Notas de Desarrollo", "changelog.html#autotoc_md48", [
-        [ "Estructura del proyecto", "changelog.html#autotoc_md49", null ],
-        [ "Generar documentación", "changelog.html#autotoc_md50", null ]
+      [ "Pendiente (TODO)", "changelog.html#autotoc_md46", [
+        [ "Algoritmos", "changelog.html#autotoc_md47", null ],
+        [ "Estadísticas", "changelog.html#autotoc_md48", null ],
+        [ "Interfaz", "changelog.html#autotoc_md49", null ],
+        [ "Testing", "changelog.html#autotoc_md50", null ]
+      ] ],
+      [ "Notas de Desarrollo", "changelog.html#autotoc_md52", [
+        [ "Estructura del proyecto", "changelog.html#autotoc_md53", null ],
+        [ "Generar documentación", "changelog.html#autotoc_md54", null ]
       ] ]
     ] ],
     [ "Topics", "topics.html", "topics" ],

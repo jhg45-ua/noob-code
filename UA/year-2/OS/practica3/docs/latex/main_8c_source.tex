@@ -10,43 +10,43 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ficheros_8h}{ficheros.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00020}00020\ }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <string.h>}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <sys/wait.h>}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00025}00025\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00027}\mbox{\hyperlink{main_8c_a2e6ef411e0ff00ad889788b6cde701b5}{00027}}\ \textcolor{preprocessor}{\#define\ WIN\_WIDTH\ 1200}\textcolor{preprocessor}{}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00029}\mbox{\hyperlink{main_8c_a0a33b1743038db1adbbf1045aa839b38}{00029}}\ \textcolor{preprocessor}{\#define\ WIN\_HEIGHT\ 750}\textcolor{preprocessor}{}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00031}\mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{00031}}\ \textcolor{preprocessor}{\#define\ Y\_BARRA\ 250}\textcolor{preprocessor}{}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00033}\mbox{\hyperlink{main_8c_a4b57ead6f5dbf1347696e48526823ef3}{00033}}\ \textcolor{preprocessor}{\#define\ ALTO\_BARRA\ 100}\textcolor{preprocessor}{}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00035}\mbox{\hyperlink{main_8c_ac1184c172b23102c55ee631d560773b2}{00035}}\ \textcolor{preprocessor}{\#define\ MARGEN\_IZQ\ 50}\textcolor{preprocessor}{}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00037}\mbox{\hyperlink{main_8c_a06cd488103fa8b4b583db7716d185244}{00037}}\ \textcolor{preprocessor}{\#define\ MARGEN\_DER\ 50}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00038}00038\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00039}00039\ \textcolor{comment}{/*\ Declaraciones\ adelantadas\ */}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00040}00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_a0739302f77016ac122f50d59015cfa1f}{test\_sim}}();}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00041}00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{run\_gui}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ *procesos,\ \textcolor{keywordtype}{int}\ num\_procesos);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00042}00042\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00056}\mbox{\hyperlink{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{00056}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}*\ argv[])}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00057}00057\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00058}00058\ \ \ \ \ pid\_t\ pid\ =\ fork();}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00059}00059\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{if}\ (pid\ <\ 0)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00061}00061\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ en\ fork"{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00063}00063\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (pid\ ==\ 0)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Proceso\ Hijo:\ GUI\ (Raylib)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00066}00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_memoria}{Memoria}}\ m;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00067}00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a7525ea6570ccf752c8e9394b62042380}{inicializar\_memoria}}(\&m);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00068}00068\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00069}00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_proceso}{Proceso}}\ procesos[\mbox{\hyperlink{group__constantes_gab0f17287f3a9af76ef9109ec1dfce7a9}{MAX\_PROCESOS}}];}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_procesos\ =\ \mbox{\hyperlink{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}{cargar\_procesos}}(\textcolor{stringliteral}{"{}entrada.txt"{}},\ procesos);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00071}00071\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00072}00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{run\_gui}}(\&m,\ procesos,\ num\_procesos);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00073}00073\ \ \ \ \ \ \ \ \ \_exit(0);\ \textcolor{comment}{//\ El\ hijo\ termina\ después\ de\ cerrar\ la\ GUI}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00074}00074\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Proceso\ Padre:\ TUI\ (Terminal)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_a0739302f77016ac122f50d59015cfa1f}{test\_sim}}();}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00077}00077\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <sys/wait.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00028}\mbox{\hyperlink{main_8c_a2e6ef411e0ff00ad889788b6cde701b5}{00028}}\ \textcolor{preprocessor}{\#define\ WIN\_WIDTH\ 1200}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00030}\mbox{\hyperlink{main_8c_a0a33b1743038db1adbbf1045aa839b38}{00030}}\ \textcolor{preprocessor}{\#define\ WIN\_HEIGHT\ 750}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00032}\mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{00032}}\ \textcolor{preprocessor}{\#define\ Y\_BARRA\ 250}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00034}\mbox{\hyperlink{main_8c_a4b57ead6f5dbf1347696e48526823ef3}{00034}}\ \textcolor{preprocessor}{\#define\ ALTO\_BARRA\ 100}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00036}\mbox{\hyperlink{main_8c_ac1184c172b23102c55ee631d560773b2}{00036}}\ \textcolor{preprocessor}{\#define\ MARGEN\_IZQ\ 50}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00038}\mbox{\hyperlink{main_8c_a06cd488103fa8b4b583db7716d185244}{00038}}\ \textcolor{preprocessor}{\#define\ MARGEN\_DER\ 50}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00040}00040\ \textcolor{comment}{/*\ Declaraciones\ adelantadas\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00041}00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_a0739302f77016ac122f50d59015cfa1f}{test\_sim}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00042}00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{run\_gui}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ *procesos,\ \textcolor{keywordtype}{int}\ num\_procesos);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00057}\mbox{\hyperlink{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{00057}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}*\ argv[])}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00058}00058\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00059}00059\ \ \ \ \ pid\_t\ pid\ =\ fork();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{if}\ (pid\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00062}00062\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ en\ fork"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (pid\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Proceso\ Hijo:\ GUI\ (Raylib)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00067}00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_memoria}{Memoria}}\ m;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00068}00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a7525ea6570ccf752c8e9394b62042380}{inicializar\_memoria}}(\&m);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00069}00069\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00070}00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_proceso}{Proceso}}\ procesos[\mbox{\hyperlink{group__constantes_gab0f17287f3a9af76ef9109ec1dfce7a9}{MAX\_PROCESOS}}];}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_procesos\ =\ \mbox{\hyperlink{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}{cargar\_procesos}}(\textcolor{stringliteral}{"{}entrada.txt"{}},\ procesos);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00073}00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{run\_gui}}(\&m,\ procesos,\ num\_procesos);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00074}00074\ \ \ \ \ \ \ \ \ \_exit(0);\ \textcolor{comment}{//\ El\ hijo\ termina\ después\ de\ cerrar\ la\ GUI}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00075}00075\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Proceso\ Padre:\ TUI\ (Terminal)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00077}00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_a0739302f77016ac122f50d59015cfa1f}{test\_sim}}();}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Esperar\ a\ que\ el\ hijo\ (GUI)\ termine}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00079}00079\ \ \ \ \ \ \ \ \ waitpid(pid,\ NULL,\ 0);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00080}00080\ \ \ \ \ \}}
@@ -55,256 +55,260 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00083}00083\ \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00084}00084\ }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00095}\mbox{\hyperlink{main_8c_a0739302f77016ac122f50d59015cfa1f}{00095}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_a0739302f77016ac122f50d59015cfa1f}{test\_sim}}()\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00096}00096\ \ \ \ \ \mbox{\hyperlink{struct_memoria}{Memoria}}\ m;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00097}00097\ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a7525ea6570ccf752c8e9394b62042380}{inicializar\_memoria}}(\&m);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00098}00098\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00099}00099\ \ \ \ \ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}}\ algoritmo\_actual\ =\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}{ALGO\_PRIMER\_HUECO}};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00100}00100\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00101}00101\ \ \ \ \ \mbox{\hyperlink{ficheros_8c_a695ae3585fde2a3664394810b70fe928}{limpiar\_log}}(\textcolor{stringliteral}{"{}particiones\_tui.txt"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00096}00096\ \ \ \ \ system(\textcolor{stringliteral}{"{}clear"{}});\ \textcolor{comment}{//\ Limpiamos\ la\ consola\ al\ iniciar}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00098}00098\ \ \ \ \ \mbox{\hyperlink{struct_memoria}{Memoria}}\ m;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00099}00099\ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a7525ea6570ccf752c8e9394b62042380}{inicializar\_memoria}}(\&m);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00101}00101\ \ \ \ \ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}}\ algoritmo\_actual\ =\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}{ALGO\_PRIMER\_HUECO}};}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00102}00102\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00103}00103\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00104}00104\ \ \ \ \ \textcolor{comment}{//\ //\ Simulamos\ procesos\ falsos\ para\ probar}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00105}00105\ \ \ \ \ \textcolor{comment}{//\ Proceso\ procesos[2]\ =\ \{}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \{"{}P1"{},\ 0,\ 243,\ 5,\ 5,\ false,\ false\},\ //\ ID,\ Llegada,\ Tam,\ Duracion,\ Restante...}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00107}00107\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \{"{}P2"{},\ 1,\ 45,\ 2,\ 2,\ false,\ false\}}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00108}00108\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ //\ \{"{}P3"{},\ 2,\ 500,\ 5,\ 5,\ false,\ false\},}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00109}00109\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ //\ \{"{}P4"{},\ 3,\ 800,\ 3,\ 3,\ false,\ false\}}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00110}00110\ \ \ \ \ \textcolor{comment}{//\ \};}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00111}00111\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00112}00112\ \ \ \ \ \textcolor{comment}{//\ Ahora\ con\ argumento\ de\ fichero}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00113}00113\ \ \ \ \ \mbox{\hyperlink{struct_proceso}{Proceso}}\ procesos[\mbox{\hyperlink{group__constantes_gab0f17287f3a9af76ef9109ec1dfce7a9}{MAX\_PROCESOS}}];\ \textcolor{comment}{//\ Maximo\ 100\ procesos}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00114}00114\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_procesos\ =\ \mbox{\hyperlink{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}{cargar\_procesos}}(\textcolor{stringliteral}{"{}entrada.txt"{}},\ procesos);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00115}00115\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00116}00116\ \ \ \ \ \textcolor{keywordtype}{int}\ reloj\_sim\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00103}00103\ \ \ \ \ \mbox{\hyperlink{ficheros_8c_a695ae3585fde2a3664394810b70fe928}{limpiar\_log}}(\textcolor{stringliteral}{"{}particiones\_tui.txt"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00104}00104\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ //\ Simulamos\ procesos\ falsos\ para\ probar}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00107}00107\ \ \ \ \ \textcolor{comment}{//\ Proceso\ procesos[2]\ =\ \{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00108}00108\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \{"{}P1"{},\ 0,\ 243,\ 5,\ 5,\ false,\ false\},\ //\ ID,\ Llegada,\ Tam,\ Duracion,\ Restante...}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00109}00109\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \{"{}P2"{},\ 1,\ 45,\ 2,\ 2,\ false,\ false\}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00110}00110\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ //\ \{"{}P3"{},\ 2,\ 500,\ 5,\ 5,\ false,\ false\},}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00111}00111\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ //\ \{"{}P4"{},\ 3,\ 800,\ 3,\ 3,\ false,\ false\}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00112}00112\ \ \ \ \ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00114}00114\ \ \ \ \ \textcolor{comment}{//\ Ahora\ con\ argumento\ de\ fichero}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00115}00115\ \ \ \ \ \mbox{\hyperlink{struct_proceso}{Proceso}}\ procesos[\mbox{\hyperlink{group__constantes_gab0f17287f3a9af76ef9109ec1dfce7a9}{MAX\_PROCESOS}}];\ \textcolor{comment}{//\ Maximo\ 100\ procesos}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00116}00116\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_procesos\ =\ \mbox{\hyperlink{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}{cargar\_procesos}}(\textcolor{stringliteral}{"{}entrada.txt"{}},\ procesos);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00117}00117\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00118}00118\ \ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_total;\ \textcolor{comment}{//\ Simulamos\ 20\ instantes}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00118}00118\ \ \ \ \ \textcolor{keywordtype}{int}\ reloj\_sim\ =\ 0;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00119}00119\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00120}00120\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00121}00121\ \ \ \ \ \ \ \ \ tiempo\_total\ +=\ procesos[i].\mbox{\hyperlink{struct_proceso_a4c0f04511fcff56f38175cf4486f09a7}{t\_ejecucion}};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00122}00122\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00123}00123\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00124}00124\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ BUCLE\ DE\ SIMULACIÓN\ (10\ Instantes)\ -\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00125}00125\ \ \ \ \ printf(\textcolor{stringliteral}{"{}===\ INICIO\ DE\ LA\ SIMULACIÓN\ COMPLEJA\ ===\(\backslash\)n"{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00126}00126\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Memoria\ Total:\ \%d\(\backslash\)n\(\backslash\)n"{}},\ \mbox{\hyperlink{group__constantes_ga6264fff1e0ed016a7ce3d58e0534ea00}{MEMORIA\_TOTAL}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00127}00127\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00128}00128\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ tiempo\_total;\ i++)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Llamamos\ al\ motor\ de\ tiempo}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00130}00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b}{avanzar\_tiempo}}(\&m,\ procesos,\ num\_procesos,\ \&reloj\_sim,\ algoritmo\_actual,\ \textcolor{stringliteral}{"{}particiones\_tui.txt"{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00131}00131\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Visualizamos\ la\ memoria}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}MEMORIA:\ "{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a6df7a5ff87dd2abca3c64b3dcc88cf5a}{mostrar\_estado}}(\&m);\ \textcolor{comment}{//\ Mostramos\ el\ estado\ de\ la\ memoria\ con\ el\ formato\ adecuado\ [0\ P1\ 500]...}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00135}00135\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Visualizamos\ quién\ está\ esperando\ (Cola\ de\ espera)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}COLA\ ESPERA:\ "{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ esperando\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;\ j<4;\ j++)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!procesos[j].en\_memoria\ \&\&\ !procesos[j].finalizado\ \&\&\ procesos[j].t\_llegada\ <=\ reloj\_sim-\/1)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}[\%s\ req:\%d]\ "{}},\ procesos[j].nombre,\ procesos[j].mem\_requerida);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ esperando++;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00144}00144\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(esperando\ ==\ 0)\ printf(\textcolor{stringliteral}{"{}(Nadie)"{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00146}00146\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00147}00147\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ getchar();\ \textcolor{comment}{//\ Descomenta\ para\ ir\ paso\ a\ paso\ con\ ENTER}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00149}00149\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00150}00150\ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00151}00151\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00173}\mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{00173}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{run\_gui}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ *procesos,\ \textcolor{keywordtype}{int}\ num\_procesos)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00174}00174\ \ \ \ \ InitWindow(\mbox{\hyperlink{main_8c_a2e6ef411e0ff00ad889788b6cde701b5}{WIN\_WIDTH}},\ \mbox{\hyperlink{main_8c_a0a33b1743038db1adbbf1045aa839b38}{WIN\_HEIGHT}},\ \textcolor{stringliteral}{"{}Gestomemoria\ -\/\ Memory\ Simulator"{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00175}00175\ \ \ \ \ SetTargetFPS(60);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ our\ game\ to\ run\ at\ 60\ frames-\/per-\/second}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00176}00176\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00177}00177\ \ \ \ \ \mbox{\hyperlink{ficheros_8c_a695ae3585fde2a3664394810b70fe928}{limpiar\_log}}(\textcolor{stringliteral}{"{}particiones.txt"{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00178}00178\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00179}00179\ \ \ \ \ \textcolor{keywordtype}{int}\ reloj\_sim\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00180}00180\ \ \ \ \ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}}\ algoritmo\_actual\ =\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}{ALGO\_PRIMER\_HUECO}};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00181}00181\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00182}00182\ \ \ \ \ \textcolor{comment}{//Variables\ para\ repro\ automatica}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00183}00183\ \ \ \ \ \textcolor{keywordtype}{bool}\ auto\_play\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00184}00184\ \ \ \ \ \textcolor{keywordtype}{float}\ tiempo\_acumulado\ =\ 0.0f;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00185}00185\ \ \ \ \ \textcolor{keywordtype}{float}\ velocidad\ =\ 1.0f;\ \textcolor{comment}{//\ 1\ segundo\ por\ tick}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00186}00186\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00187}00187\ \ \ \ \ \textcolor{comment}{//\ Variables\ para\ los\ colores\ de\ los\ procesos}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00188}00188\ \ \ \ \ Color\ colores\_prcesos[]\ =\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00189}00189\ \ \ \ \ \ \ \ \ SKYBLUE,}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00190}00190\ \ \ \ \ \ \ \ \ PINK,}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00191}00191\ \ \ \ \ \ \ \ \ ORANGE,}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00192}00192\ \ \ \ \ \ \ \ \ LIME,}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00193}00193\ \ \ \ \ \ \ \ \ GOLD,}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00194}00194\ \ \ \ \ \ \ \ \ GREEN,}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00195}00195\ \ \ \ \ \ \ \ \ VIOLET,}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ MAROON,}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00197}00197\ \ \ \ \ \ \ \ \ BLUE,}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00198}00198\ \ \ \ \ \ \ \ \ RED,}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00199}00199\ \ \ \ \ \ \ \ \ PURPLE}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00200}00200\ \ \ \ \ \};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00201}00201\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_colores\ =\ \textcolor{keyword}{sizeof}(colores\_prcesos)\ /\ \textcolor{keyword}{sizeof}(colores\_prcesos[0]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00202}00202\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00203}00203\ \ \ \ \ \textcolor{comment}{//\ Main\ app\ loop}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00204}00204\ \ \ \ \ \textcolor{keywordflow}{while}\ (!WindowShouldClose())\ \ \ \ \textcolor{comment}{//\ Detect\ window\ close\ button\ or\ ESC\ key}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00205}00205\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00120}00120\ \ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_total\ =\ 0;\ \textcolor{comment}{//\ Simulamos\ 20\ instantes}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00122}00122\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00123}00123\ \ \ \ \ \ \ \ \ tiempo\_total\ +=\ procesos[i].\mbox{\hyperlink{struct_proceso_a4c0f04511fcff56f38175cf4486f09a7}{t\_ejecucion}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00124}00124\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00126}00126\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ BUCLE\ DE\ SIMULACIÓN\ (10\ Instantes)\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00127}00127\ \ \ \ \ printf(\textcolor{stringliteral}{"{}===\ INICIO\ DE\ LA\ SIMULACIÓN\ COMPLEJA\ ===\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00128}00128\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Memoria\ Total:\ \%d\(\backslash\)n\(\backslash\)n"{}},\ \mbox{\hyperlink{group__constantes_ga6264fff1e0ed016a7ce3d58e0534ea00}{MEMORIA\_TOTAL}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00130}00130\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ tiempo\_total;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Llamamos\ al\ motor\ de\ tiempo}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b}{avanzar\_tiempo}}(\&m,\ procesos,\ num\_procesos,\ \&reloj\_sim,\ algoritmo\_actual,\ \textcolor{stringliteral}{"{}particiones\_tui.txt"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Visualizamos\ la\ memoria}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}MEMORIA:\ "{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a6df7a5ff87dd2abca3c64b3dcc88cf5a}{mostrar\_estado}}(\&m);\ \textcolor{comment}{//\ Mostramos\ el\ estado\ de\ la\ memoria\ con\ el\ formato\ adecuado\ [0\ P1\ 500]...}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Visualizamos\ quién\ está\ esperando\ (Cola\ de\ espera)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00139}00139\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}COLA\ ESPERA:\ "{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ esperando\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;\ j<4;\ j++)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!procesos[j].en\_memoria\ \&\&\ !procesos[j].finalizado\ \&\&\ procesos[j].t\_llegada\ <=\ reloj\_sim-\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}[\%s\ req:\%d]\ "{}},\ procesos[j].nombre,\ procesos[j].mem\_requerida);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ esperando++;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00146}00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(esperando\ ==\ 0)\ printf(\textcolor{stringliteral}{"{}(Nadie)"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00149}00149\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00150}00150\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Presiona\ ENTER\ para\ continuar..."{}});\ \textcolor{comment}{//\ <-\/-\/\ AÑADE\ ESTO}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00151}00151\ \ \ \ \ \ \ \ \ fflush(stdout);\ \ \textcolor{comment}{//\ <-\/-\/\ Asegura\ que\ se\ muestre\ antes\ del\ getchar}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00152}00152\ \ \ \ \ \ \ \ \ getchar();\ \textcolor{comment}{//\ Descomenta\ para\ ir\ paso\ a\ paso\ con\ ENTER}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00153}00153\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00154}00154\ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00177}\mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{00177}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{run\_gui}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ *procesos,\ \textcolor{keywordtype}{int}\ num\_procesos)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00178}00178\ \ \ \ \ InitWindow(\mbox{\hyperlink{main_8c_a2e6ef411e0ff00ad889788b6cde701b5}{WIN\_WIDTH}},\ \mbox{\hyperlink{main_8c_a0a33b1743038db1adbbf1045aa839b38}{WIN\_HEIGHT}},\ \textcolor{stringliteral}{"{}Gestomemoria\ -\/\ Memory\ Simulator"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00179}00179\ \ \ \ \ SetTargetFPS(60);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ our\ game\ to\ run\ at\ 60\ frames-\/per-\/second}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00181}00181\ \ \ \ \ \mbox{\hyperlink{ficheros_8c_a695ae3585fde2a3664394810b70fe928}{limpiar\_log}}(\textcolor{stringliteral}{"{}particiones.txt"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00183}00183\ \ \ \ \ \textcolor{keywordtype}{int}\ reloj\_sim\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00184}00184\ \ \ \ \ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}}\ algoritmo\_actual\ =\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}{ALGO\_PRIMER\_HUECO}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00186}00186\ \ \ \ \ \textcolor{comment}{//Variables\ para\ repro\ automatica}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00187}00187\ \ \ \ \ \textcolor{keywordtype}{bool}\ auto\_play\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00188}00188\ \ \ \ \ \textcolor{keywordtype}{float}\ tiempo\_acumulado\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00189}00189\ \ \ \ \ \textcolor{keywordtype}{float}\ velocidad\ =\ 1.0f;\ \textcolor{comment}{//\ 1\ segundo\ por\ tick}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00191}00191\ \ \ \ \ \textcolor{comment}{//\ Variables\ para\ los\ colores\ de\ los\ procesos}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00192}00192\ \ \ \ \ Color\ colores\_prcesos[]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00193}00193\ \ \ \ \ \ \ \ \ SKYBLUE,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00194}00194\ \ \ \ \ \ \ \ \ PINK,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00195}00195\ \ \ \ \ \ \ \ \ ORANGE,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ LIME,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00197}00197\ \ \ \ \ \ \ \ \ GOLD,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00198}00198\ \ \ \ \ \ \ \ \ GREEN,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00199}00199\ \ \ \ \ \ \ \ \ VIOLET,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00200}00200\ \ \ \ \ \ \ \ \ MAROON,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00201}00201\ \ \ \ \ \ \ \ \ BLUE,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00202}00202\ \ \ \ \ \ \ \ \ RED,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00203}00203\ \ \ \ \ \ \ \ \ PURPLE}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00204}00204\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00205}00205\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_colores\ =\ \textcolor{keyword}{sizeof}(colores\_prcesos)\ /\ \textcolor{keyword}{sizeof}(colores\_prcesos[0]);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00206}00206\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Opcion\ A:\ Paso\ Manual(Tecla\ espacio)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00208}00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsKeyPressed(KEY\_SPACE))}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b}{avanzar\_tiempo}}(m,\ procesos,\ num\_procesos,\ \&reloj\_sim,\ algoritmo\_actual,\ \textcolor{stringliteral}{"{}particiones.txt"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00207}00207\ \ \ \ \ \textcolor{comment}{//\ Main\ app\ loop}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00208}00208\ \ \ \ \ \textcolor{keywordflow}{while}\ (!WindowShouldClose())\ \ \ \ \textcolor{comment}{//\ Detect\ window\ close\ button\ or\ ESC\ key}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00209}00209\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00210}00210\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Opcion\ B:\ Auto\ Play(Tecla\ P)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00212}00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsKeyPressed(KEY\_P))}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ auto\_play\ =\ !auto\_play;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Opcion\ A:\ Paso\ Manual(Tecla\ espacio)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00212}00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsKeyPressed(KEY\_SPACE))}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b}{avanzar\_tiempo}}(m,\ procesos,\ num\_procesos,\ \&reloj\_sim,\ algoritmo\_actual,\ \textcolor{stringliteral}{"{}particiones.txt"{}});}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00214}00214\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Logica\ del\ auto\ play}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00216}00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (auto\_play)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ tiempo\_acumulado\ +=\ GetFrameTime();}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tiempo\_acumulado\ >=\ velocidad)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b}{avanzar\_tiempo}}(m,\ procesos,\ num\_procesos,\ \&reloj\_sim,\ algoritmo\_actual,\ \textcolor{stringliteral}{"{}particiones.txt"{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tiempo\_acumulado\ =\ 0.0f;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00222}00222\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00223}00223\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Opcion\ C:\ Resetear\ (Tecla\ R)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsKeyPressed(KEY\_R))\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a7525ea6570ccf752c8e9394b62042380}{inicializar\_memoria}}(m);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ num\_procesos\ =\ \mbox{\hyperlink{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}{cargar\_procesos}}(\textcolor{stringliteral}{"{}entrada.txt"{}},\ procesos);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ reloj\_sim\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ficheros_8c_a695ae3585fde2a3664394810b70fe928}{limpiar\_log}}(\textcolor{stringliteral}{"{}particiones.txt"{}});}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ auto\_play\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00231}00231\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00232}00232\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00235}00235\ \ \ \ \ \ \ \ \ BeginDrawing();}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00236}00236\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ ClearBackground(RAYWHITE);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Textos\ de\ informacion}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(\textcolor{stringliteral}{"{}Simulador\ de\ Gestion\ de\ Memoria"{}},\ 20,\ 20,\ 30,\ DARKGRAY);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(TextFormat(\textcolor{stringliteral}{"{}Instante\ Actual:\ \%d"{}},\ reloj\_sim),\ 20,\ 60,\ 20,\ BLACK);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00242}00242\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(\textcolor{stringliteral}{"{}Pulsa\ ESPACIO\ para\ avanzar,\ P\ para\ auto\ play,\ R\ para\ resetear"{}},\ 20,\ 90,\ 20,\ DARKGRAY);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(\textcolor{stringliteral}{"{}Pulsa\ ESC\ para\ salir"{}},\ 20,\ 120,\ 20,\ DARKGRAY);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00245}00245\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (auto\_play)\ DrawText(\textcolor{stringliteral}{"{}Auto\ Play:\ ON\ (P\ para\ Desactivar)"{}},\ 20,\ 150,\ 20,\ DARKGREEN);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ DrawText(\textcolor{stringliteral}{"{}Auto\ Play:\ OFF\ (P\ para\ Activar)"{}},\ 20,\ 150,\ 20,\ RED);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(TextFormat(\textcolor{stringliteral}{"{}Procesos\ Cargados:\ \%d"{}},\ num\_procesos),\ 20,\ 180,\ 15,\ DARKGRAY);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00250}00250\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Dibujar\ la\ barra\ de\ memoria}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Escala:\ Pantalla\ /\ Memoria\ -\/>\ WIN\_WIDTH\ /\ MEMORIA\_TOTAL}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ancho\_util\ =\ \mbox{\hyperlink{main_8c_a2e6ef411e0ff00ad889788b6cde701b5}{WIN\_WIDTH}}\ -\/\ \mbox{\hyperlink{main_8c_ac1184c172b23102c55ee631d560773b2}{MARGEN\_IZQ}}\ -\/\ \mbox{\hyperlink{main_8c_a06cd488103fa8b4b583db7716d185244}{MARGEN\_DER}};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ escala\ =\ ancho\_util\ /\ \mbox{\hyperlink{group__constantes_ga6264fff1e0ed016a7ce3d58e0534ea00}{MEMORIA\_TOTAL}};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00255}00255\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}};\ i++)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_particion}{Particion}}\ p\ =\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i];}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00258}00258\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Coordenadas}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ \mbox{\hyperlink{main_8c_ac1184c172b23102c55ee631d560773b2}{MARGEN\_IZQ}}\ +\ (p.\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}}\ *\ escala);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ancho\ =\ p.\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ *\ escala;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Opcion\ B:\ Auto\ Play(Tecla\ P)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00216}00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsKeyPressed(KEY\_P))}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ auto\_play\ =\ !auto\_play;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00219}00219\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Logica\ del\ auto\ play}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00220}00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (auto\_play)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ tiempo\_acumulado\ +=\ GetFrameTime();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tiempo\_acumulado\ >=\ velocidad)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b}{avanzar\_tiempo}}(m,\ procesos,\ num\_procesos,\ \&reloj\_sim,\ algoritmo\_actual,\ \textcolor{stringliteral}{"{}particiones.txt"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tiempo\_acumulado\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00226}00226\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Opcion\ C:\ Resetear\ (Tecla\ R)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsKeyPressed(KEY\_R))\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a7525ea6570ccf752c8e9394b62042380}{inicializar\_memoria}}(m);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ num\_procesos\ =\ \mbox{\hyperlink{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}{cargar\_procesos}}(\textcolor{stringliteral}{"{}entrada.txt"{}},\ procesos);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ reloj\_sim\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ficheros_8c_a695ae3585fde2a3664394810b70fe928}{limpiar\_log}}(\textcolor{stringliteral}{"{}particiones.txt"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ auto\_play\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00235}00235\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00236}00236\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00238}00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00239}00239\ \ \ \ \ \ \ \ \ BeginDrawing();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ ClearBackground(RAYWHITE);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Textos\ de\ informacion}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(\textcolor{stringliteral}{"{}Simulador\ de\ Gestion\ de\ Memoria"{}},\ 20,\ 20,\ 30,\ DARKGRAY);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(TextFormat(\textcolor{stringliteral}{"{}Instante\ Actual:\ \%d"{}},\ reloj\_sim),\ 20,\ 60,\ 20,\ BLACK);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(\textcolor{stringliteral}{"{}Pulsa\ ESPACIO\ para\ avanzar,\ P\ para\ auto\ play,\ R\ para\ resetear"{}},\ 20,\ 90,\ 20,\ DARKGRAY);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(\textcolor{stringliteral}{"{}Pulsa\ ESC\ para\ salir"{}},\ 20,\ 120,\ 20,\ DARKGRAY);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (auto\_play)\ DrawText(\textcolor{stringliteral}{"{}Auto\ Play:\ ON\ (P\ para\ Desactivar)"{}},\ 20,\ 150,\ 20,\ DARKGREEN);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ DrawText(\textcolor{stringliteral}{"{}Auto\ Play:\ OFF\ (P\ para\ Activar)"{}},\ 20,\ 150,\ 20,\ RED);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(TextFormat(\textcolor{stringliteral}{"{}Procesos\ Cargados:\ \%d"{}},\ num\_procesos),\ 20,\ 180,\ 15,\ DARKGRAY);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Dibujar\ la\ barra\ de\ memoria}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Escala:\ Pantalla\ /\ Memoria\ -\/>\ WIN\_WIDTH\ /\ MEMORIA\_TOTAL}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ancho\_util\ =\ \mbox{\hyperlink{main_8c_a2e6ef411e0ff00ad889788b6cde701b5}{WIN\_WIDTH}}\ -\/\ \mbox{\hyperlink{main_8c_ac1184c172b23102c55ee631d560773b2}{MARGEN\_IZQ}}\ -\/\ \mbox{\hyperlink{main_8c_a06cd488103fa8b4b583db7716d185244}{MARGEN\_DER}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ escala\ =\ ancho\_util\ /\ \mbox{\hyperlink{group__constantes_ga6264fff1e0ed016a7ce3d58e0534ea00}{MEMORIA\_TOTAL}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_particion}{Particion}}\ p\ =\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i];}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00262}00262\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Colores\ de\ los\ bloques}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ colorBloque;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ colorHueco\ =\ (Color)\{227,\ 217,\ 132,\ 255\};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Coordenadas}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ \mbox{\hyperlink{main_8c_ac1184c172b23102c55ee631d560773b2}{MARGEN\_IZQ}}\ +\ (p.\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}}\ *\ escala);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ancho\ =\ p.\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ *\ escala;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00266}00266\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determinar\ color\ segun\ estado}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ es\ hueco,\ colorHueco,\ si\ es\ proceso,\ color\ segun\ indice\ de\ color\_procesos}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p.\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ ==\ 0)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorBloque\ =\ colorHueco;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Buscar\ indice\ del\ proceso\ por\ nombre\ para\ asignar\ color}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ indice\_color\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ num\_procesos;\ j++)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(procesos[j].nombre,\ p.\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}})\ ==\ 0)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ hay\ mas\ procesos\ que\ colores,\ reutilizamos\ por\ ejemplo,\ con\ 6\ colores\ en\ 15\ procesos,\ el\ 15\ usará\ el\ color\ 3}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indice\_color\ =\ j\ \%\ num\_colores;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorBloque\ =\ colores\_prcesos[indice\_color];}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00283}00283\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dibujar\ el\ rectangulo}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawRectangle(x,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}},\ ancho,\ \mbox{\hyperlink{main_8c_a4b57ead6f5dbf1347696e48526823ef3}{ALTO\_BARRA}},\ colorBloque);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawRectangleLines(x,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}},\ ancho,\ \mbox{\hyperlink{main_8c_a4b57ead6f5dbf1347696e48526823ef3}{ALTO\_BARRA}},\ Fade(BLACK,\ 0.5f));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Colores\ de\ los\ bloques}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ colorBloque;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Color\ colorHueco\ =\ (Color)\{227,\ 217,\ 132,\ 255\};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determinar\ color\ segun\ estado}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ es\ hueco,\ colorHueco,\ si\ es\ proceso,\ color\ segun\ indice\ de\ color\_procesos}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p.\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorBloque\ =\ colorHueco;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Buscar\ indice\ del\ proceso\ por\ nombre\ para\ asignar\ color}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ indice\_color\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ num\_procesos;\ j++)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(procesos[j].nombre,\ p.\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}})\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ hay\ mas\ procesos\ que\ colores,\ reutilizamos\ por\ ejemplo,\ con\ 6\ colores\ en\ 15\ procesos,\ el\ 15\ usará\ el\ color\ 3}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indice\_color\ =\ j\ \%\ num\_colores;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorBloque\ =\ colores\_prcesos[indice\_color];}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00287}00287\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Informacion\ del\ bloque\ (si\ cabe)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ancho\ >\ 40)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(p.\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ x\ +\ 5,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}}\ +\ 35,\ 15,\ BLACK);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(TextFormat(\textcolor{stringliteral}{"{}\%d"{}},\ p.\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}),\ x\ +\ 5,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}}\ +\ 50,\ 15,\ DARKGRAY);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00293}00293\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Direccion\ de\ memoria\ (arriba\ del\ bloque)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(TextFormat(\textcolor{stringliteral}{"{}\%d"{}},\ p.\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}}),\ x,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}}\ -\/\ 15,\ 15,\ BLACK);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dibujar\ el\ rectangulo}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawRectangle(x,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}},\ ancho,\ \mbox{\hyperlink{main_8c_a4b57ead6f5dbf1347696e48526823ef3}{ALTO\_BARRA}},\ colorBloque);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawRectangleLines(x,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}},\ ancho,\ \mbox{\hyperlink{main_8c_a4b57ead6f5dbf1347696e48526823ef3}{ALTO\_BARRA}},\ Fade(BLACK,\ 0.5f));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Informacion\ del\ bloque\ (si\ cabe)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ancho\ >\ 40)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(p.\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ x\ +\ 5,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}}\ +\ 35,\ 15,\ BLACK);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(TextFormat(\textcolor{stringliteral}{"{}\%d"{}},\ p.\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}),\ x\ +\ 5,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}}\ +\ 50,\ 15,\ DARKGRAY);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00297}00297\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Marca\ final\ (2000)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(\textcolor{stringliteral}{"{}2000"{}},\ \mbox{\hyperlink{main_8c_ac1184c172b23102c55ee631d560773b2}{MARGEN\_IZQ}}\ +\ ancho\_util\ -\/\ 30,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}}\ -\/\ 15,\ 15,\ BLACK);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00300}00300\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tablas\ de\ procesos}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00303}00303\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ DIBUJAR\ TABLA\ DE\ PROCESOS\ (Debajo\ de\ la\ barra\ de\ memoria)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00304}00304\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00305}00305\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ y\_inicio\_tabla\ =\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}}\ +\ \mbox{\hyperlink{main_8c_a4b57ead6f5dbf1347696e48526823ef3}{ALTO\_BARRA}}\ +\ 40;\ \textcolor{comment}{//\ Empezamos\ 40px\ debajo\ de\ la\ barra}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\_columna\ =\ 20;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ancho\_columna\ =\ 120;\ \textcolor{comment}{//\ Espacio\ entre\ columnas}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00308}00308\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00309}00309\ \ \ \ \ \ \ \ \ DrawText(\textcolor{stringliteral}{"{}ESTADO\ DE\ PROCESOS:"{}},\ x\_columna,\ y\_inicio\_tabla\ -\/\ 25,\ 20,\ DARKGRAY);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00310}00310\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00311}00311\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cabecera\ simple}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00312}00312\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DrawText("{}ID\ \ \ Mem\ \ \ Vida\ \ \ Estado"{},\ x\_columna,\ y\_inicio\_tabla,\ 10,\ BLACK);}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00313}00313\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00314}00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solo\ dibujamos\ si\ cabe\ en\ pantalla,\ si\ hay\ muchos\ habría\ que\ hacer\ paginación}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (y\_inicio\_tabla\ +\ (i\ *\ 20)\ >\ \mbox{\hyperlink{main_8c_a0a33b1743038db1adbbf1045aa839b38}{WIN\_HEIGHT}}\ -\/\ 20)\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Direccion\ de\ memoria\ (arriba\ del\ bloque)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(TextFormat(\textcolor{stringliteral}{"{}\%d"{}},\ p.\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}}),\ x,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}}\ -\/\ 15,\ 15,\ BLACK);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Marca\ final\ (2000)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(\textcolor{stringliteral}{"{}2000"{}},\ \mbox{\hyperlink{main_8c_ac1184c172b23102c55ee631d560773b2}{MARGEN\_IZQ}}\ +\ ancho\_util\ -\/\ 30,\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}}\ -\/\ 15,\ 15,\ BLACK);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00304}00304\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tablas\ de\ procesos}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ DIBUJAR\ TABLA\ DE\ PROCESOS\ (Debajo\ de\ la\ barra\ de\ memoria)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00308}00308\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00309}00309\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ y\_inicio\_tabla\ =\ \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\_BARRA}}\ +\ \mbox{\hyperlink{main_8c_a4b57ead6f5dbf1347696e48526823ef3}{ALTO\_BARRA}}\ +\ 40;\ \textcolor{comment}{//\ Empezamos\ 40px\ debajo\ de\ la\ barra}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00310}00310\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\_columna\ =\ 20;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00311}00311\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ancho\_columna\ =\ 120;\ \textcolor{comment}{//\ Espacio\ entre\ columnas}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00312}00312\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00313}00313\ \ \ \ \ \ \ \ \ DrawText(\textcolor{stringliteral}{"{}ESTADO\ DE\ PROCESOS:"{}},\ x\_columna,\ y\_inicio\_tabla\ -\/\ 25,\ 20,\ DARKGRAY);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cabecera\ simple}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00316}00316\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DrawText("{}ID\ \ \ Mem\ \ \ Vida\ \ \ Estado"{},\ x\_columna,\ y\_inicio\_tabla,\ 10,\ BLACK);}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00317}00317\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determinar\ Color\ y\ Estado\ Texto}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ Color\ colorEstado\ =\ LIGHTGRAY;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ textoEstado\ =\ \textcolor{stringliteral}{"{}FUTURO"{}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00318}00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solo\ dibujamos\ si\ cabe\ en\ pantalla,\ si\ hay\ muchos\ habría\ que\ hacer\ paginación}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (y\_inicio\_tabla\ +\ (i\ *\ 20)\ >\ \mbox{\hyperlink{main_8c_a0a33b1743038db1adbbf1045aa839b38}{WIN\_HEIGHT}}\ -\/\ 20)\ \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00321}00321\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (procesos[i].finalizado)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorEstado\ =\ GRAY;\ \ \ \ \ \textcolor{comment}{//\ Gris\ oscuro\ para\ acabados}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textoEstado\ =\ \textcolor{stringliteral}{"{}FIN"{}};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (procesos[i].en\_memoria)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorEstado\ =\ GREEN;\ \ \ \ \textcolor{comment}{//\ Verde\ para\ activos}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textoEstado\ =\ \textcolor{stringliteral}{"{}ACTIVO"{}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determinar\ Color\ y\ Estado\ Texto}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ Color\ colorEstado\ =\ LIGHTGRAY;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ textoEstado\ =\ \textcolor{stringliteral}{"{}FUTURO"{}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (procesos[i].finalizado)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorEstado\ =\ GRAY;\ \ \ \ \ \textcolor{comment}{//\ Gris\ oscuro\ para\ acabados}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textoEstado\ =\ \textcolor{stringliteral}{"{}FIN"{}};}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (procesos[i].t\_llegada\ <=\ reloj\_sim)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorEstado\ =\ RED;\ \ \ \ \ \ \textcolor{comment}{//\ Rojo\ para\ cola\ de\ espera}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textoEstado\ =\ \textcolor{stringliteral}{"{}COLA\ DE\ ESPERA"{}};}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorEstado\ =\ LIGHTGRAY;\ \textcolor{comment}{//\ Gris\ claro\ para\ los\ que\ aun\ no\ llegan}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textoEstado\ =\ TextFormat(\textcolor{stringliteral}{"{}T=\%d"{}},\ procesos[i].t\_llegada);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (procesos[i].en\_memoria)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorEstado\ =\ GREEN;\ \ \ \ \textcolor{comment}{//\ Verde\ para\ activos}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textoEstado\ =\ \textcolor{stringliteral}{"{}ACTIVO"{}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (procesos[i].t\_llegada\ <=\ reloj\_sim)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorEstado\ =\ RED;\ \ \ \ \ \ \textcolor{comment}{//\ Rojo\ para\ cola\ de\ espera}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textoEstado\ =\ \textcolor{stringliteral}{"{}COLA\ DE\ ESPERA"{}};}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00338}00338\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dibujamos\ la\ fila\ del\ proceso}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculamos\ posición\ (hacemos\ varias\ columnas\ si\ hay\ muchos,\ opcional)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ fila\_y\ =\ y\_inicio\_tabla\ +\ (i\ *\ 20);\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ ID\ y\ Tamaño}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(TextFormat(\textcolor{stringliteral}{"{}\%s\ (\%d)"{}},\ procesos[i].nombre,\ procesos[i].mem\_requerida),\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\_columna,\ fila\_y,\ 20,\ BLACK);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colorEstado\ =\ LIGHTGRAY;\ \textcolor{comment}{//\ Gris\ claro\ para\ los\ que\ aun\ no\ llegan}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textoEstado\ =\ TextFormat(\textcolor{stringliteral}{"{}T=\%d"{}},\ procesos[i].t\_llegada);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00342}00342\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dibujamos\ la\ fila\ del\ proceso}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculamos\ posición\ (hacemos\ varias\ columnas\ si\ hay\ muchos,\ opcional)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ fila\_y\ =\ y\_inicio\_tabla\ +\ (i\ *\ 20);\ }
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Barra\ de\ vida\ (Pequeña\ barrita\ visual)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (procesos[i].en\_memoria)\ \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vida\ restante\ vs\ Total}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ porcentaje\ =\ (float)procesos[i].t\_restante\ /\ procesos[i].t\_ejecucion;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawRectangle(x\_columna\ +\ 100,\ fila\_y\ +\ 5,\ 50\ *\ porcentaje,\ 10,\ BLUE);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawRectangleLines(x\_columna\ +\ 100,\ fila\_y\ +\ 5,\ 50,\ 10,\ BLACK);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00354}00354\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Estado\ (Texto\ coloreado)}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(textoEstado,\ x\_columna\ +\ 160,\ fila\_y,\ 20,\ colorEstado);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00357}00357\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ ID\ y\ Tamaño}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(TextFormat(\textcolor{stringliteral}{"{}\%s\ (\%d)"{}},\ procesos[i].nombre,\ procesos[i].mem\_requerida),\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\_columna,\ fila\_y,\ 20,\ BLACK);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Barra\ de\ vida\ (Pequeña\ barrita\ visual)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (procesos[i].en\_memoria)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vida\ restante\ vs\ Total}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ porcentaje\ =\ (float)procesos[i].t\_restante\ /\ procesos[i].t\_ejecucion;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawRectangle(x\_columna\ +\ 100,\ fila\_y\ +\ 5,\ 50\ *\ porcentaje,\ 10,\ BLUE);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawRectangleLines(x\_columna\ +\ 100,\ fila\_y\ +\ 5,\ 50,\ 10,\ BLACK);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00358}00358\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00359}00359\ \ \ \ \ \ \ \ \ EndDrawing();}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00360}00360\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00361}00361\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Estado\ (Texto\ coloreado)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ DrawText(textoEstado,\ x\_columna\ +\ 160,\ fila\_y,\ 20,\ colorEstado);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00361}00361\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00362}00362\ }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00363}00363\ \ \ \ \ \textcolor{comment}{//\ De-\/Initialization}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00364}00364\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00365}00365\ \ \ \ \ CloseWindow();\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Close\ window\ and\ OpenGL\ context}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00366}00366\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00367}00367\ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00363}00363\ \ \ \ \ \ \ \ \ EndDrawing();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00364}00364\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00365}00365\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00366}00366\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00367}00367\ \ \ \ \ \textcolor{comment}{//\ De-\/Initialization}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00368}00368\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00369}00369\ \ \ \ \ CloseWindow();\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Close\ window\ and\ OpenGL\ context}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00370}00370\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00371}00371\ \}}
 
 \end{DoxyCode}

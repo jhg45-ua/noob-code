@@ -5,7 +5,7 @@ var searchData=
   ['de_20compilación_20con_20c17_2',['Error de compilación con C17',['../install.html#autotoc_md24',1,'']]],
   ['de_20configuración_3',['Constantes de Configuración',['../index.html#autotoc_md11',1,'']]],
   ['de_20datos_20principales_4',['Estructuras de Datos Principales',['../architecture.html#autotoc_md27',1,'']]],
-  ['de_20desarrollo_5',['Notas de Desarrollo',['../changelog.html#autotoc_md48',1,'']]],
+  ['de_20desarrollo_5',['Notas de Desarrollo',['../changelog.html#autotoc_md52',1,'']]],
   ['de_20ejecución_6',['Flujo de Ejecución',['../architecture.html#autotoc_md26',1,'']]],
   ['de_20entrada_7',['Formato del Archivo de Entrada',['../index.html#autotoc_md8',1,'']]],
   ['de_20fork_8',['Uso de fork()',['../architecture.html#autotoc_md37',1,'']]],
@@ -16,12 +16,12 @@ var searchData=
   ['debian_13',['Linux (Ubuntu/Debian)',['../install.html#autotoc_md20',1,'']]],
   ['del_20archivo_20de_20entrada_14',['Formato del Archivo de Entrada',['../index.html#autotoc_md8',1,'']]],
   ['del_20proyecto_15',['Arquitectura del Proyecto',['../index.html#autotoc_md10',1,'']]],
-  ['del_20proyecto_16',['Estructura del proyecto',['../changelog.html#autotoc_md49',1,'']]],
+  ['del_20proyecto_16',['Estructura del proyecto',['../changelog.html#autotoc_md53',1,'']]],
   ['del_20sistema_17',['Arquitectura del Sistema',['../architecture.html',1,'']]],
   ['dependencias_20con_20homebrew_18',['Instalar dependencias con Homebrew',['../install.html#autotoc_md17',1,'']]],
-  ['desarrollo_19',['Notas de Desarrollo',['../changelog.html#autotoc_md48',1,'']]],
+  ['desarrollo_19',['Notas de Desarrollo',['../changelog.html#autotoc_md52',1,'']]],
   ['descripción_20',['Descripción',['../index.html#autotoc_md0',1,'']]],
   ['diagrama_20de_20módulos_21',['Diagrama de Módulos',['../architecture.html#autotoc_md25',1,'']]],
   ['documentación_22',['📖 Documentación',['../index.html#autotoc_md2',1,'']]],
-  ['documentación_23',['Generar documentación',['../changelog.html#autotoc_md50',1,'']]]
+  ['documentación_23',['Generar documentación',['../changelog.html#autotoc_md54',1,'']]]
 ];

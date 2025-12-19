@@ -9,10 +9,12 @@ Punto de entrada del simulador de gestión de memoria.
 {\ttfamily \#include "{}sim\+\_\+engine.\+h"{}}\newline
 {\ttfamily \#include "{}ficheros.\+h"{}}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
 {\ttfamily \#include $<$sys/wait.\+h$>$}\newline
-Gráfico de dependencias incluidas en main.\+c\+:\nopagebreak
+Gráfico de dependencias incluidas en main.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -86,11 +88,11 @@ Alto de la barra de memoria.
 
 
 
-Definición en la línea \mbox{\hyperlink{main_8c_source_l00033}{33}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00034}{34}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
 
 
 
-Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+Referenciado por \mbox{\hyperlink{main_8c_source_l00177}{run\+\_\+gui()}}.
 
 \Hypertarget{main_8c_a06cd488103fa8b4b583db7716d185244}\index{main.c@{main.c}!MARGEN\_DER@{MARGEN\_DER}}
 \index{MARGEN\_DER@{MARGEN\_DER}!main.c@{main.c}}
@@ -104,11 +106,11 @@ Margen derecho de la interfaz.
 
 
 
-Definición en la línea \mbox{\hyperlink{main_8c_source_l00037}{37}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00038}{38}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
 
 
 
-Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+Referenciado por \mbox{\hyperlink{main_8c_source_l00177}{run\+\_\+gui()}}.
 
 \Hypertarget{main_8c_ac1184c172b23102c55ee631d560773b2}\index{main.c@{main.c}!MARGEN\_IZQ@{MARGEN\_IZQ}}
 \index{MARGEN\_IZQ@{MARGEN\_IZQ}!main.c@{main.c}}
@@ -122,11 +124,11 @@ Margen izquierdo de la interfaz.
 
 
 
-Definición en la línea \mbox{\hyperlink{main_8c_source_l00035}{35}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00036}{36}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
 
 
 
-Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+Referenciado por \mbox{\hyperlink{main_8c_source_l00177}{run\+\_\+gui()}}.
 
 \Hypertarget{main_8c_a0a33b1743038db1adbbf1045aa839b38}\index{main.c@{main.c}!WIN\_HEIGHT@{WIN\_HEIGHT}}
 \index{WIN\_HEIGHT@{WIN\_HEIGHT}!main.c@{main.c}}
@@ -140,11 +142,11 @@ Alto de la ventana gráfica en píxeles.
 
 
 
-Definición en la línea \mbox{\hyperlink{main_8c_source_l00029}{29}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00030}{30}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
 
 
 
-Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+Referenciado por \mbox{\hyperlink{main_8c_source_l00177}{run\+\_\+gui()}}.
 
 \Hypertarget{main_8c_a2e6ef411e0ff00ad889788b6cde701b5}\index{main.c@{main.c}!WIN\_WIDTH@{WIN\_WIDTH}}
 \index{WIN\_WIDTH@{WIN\_WIDTH}!main.c@{main.c}}
@@ -158,11 +160,11 @@ Ancho de la ventana gráfica en píxeles.
 
 
 
-Definición en la línea \mbox{\hyperlink{main_8c_source_l00027}{27}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00028}{28}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
 
 
 
-Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+Referenciado por \mbox{\hyperlink{main_8c_source_l00177}{run\+\_\+gui()}}.
 
 \Hypertarget{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}\index{main.c@{main.c}!Y\_BARRA@{Y\_BARRA}}
 \index{Y\_BARRA@{Y\_BARRA}!main.c@{main.c}}
@@ -176,11 +178,11 @@ Posición Y de la barra de memoria.
 
 
 
-Definición en la línea \mbox{\hyperlink{main_8c_source_l00031}{31}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00032}{32}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
 
 
 
-Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+Referenciado por \mbox{\hyperlink{main_8c_source_l00177}{run\+\_\+gui()}}.
 
 
 
@@ -217,14 +219,13 @@ Crea dos procesos mediante fork()\+:
 \end{DoxyReturn}
 
 
-Definición en la línea \mbox{\hyperlink{main_8c_source_l00056}{56}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00057}{57}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
 
 
 
-Hace referencia a \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{sim__engine_8h_source_l00045}{MAX\+\_\+\+PROCESOS}}, \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}} y \mbox{\hyperlink{main_8c_source_l00095}{test\+\_\+sim()}}.
+Hace referencia a \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{sim__engine_8h_source_l00045}{MAX\+\_\+\+PROCESOS}}, \mbox{\hyperlink{main_8c_source_l00177}{run\+\_\+gui()}} y \mbox{\hyperlink{main_8c_source_l00095}{test\+\_\+sim()}}.
 
-Gráfico de llamadas de esta función\+:
-\nopagebreak
+Gráfico de llamadas de esta función\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -273,18 +274,17 @@ Velocidad auto-\/play\+: 1 tick/segundo
 \end{DoxyNote}
 
 
-Definición en la línea \mbox{\hyperlink{main_8c_source_l00173}{173}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00177}{177}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
 
 
 
-Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00103}{ALGO\+\_\+\+PRIMER\+\_\+\+HUECO}}, \mbox{\hyperlink{main_8c_source_l00033}{ALTO\+\_\+\+BARRA}}, \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}}, \mbox{\hyperlink{sim__engine_8h_source_l00092}{Memoria\+::cant\+\_\+particiones}}, \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}, \mbox{\hyperlink{sim__engine_8h_source_l00078}{Particion\+::dir\+\_\+inicio}}, \mbox{\hyperlink{sim__engine_8h_source_l00080}{Particion\+::estado}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{ficheros_8c_source_l00094}{limpiar\+\_\+log()}}, \mbox{\hyperlink{main_8c_source_l00037}{MARGEN\+\_\+\+DER}}, \mbox{\hyperlink{main_8c_source_l00035}{MARGEN\+\_\+\+IZQ}}, \mbox{\hyperlink{sim__engine_8h_source_l00036}{MEMORIA\+\_\+\+TOTAL}}, \mbox{\hyperlink{sim__engine_8h_source_l00081}{Particion\+::nombre\+\_\+proceso}}, \mbox{\hyperlink{sim__engine_8h_source_l00091}{Memoria\+::particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00079}{Particion\+::tamano}}, \mbox{\hyperlink{main_8c_source_l00029}{WIN\+\_\+\+HEIGHT}}, \mbox{\hyperlink{main_8c_source_l00027}{WIN\+\_\+\+WIDTH}} y \mbox{\hyperlink{main_8c_source_l00031}{Y\+\_\+\+BARRA}}.
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00103}{ALGO\+\_\+\+PRIMER\+\_\+\+HUECO}}, \mbox{\hyperlink{main_8c_source_l00034}{ALTO\+\_\+\+BARRA}}, \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}}, \mbox{\hyperlink{sim__engine_8h_source_l00092}{Memoria\+::cant\+\_\+particiones}}, \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}, \mbox{\hyperlink{sim__engine_8h_source_l00078}{Particion\+::dir\+\_\+inicio}}, \mbox{\hyperlink{sim__engine_8h_source_l00080}{Particion\+::estado}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{ficheros_8c_source_l00094}{limpiar\+\_\+log()}}, \mbox{\hyperlink{main_8c_source_l00038}{MARGEN\+\_\+\+DER}}, \mbox{\hyperlink{main_8c_source_l00036}{MARGEN\+\_\+\+IZQ}}, \mbox{\hyperlink{sim__engine_8h_source_l00036}{MEMORIA\+\_\+\+TOTAL}}, \mbox{\hyperlink{sim__engine_8h_source_l00081}{Particion\+::nombre\+\_\+proceso}}, \mbox{\hyperlink{sim__engine_8h_source_l00091}{Memoria\+::particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00079}{Particion\+::tamano}}, \mbox{\hyperlink{main_8c_source_l00030}{WIN\+\_\+\+HEIGHT}}, \mbox{\hyperlink{main_8c_source_l00028}{WIN\+\_\+\+WIDTH}} y \mbox{\hyperlink{main_8c_source_l00032}{Y\+\_\+\+BARRA}}.
 
 
 
-Referenciado por \mbox{\hyperlink{main_8c_source_l00056}{main()}}.
+Referenciado por \mbox{\hyperlink{main_8c_source_l00057}{main()}}.
 
-Gráfico de llamadas de esta función\+:
-\nopagebreak
+Gráfico de llamadas de esta función\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -327,10 +327,9 @@ Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00103}{ALGO\+\_\+\+PRI
 
 
 
-Referenciado por \mbox{\hyperlink{main_8c_source_l00056}{main()}}.
+Referenciado por \mbox{\hyperlink{main_8c_source_l00057}{main()}}.
 
-Gráfico de llamadas de esta función\+:
-\nopagebreak
+Gráfico de llamadas de esta función\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

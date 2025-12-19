@@ -51,11 +51,15 @@ Simulador visual de algoritmos de gestión de memoria dinámica con particiones 
 \end{DoxyCode}
 
 
-El programa ejecuta dos procesos en paralelo\+:
-\begin{DoxyItemize}
+El programa ejecuta dos procesos de forma secuencial\+:
+\begin{DoxyEnumerate}
 \item {\bfseries{\doxylink{struct_proceso}{Proceso} hijo}}\+: Interfaz gráfica (GUI) con Raylib
-\item {\bfseries{\doxylink{struct_proceso}{Proceso} padre}}\+: Interfaz de terminal (TUI) para depuración
-\end{DoxyItemize}\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{Controles (GUI)}{Controles (GUI)}}\label{index_autotoc_md7}
+\item {\bfseries{\doxylink{struct_proceso}{Proceso} padre}}\+: Espera a que la GUI termine, luego ejecuta la TUI para depuración
+\end{DoxyEnumerate}
+
+\begin{quote}
+{\bfseries{Nota}}\+: Cierra la ventana de la GUI para iniciar la TUI en terminal \end{quote}
+\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{Controles (GUI)}{Controles (GUI)}}\label{index_autotoc_md7}
 
 \begin{DoxyTable}{2}{}{}{1}
 \SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Tecla  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Acción  \\
