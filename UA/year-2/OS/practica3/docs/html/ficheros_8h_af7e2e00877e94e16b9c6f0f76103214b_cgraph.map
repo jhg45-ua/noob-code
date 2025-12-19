@@ -1,0 +1,5 @@
+<map id="guardar_estado" name="guardar_estado">
+<area shape="rect" id="Node000001" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="5,5,116,31"/>
+<area shape="rect" id="Node000002" href="$group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90" title="Escribe todos los bytes del buffer al descriptor de fichero." alt="" coords="164,5,233,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,16,151,18,145,18,116,21"/>
+</map>

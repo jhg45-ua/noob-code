@@ -1,0 +1,5 @@
+<map id="cargar_procesos" name="cargar_procesos">
+<area shape="rect" id="Node000001" title="Carga los procesos desde un archivo de texto." alt="" coords="5,5,123,31"/>
+<area shape="rect" id="Node000002" href="$group__lectura.html#gabcb213f71028761c5d071d0a78827a6c" title="Lee hasta size bytes de un descriptor a un buffer." alt="" coords="171,5,237,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,16,158,18,153,18,123,21"/>
+</map>

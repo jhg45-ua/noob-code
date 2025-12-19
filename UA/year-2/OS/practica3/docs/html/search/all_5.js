@@ -16,5 +16,6 @@ var searchData=
   ['con_20homebrew_13',['Instalar dependencias con Homebrew',['../install.html#autotoc_md17',1,'']]],
   ['configuración_14',['Configuración',['../group__constantes.html',1,'Constantes de Configuración'],['../index.html#autotoc_md11',1,'Constantes de Configuración']]],
   ['constantes_20de_20configuración_15',['Constantes de Configuración',['../group__constantes.html',1,'Constantes de Configuración'],['../index.html#autotoc_md11',1,'Constantes de Configuración']]],
-  ['controles_20gui_16',['Controles (GUI)',['../index.html#autotoc_md7',1,'']]]
+  ['controles_20gui_16',['Controles (GUI)',['../index.html#autotoc_md7',1,'']]],
+  ['copy_5ffile_17',['copy_file',['../group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938',1,'copy_file(const char *src_path, const char *dst_path):&#160;file_utils.c'],['../group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938',1,'copy_file(const char *src_path, const char *dst_path):&#160;file_utils.c']]]
 ];

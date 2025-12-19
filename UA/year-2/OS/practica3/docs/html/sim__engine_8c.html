@@ -94,7 +94,7 @@ $(function(){initNavTree('sim__engine_8c.html','',''); });
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ficheros_8h_source.html">ficheros.h</a>&quot;</code><br />
-<code>#include &quot;file_utils.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="file__utils_8h_source.html">file_utils.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -102,20 +102,24 @@ Gráfico de dependencias incluidas en sim_engine.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="sim__engine_8c__incl.png" border="0" usemap="#asrc_2sim__engine_8c" loading="lazy" alt=""/></div>
 <map name="asrc_2sim__engine_8c" id="asrc_2sim__engine_8c">
-<area shape="rect" title=" " alt="" coords="137,5,257,31"/>
+<area shape="rect" title=" " alt="" coords="138,5,259,31"/>
 <area shape="rect" href="sim__engine_8h.html" title="Motor de simulación de gestión de memoria con particiones variables." alt="" coords="5,153,104,178"/>
-<area shape="poly" title=" " alt="" coords="135,28,86,46,63,61,45,80,39,94,38,108,45,138,39,139,33,109,34,92,40,78,60,57,84,41,138,24"/>
-<area shape="rect" href="ficheros_8h.html" title="Módulo de entrada/salida para la simulación de memoria." alt="" coords="54,79,132,105"/>
-<area shape="poly" title=" " alt="" coords="178,34,125,72,121,68,181,29"/>
-<area shape="rect" title=" " alt="" coords="157,79,237,105"/>
-<area shape="poly" title=" " alt="" coords="198,29,200,64,195,62,196,34"/>
-<area shape="rect" title=" " alt="" coords="262,79,322,105"/>
-<area shape="poly" title=" " alt="" coords="213,29,266,69,261,70,213,34"/>
-<area shape="rect" title=" " alt="" coords="346,79,411,105"/>
-<area shape="poly" title=" " alt="" coords="228,29,336,72,331,74,228,34"/>
+<area shape="poly" title=" " alt="" coords="136,28,87,46,64,61,46,80,40,94,39,108,45,138,40,139,34,109,35,92,42,78,61,57,85,41,140,24"/>
+<area shape="rect" href="ficheros_8h.html" title="Módulo de entrada/salida para la simulación de memoria." alt="" coords="55,79,134,105"/>
+<area shape="poly" title=" " alt="" coords="179,34,126,72,123,68,183,29"/>
+<area shape="rect" href="file__utils_8h.html" title="Librería de utilidades para operaciones de E/S con descriptores de fichero." alt="" coords="158,79,239,105"/>
+<area shape="poly" title=" " alt="" coords="200,29,201,64,196,62,197,34"/>
+<area shape="rect" title=" " alt="" coords="263,79,323,105"/>
+<area shape="poly" title=" " alt="" coords="215,29,268,69,263,70,214,34"/>
+<area shape="rect" title=" " alt="" coords="348,79,412,105"/>
+<area shape="poly" title=" " alt="" coords="229,29,337,72,332,74,229,34"/>
 <area shape="rect" title=" " alt="" coords="17,226,92,252"/>
 <area shape="poly" title=" " alt="" coords="56,177,57,211,52,210,53,181"/>
-<area shape="poly" title=" " alt="" coords="88,103,71,140,66,138,85,107"/>
+<area shape="poly" title=" " alt="" coords="87,107,71,140,66,138,89,103"/>
+<area shape="rect" title=" " alt="" coords="146,153,214,178"/>
+<area shape="poly" title=" " alt="" coords="197,103,189,139,185,136,194,107"/>
+<area shape="rect" title=" " alt="" coords="238,153,327,178"/>
+<area shape="poly" title=" " alt="" coords="213,103,259,142,254,143,212,108"/>
 </map>
 </div>
 </div>
@@ -360,21 +364,23 @@ Gráfico de llamadas de esta función:</div>
 <div class="dyncontent">
 <div class="center"><img src="sim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b_cgraph.png" border="0" usemap="#asim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b_cgraph" loading="lazy" alt=""/></div>
 <map name="asim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b_cgraph" id="asim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b_cgraph">
-<area shape="rect" title="Avanza un tick en la simulación." alt="" coords="5,104,119,130"/>
-<area shape="rect" href="sim__engine_8c.html#a47eaa39f311ae4f19e76eb9baca390d7" title="Asigna un proceso a la memoria." alt="" coords="167,55,283,80"/>
-<area shape="poly" title=" " alt="" coords="106,101,168,84,163,87,108,106"/>
-<area shape="rect" href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="170,104,280,130"/>
-<area shape="poly" title=" " alt="" coords="118,114,156,116,151,118,119,119"/>
-<area shape="rect" href="sim__engine_8c.html#a9a4646e9f9e8b178131b41945f7a8544" title="Libera un proceso de la memoria." alt="" coords="170,153,280,179"/>
-<area shape="poly" title=" " alt="" coords="107,128,168,147,163,149,107,133"/>
+<area shape="rect" title="Avanza un tick en la simulación." alt="" coords="5,153,119,179"/>
+<area shape="rect" href="sim__engine_8c.html#a47eaa39f311ae4f19e76eb9baca390d7" title="Asigna un proceso a la memoria." alt="" coords="167,104,283,130"/>
+<area shape="poly" title=" " alt="" coords="106,150,168,133,163,136,108,155"/>
+<area shape="rect" href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="170,153,280,179"/>
+<area shape="poly" title=" " alt="" coords="118,164,156,165,151,167,119,169"/>
+<area shape="rect" href="sim__engine_8c.html#a9a4646e9f9e8b178131b41945f7a8544" title="Libera un proceso de la memoria." alt="" coords="170,203,280,228"/>
+<area shape="poly" title=" " alt="" coords="107,177,168,197,163,199,107,182"/>
 <area shape="rect" href="sim__engine_8c.html#ab6fef50a2cde39099d3c051aa7975738" title="Alinea un tamaño a múltiplos de UNIDAD_MINIMA." alt="" coords="344,5,435,31"/>
-<area shape="poly" title=" " alt="" coords="270,52,332,35,327,37,271,57"/>
+<area shape="poly" title=" " alt="" coords="241,101,280,72,330,40,342,36,337,39,332,44,283,76,244,106"/>
 <area shape="rect" href="sim__engine_8c.html#a8f367671cb683a6dd983d657251a170b" title="Busca un hueco adecuado según el algoritmo especificado." alt="" coords="338,55,441,80"/>
-<area shape="poly" title=" " alt="" coords="283,65,326,67,320,68,284,70"/>
+<area shape="poly" title=" " alt="" coords="270,101,332,84,327,86,271,106"/>
 <area shape="rect" href="sim__engine_8c.html#a6a1089ddf1a175f89c026b773722dcd2" title="Ocupa un hueco de memoria con un proceso." alt="" coords="331,104,448,130"/>
-<area shape="poly" title=" " alt="" coords="271,78,332,99,327,99,270,84"/>
-<area shape="rect" href="sim__engine_8c.html#a949ea609798d43a638d95faf7de9f681" title="Compacta la memoria uniendo huecos adyacentes." alt="" coords="348,153,431,179"/>
-<area shape="poly" title=" " alt="" coords="280,164,336,166,330,166,280,169"/>
+<area shape="poly" title=" " alt="" coords="283,114,318,116,313,117,284,119"/>
+<area shape="rect" href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90" title="Escribe todos los bytes del buffer al descriptor de fichero." alt="" coords="355,153,424,179"/>
+<area shape="poly" title=" " alt="" coords="280,164,342,166,337,167,281,169"/>
+<area shape="rect" href="sim__engine_8c.html#a949ea609798d43a638d95faf7de9f681" title="Compacta la memoria uniendo huecos adyacentes." alt="" coords="348,203,431,228"/>
+<area shape="poly" title=" " alt="" coords="280,213,336,215,330,216,280,218"/>
 </map>
 </div>
 <div class="dynheader">
@@ -779,7 +785,7 @@ Gráfico de llamadas a esta función:</div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="sim__engine_8c.html">sim_engine.c</a></li>
+    <li class="navelem"><a href="dir_7021742465da3e6ff8ecd29a5be58e2c.html">src</a></li><li class="navelem"><a href="sim__engine_8c.html">sim_engine.c</a></li>
     <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>

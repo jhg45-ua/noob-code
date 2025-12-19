@@ -9,9 +9,10 @@ var searchData=
   ['error_20de_20compilación_20con_20c17_6',['Error de compilación con C17',['../install.html#autotoc_md24',1,'']]],
   ['error_3a_20fork_20failed_7',['Error: &quot;fork() failed&quot;',['../install.html#autotoc_md23',1,'']]],
   ['error_3a_20raylib_20not_20found_8',['Error: &quot;raylib not found&quot;',['../install.html#autotoc_md22',1,'']]],
-  ['estadísticas_9',['Estadísticas',['../changelog.html#autotoc_md44',1,'']]],
-  ['estadísticas_20futuras_10',['📊 Estadísticas Futuras',['../index.html#autotoc_md12',1,'']]],
-  ['estado_11',['estado',['../struct_particion.html#af3af9ca204c38ee3a6b1bc426df16e7a',1,'Particion']]],
-  ['estructura_20del_20proyecto_12',['Estructura del proyecto',['../changelog.html#autotoc_md49',1,'']]],
-  ['estructuras_20de_20datos_20principales_13',['Estructuras de Datos Principales',['../architecture.html#autotoc_md27',1,'']]]
+  ['escritura_9',['Funciones de Escritura',['../group__escritura.html',1,'']]],
+  ['estadísticas_10',['Estadísticas',['../changelog.html#autotoc_md44',1,'']]],
+  ['estadísticas_20futuras_11',['📊 Estadísticas Futuras',['../index.html#autotoc_md12',1,'']]],
+  ['estado_12',['estado',['../struct_particion.html#af3af9ca204c38ee3a6b1bc426df16e7a',1,'Particion']]],
+  ['estructura_20del_20proyecto_13',['Estructura del proyecto',['../changelog.html#autotoc_md49',1,'']]],
+  ['estructuras_20de_20datos_20principales_14',['Estructuras de Datos Principales',['../architecture.html#autotoc_md27',1,'']]]
 ];

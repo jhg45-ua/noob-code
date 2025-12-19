@@ -1,0 +1,5 @@
+<map id="transfer_all" name="transfer_all">
+<area shape="rect" id="Node000001" title="Transfiere todo el contenido de un descriptor a otro." alt="" coords="127,5,212,31"/>
+<area shape="rect" id="Node000002" href="$group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938" title="Copia un archivo completo a otra ubicación." alt="" coords="5,5,79,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,19,79,21,79,16,114,18"/>
+</map>

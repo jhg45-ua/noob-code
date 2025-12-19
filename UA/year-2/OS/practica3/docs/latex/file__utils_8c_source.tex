@@ -1,0 +1,87 @@
+\doxysection{file\+\_\+utils.\+c}
+\hypertarget{file__utils_8c_source}{}\label{file__utils_8c_source}\index{/Users/julianhinojosagil/Documents/Dev/noob-\/code/UA/year-\/2/OS/lib/file\_utils.c@{/Users/julianhinojosagil/Documents/Dev/noob-\/code/UA/year-\/2/OS/lib/file\_utils.c}}
+\mbox{\hyperlink{file__utils_8c}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{file__utils_8h}{file\_utils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <sys/fcntl.h>}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <fcntl.h>}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <errno.h>}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00018}\mbox{\hyperlink{group__escritura_gad7594b3bb7fefa81a56a3436e24bba90}{00018}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__escritura_gad7594b3bb7fefa81a56a3436e24bba90}{write\_all}}(\textcolor{keywordtype}{int}\ fd,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ buffer,\ \textcolor{keywordtype}{size\_t}\ size)\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ total\_written\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00021}00021\ \ \ \ \ ssize\_t\ bytes\_written;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{while}\ (total\_written\ <\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00024}00024\ \ \ \ \ \ \ \ \ bytes\_written\ =\ write(fd,\ buffer\ +\ total\_written,\ size\ -\/\ total\_written);}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytes\_written\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (errno\ ==\ EINTR)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00028}00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00029}00029\ \ \ \ \ \ \ \ \ total\_written\ +=\ bytes\_written;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00032}00032\ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00034}\mbox{\hyperlink{group__lectura_gabcb213f71028761c5d071d0a78827a6c}{00034}}\ ssize\_t\ \mbox{\hyperlink{group__lectura_gabcb213f71028761c5d071d0a78827a6c}{read\_all}}(\textcolor{keywordtype}{int}\ fd,\ \textcolor{keywordtype}{void}\ *buffer,\ \textcolor{keywordtype}{size\_t}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ total\_read\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00036}00036\ \ \ \ \ ssize\_t\ bytes\_read;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00037}00037\ \ \ \ \ \textcolor{keywordtype}{char}\ *buf\ =\ (\textcolor{keywordtype}{char}\ *)buffer;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{while}\ (total\_read\ <\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00040}00040\ \ \ \ \ \ \ \ \ bytes\_read\ =\ read(fd,\ buf\ +\ total\_read,\ size\ -\/\ total\_read);}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytes\_read\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (errno\ ==\ EINTR)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00044}00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytes\_read\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\ \textcolor{comment}{//\ EOF}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00047}00047\ \ \ \ \ \ \ \ \ total\_read\ +=\ bytes\_read;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{return}\ total\_read;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00050}00050\ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00052}\mbox{\hyperlink{group__transferencia_ga815be9892352da875e3943765d671445}{00052}}\ ssize\_t\ \mbox{\hyperlink{group__transferencia_ga815be9892352da875e3943765d671445}{transfer\_data}}(\textcolor{keywordtype}{int}\ fd\_src,\ \textcolor{keywordtype}{int}\ fd\_dst,\ \textcolor{keywordtype}{char}\ *buffer,\ ssize\_t\ buffer\_size)\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00053}00053\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00054}00054\ \ \ \ \ ssize\_t\ bytes\_read;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00055}00055\ \ \ \ \ ssize\_t\ total\_transfered\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{while}((bytes\_read\ =\ read(fd\_src,\ buffer,\ buffer\_size))\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__escritura_gad7594b3bb7fefa81a56a3436e24bba90}{write\_all}}(fd\_dst,\ buffer,\ bytes\_read)\ ==\ -\/1)}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ total\_transfered\ +=\ bytes\_read;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{return}\ (bytes\_read\ ==\ -\/1\ )\ ?\ -\/1\ :\ total\_transfered;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00065}\mbox{\hyperlink{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc}{00065}}\ ssize\_t\ \mbox{\hyperlink{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc}{transfer\_all}}(\textcolor{keywordtype}{int}\ fd\_src,\ \textcolor{keywordtype}{int}\ fd\_dst)\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00066}00066\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00067}00067\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[\mbox{\hyperlink{group__constantes_ga6e576a3c6530636d68b7a220480bcd32}{DEFAULT\_BUFFER\_SIZE}}];}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{group__transferencia_ga815be9892352da875e3943765d671445}{transfer\_data}}(fd\_src,\ fd\_dst,\ buffer,\ \mbox{\hyperlink{group__constantes_ga6e576a3c6530636d68b7a220480bcd32}{DEFAULT\_BUFFER\_SIZE}});}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00069}00069\ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00071}\mbox{\hyperlink{group__archivos_gaedc5b9d53b4d20854d5650195dd01938}{00071}}\ ssize\_t\ \mbox{\hyperlink{group__archivos_gaedc5b9d53b4d20854d5650195dd01938}{copy\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *src\_path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *dst\_path)\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00072}00072\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{int}\ fd\_src,\ fd\_dst;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00074}00074\ \ \ \ \ ssize\_t\ result;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00076}00076\ \ \ \ \ fd\_src\ =\ open(src\_path,\ O\_RDONLY);}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (fd\_src\ ==\ -\/1)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00079}00079\ \ \ \ \ fd\_dst\ =\ open(dst\_path,\ O\_WRONLY\ |\ O\_CREAT\ |\ O\_TRUNC\ |\ 0644);}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{if}\ (fd\_dst\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00081}00081\ \ \ \ \ \ \ \ \ close(fd\_dst);}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00085}00085\ \ \ \ \ result\ =\ \mbox{\hyperlink{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc}{transfer\_all}}(fd\_src,\ fd\_dst);}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00087}00087\ \ \ \ \ close(fd\_src);}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00088}00088\ \ \ \ \ close(fd\_dst);}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{file__utils_8c_source_l00090}00090\ \}}
+
+\end{DoxyCode}

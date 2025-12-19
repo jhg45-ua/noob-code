@@ -1,0 +1,78 @@
+\doxysection{Referencia del archivo /\+Users/julianhinojosagil/\+Documents/\+Dev/noob-\/code/\+UA/year-\/2/\+OS/lib/file\+\_\+utils.h}
+\hypertarget{file__utils_8h}{}\label{file__utils_8h}\index{/Users/julianhinojosagil/Documents/Dev/noob-\/code/UA/year-\/2/OS/lib/file\_utils.h@{/Users/julianhinojosagil/Documents/Dev/noob-\/code/UA/year-\/2/OS/lib/file\_utils.h}}
+
+
+Librería de utilidades para operaciones de E/S con descriptores de fichero.  
+
+
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+Gráfico de dependencias incluidas en file\+\_\+utils.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{file__utils_8h__incl}
+\end{center}
+\end{figure}
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{file__utils_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__constantes_ga6e576a3c6530636d68b7a220480bcd32}{DEFAULT\+\_\+\+BUFFER\+\_\+\+SIZE}}~4096
+\begin{DoxyCompactList}\small\item\em Tamaño del buffer interno usado por \doxylink{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc}{transfer\+\_\+all()} (4KB). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__escritura_gad7594b3bb7fefa81a56a3436e24bba90}{write\+\_\+all}} (int fd, const void \texorpdfstring{$\ast$}{*}buffer, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Escribe todos los bytes del buffer al descriptor de fichero. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__lectura_gabcb213f71028761c5d071d0a78827a6c}{read\+\_\+all}} (int fd, void \texorpdfstring{$\ast$}{*}buffer, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Lee hasta {\ttfamily size} bytes de un descriptor a un buffer. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__transferencia_ga815be9892352da875e3943765d671445}{transfer\+\_\+data}} (int fd\+\_\+src, int fd\+\_\+dst, char \texorpdfstring{$\ast$}{*}buffer, ssize\+\_\+t buffer\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Transfiere datos de un descriptor de origen a uno de destino. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc}{transfer\+\_\+all}} (int fd\+\_\+src, int fd\+\_\+dst)
+\begin{DoxyCompactList}\small\item\em Transfiere todo el contenido de un descriptor a otro. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__archivos_gaedc5b9d53b4d20854d5650195dd01938}{copy\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}src\+\_\+path, const char \texorpdfstring{$\ast$}{*}dst\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Copia un archivo completo a otra ubicación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Librería de utilidades para operaciones de E/S con descriptores de fichero. 
+
+Este módulo proporciona funciones robustas para\+:
+\begin{DoxyItemize}
+\item Lectura/escritura completa de datos (manejo de escrituras parciales)
+\item Transferencia de datos entre descriptores (archivos, pipes, sockets)
+\item Copia de archivos
+\end{DoxyItemize}
+
+Todas las funciones manejan correctamente\+:
+\begin{DoxyItemize}
+\item Interrupciones del sistema (EINTR)
+\item Escrituras/lecturas parciales
+\item Condiciones de EOF
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Autor}
+Julian Hinojosa Gil 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+2025 
+\end{DoxyDate}
+\begin{DoxyVersion}{Versión}
+1.\+0
+\end{DoxyVersion}
+\begin{DoxyNote}{Nota}
+Librería externa reutilizable en múltiples prácticas del curso OS. 
+\end{DoxyNote}
+
+
+Definición en el archivo \mbox{\hyperlink{file__utils_8h_source}{file\+\_\+utils.\+h}}.
+

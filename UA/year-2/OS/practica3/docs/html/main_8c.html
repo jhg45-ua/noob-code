@@ -340,6 +340,8 @@ Gráfico de llamadas de esta función:</div>
 <area shape="poly" title=" " alt="" coords="55,95,94,104,89,107,56,100"/>
 <area shape="rect" href="main_8c.html#a0739302f77016ac122f50d59015cfa1f" title="Ejecuta la simulación en modo terminal (TUI)." alt="" coords="103,153,174,179"/>
 <area shape="poly" title=" " alt="" coords="50,102,104,140,108,144,103,144,101,144,50,108"/>
+<area shape="rect" href="group__lectura.html#gabcb213f71028761c5d071d0a78827a6c" title="Lee hasta size bytes de un descriptor a un buffer." alt="" coords="427,55,494,80"/>
+<area shape="poly" title=" " alt="" coords="347,65,414,67,409,68,348,70"/>
 <area shape="poly" title=" " alt="" coords="169,104,235,84,231,87,172,109"/>
 <area shape="poly" title=" " alt="" coords="149,102,180,71,221,40,232,36,228,39,223,44,183,75,153,105"/>
 <area shape="rect" href="sim__engine_8c.html#a099adf88ebe7183b00ddc648cc1ffa5b" title="Avanza un tick en la simulación." alt="" coords="232,153,345,179"/>
@@ -356,8 +358,10 @@ Gráfico de llamadas de esta función:</div>
 <area shape="poly" title=" " alt="" coords="505,101,563,86,568,85,507,106"/>
 <area shape="rect" href="sim__engine_8c.html#a8f367671cb683a6dd983d657251a170b" title="Busca un hueco adecuado según el algoritmo especificado." alt="" coords="574,104,676,130"/>
 <area shape="poly" title=" " alt="" coords="519,114,561,117,556,117,519,119"/>
-<area shape="rect" href="sim__engine_8c.html#a6a1089ddf1a175f89c026b773722dcd2" title="Ocupa un hueco de memoria con un proceso." alt="" coords="567,153,684,179"/>
-<area shape="poly" title=" " alt="" coords="506,128,568,148,563,148,506,133"/>
+<area shape="rect" href="sim__engine_8c.html#a6a1089ddf1a175f89c026b773722dcd2" title="Ocupa un hueco de memoria con un proceso." alt="" coords="567,5,684,31"/>
+<area shape="poly" title=" " alt="" coords="499,101,517,91,531,78,541,66,550,53,565,40,570,40,575,37,568,44,554,57,545,69,535,82,520,95,501,106"/>
+<area shape="rect" href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90" title="Escribe todos los bytes del buffer al descriptor de fichero." alt="" coords="591,153,660,179"/>
+<area shape="poly" title=" " alt="" coords="516,164,578,166,573,166,516,169"/>
 <area shape="rect" href="sim__engine_8c.html#a949ea609798d43a638d95faf7de9f681" title="Compacta la memoria uniendo huecos adyacentes." alt="" coords="584,203,666,228"/>
 <area shape="poly" title=" " alt="" coords="516,213,571,215,566,216,516,218"/>
 <area shape="poly" title=" " alt="" coords="159,151,172,140,195,114,205,102,220,89,231,86,226,89,224,94,209,106,199,117,176,144,162,155"/>
@@ -430,29 +434,33 @@ Gráfico de llamadas de esta función:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8c_aafb6af6e9fab822accd3e0f7133214bd_cgraph.png" border="0" usemap="#amain_8c_aafb6af6e9fab822accd3e0f7133214bd_cgraph" loading="lazy" alt=""/></div>
 <map name="amain_8c_aafb6af6e9fab822accd3e0f7133214bd_cgraph" id="amain_8c_aafb6af6e9fab822accd3e0f7133214bd_cgraph">
-<area shape="rect" title="Ejecuta la interfaz gráfica con Raylib." alt="" coords="5,179,69,204"/>
-<area shape="rect" href="sim__engine_8c.html#a099adf88ebe7183b00ddc648cc1ffa5b" title="Avanza un tick en la simulación." alt="" coords="126,104,240,130"/>
-<area shape="poly" title=" " alt="" coords="55,176,115,138,129,134,125,138,118,143,58,180"/>
-<area shape="rect" href="ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6" title="Carga los procesos desde un archivo de texto." alt="" coords="124,153,242,179"/>
-<area shape="poly" title=" " alt="" coords="68,184,111,177,107,181,70,189"/>
-<area shape="rect" href="sim__engine_8c.html#a7525ea6570ccf752c8e9394b62042380" title="Inicializa la memoria con un único hueco libre." alt="" coords="117,203,249,228"/>
-<area shape="poly" title=" " alt="" coords="69,194,103,201,99,203,69,199"/>
-<area shape="rect" href="ficheros_8c.html#a695ae3585fde2a3664394810b70fe928" title="Limpia el contenido de un archivo de log." alt="" coords="141,252,224,278"/>
-<area shape="poly" title=" " alt="" coords="58,202,118,238,130,246,125,246,115,243,56,207"/>
-<area shape="rect" href="sim__engine_8c.html#a47eaa39f311ae4f19e76eb9baca390d7" title="Asigna un proceso a la memoria." alt="" coords="297,55,413,80"/>
-<area shape="poly" title=" " alt="" coords="229,101,295,84,291,87,232,106"/>
-<area shape="rect" href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="300,104,410,130"/>
-<area shape="poly" title=" " alt="" coords="239,114,287,116,282,118,240,119"/>
-<area shape="rect" href="sim__engine_8c.html#a9a4646e9f9e8b178131b41945f7a8544" title="Libera un proceso de la memoria." alt="" coords="300,153,410,179"/>
-<area shape="poly" title=" " alt="" coords="230,128,296,148,290,149,231,133"/>
+<area shape="rect" title="Ejecuta la interfaz gráfica con Raylib." alt="" coords="5,264,69,290"/>
+<area shape="rect" href="sim__engine_8c.html#a099adf88ebe7183b00ddc648cc1ffa5b" title="Avanza un tick en la simulación." alt="" coords="126,177,240,203"/>
+<area shape="poly" title=" " alt="" coords="56,261,115,224,145,209,141,213,118,228,60,266"/>
+<area shape="rect" href="ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6" title="Carga los procesos desde un archivo de texto." alt="" coords="124,239,242,264"/>
+<area shape="poly" title=" " alt="" coords="68,269,111,263,107,266,70,274"/>
+<area shape="rect" href="sim__engine_8c.html#a7525ea6570ccf752c8e9394b62042380" title="Inicializa la memoria con un único hueco libre." alt="" coords="117,288,249,314"/>
+<area shape="poly" title=" " alt="" coords="69,279,103,286,99,289,69,285"/>
+<area shape="rect" href="ficheros_8c.html#a695ae3585fde2a3664394810b70fe928" title="Limpia el contenido de un archivo de log." alt="" coords="141,337,224,363"/>
+<area shape="poly" title=" " alt="" coords="58,288,118,324,130,331,125,331,115,329,56,293"/>
+<area shape="rect" href="sim__engine_8c.html#a47eaa39f311ae4f19e76eb9baca390d7" title="Asigna un proceso a la memoria." alt="" coords="297,79,413,104"/>
+<area shape="poly" title=" " alt="" coords="206,175,320,111,316,114,209,179"/>
+<area shape="rect" href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="300,153,410,179"/>
+<area shape="poly" title=" " alt="" coords="239,180,288,175,283,177,241,185"/>
+<area shape="rect" href="sim__engine_8c.html#a9a4646e9f9e8b178131b41945f7a8544" title="Libera un proceso de la memoria." alt="" coords="300,203,410,228"/>
+<area shape="poly" title=" " alt="" coords="239,196,288,204,283,206,240,201"/>
 <area shape="rect" href="sim__engine_8c.html#ab6fef50a2cde39099d3c051aa7975738" title="Alinea un tamaño a múltiplos de UNIDAD_MINIMA." alt="" coords="475,5,565,31"/>
-<area shape="poly" title=" " alt="" coords="400,52,462,35,458,37,402,56"/>
+<area shape="poly" title=" " alt="" coords="383,76,460,40,474,36,470,39,462,45,385,81"/>
 <area shape="rect" href="sim__engine_8c.html#a8f367671cb683a6dd983d657251a170b" title="Busca un hueco adecuado según el algoritmo especificado." alt="" coords="469,55,571,80"/>
-<area shape="poly" title=" " alt="" coords="413,65,456,67,451,68,414,70"/>
+<area shape="poly" title=" " alt="" coords="413,81,456,76,451,78,415,86"/>
 <area shape="rect" href="sim__engine_8c.html#a6a1089ddf1a175f89c026b773722dcd2" title="Ocupa un hueco de memoria con un proceso." alt="" coords="461,104,579,130"/>
-<area shape="poly" title=" " alt="" coords="401,78,463,99,457,99,401,84"/>
-<area shape="rect" href="sim__engine_8c.html#a949ea609798d43a638d95faf7de9f681" title="Compacta la memoria uniendo huecos adyacentes." alt="" coords="479,153,561,179"/>
-<area shape="poly" title=" " alt="" coords="410,164,466,166,461,167,411,169"/>
+<area shape="poly" title=" " alt="" coords="413,98,448,105,443,106,414,103"/>
+<area shape="rect" href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90" title="Escribe todos los bytes del buffer al descriptor de fichero." alt="" coords="485,153,555,179"/>
+<area shape="poly" title=" " alt="" coords="410,164,473,165,467,167,411,169"/>
+<area shape="rect" href="sim__engine_8c.html#a949ea609798d43a638d95faf7de9f681" title="Compacta la memoria uniendo huecos adyacentes." alt="" coords="479,203,561,228"/>
+<area shape="poly" title=" " alt="" coords="410,213,466,215,461,216,411,218"/>
+<area shape="rect" href="group__lectura.html#gabcb213f71028761c5d071d0a78827a6c" title="Lee hasta size bytes de un descriptor a un buffer." alt="" coords="322,252,388,278"/>
+<area shape="poly" title=" " alt="" coords="242,253,309,260,304,262,242,259"/>
 </map>
 </div>
 <div class="dynheader">
@@ -501,31 +509,35 @@ Gráfico de llamadas de esta función:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8c_a0739302f77016ac122f50d59015cfa1f_cgraph.png" border="0" usemap="#amain_8c_a0739302f77016ac122f50d59015cfa1f_cgraph" loading="lazy" alt=""/></div>
 <map name="amain_8c_a0739302f77016ac122f50d59015cfa1f_cgraph" id="amain_8c_a0739302f77016ac122f50d59015cfa1f_cgraph">
-<area shape="rect" title="Ejecuta la simulación en modo terminal (TUI)." alt="" coords="5,203,77,228"/>
-<area shape="rect" href="sim__engine_8c.html#a099adf88ebe7183b00ddc648cc1ffa5b" title="Avanza un tick en la simulación." alt="" coords="134,104,248,130"/>
-<area shape="poly" title=" " alt="" coords="52,201,83,170,123,139,134,135,131,138,126,143,86,174,56,204"/>
-<area shape="rect" href="ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6" title="Carga los procesos desde un archivo de texto." alt="" coords="132,153,250,179"/>
-<area shape="poly" title=" " alt="" coords="76,201,137,182,134,186,79,206"/>
-<area shape="rect" href="sim__engine_8c.html#a7525ea6570ccf752c8e9394b62042380" title="Inicializa la memoria con un único hueco libre." alt="" coords="125,203,257,228"/>
-<area shape="poly" title=" " alt="" coords="76,213,111,214,107,217,78,218"/>
-<area shape="rect" href="ficheros_8c.html#a695ae3585fde2a3664394810b70fe928" title="Limpia el contenido de un archivo de log." alt="" coords="149,252,232,278"/>
-<area shape="poly" title=" " alt="" coords="77,225,138,245,133,248,77,230"/>
-<area shape="rect" href="sim__engine_8c.html#a6df7a5ff87dd2abca3c64b3dcc88cf5a" title="Muestra el estado actual de la memoria en consola." alt="" coords="135,301,246,327"/>
-<area shape="poly" title=" " alt="" coords="55,226,86,257,126,288,135,295,130,294,123,292,83,261,53,231"/>
-<area shape="rect" href="sim__engine_8c.html#a47eaa39f311ae4f19e76eb9baca390d7" title="Asigna un proceso a la memoria." alt="" coords="305,55,421,80"/>
-<area shape="poly" title=" " alt="" coords="237,101,303,84,299,87,240,106"/>
-<area shape="rect" href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="308,104,418,130"/>
-<area shape="poly" title=" " alt="" coords="247,114,295,116,290,118,248,119"/>
-<area shape="rect" href="sim__engine_8c.html#a9a4646e9f9e8b178131b41945f7a8544" title="Libera un proceso de la memoria." alt="" coords="308,153,418,179"/>
-<area shape="poly" title=" " alt="" coords="238,128,304,148,298,149,239,133"/>
+<area shape="rect" title="Ejecuta la simulación en modo terminal (TUI)." alt="" coords="5,288,77,314"/>
+<area shape="rect" href="sim__engine_8c.html#a099adf88ebe7183b00ddc648cc1ffa5b" title="Avanza un tick en la simulación." alt="" coords="134,177,248,203"/>
+<area shape="poly" title=" " alt="" coords="53,286,84,256,123,224,151,209,147,213,126,228,87,260,57,289"/>
+<area shape="rect" href="ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6" title="Carga los procesos desde un archivo de texto." alt="" coords="132,239,250,264"/>
+<area shape="poly" title=" " alt="" coords="76,287,137,268,134,272,79,291"/>
+<area shape="rect" href="sim__engine_8c.html#a7525ea6570ccf752c8e9394b62042380" title="Inicializa la memoria con un único hueco libre." alt="" coords="125,288,257,314"/>
+<area shape="poly" title=" " alt="" coords="76,298,111,299,107,302,78,303"/>
+<area shape="rect" href="ficheros_8c.html#a695ae3585fde2a3664394810b70fe928" title="Limpia el contenido de un archivo de log." alt="" coords="149,337,232,363"/>
+<area shape="poly" title=" " alt="" coords="77,310,138,331,133,333,77,315"/>
+<area shape="rect" href="sim__engine_8c.html#a6df7a5ff87dd2abca3c64b3dcc88cf5a" title="Muestra el estado actual de la memoria en consola." alt="" coords="135,387,246,412"/>
+<area shape="poly" title=" " alt="" coords="55,312,86,342,126,373,135,380,130,380,123,378,83,346,53,317"/>
+<area shape="rect" href="sim__engine_8c.html#a47eaa39f311ae4f19e76eb9baca390d7" title="Asigna un proceso a la memoria." alt="" coords="305,79,421,104"/>
+<area shape="poly" title=" " alt="" coords="214,175,328,111,324,114,217,179"/>
+<area shape="rect" href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="308,153,418,179"/>
+<area shape="poly" title=" " alt="" coords="247,180,295,175,291,177,249,185"/>
+<area shape="rect" href="sim__engine_8c.html#a9a4646e9f9e8b178131b41945f7a8544" title="Libera un proceso de la memoria." alt="" coords="308,203,418,228"/>
+<area shape="poly" title=" " alt="" coords="247,196,296,204,291,206,248,201"/>
 <area shape="rect" href="sim__engine_8c.html#ab6fef50a2cde39099d3c051aa7975738" title="Alinea un tamaño a múltiplos de UNIDAD_MINIMA." alt="" coords="483,5,573,31"/>
-<area shape="poly" title=" " alt="" coords="408,52,470,35,466,37,410,56"/>
+<area shape="poly" title=" " alt="" coords="391,76,468,40,482,36,478,39,470,45,393,80"/>
 <area shape="rect" href="sim__engine_8c.html#a8f367671cb683a6dd983d657251a170b" title="Busca un hueco adecuado según el algoritmo especificado." alt="" coords="477,55,579,80"/>
-<area shape="poly" title=" " alt="" coords="421,65,464,67,459,68,422,70"/>
+<area shape="poly" title=" " alt="" coords="421,81,464,76,459,78,423,86"/>
 <area shape="rect" href="sim__engine_8c.html#a6a1089ddf1a175f89c026b773722dcd2" title="Ocupa un hueco de memoria con un proceso." alt="" coords="469,104,587,130"/>
-<area shape="poly" title=" " alt="" coords="409,78,471,98,465,99,409,84"/>
-<area shape="rect" href="sim__engine_8c.html#a949ea609798d43a638d95faf7de9f681" title="Compacta la memoria uniendo huecos adyacentes." alt="" coords="487,153,569,179"/>
-<area shape="poly" title=" " alt="" coords="418,164,474,166,469,167,419,169"/>
+<area shape="poly" title=" " alt="" coords="421,98,456,105,451,106,422,103"/>
+<area shape="rect" href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90" title="Escribe todos los bytes del buffer al descriptor de fichero." alt="" coords="493,153,563,179"/>
+<area shape="poly" title=" " alt="" coords="418,164,481,165,475,167,420,169"/>
+<area shape="rect" href="sim__engine_8c.html#a949ea609798d43a638d95faf7de9f681" title="Compacta la memoria uniendo huecos adyacentes." alt="" coords="487,203,569,228"/>
+<area shape="poly" title=" " alt="" coords="418,213,474,215,469,216,419,218"/>
+<area shape="rect" href="group__lectura.html#gabcb213f71028761c5d071d0a78827a6c" title="Lee hasta size bytes de un descriptor a un buffer." alt="" coords="330,252,396,278"/>
+<area shape="poly" title=" " alt="" coords="250,253,317,260,312,262,250,259"/>
 </map>
 </div>
 <div class="dynheader">
@@ -554,7 +566,7 @@ Gráfico de llamadas a esta función:</div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="main_8c.html">main.c</a></li>
+    <li class="navelem"><a href="dir_7021742465da3e6ff8ecd29a5be58e2c.html">src</a></li><li class="navelem"><a href="main_8c.html">main.c</a></li>
     <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>

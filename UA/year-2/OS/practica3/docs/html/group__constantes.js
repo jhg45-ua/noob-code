@@ -1,5 +1,6 @@
 var group__constantes =
 [
+    [ "DEFAULT_BUFFER_SIZE", "group__constantes.html#ga6e576a3c6530636d68b7a220480bcd32", null ],
     [ "MAX_PARTICIONES", "group__constantes.html#gae420f0bf3db242485c8c837356c6ebba", null ],
     [ "MAX_PROCESOS", "group__constantes.html#gab0f17287f3a9af76ef9109ec1dfce7a9", null ],
     [ "MEMORIA_TOTAL", "group__constantes.html#ga6264fff1e0ed016a7ce3d58e0534ea00", null ],

@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Memoria - Práctica 3 OS: Funciones de Escritura</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('group__escritura.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Funciones de Escritura </div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:gad7594b3bb7fefa81a56a3436e24bba90" id="r_gad7594b3bb7fefa81a56a3436e24bba90"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gad7594b3bb7fefa81a56a3436e24bba90">write_all</a> (int fd, const void *buffer, size_t size)</td></tr>
+<tr class="memdesc:gad7594b3bb7fefa81a56a3436e24bba90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escribe todos los bytes del buffer al descriptor de fichero.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<p>Funciones para escritura robusta en descriptores. </p>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="gad7594b3bb7fefa81a56a3436e24bba90" name="gad7594b3bb7fefa81a56a3436e24bba90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad7594b3bb7fefa81a56a3436e24bba90">&#9670;&#160;</a></span>write_all()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int write_all </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>fd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Escribe todos los bytes del buffer al descriptor de fichero. </p>
+<p>Garantiza que se escriban exactamente <span class="tt">size</span> bytes, manejando automáticamente las escrituras parciales que pueden ocurrir con pipes, sockets o cuando el kernel interrumpe la operación.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fd</td><td>Descriptor de fichero de destino (debe estar abierto para escritura) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Puntero a los datos a escribir </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Cantidad de bytes a escribir</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>0 si se escribieron todos los bytes correctamente </dd>
+<dd>
+-1 si hubo error (errno contiene el código de error)</dd></dl>
+<dl class="section pre"><dt>Precondición</dt><dd>fd debe ser un descriptor válido abierto para escritura </dd>
+<dd>
+buffer != NULL </dd>
+<dd>
+size &gt; 0</dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>Maneja automáticamente EINTR (interrupciones del sistema) </dd>
+<dd>
+Reintenta automáticamente en caso de escrituras parciales</dd></dl>
+<dl class="section see"><dt>Ver también</dt><dd><a class="el" href="group__lectura.html#gabcb213f71028761c5d071d0a78827a6c" title="Lee hasta size bytes de un descriptor a un buffer.">read_all()</a> </dd></dl>
+<dl class="section examples"><dt>Ejemplos</dt><dd><a class="el" href="_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2lib_2file_utils_8h-example.html#a2">/Users/julianhinojosagil/Documents/Dev/noob-code/UA/year-2/OS/lib/file_utils.h</a>.</dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="file__utils_8c_source.html#l00018">18</a> del archivo <a class="el" href="file__utils_8c_source.html">file_utils.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="ficheros_8c_source.html#l00064">guardar_estado()</a> y <a class="el" href="file__utils_8c_source.html#l00052">transfer_data()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__escritura_gad7594b3bb7fefa81a56a3436e24bba90_icgraph.png" border="0" usemap="#agroup__escritura_gad7594b3bb7fefa81a56a3436e24bba90_icgraph" loading="lazy" alt=""/></div>
+<map name="agroup__escritura_gad7594b3bb7fefa81a56a3436e24bba90_icgraph" id="agroup__escritura_gad7594b3bb7fefa81a56a3436e24bba90_icgraph">
+<area shape="rect" title="Escribe todos los bytes del buffer al descriptor de fichero." alt="" coords="544,80,613,106"/>
+<area shape="rect" href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="385,55,496,80"/>
+<area shape="poly" title=" " alt="" coords="526,84,496,80,496,75,531,84"/>
+<area shape="rect" href="group__transferencia.html#ga815be9892352da875e3943765d671445" title="Transfiere datos de un descriptor de origen a uno de destino." alt="" coords="392,104,489,130"/>
+<area shape="poly" title=" " alt="" coords="531,101,490,111,489,106,526,102"/>
+<area shape="rect" href="sim__engine_8c.html#a099adf88ebe7183b00ddc648cc1ffa5b" title="Avanza un tick en la simulación." alt="" coords="224,55,337,80"/>
+<area shape="poly" title=" " alt="" coords="367,68,338,70,338,65,373,67"/>
+<area shape="rect" href="main_8c.html#aafb6af6e9fab822accd3e0f7133214bd" title="Ejecuta la interfaz gráfica con Raylib." alt="" coords="108,5,171,31"/>
+<area shape="poly" title=" " alt="" coords="225,50,171,32,172,26,230,48"/>
+<area shape="rect" href="main_8c.html#a0739302f77016ac122f50d59015cfa1f" title="Ejecuta la simulación en modo terminal (TUI)." alt="" coords="104,55,175,80"/>
+<area shape="poly" title=" " alt="" coords="206,68,176,70,175,65,211,67"/>
+<area shape="rect" href="main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="Punto de entrada principal del programa." alt="" coords="5,31,55,56"/>
+<area shape="poly" title=" " alt="" coords="91,31,56,40,54,36,94,27"/>
+<area shape="poly" title=" " alt="" coords="86,58,55,51,54,46,90,55"/>
+<area shape="rect" href="group__transferencia.html#ga1d83514d3daabf6fa8724b82fe829fcc" title="Transfiere todo el contenido de un descriptor a otro." alt="" coords="238,104,323,130"/>
+<area shape="poly" title=" " alt="" coords="374,117,324,119,324,114,379,117"/>
+<area shape="rect" href="group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938" title="Copia un archivo completo a otra ubicación." alt="" coords="103,104,176,130"/>
+<area shape="poly" title=" " alt="" coords="220,117,176,119,176,114,225,117"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Memoria - Práctica 3 OS: /Users/julianhinojosagil/Documents/Dev/noob-code/UA/year-2/OS/lib/file_utils.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2lib_2file_utils_8h-example.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">/Users/julianhinojosagil/Documents/Dev/noob-code/UA/year-2/OS/lib/file_utils.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><span class="comment">// Ejemplo de uso para leer un archivo completo</span></div>
+<div class="line"><span class="keywordtype">int</span> fd = open(<span class="stringliteral">&quot;archivo.txt&quot;</span>, O_RDONLY);</div>
+<div class="line"><span class="keywordtype">char</span> buffer[1024];</div>
+<div class="line">ssize_t leidos = <a id="a0" name="a0"></a><a class="code hl_function" href="group__lectura.html#gabcb213f71028761c5d071d0a78827a6c">read_all</a>(fd, buffer, <span class="keyword">sizeof</span>(buffer));</div>
+<div class="line">close(fd);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Ejemplo de copia de archivo</span></div>
+<div class="line">ssize_t bytes = <a id="a1" name="a1"></a><a class="code hl_function" href="group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938">copy_file</a>(<span class="stringliteral">&quot;origen.txt&quot;</span>, <span class="stringliteral">&quot;destino.txt&quot;</span>);</div>
+<div class="ttc" id="agroup__archivos_html_gaedc5b9d53b4d20854d5650195dd01938"><div class="ttname"><a href="group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938">copy_file</a></div><div class="ttdeci">ssize_t copy_file(const char *src_path, const char *dst_path)</div><div class="ttdoc">Copia un archivo completo a otra ubicación.</div><div class="ttdef"><b>Definition</b> <a href="file__utils_8c_source.html#l00071">file_utils.c:71</a></div></div>
+<div class="ttc" id="agroup__lectura_html_gabcb213f71028761c5d071d0a78827a6c"><div class="ttname"><a href="group__lectura.html#gabcb213f71028761c5d071d0a78827a6c">read_all</a></div><div class="ttdeci">ssize_t read_all(int fd, void *buffer, size_t size)</div><div class="ttdoc">Lee hasta size bytes de un descriptor a un buffer.</div><div class="ttdef"><b>Definition</b> <a href="file__utils_8c_source.html#l00034">file_utils.c:34</a></div></div>
+</div><!-- fragment --><div class="fragment"><div class="line"><span class="preprocessor">#ifndef FILE_UTILS_H</span></div>
+<div class="line"><span class="preprocessor">#define FILE_UTILS_H</span></div>
+<div class="line"></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define DEFAULT_BUFFER_SIZE 4096</span></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">int</span> <a id="a2" name="a2"></a><a class="code hl_function" href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90">write_all</a>(<span class="keywordtype">int</span> fd, <span class="keyword">const</span> <span class="keywordtype">void</span>* buffer, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line">ssize_t <a class="code hl_function" href="group__lectura.html#gabcb213f71028761c5d071d0a78827a6c">read_all</a>(<span class="keywordtype">int</span> fd, <span class="keywordtype">void</span> *buffer, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line">ssize_t <a id="a3" name="a3"></a><a class="code hl_function" href="group__transferencia.html#ga815be9892352da875e3943765d671445">transfer_data</a>(<span class="keywordtype">int</span> fd_src, <span class="keywordtype">int</span> fd_dst, <span class="keywordtype">char</span> *buffer, ssize_t buffer_size);</div>
+<div class="line"></div>
+<div class="line">ssize_t <a id="a4" name="a4"></a><a class="code hl_function" href="group__transferencia.html#ga1d83514d3daabf6fa8724b82fe829fcc">transfer_all</a>(<span class="keywordtype">int</span> fd_src, <span class="keywordtype">int</span> fd_dst);</div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line">ssize_t <a class="code hl_function" href="group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938">copy_file</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *src_path, <span class="keyword">const</span> <span class="keywordtype">char</span> *dst_path);</div>
+<div class="line"></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">// FILE_UTILS_H</span></div>
+<div class="ttc" id="agroup__escritura_html_gad7594b3bb7fefa81a56a3436e24bba90"><div class="ttname"><a href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90">write_all</a></div><div class="ttdeci">int write_all(int fd, const void *buffer, size_t size)</div><div class="ttdoc">Escribe todos los bytes del buffer al descriptor de fichero.</div><div class="ttdef"><b>Definition</b> <a href="file__utils_8c_source.html#l00018">file_utils.c:18</a></div></div>
+<div class="ttc" id="agroup__transferencia_html_ga1d83514d3daabf6fa8724b82fe829fcc"><div class="ttname"><a href="group__transferencia.html#ga1d83514d3daabf6fa8724b82fe829fcc">transfer_all</a></div><div class="ttdeci">ssize_t transfer_all(int fd_src, int fd_dst)</div><div class="ttdoc">Transfiere todo el contenido de un descriptor a otro.</div><div class="ttdef"><b>Definition</b> <a href="file__utils_8c_source.html#l00065">file_utils.c:65</a></div></div>
+<div class="ttc" id="agroup__transferencia_html_ga815be9892352da875e3943765d671445"><div class="ttname"><a href="group__transferencia.html#ga815be9892352da875e3943765d671445">transfer_data</a></div><div class="ttdeci">ssize_t transfer_data(int fd_src, int fd_dst, char *buffer, ssize_t buffer_size)</div><div class="ttdoc">Transfiere datos de un descriptor de origen a uno de destino.</div><div class="ttdef"><b>Definition</b> <a href="file__utils_8c_source.html#l00052">file_utils.c:52</a></div></div>
+</div><!-- fragment --> </div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>

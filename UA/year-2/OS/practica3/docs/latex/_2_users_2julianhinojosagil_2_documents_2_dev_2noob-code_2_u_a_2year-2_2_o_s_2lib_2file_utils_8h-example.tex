@@ -1,0 +1,50 @@
+\doxysection{/\+Users/julianhinojosagil/\+Documents/\+Dev/noob-\/code/\+UA/year-\/2/\+OS/lib/file\+\_\+utils.\+h}
+\hypertarget{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2lib_2file_utils_8h-example}{}\label{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2lib_2file_utils_8h-example}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Ejemplo\ de\ uso\ para\ leer\ un\ archivo\ completo}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ fd\ =\ open(\textcolor{stringliteral}{"{}archivo.txt"{}},\ O\_RDONLY);}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ buffer[1024];}
+\DoxyCodeLine{ssize\_t\ leidos\ =\ \mbox{\hyperlink{group__lectura_gabcb213f71028761c5d071d0a78827a6c}{read\_all}}(fd,\ buffer,\ \textcolor{keyword}{sizeof}(buffer));}
+\DoxyCodeLine{close(fd);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Ejemplo\ de\ copia\ de\ archivo}}
+\DoxyCodeLine{ssize\_t\ bytes\ =\ \mbox{\hyperlink{group__archivos_gaedc5b9d53b4d20854d5650195dd01938}{copy\_file}}(\textcolor{stringliteral}{"{}origen.txt"{}},\ \textcolor{stringliteral}{"{}destino.txt"{}});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#ifndef\ FILE\_UTILS\_H}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ FILE\_UTILS\_H}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ DEFAULT\_BUFFER\_SIZE\ 4096}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__escritura_gad7594b3bb7fefa81a56a3436e24bba90}{write\_all}}(\textcolor{keywordtype}{int}\ fd,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ buffer,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ssize\_t\ \mbox{\hyperlink{group__lectura_gabcb213f71028761c5d071d0a78827a6c}{read\_all}}(\textcolor{keywordtype}{int}\ fd,\ \textcolor{keywordtype}{void}\ *buffer,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ssize\_t\ \mbox{\hyperlink{group__transferencia_ga815be9892352da875e3943765d671445}{transfer\_data}}(\textcolor{keywordtype}{int}\ fd\_src,\ \textcolor{keywordtype}{int}\ fd\_dst,\ \textcolor{keywordtype}{char}\ *buffer,\ ssize\_t\ buffer\_size);}
+\DoxyCodeLine{}
+\DoxyCodeLine{ssize\_t\ \mbox{\hyperlink{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc}{transfer\_all}}(\textcolor{keywordtype}{int}\ fd\_src,\ \textcolor{keywordtype}{int}\ fd\_dst);}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ssize\_t\ \mbox{\hyperlink{group__archivos_gaedc5b9d53b4d20854d5650195dd01938}{copy\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *src\_path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *dst\_path);}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ FILE\_UTILS\_H}}
+
+\end{DoxyCodeInclude}
+ 

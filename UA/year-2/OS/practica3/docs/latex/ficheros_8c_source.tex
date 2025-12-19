@@ -8,7 +8,7 @@
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <string.h>}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00005}00005\ \textcolor{preprocessor}{\#include<fcntl.h>}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
-\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}../../lib/file\_utils.h"{}}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{file__utils_8h}{../../lib/file\_utils.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00008}00008\ }
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00009}\mbox{\hyperlink{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}{00009}}\ \textcolor{preprocessor}{\#define\ SIZE\_BUFFER\_LECTURA\ 4096\ }\textcolor{comment}{//\ Asumimos\ que\ el\ archivo\ de\ entrada\ no\ pesa\ más\ de\ 4KB}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00010}00010\ }
@@ -24,7 +24,7 @@
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer\_archivo[\mbox{\hyperlink{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}{SIZE\_BUFFER\_LECTURA}}];}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00021}00021\ \ \ \ \ memset(buffer\_archivo,\ 0,\ \mbox{\hyperlink{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}{SIZE\_BUFFER\_LECTURA}});\ \textcolor{comment}{//\ Limpiamos\ el\ buffer\ para\ evitar\ basura}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00023}00023\ \ \ \ \ ssize\_t\ leidos\ =\ read\_all(fd,\ buffer\_archivo,\ \mbox{\hyperlink{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}{SIZE\_BUFFER\_LECTURA}}\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00023}00023\ \ \ \ \ ssize\_t\ leidos\ =\ \mbox{\hyperlink{group__lectura_gabcb213f71028761c5d071d0a78827a6c}{read\_all}}(fd,\ buffer\_archivo,\ \mbox{\hyperlink{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}{SIZE\_BUFFER\_LECTURA}}\ -\/\ 1);}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00024}00024\ \ \ \ \ close(fd);\ \textcolor{comment}{//\ Ya\ tenemos\ los\ datos\ y\ por\ tanto\ cerramos\ el\ descriptor}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (leidos\ ==\ -\/1)\ \{}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00026}00026\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ al\ leer\ el\ fichero"{}});}
@@ -78,7 +78,7 @@
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00074}00074\ \ \ \ \ \textcolor{comment}{//\ Formato\ fuente:\ <instante\_tiempo>\ <estado\_memoria>\ \(\backslash\)n}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//\ 1.\ Escribimos\ el\ instante\ de\ tiempo}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00076}00076\ \ \ \ \ \textcolor{keywordtype}{int}\ len\ =\ sprintf(buffer\_linea,\ \textcolor{stringliteral}{"{}\%d"{}},\ instante);}
-\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00077}00077\ \ \ \ \ write\_all(fd,\ buffer\_linea,\ len);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00077}00077\ \ \ \ \ \mbox{\hyperlink{group__escritura_gad7594b3bb7fefa81a56a3436e24bba90}{write\_all}}(fd,\ buffer\_linea,\ len);}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00078}00078\ }
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00079}00079\ \ \ \ \ \textcolor{comment}{//\ 2.\ Recorremos\ las\ particiones}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}};\ i++)\ \{}
@@ -86,11 +86,11 @@
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00082}00082\ }
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Formateamos\ una\ particion\ al\ formato\ requerido}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00084}00084\ \ \ \ \ \ \ \ \ len\ =\ sprintf(buffer\_linea,\ \textcolor{stringliteral}{"{}[\%d,\ \%s,\ \%d]\ "{}},\ p.\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}},\ p.\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ p.\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}});}
-\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00085}00085\ \ \ \ \ \ \ \ \ write\_all(fd,\ buffer\_linea,\ len);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00085}00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__escritura_gad7594b3bb7fefa81a56a3436e24bba90}{write\_all}}(fd,\ buffer\_linea,\ len);}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00086}00086\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00087}00087\ }
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00088}00088\ \ \ \ \ \textcolor{comment}{//\ 3.\ Salto\ de\ linea\ final}}
-\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00089}00089\ \ \ \ \ write\_all(fd,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00089}00089\ \ \ \ \ \mbox{\hyperlink{group__escritura_gad7594b3bb7fefa81a56a3436e24bba90}{write\_all}}(fd,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1);}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00090}00090\ }
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00091}00091\ \ \ \ \ close(fd);}
 \DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00092}00092\ \}}

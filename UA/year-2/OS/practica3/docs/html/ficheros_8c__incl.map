@@ -12,10 +12,14 @@
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="336,29,383,69,378,69,335,34"/>
 <area shape="rect" id="Node000009" title=" " alt="" coords="460,79,527,105"/>
 <area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="351,29,453,72,447,73,350,34"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="551,79,672,105"/>
+<area shape="rect" id="Node000010" href="$file__utils_8h.html" title="Librería de utilidades para operaciones de E/S con descriptores de fichero." alt="" coords="551,79,672,105"/>
 <area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="371,29,550,74,545,76,370,34"/>
 <area shape="rect" id="Node000003" href="$sim__engine_8h.html" title="Motor de simulación de gestión de memoria con particiones variables." alt="" coords="5,153,104,178"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="55,102,57,137,52,136,54,107"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="17,226,92,252"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="56,177,57,211,52,210,53,181"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="526,153,594,178"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="606,104,579,142,576,138,601,106"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="618,153,707,178"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="621,102,648,141,643,139,619,107"/>
 </map>

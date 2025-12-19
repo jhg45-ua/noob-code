@@ -1,0 +1,159 @@
+\doxysection{Funciones de Transferencia }
+\hypertarget{group__transferencia}{}\label{group__transferencia}\index{Funciones de Transferencia@{Funciones de Transferencia}}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__transferencia_ga815be9892352da875e3943765d671445}{transfer\+\_\+data}} (int fd\+\_\+src, int fd\+\_\+dst, char \texorpdfstring{$\ast$}{*}buffer, ssize\+\_\+t buffer\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Transfiere datos de un descriptor de origen a uno de destino. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc}{transfer\+\_\+all}} (int fd\+\_\+src, int fd\+\_\+dst)
+\begin{DoxyCompactList}\small\item\em Transfiere todo el contenido de un descriptor a otro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Funciones para mover datos entre descriptores. 
+
+\label{doc-func-members}
+\Hypertarget{group__transferencia_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc}\index{Funciones de Transferencia@{Funciones de Transferencia}!transfer\_all@{transfer\_all}}
+\index{transfer\_all@{transfer\_all}!Funciones de Transferencia@{Funciones de Transferencia}}
+\doxysubsubsection{\texorpdfstring{transfer\_all()}{transfer\_all()}}
+{\footnotesize\ttfamily \label{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc} 
+ssize\+\_\+t transfer\+\_\+all (\begin{DoxyParamCaption}\item[{int}]{fd\+\_\+src}{, }\item[{int}]{fd\+\_\+dst}{}\end{DoxyParamCaption})}
+
+
+
+Transfiere todo el contenido de un descriptor a otro. 
+
+Versión simplificada de \doxylink{group__transferencia_ga815be9892352da875e3943765d671445}{transfer\+\_\+data()} que usa un buffer interno de tamaño DEFAULT\+\_\+\+BUFFER\+\_\+\+SIZE. Ideal para casos donde no se necesita control sobre el tamaño del buffer.
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in}}  & {\em fd\+\_\+src} & Descriptor de origen \\
+\hline
+\mbox{\texttt{in}}  & {\em fd\+\_\+dst} & Descriptor de destino\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Número total de bytes transferidos 
+
+-\/1 si hubo error
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondición}
+fd\+\_\+src debe estar abierto para lectura 
+
+fd\+\_\+dst debe estar abierto para escritura
+\end{DoxyPrecond}
+\begin{DoxyNote}{Nota}
+Usa buffer interno de DEFAULT\+\_\+\+BUFFER\+\_\+\+SIZE (4KB)
+\end{DoxyNote}
+\begin{DoxySeeAlso}{Ver también}
+\doxylink{group__transferencia_ga815be9892352da875e3943765d671445}{transfer\+\_\+data()}, \doxylink{group__archivos_gaedc5b9d53b4d20854d5650195dd01938}{copy\+\_\+file()} 
+\end{DoxySeeAlso}
+\begin{Desc}
+\item[Ejemplos]\par
+\mbox{\hyperlink{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2lib_2file_utils_8h-example}{/\+Users/julianhinojosagil/\+Documents/\+Dev/noob-\/code/\+UA/year-\/2/\+OS/lib/file\+\_\+utils.\+h}}.\end{Desc}
+
+
+Definición en la línea \mbox{\hyperlink{file__utils_8c_source_l00065}{65}} del archivo \mbox{\hyperlink{file__utils_8c_source}{file\+\_\+utils.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{file__utils_8h_source_l00046}{DEFAULT\+\_\+\+BUFFER\+\_\+\+SIZE}} y \mbox{\hyperlink{file__utils_8c_source_l00052}{transfer\+\_\+data()}}.
+
+
+
+Referenciado por \mbox{\hyperlink{file__utils_8c_source_l00071}{copy\+\_\+file()}}.
+
+Gráfico de llamadas de esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__transferencia_ga815be9892352da875e3943765d671445}\index{Funciones de Transferencia@{Funciones de Transferencia}!transfer\_data@{transfer\_data}}
+\index{transfer\_data@{transfer\_data}!Funciones de Transferencia@{Funciones de Transferencia}}
+\doxysubsubsection{\texorpdfstring{transfer\_data()}{transfer\_data()}}
+{\footnotesize\ttfamily \label{group__transferencia_ga815be9892352da875e3943765d671445} 
+ssize\+\_\+t transfer\+\_\+data (\begin{DoxyParamCaption}\item[{int}]{fd\+\_\+src}{, }\item[{int}]{fd\+\_\+dst}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{ssize\+\_\+t}]{buffer\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Transfiere datos de un descriptor de origen a uno de destino. 
+
+Lee todos los datos disponibles de {\ttfamily fd\+\_\+src} y los escribe en {\ttfamily fd\+\_\+dst} usando el buffer proporcionado. Funciona con archivos, pipes o sockets.
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in}}  & {\em fd\+\_\+src} & Descriptor de origen (archivo, pipe, socket) \\
+\hline
+\mbox{\texttt{in}}  & {\em fd\+\_\+dst} & Descriptor de destino (archivo, pipe, socket) \\
+\hline
+\mbox{\texttt{in,out}}  & {\em buffer} & Buffer temporal para la transferencia (proporcionado por el usuario) \\
+\hline
+\mbox{\texttt{in}}  & {\em buffer\+\_\+size} & Tamaño del buffer en bytes\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Número total de bytes transferidos exitosamente 
+
+-\/1 si hubo error de lectura o escritura
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondición}
+fd\+\_\+src debe estar abierto para lectura 
+
+fd\+\_\+dst debe estar abierto para escritura 
+
+buffer != NULL 
+
+buffer\+\_\+size \texorpdfstring{$>$}{>} 0
+\end{DoxyPrecond}
+\begin{DoxyNote}{Nota}
+Para mejor rendimiento, usar buffer\+\_\+size \texorpdfstring{$>$}{>}= DEFAULT\+\_\+\+BUFFER\+\_\+\+SIZE 
+
+Continúa hasta EOF del descriptor origen
+\end{DoxyNote}
+\begin{DoxySeeAlso}{Ver también}
+\doxylink{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc}{transfer\+\_\+all()} 
+\end{DoxySeeAlso}
+\begin{Desc}
+\item[Ejemplos]\par
+\mbox{\hyperlink{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2lib_2file_utils_8h-example}{/\+Users/julianhinojosagil/\+Documents/\+Dev/noob-\/code/\+UA/year-\/2/\+OS/lib/file\+\_\+utils.\+h}}.\end{Desc}
+
+
+Definición en la línea \mbox{\hyperlink{file__utils_8c_source_l00052}{52}} del archivo \mbox{\hyperlink{file__utils_8c_source}{file\+\_\+utils.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{file__utils_8c_source_l00018}{write\+\_\+all()}}.
+
+
+
+Referenciado por \mbox{\hyperlink{file__utils_8c_source_l00065}{transfer\+\_\+all()}}.
+
+Gráfico de llamadas de esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{group__transferencia_ga815be9892352da875e3943765d671445_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{group__transferencia_ga815be9892352da875e3943765d671445_icgraph}
+\end{center}
+\end{figure}

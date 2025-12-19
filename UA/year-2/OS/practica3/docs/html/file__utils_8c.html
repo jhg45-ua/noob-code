@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Memoria - Práctica 3 OS: Referencia del archivo /Users/julianhinojosagil/Documents/Dev/noob-code/UA/year-2/OS/lib/file_utils.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('file__utils_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo file_utils.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Implementación de utilidades para operaciones de E/S con descriptores.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="file__utils_8h_source.html">file_utils.h</a>&quot;</code><br />
+<code>#include &lt;sys/fcntl.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependencias incluidas en file_utils.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="file__utils_8c__incl.png" border="0" usemap="#a_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2lib_2file__utils_8c" loading="lazy" alt=""/></div>
+<map name="a_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2lib_2file__utils_8c" id="a_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2lib_2file__utils_8c">
+<area shape="rect" title="Implementación de utilidades para operaciones de E/S con descriptores." alt="" coords="200,5,388,61"/>
+<area shape="rect" href="file__utils_8h.html" title="Librería de utilidades para operaciones de E/S con descriptores de fichero." alt="" coords="50,109,130,135"/>
+<area shape="poly" title=" " alt="" coords="228,63,134,105,131,100,232,60"/>
+<area shape="rect" title=" " alt="" coords="154,109,237,135"/>
+<area shape="poly" title=" " alt="" coords="266,60,222,101,219,96,261,63"/>
+<area shape="rect" title=" " alt="" coords="260,109,328,135"/>
+<area shape="poly" title=" " alt="" coords="296,59,296,95,292,92,293,63"/>
+<area shape="rect" title=" " alt="" coords="352,109,410,135"/>
+<area shape="poly" title=" " alt="" coords="322,59,361,98,355,97,320,64"/>
+<area shape="rect" title=" " alt="" coords="434,109,496,135"/>
+<area shape="poly" title=" " alt="" coords="348,59,430,101,425,102,347,64"/>
+<area shape="rect" title=" " alt="" coords="5,183,74,208"/>
+<area shape="poly" title=" " alt="" coords="84,134,59,172,55,168,80,136"/>
+<area shape="rect" title=" " alt="" coords="98,183,187,208"/>
+<area shape="poly" title=" " alt="" coords="100,132,127,170,122,170,98,137"/>
+</map>
+</div>
+</div>
+<p><a href="file__utils_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:gad7594b3bb7fefa81a56a3436e24bba90" id="r_gad7594b3bb7fefa81a56a3436e24bba90"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90">write_all</a> (int fd, const void *buffer, size_t size)</td></tr>
+<tr class="memdesc:gad7594b3bb7fefa81a56a3436e24bba90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escribe todos los bytes del buffer al descriptor de fichero.  <br /></td></tr>
+<tr class="memitem:gabcb213f71028761c5d071d0a78827a6c" id="r_gabcb213f71028761c5d071d0a78827a6c"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lectura.html#gabcb213f71028761c5d071d0a78827a6c">read_all</a> (int fd, void *buffer, size_t size)</td></tr>
+<tr class="memdesc:gabcb213f71028761c5d071d0a78827a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lee hasta <span class="tt">size</span> bytes de un descriptor a un buffer.  <br /></td></tr>
+<tr class="memitem:ga815be9892352da875e3943765d671445" id="r_ga815be9892352da875e3943765d671445"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__transferencia.html#ga815be9892352da875e3943765d671445">transfer_data</a> (int fd_src, int fd_dst, char *buffer, ssize_t buffer_size)</td></tr>
+<tr class="memdesc:ga815be9892352da875e3943765d671445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfiere datos de un descriptor de origen a uno de destino.  <br /></td></tr>
+<tr class="memitem:ga1d83514d3daabf6fa8724b82fe829fcc" id="r_ga1d83514d3daabf6fa8724b82fe829fcc"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__transferencia.html#ga1d83514d3daabf6fa8724b82fe829fcc">transfer_all</a> (int fd_src, int fd_dst)</td></tr>
+<tr class="memdesc:ga1d83514d3daabf6fa8724b82fe829fcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfiere todo el contenido de un descriptor a otro.  <br /></td></tr>
+<tr class="memitem:gaedc5b9d53b4d20854d5650195dd01938" id="r_gaedc5b9d53b4d20854d5650195dd01938"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__archivos.html#gaedc5b9d53b4d20854d5650195dd01938">copy_file</a> (const char *src_path, const char *dst_path)</td></tr>
+<tr class="memdesc:gaedc5b9d53b4d20854d5650195dd01938"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia un archivo completo a otra ubicación.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Implementación de utilidades para operaciones de E/S con descriptores. </p>
+<dl class="section author"><dt>Autor</dt><dd>Julian Hinojosa Gil </dd></dl>
+<dl class="section date"><dt>Fecha</dt><dd>2025 </dd></dl>
+<dl class="section version"><dt>Versión</dt><dd>1.0</dd></dl>
+<dl class="section see"><dt>Ver también</dt><dd><a class="el" href="file__utils_8h.html" title="Librería de utilidades para operaciones de E/S con descriptores de fichero.">file_utils.h</a> para la documentación de la API pública. </dd></dl>
+
+<p class="definition">Definición en el archivo <a class="el" href="file__utils_8c_source.html">file_utils.c</a>.</p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a href="file__utils_8c.html">file_utils.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -98,7 +98,7 @@ $(function(){initNavTree('ficheros_8c_source.html','',''); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include&lt;fcntl.h&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;../../lib/file_utils.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="file__utils_8h.html">../../lib/file_utils.h</a>&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64">    9</a></span><span class="preprocessor">#define SIZE_BUFFER_LECTURA 4096 </span><span class="comment">// Asumimos que el archivo de entrada no pesa más de 4KB</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
@@ -115,7 +115,7 @@ $(function(){initNavTree('ficheros_8c_source.html','',''); });
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">char</span> buffer_archivo[<a class="code hl_define" href="ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64">SIZE_BUFFER_LECTURA</a>];</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    memset(buffer_archivo, 0, <a class="code hl_define" href="ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64">SIZE_BUFFER_LECTURA</a>); <span class="comment">// Limpiamos el buffer para evitar basura</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    ssize_t leidos = read_all(fd, buffer_archivo, <a class="code hl_define" href="ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64">SIZE_BUFFER_LECTURA</a> - 1);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    ssize_t leidos = <a class="code hl_function" href="group__lectura.html#gabcb213f71028761c5d071d0a78827a6c">read_all</a>(fd, buffer_archivo, <a class="code hl_define" href="ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64">SIZE_BUFFER_LECTURA</a> - 1);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    close(fd); <span class="comment">// Ya tenemos los datos y por tanto cerramos el descriptor</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">if</span> (leidos == -1) {</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        perror(<span class="stringliteral">&quot;Error al leer el fichero&quot;</span>);</div>
@@ -171,7 +171,7 @@ $(function(){initNavTree('ficheros_8c_source.html','',''); });
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// Formato fuente: &lt;instante_tiempo&gt; &lt;estado_memoria&gt; \n</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// 1. Escribimos el instante de tiempo</span></div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">int</span> len = sprintf(buffer_linea, <span class="stringliteral">&quot;%d&quot;</span>, instante);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    write_all(fd, buffer_linea, len);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_function" href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90">write_all</a>(fd, buffer_linea, len);</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// 2. Recorremos las particiones</span></div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; m-&gt;<a class="code hl_variable" href="struct_memoria.html#ae398c8e61b3aade21c6118c6cedf879d">cant_particiones</a>; i++) {</div>
@@ -179,11 +179,11 @@ $(function(){initNavTree('ficheros_8c_source.html','',''); });
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="comment">// Formateamos una particion al formato requerido</span></div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        len = sprintf(buffer_linea, <span class="stringliteral">&quot;[%d, %s, %d] &quot;</span>, p.<a class="code hl_variable" href="struct_particion.html#ae1cc803e8a591302bcc4cfb0145fee53">dir_inicio</a>, p.<a class="code hl_variable" href="struct_particion.html#a6a9530f295bf5f859a4ebe469751dfa9">nombre_proceso</a>, p.<a class="code hl_variable" href="struct_particion.html#a44d43efa08e89cb916c4a465a77d6399">tamano</a>);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        write_all(fd, buffer_linea, len);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <a class="code hl_function" href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90">write_all</a>(fd, buffer_linea, len);</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// 3. Salto de linea final</span></div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    write_all(fd, <span class="stringliteral">&quot;\n&quot;</span>, 1);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_function" href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90">write_all</a>(fd, <span class="stringliteral">&quot;\n&quot;</span>, 1);</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    close(fd);</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>}</div>
@@ -201,7 +201,10 @@ $(function(){initNavTree('ficheros_8c_source.html','',''); });
 <div class="ttc" id="aficheros_8c_html_af760c80ad550bdf7a5312163e4c9b2d6"><div class="ttname"><a href="ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6">cargar_procesos</a></div><div class="ttdeci">int cargar_procesos(const char *ruta, Proceso procesos[])</div><div class="ttdoc">Carga los procesos desde un archivo de texto.</div><div class="ttdef"><b>Definition</b> <a href="#l00011">ficheros.c:11</a></div></div>
 <div class="ttc" id="aficheros_8c_html_af7e2e00877e94e16b9c6f0f76103214b"><div class="ttname"><a href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b">guardar_estado</a></div><div class="ttdeci">void guardar_estado(const char *ruta, Memoria *m, int instante)</div><div class="ttdoc">Guarda el estado actual de la memoria en un archivo de log.</div><div class="ttdef"><b>Definition</b> <a href="#l00064">ficheros.c:64</a></div></div>
 <div class="ttc" id="aficheros_8h_html"><div class="ttname"><a href="ficheros_8h.html">ficheros.h</a></div><div class="ttdoc">Módulo de entrada/salida para la simulación de memoria.</div></div>
+<div class="ttc" id="afile__utils_8h_html"><div class="ttname"><a href="file__utils_8h.html">file_utils.h</a></div><div class="ttdoc">Librería de utilidades para operaciones de E/S con descriptores de fichero.</div></div>
 <div class="ttc" id="agroup__constantes_html_gab0f17287f3a9af76ef9109ec1dfce7a9"><div class="ttname"><a href="group__constantes.html#gab0f17287f3a9af76ef9109ec1dfce7a9">MAX_PROCESOS</a></div><div class="ttdeci">#define MAX_PROCESOS</div><div class="ttdoc">Máximo número de procesos que puede manejar la simulación.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00045">sim_engine.h:45</a></div></div>
+<div class="ttc" id="agroup__escritura_html_gad7594b3bb7fefa81a56a3436e24bba90"><div class="ttname"><a href="group__escritura.html#gad7594b3bb7fefa81a56a3436e24bba90">write_all</a></div><div class="ttdeci">int write_all(int fd, const void *buffer, size_t size)</div><div class="ttdoc">Escribe todos los bytes del buffer al descriptor de fichero.</div><div class="ttdef"><b>Definition</b> <a href="file__utils_8c_source.html#l00018">file_utils.c:18</a></div></div>
+<div class="ttc" id="agroup__lectura_html_gabcb213f71028761c5d071d0a78827a6c"><div class="ttname"><a href="group__lectura.html#gabcb213f71028761c5d071d0a78827a6c">read_all</a></div><div class="ttdeci">ssize_t read_all(int fd, void *buffer, size_t size)</div><div class="ttdoc">Lee hasta size bytes de un descriptor a un buffer.</div><div class="ttdef"><b>Definition</b> <a href="file__utils_8c_source.html#l00034">file_utils.c:34</a></div></div>
 <div class="ttc" id="astruct_memoria_html"><div class="ttname"><a href="struct_memoria.html">Memoria</a></div><div class="ttdoc">Estructura principal que representa la memoria del sistema.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00090">sim_engine.h:90</a></div></div>
 <div class="ttc" id="astruct_memoria_html_a5172c2be2a019c0176b997b11e91655e"><div class="ttname"><a href="struct_memoria.html#a5172c2be2a019c0176b997b11e91655e">Memoria::particiones</a></div><div class="ttdeci">Particion particiones[MAX_PARTICIONES]</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00091">sim_engine.h:91</a></div></div>
 <div class="ttc" id="astruct_memoria_html_ae398c8e61b3aade21c6118c6cedf879d"><div class="ttname"><a href="struct_memoria.html#ae398c8e61b3aade21c6118c6cedf879d">Memoria::cant_particiones</a></div><div class="ttdeci">int cant_particiones</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00092">sim_engine.h:92</a></div></div>
@@ -222,7 +225,7 @@ $(function(){initNavTree('ficheros_8c_source.html','',''); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="ficheros_8c.html">ficheros.c</a></li>
+    <li class="navelem"><a href="dir_7021742465da3e6ff8ecd29a5be58e2c.html">src</a></li><li class="navelem"><a href="ficheros_8c.html">ficheros.c</a></li>
     <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>

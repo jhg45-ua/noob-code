@@ -1,0 +1,90 @@
+\doxysection{Funciones de Archivos }
+\hypertarget{group__archivos}{}\label{group__archivos}\index{Funciones de Archivos@{Funciones de Archivos}}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__archivos_gaedc5b9d53b4d20854d5650195dd01938}{copy\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}src\+\_\+path, const char \texorpdfstring{$\ast$}{*}dst\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Copia un archivo completo a otra ubicación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Funciones de alto nivel para operaciones con archivos. 
+
+\label{doc-func-members}
+\Hypertarget{group__archivos_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{group__archivos_gaedc5b9d53b4d20854d5650195dd01938}\index{Funciones de Archivos@{Funciones de Archivos}!copy\_file@{copy\_file}}
+\index{copy\_file@{copy\_file}!Funciones de Archivos@{Funciones de Archivos}}
+\doxysubsubsection{\texorpdfstring{copy\_file()}{copy\_file()}}
+{\footnotesize\ttfamily \label{group__archivos_gaedc5b9d53b4d20854d5650195dd01938} 
+ssize\+\_\+t copy\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{src\+\_\+path}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{dst\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Copia un archivo completo a otra ubicación. 
+
+Abre el archivo origen, crea (o trunca) el archivo destino, transfiere todo el contenido y cierra ambos descriptores.
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in}}  & {\em src\+\_\+path} & Ruta del archivo origen (debe existir y ser legible) \\
+\hline
+\mbox{\texttt{in}}  & {\em dst\+\_\+path} & Ruta del archivo destino (se crea si no existe, se trunca si existe)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Número de bytes copiados exitosamente 
+
+-\/1 si hubo error (no se pudo abrir origen, crear destino, o error de transferencia)
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondición}
+src\+\_\+path debe apuntar a un archivo existente y legible 
+
+El directorio padre de dst\+\_\+path debe existir
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+El archivo destino contiene una copia exacta del origen 
+
+Los permisos del archivo destino son 0644 (rw-\/r--r--)
+\end{DoxyPostcond}
+\begin{DoxyNote}{Nota}
+Si dst\+\_\+path existe, su contenido se sobrescribe 
+\end{DoxyNote}
+\begin{DoxyWarning}{Atención}
+No copia permisos ni metadatos del archivo original
+\end{DoxyWarning}
+\begin{DoxyParagraph}{Ejemplo\+:}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ssize\_t\ bytes\ =\ \mbox{\hyperlink{group__archivos_gaedc5b9d53b4d20854d5650195dd01938}{copy\_file}}(\textcolor{stringliteral}{"{}/tmp/origen.txt"{}},\ \textcolor{stringliteral}{"{}/tmp/copia.txt"{}});}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (bytes\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ copiando\ archivo"{}});}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Copiados\ \%zd\ bytes\(\backslash\)n"{}},\ bytes);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{Ver también}
+\doxylink{group__transferencia_ga1d83514d3daabf6fa8724b82fe829fcc}{transfer\+\_\+all()} 
+\end{DoxySeeAlso}
+\begin{Desc}
+\item[Ejemplos]\par
+\mbox{\hyperlink{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2lib_2file_utils_8h-example}{/\+Users/julianhinojosagil/\+Documents/\+Dev/noob-\/code/\+UA/year-\/2/\+OS/lib/file\+\_\+utils.\+h}}.\end{Desc}
+
+
+Definición en la línea \mbox{\hyperlink{file__utils_8c_source_l00071}{71}} del archivo \mbox{\hyperlink{file__utils_8c_source}{file\+\_\+utils.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{file__utils_8c_source_l00065}{transfer\+\_\+all()}}.
+
+Gráfico de llamadas de esta función\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__archivos_gaedc5b9d53b4d20854d5650195dd01938_cgraph}
+\end{center}
+\end{figure}

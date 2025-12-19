@@ -9,5 +9,8 @@ var searchData=
   ['test_5fsim_6',['test_sim',['../main_8c.html#a0739302f77016ac122f50d59015cfa1f',1,'main.c']]],
   ['testing_7',['Testing',['../changelog.html#autotoc_md46',1,'']]],
   ['tipoalgo_8',['TipoAlgo',['../sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6',1,'sim_engine.h']]],
-  ['todo_9',['Pendiente (TODO)',['../changelog.html#autotoc_md42',1,'']]]
+  ['todo_9',['Pendiente (TODO)',['../changelog.html#autotoc_md42',1,'']]],
+  ['transfer_5fall_10',['transfer_all',['../group__transferencia.html#ga1d83514d3daabf6fa8724b82fe829fcc',1,'transfer_all(int fd_src, int fd_dst):&#160;file_utils.c'],['../group__transferencia.html#ga1d83514d3daabf6fa8724b82fe829fcc',1,'transfer_all(int fd_src, int fd_dst):&#160;file_utils.c']]],
+  ['transfer_5fdata_11',['transfer_data',['../group__transferencia.html#ga815be9892352da875e3943765d671445',1,'transfer_data(int fd_src, int fd_dst, char *buffer, ssize_t buffer_size):&#160;file_utils.c'],['../group__transferencia.html#ga815be9892352da875e3943765d671445',1,'transfer_data(int fd_src, int fd_dst, char *buffer, ssize_t buffer_size):&#160;file_utils.c']]],
+  ['transferencia_12',['Funciones de Transferencia',['../group__transferencia.html',1,'']]]
 ];

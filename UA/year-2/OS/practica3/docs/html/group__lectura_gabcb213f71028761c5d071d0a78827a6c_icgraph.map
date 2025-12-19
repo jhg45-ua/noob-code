@@ -1,0 +1,13 @@
+<map id="read_all" name="read_all">
+<area shape="rect" id="Node000001" title="Lee hasta size bytes de un descriptor a un buffer." alt="" coords="387,21,454,46"/>
+<area shape="rect" id="Node000002" href="$ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6" title="Carga los procesos desde un archivo de texto." alt="" coords="222,21,339,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="369,34,340,36,340,31,375,33"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="Punto de entrada principal del programa." alt="" coords="5,21,55,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="220,17,164,9,133,8,103,11,56,25,54,20,102,6,133,3,165,4,225,16"/>
+<area shape="rect" id="Node000004" href="$main_8c.html#aafb6af6e9fab822accd3e0f7133214bd" title="Ejecuta la interfaz gráfica con Raylib." alt="" coords="107,21,170,46"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="204,34,171,36,170,31,209,33"/>
+<area shape="rect" id="Node000005" href="$main_8c.html#a0739302f77016ac122f50d59015cfa1f" title="Ejecuta la simulación en modo terminal (TUI)." alt="" coords="103,70,174,96"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="230,52,175,73,174,68,224,53"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="89,35,56,36,54,31,93,32"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="92,64,55,47,56,42,97,62"/>
+</map>
