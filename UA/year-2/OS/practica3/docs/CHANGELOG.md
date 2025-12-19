@@ -4,6 +4,19 @@ Todos los cambios notables de este proyecto se documentan aquí.
 
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.0.1] - 2025-12-19
+
+### Corregido
+- TUI ahora se ejecuta **después** de cerrar la GUI (antes era en paralelo)
+- Añadido `system("clear")` para limpiar la consola al iniciar TUI
+- Añadido prompt "Presiona ENTER para continuar..." en modo paso a paso
+- Corregida inicialización de variable `tiempo_total`
+
+### Mejorado
+- Mejor experiencia de usuario: flujo secuencial GUI → TUI
+
+---
+
 ## [1.0.0] - 2025-12-19
 
 ### Añadido

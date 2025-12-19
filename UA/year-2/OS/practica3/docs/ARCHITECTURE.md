@@ -34,7 +34,8 @@
 
 1. **Inicio**: `main()` ejecuta `fork()`
 2. **Proceso hijo** (pid == 0): Ejecuta la GUI con Raylib
-3. **Proceso padre** (pid > 0): Ejecuta la TUI en terminal y espera al hijo
+3. **Proceso padre** (pid > 0): Espera con `waitpid()` a que el hijo termine
+4. **Después de cerrar GUI**: El padre ejecuta la TUI en terminal (modo paso a paso)
 4. **Cada tick de simulación**:
    - Se envejecen los procesos en memoria (decrementan t_restante)
    - Se liberan procesos que han terminado (t_restante == 0)

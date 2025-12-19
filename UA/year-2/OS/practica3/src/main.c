@@ -19,6 +19,7 @@
 #include "ficheros.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
@@ -74,7 +75,6 @@ int main(int argc, char const* argv[])
     } else {
         // Proceso Padre: TUI (Terminal)
         test_sim();
-        
         // Esperar a que el hijo (GUI) termine
         waitpid(pid, NULL, 0);
     }
@@ -93,6 +93,8 @@ int main(int argc, char const* argv[])
  * @note Usa algoritmo First Fit por defecto
  */
 void test_sim() {
+    system("clear"); // Limpiamos la consola al iniciar
+
     Memoria m;
     inicializar_memoria(&m);
 
@@ -115,7 +117,7 @@ void test_sim() {
 
     int reloj_sim = 0;
 
-    int tiempo_total; // Simulamos 20 instantes
+    int tiempo_total = 0; // Simulamos 20 instantes
 
     for (int i = 0; i < num_procesos; i++) {
         tiempo_total += procesos[i].t_ejecucion;
@@ -145,6 +147,8 @@ void test_sim() {
         if(esperando == 0) printf("(Nadie)");
         printf("\n----------------------------------------------------\n");
         
+        printf("Presiona ENTER para continuar..."); // <-- AÑADE ESTO
+        fflush(stdout);  // <-- Asegura que se muestre antes del getchar
         getchar(); // Descomenta para ir paso a paso con ENTER
     }
 }

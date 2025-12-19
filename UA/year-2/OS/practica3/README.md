@@ -53,9 +53,11 @@ make
 ./gestomemoria
 ```
 
-El programa ejecuta dos procesos en paralelo:
-- **Proceso hijo**: Interfaz gráfica (GUI) con Raylib
-- **Proceso padre**: Interfaz de terminal (TUI) para depuración
+El programa ejecuta dos procesos de forma secuencial:
+1. **Proceso hijo**: Interfaz gráfica (GUI) con Raylib
+2. **Proceso padre**: Espera a que la GUI termine, luego ejecuta la TUI para depuración
+
+> **Nota**: Cierra la ventana de la GUI para iniciar la TUI en terminal
 
 ### Controles (GUI)
 
