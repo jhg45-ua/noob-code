@@ -93,7 +93,7 @@ $(function(){initNavTree('architecture.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_docs_2_a_r_c_h_i_t_e_c_t_u_r_e"></a></p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
 Diagrama de Módulos</h1>
 <div class="fragment"><div class="line">┌─────────────────────────────────────────────────────────┐</div>
 <div class="line">│                        main.c                           │</div>
@@ -120,7 +120,7 @@ Diagrama de Módulos</h1>
 <div class="line">│  │ (entrada.txt)    │       │    (particiones.txt)    │ │</div>
 <div class="line">│  └──────────────────┘       └─────────────────────────┘ │</div>
 <div class="line">└─────────────────────────────────────────────────────────┘</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
 Flujo de Ejecución</h1>
 <ol type="1">
 <li><b>Inicio</b>: <span class="tt"><a class="el" href="main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="Punto de entrada principal del programa.">main()</a></span> ejecuta <span class="tt">fork()</span></li>
@@ -137,9 +137,9 @@ Flujo de Ejecución</h1>
 </ul>
 </li>
 </ol>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
 Estructuras de Datos Principales</h1>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
 Memoria</h2>
 <p>La estructura central que gestiona las particiones:</p>
 <div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
@@ -150,7 +150,7 @@ Memoria</h2>
 <div class="ttc" id="agroup__constantes_html_gae420f0bf3db242485c8c837356c6ebba"><div class="ttname"><a href="group__constantes.html#gae420f0bf3db242485c8c837356c6ebba">MAX_PARTICIONES</a></div><div class="ttdeci">#define MAX_PARTICIONES</div><div class="ttdoc">Máximo número de particiones simultáneas en memoria.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00042">sim_engine.h:42</a></div></div>
 <div class="ttc" id="astruct_memoria_html"><div class="ttname"><a href="struct_memoria.html">Memoria</a></div><div class="ttdoc">Estructura principal que representa la memoria del sistema.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00090">sim_engine.h:90</a></div></div>
 <div class="ttc" id="astruct_particion_html"><div class="ttname"><a href="struct_particion.html">Particion</a></div><div class="ttdoc">Estructura que representa una partición de memoria.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00077">sim_engine.h:77</a></div></div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
 Proceso</h2>
 <p>Representa un proceso en la simulación:</p>
 <div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
@@ -163,7 +163,7 @@ Proceso</h2>
 <div class="line">    <span class="keywordtype">bool</span> finalizado;      <span class="comment">// ¿Ha terminado?</span></div>
 <div class="line">} <a class="code hl_struct" href="struct_proceso.html">Proceso</a>;</div>
 <div class="ttc" id="astruct_proceso_html"><div class="ttname"><a href="struct_proceso.html">Proceso</a></div><div class="ttdoc">Estructura que representa un proceso en el simulador.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00057">sim_engine.h:57</a></div></div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
 Partición</h2>
 <p>Representa un bloque de memoria (hueco o proceso):</p>
 <div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
@@ -172,9 +172,9 @@ Partición</h2>
 <div class="line">    <span class="keywordtype">int</span> estado;               <span class="comment">// 0=HUECO, 1=OCUPADO</span></div>
 <div class="line">    <span class="keywordtype">char</span> nombre_proceso[10];  <span class="comment">// Nombre o &quot;HUECO&quot;</span></div>
 <div class="line">} <a class="code hl_struct" href="struct_particion.html">Particion</a>;</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 Algoritmos de Asignación</h1>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
 First Fit (Primer Hueco)</h2>
 <p>Busca secuencialmente desde el inicio de la memoria:</p>
 <div class="fragment"><div class="line">Para i = 0 hasta cant_particiones:</div>
@@ -183,7 +183,7 @@ First Fit (Primer Hueco)</h2>
 <div class="line">        Retornar i</div>
 <div class="line">Retornar -1 (no encontrado)</div>
 </div><!-- fragment --><p><b>Ventajas</b>: Simple, rápido para memorias pequeñas <b>Desventajas</b>: Fragmentación al inicio de la memoria</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
 Next Fit (Siguiente Hueco)</h2>
 <p>Busca desde la última posición asignada (circular):</p>
 <div class="fragment"><div class="line">inicio = ultimo_indice_asignado</div>
@@ -195,21 +195,27 @@ Next Fit (Siguiente Hueco)</h2>
 <div class="line">        Retornar i</div>
 <div class="line">Retornar -1 (no encontrado)</div>
 </div><!-- fragment --><p><b>Ventajas</b>: Distribuye mejor la fragmentación <b>Desventajas</b>: Puede ser más lento en el peor caso</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
 Gestión de Memoria</h1>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
 Alineación</h2>
 <p>Toda memoria se alinea a múltiplos de <span class="tt"><a class="el" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5" title="Unidad mínima de asignación. Toda memoria se alinea a múltiplos de este valor.">UNIDAD_MINIMA</a></span> (100):</p>
 <div class="fragment"><div class="line"><span class="comment">// Ejemplo: solicitar 243 → se asignan 300</span></div>
 <div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="sim__engine_8c.html#ab6fef50a2cde39099d3c051aa7975738">alinear_size</a>(<span class="keywordtype">int</span> size) {</div>
-<div class="line">    <span class="keywordtype">int</span> bloques = size / <a class="code hl_define" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a>;</div>
-<div class="line">    <span class="keywordflow">if</span> (size % <a class="code hl_define" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a> != 0)</div>
-<div class="line">        bloques++;</div>
-<div class="line">    <span class="keywordflow">return</span> bloques * <a class="code hl_define" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a>;</div>
+<div class="line">    <span class="keywordtype">int</span> tam_final;</div>
+<div class="line">    <span class="keywordflow">if</span> (size &gt; <a class="code hl_define" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a>) {</div>
+<div class="line">        <span class="keywordtype">int</span> bloques = size / 100;</div>
+<div class="line">        <span class="keywordflow">if</span> (size % 100 != 0)</div>
+<div class="line">            tam_final = <a class="code hl_define" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a> * bloques + 100;</div>
+<div class="line">        <span class="keywordflow">else</span> </div>
+<div class="line">            tam_final = bloques * 100;</div>
+<div class="line">    } <span class="keywordflow">else</span> </div>
+<div class="line">        tam_final = <a class="code hl_define" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a>;</div>
+<div class="line">    <span class="keywordflow">return</span> tam_final;</div>
 <div class="line">}</div>
 <div class="ttc" id="agroup__constantes_html_ga6bb334d2cae8f7d1d61c25b3eba5e9b5"><div class="ttname"><a href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5">UNIDAD_MINIMA</a></div><div class="ttdeci">#define UNIDAD_MINIMA</div><div class="ttdoc">Unidad mínima de asignación. Toda memoria se alinea a múltiplos de este valor.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00039">sim_engine.h:39</a></div></div>
 <div class="ttc" id="asim__engine_8c_html_ab6fef50a2cde39099d3c051aa7975738"><div class="ttname"><a href="sim__engine_8c.html#ab6fef50a2cde39099d3c051aa7975738">alinear_size</a></div><div class="ttdeci">int alinear_size(int size)</div><div class="ttdoc">Alinea un tamaño a múltiplos de UNIDAD_MINIMA.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8c_source.html#l00151">sim_engine.c:151</a></div></div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
 Compactación</h2>
 <p>Cuando se libera un proceso, se fusionan huecos adyacentes:</p>
 <div class="fragment"><div class="line">Para cada par de particiones consecutivas:</div>
@@ -217,7 +223,7 @@ Compactación</h2>
 <div class="line">        Fusionar (sumar tamaños)</div>
 <div class="line">        Eliminar la segunda</div>
 <div class="line">        Repetir desde el inicio</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
 Uso de fork()</h1>
 <p>El programa usa <span class="tt">fork()</span> para ejecutar GUI y TUI en paralelo:</p>
 <div class="fragment"><div class="line">pid_t pid = fork();</div>

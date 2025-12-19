@@ -124,7 +124,3 @@ practica3/
 ## Licencia
 
 Proyecto académico - Universidad de Alicante
-
-## Licencia
-
-Proyecto académico - Universidad de Alicante

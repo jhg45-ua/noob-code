@@ -2,7 +2,7 @@
 \hypertarget{architecture}{}\label{architecture}\index{Arquitectura del Sistema@{Arquitectura del Sistema}}
 \label{architecture_md_docs_2_a_r_c_h_i_t_e_c_t_u_r_e}%
 \Hypertarget{architecture_md_docs_2_a_r_c_h_i_t_e_c_t_u_r_e}%
-\hypertarget{architecture_autotoc_md25}{}\doxysection{\texorpdfstring{Diagrama de Módulos}{Diagrama de Módulos}}\label{architecture_autotoc_md25}
+\hypertarget{architecture_autotoc_md24}{}\doxysection{\texorpdfstring{Diagrama de Módulos}{Diagrama de Módulos}}\label{architecture_autotoc_md24}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{┌─────────────────────────────────────────────────────────┐}
@@ -32,7 +32,7 @@
 \DoxyCodeLine{└─────────────────────────────────────────────────────────┘}
 
 \end{DoxyCode}
-\hypertarget{architecture_autotoc_md26}{}\doxysection{\texorpdfstring{Flujo de Ejecución}{Flujo de Ejecución}}\label{architecture_autotoc_md26}
+\hypertarget{architecture_autotoc_md25}{}\doxysection{\texorpdfstring{Flujo de Ejecución}{Flujo de Ejecución}}\label{architecture_autotoc_md25}
 
 \begin{DoxyEnumerate}
 \item {\bfseries{Inicio}}\+: {\ttfamily \doxylink{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{main()}} ejecuta {\ttfamily fork()}
@@ -48,8 +48,8 @@
 \item Se intentan asignar procesos de la cola de espera
 \item Se guarda el estado en el log
 \end{DoxyItemize}
-\end{DoxyEnumerate}\hypertarget{architecture_autotoc_md27}{}\doxysection{\texorpdfstring{Estructuras de Datos Principales}{Estructuras de Datos Principales}}\label{architecture_autotoc_md27}
-\hypertarget{architecture_autotoc_md28}{}\doxysubsection{\texorpdfstring{Memoria}{Memoria}}\label{architecture_autotoc_md28}
+\end{DoxyEnumerate}\hypertarget{architecture_autotoc_md26}{}\doxysection{\texorpdfstring{Estructuras de Datos Principales}{Estructuras de Datos Principales}}\label{architecture_autotoc_md26}
+\hypertarget{architecture_autotoc_md27}{}\doxysubsection{\texorpdfstring{Memoria}{Memoria}}\label{architecture_autotoc_md27}
 La estructura central que gestiona las particiones\+:
 
 
@@ -61,7 +61,7 @@ La estructura central que gestiona las particiones\+:
 \DoxyCodeLine{\}\ \mbox{\hyperlink{struct_memoria}{Memoria}};}
 
 \end{DoxyCode}
-\hypertarget{architecture_autotoc_md29}{}\doxysubsection{\texorpdfstring{Proceso}{Proceso}}\label{architecture_autotoc_md29}
+\hypertarget{architecture_autotoc_md28}{}\doxysubsection{\texorpdfstring{Proceso}{Proceso}}\label{architecture_autotoc_md28}
 Representa un proceso en la simulación\+:
 
 
@@ -77,7 +77,7 @@ Representa un proceso en la simulación\+:
 \DoxyCodeLine{\}\ \mbox{\hyperlink{struct_proceso}{Proceso}};}
 
 \end{DoxyCode}
-\hypertarget{architecture_autotoc_md30}{}\doxysubsection{\texorpdfstring{Partición}{Partición}}\label{architecture_autotoc_md30}
+\hypertarget{architecture_autotoc_md29}{}\doxysubsection{\texorpdfstring{Partición}{Partición}}\label{architecture_autotoc_md29}
 Representa un bloque de memoria (hueco o proceso)\+:
 
 
@@ -90,8 +90,8 @@ Representa un bloque de memoria (hueco o proceso)\+:
 \DoxyCodeLine{\}\ \mbox{\hyperlink{struct_particion}{Particion}};}
 
 \end{DoxyCode}
-\hypertarget{architecture_autotoc_md31}{}\doxysection{\texorpdfstring{Algoritmos de Asignación}{Algoritmos de Asignación}}\label{architecture_autotoc_md31}
-\hypertarget{architecture_autotoc_md32}{}\doxysubsection{\texorpdfstring{First Fit (Primer Hueco)}{First Fit (Primer Hueco)}}\label{architecture_autotoc_md32}
+\hypertarget{architecture_autotoc_md30}{}\doxysection{\texorpdfstring{Algoritmos de Asignación}{Algoritmos de Asignación}}\label{architecture_autotoc_md30}
+\hypertarget{architecture_autotoc_md31}{}\doxysubsection{\texorpdfstring{First Fit (Primer Hueco)}{First Fit (Primer Hueco)}}\label{architecture_autotoc_md31}
 Busca secuencialmente desde el inicio de la memoria\+:
 
 
@@ -105,7 +105,7 @@ Busca secuencialmente desde el inicio de la memoria\+:
 \end{DoxyCode}
 
 
-{\bfseries{Ventajas}}\+: Simple, rápido para memorias pequeñas {\bfseries{Desventajas}}\+: Fragmentación al inicio de la memoria\hypertarget{architecture_autotoc_md33}{}\doxysubsection{\texorpdfstring{Next Fit (Siguiente Hueco)}{Next Fit (Siguiente Hueco)}}\label{architecture_autotoc_md33}
+{\bfseries{Ventajas}}\+: Simple, rápido para memorias pequeñas {\bfseries{Desventajas}}\+: Fragmentación al inicio de la memoria\hypertarget{architecture_autotoc_md32}{}\doxysubsection{\texorpdfstring{Next Fit (Siguiente Hueco)}{Next Fit (Siguiente Hueco)}}\label{architecture_autotoc_md32}
 Busca desde la última posición asignada (circular)\+:
 
 
@@ -122,22 +122,28 @@ Busca desde la última posición asignada (circular)\+:
 \end{DoxyCode}
 
 
-{\bfseries{Ventajas}}\+: Distribuye mejor la fragmentación {\bfseries{Desventajas}}\+: Puede ser más lento en el peor caso\hypertarget{architecture_autotoc_md34}{}\doxysection{\texorpdfstring{Gestión de Memoria}{Gestión de Memoria}}\label{architecture_autotoc_md34}
-\hypertarget{architecture_autotoc_md35}{}\doxysubsection{\texorpdfstring{Alineación}{Alineación}}\label{architecture_autotoc_md35}
+{\bfseries{Ventajas}}\+: Distribuye mejor la fragmentación {\bfseries{Desventajas}}\+: Puede ser más lento en el peor caso\hypertarget{architecture_autotoc_md33}{}\doxysection{\texorpdfstring{Gestión de Memoria}{Gestión de Memoria}}\label{architecture_autotoc_md33}
+\hypertarget{architecture_autotoc_md34}{}\doxysubsection{\texorpdfstring{Alineación}{Alineación}}\label{architecture_autotoc_md34}
 Toda memoria se alinea a múltiplos de {\ttfamily \doxylink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\+\_\+\+MINIMA}} (100)\+:
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{comment}{//\ Ejemplo:\ solicitar\ 243\ →\ se\ asignan\ 300}}
 \DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sim__engine_8c_ab6fef50a2cde39099d3c051aa7975738}{alinear\_size}}(\textcolor{keywordtype}{int}\ size)\ \{}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ bloques\ =\ size\ /\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}};}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (size\ \%\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}}\ !=\ 0)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ bloques++;}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ bloques\ *\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ tam\_final;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (size\ >\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bloques\ =\ size\ /\ 100;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ \%\ 100\ !=\ 0)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ tam\_final\ =\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}}\ *\ bloques\ +\ 100;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ tam\_final\ =\ bloques\ *\ 100;}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ tam\_final\ =\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ tam\_final;}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
-\hypertarget{architecture_autotoc_md36}{}\doxysubsection{\texorpdfstring{Compactación}{Compactación}}\label{architecture_autotoc_md36}
+\hypertarget{architecture_autotoc_md35}{}\doxysubsection{\texorpdfstring{Compactación}{Compactación}}\label{architecture_autotoc_md35}
 Cuando se libera un proceso, se fusionan huecos adyacentes\+:
 
 
@@ -149,7 +155,7 @@ Cuando se libera un proceso, se fusionan huecos adyacentes\+:
 \DoxyCodeLine{\ \ \ \ \ \ \ \ Repetir\ desde\ el\ inicio}
 
 \end{DoxyCode}
-\hypertarget{architecture_autotoc_md37}{}\doxysection{\texorpdfstring{Uso de fork()}{Uso de fork()}}\label{architecture_autotoc_md37}
+\hypertarget{architecture_autotoc_md36}{}\doxysection{\texorpdfstring{Uso de fork()}{Uso de fork()}}\label{architecture_autotoc_md36}
 El programa usa {\ttfamily fork()} para ejecutar GUI y TUI en paralelo\+:
 
 

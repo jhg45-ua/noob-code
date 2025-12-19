@@ -16,6 +16,5 @@ var index =
     [ "Constantes de Configuración", "index.html#autotoc_md11", null ],
     [ "📊 Estadísticas Futuras", "index.html#autotoc_md12", null ],
     [ "Autor", "index.html#autotoc_md13", null ],
-    [ "Licencia", "index.html#autotoc_md14", null ],
-    [ "Licencia", "index.html#autotoc_md15", null ]
+    [ "Licencia", "index.html#autotoc_md14", null ]
 ];

@@ -27,54 +27,54 @@ var NAVTREE =
   [ "Gestor de Memoria - Práctica 3 OS", "index.html", [
     [ "Gestomemoria - Simulador de Gestión de Memoria", "index.html", "index" ],
     [ "Guía de Instalación", "install.html", [
-      [ "macOS", "install.html#autotoc_md16", [
-        [ "Instalar dependencias con Homebrew", "install.html#autotoc_md17", null ],
-        [ "Compilar el proyecto", "install.html#autotoc_md18", null ],
-        [ "Ejecutar", "install.html#autotoc_md19", null ]
+      [ "macOS", "install.html#autotoc_md15", [
+        [ "Instalar dependencias con Homebrew", "install.html#autotoc_md16", null ],
+        [ "Compilar el proyecto", "install.html#autotoc_md17", null ],
+        [ "Ejecutar", "install.html#autotoc_md18", null ]
       ] ],
-      [ "Linux (Ubuntu/Debian)", "install.html#autotoc_md20", null ],
-      [ "Problemas comunes", "install.html#autotoc_md21", [
-        [ "Error: \"raylib not found\"", "install.html#autotoc_md22", null ],
-        [ "Error: \"fork() failed\"", "install.html#autotoc_md23", null ],
-        [ "Error de compilación con C17", "install.html#autotoc_md24", null ]
+      [ "Linux (Ubuntu/Debian)", "install.html#autotoc_md19", null ],
+      [ "Problemas comunes", "install.html#autotoc_md20", [
+        [ "Error: \"raylib not found\"", "install.html#autotoc_md21", null ],
+        [ "Error: \"fork() failed\"", "install.html#autotoc_md22", null ],
+        [ "Error de compilación con C17", "install.html#autotoc_md23", null ]
       ] ]
     ] ],
     [ "Arquitectura del Sistema", "architecture.html", [
-      [ "Diagrama de Módulos", "architecture.html#autotoc_md25", null ],
-      [ "Flujo de Ejecución", "architecture.html#autotoc_md26", null ],
-      [ "Estructuras de Datos Principales", "architecture.html#autotoc_md27", [
-        [ "Memoria", "architecture.html#autotoc_md28", null ],
-        [ "Proceso", "architecture.html#autotoc_md29", null ],
-        [ "Partición", "architecture.html#autotoc_md30", null ]
+      [ "Diagrama de Módulos", "architecture.html#autotoc_md24", null ],
+      [ "Flujo de Ejecución", "architecture.html#autotoc_md25", null ],
+      [ "Estructuras de Datos Principales", "architecture.html#autotoc_md26", [
+        [ "Memoria", "architecture.html#autotoc_md27", null ],
+        [ "Proceso", "architecture.html#autotoc_md28", null ],
+        [ "Partición", "architecture.html#autotoc_md29", null ]
       ] ],
-      [ "Algoritmos de Asignación", "architecture.html#autotoc_md31", [
-        [ "First Fit (Primer Hueco)", "architecture.html#autotoc_md32", null ],
-        [ "Next Fit (Siguiente Hueco)", "architecture.html#autotoc_md33", null ]
+      [ "Algoritmos de Asignación", "architecture.html#autotoc_md30", [
+        [ "First Fit (Primer Hueco)", "architecture.html#autotoc_md31", null ],
+        [ "Next Fit (Siguiente Hueco)", "architecture.html#autotoc_md32", null ]
       ] ],
-      [ "Gestión de Memoria", "architecture.html#autotoc_md34", [
-        [ "Alineación", "architecture.html#autotoc_md35", null ],
-        [ "Compactación", "architecture.html#autotoc_md36", null ]
+      [ "Gestión de Memoria", "architecture.html#autotoc_md33", [
+        [ "Alineación", "architecture.html#autotoc_md34", null ],
+        [ "Compactación", "architecture.html#autotoc_md35", null ]
       ] ],
-      [ "Uso de fork()", "architecture.html#autotoc_md37", null ]
+      [ "Uso de fork()", "architecture.html#autotoc_md36", null ]
     ] ],
     [ "Changelog", "changelog.html", [
-      [ "[1.0.1] - 2025-12-19", "changelog.html#autotoc_md38", [
-        [ "Corregido", "changelog.html#autotoc_md39", null ],
-        [ "Mejorado", "changelog.html#autotoc_md40", null ]
+      [ "[1.0.1] - 2025-12-19", "changelog.html#autotoc_md37", [
+        [ "Corregido", "changelog.html#autotoc_md38", null ],
+        [ "Mejorado", "changelog.html#autotoc_md39", null ]
       ] ],
-      [ "[1.0.0] - 2025-12-19", "changelog.html#autotoc_md42", [
-        [ "Añadido", "changelog.html#autotoc_md43", null ],
-        [ "Características Técnicas", "changelog.html#autotoc_md44", null ]
+      [ "[1.0.0] - 2025-12-19", "changelog.html#autotoc_md41", [
+        [ "Añadido", "changelog.html#autotoc_md42", null ],
+        [ "Características Técnicas", "changelog.html#autotoc_md43", null ]
       ] ],
-      [ "Pendiente (TODO)", "changelog.html#autotoc_md46", [
-        [ "Algoritmos", "changelog.html#autotoc_md47", null ],
-        [ "Estadísticas", "changelog.html#autotoc_md48", null ],
-        [ "Interfaz", "changelog.html#autotoc_md49", null ],
-        [ "Testing", "changelog.html#autotoc_md50", null ]
+      [ "Pendiente (TODO)", "changelog.html#autotoc_md45", [
+        [ "Algoritmos", "changelog.html#autotoc_md46", null ],
+        [ "Estadísticas", "changelog.html#autotoc_md47", null ],
+        [ "Interfaz", "changelog.html#autotoc_md48", null ],
+        [ "Testing", "changelog.html#autotoc_md49", null ]
       ] ],
-      [ "Notas de Desarrollo", "changelog.html#autotoc_md52", [
-        [ "Estructura del proyecto", "changelog.html#autotoc_md53", null ],
-        [ "Generar documentación", "changelog.html#autotoc_md54", null ]
+      [ "Notas de Desarrollo", "changelog.html#autotoc_md51", [
+        [ "Estructura del proyecto", "changelog.html#autotoc_md52", null ],
+        [ "Generar documentación", "changelog.html#autotoc_md53", null ]
       ] ]
     ] ],
     [ "Topics", "topics.html", "topics" ],

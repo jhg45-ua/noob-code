@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['siguiente_20hueco_0',['Next Fit (Siguiente Hueco)',['../architecture.html#autotoc_md33',1,'']]],
+  ['siguiente_20hueco_0',['Next Fit (Siguiente Hueco)',['../architecture.html#autotoc_md32',1,'']]],
   ['sim_5fengine_2ec_1',['sim_engine.c',['../sim__engine_8c.html',1,'']]],
   ['sim_5fengine_2eh_2',['sim_engine.h',['../sim__engine_8h.html',1,'']]],
   ['simulador_20de_20gestión_20de_20memoria_3',['Gestomemoria - Simulador de Gestión de Memoria',['../index.html',1,'']]],

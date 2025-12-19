@@ -129,10 +129,16 @@ Toda memoria se alinea a múltiplos de `UNIDAD_MINIMA` (100):
 ```c
 // Ejemplo: solicitar 243 → se asignan 300
 int alinear_size(int size) {
-    int bloques = size / UNIDAD_MINIMA;
-    if (size % UNIDAD_MINIMA != 0)
-        bloques++;
-    return bloques * UNIDAD_MINIMA;
+    int tam_final;
+    if (size > UNIDAD_MINIMA) {
+        int bloques = size / 100;
+        if (size % 100 != 0)
+            tam_final = UNIDAD_MINIMA * bloques + 100;
+        else 
+            tam_final = bloques * 100;
+    } else 
+        tam_final = UNIDAD_MINIMA;
+    return tam_final;
 }
 ```
 

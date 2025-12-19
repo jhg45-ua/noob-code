@@ -98,7 +98,7 @@ void test_sim() {
     Memoria m;
     inicializar_memoria(&m);
 
-    TipoAlgo algoritmo_actual = ALGO_PRIMER_HUECO;
+    TipoAlgo algoritmo_actual = ALGO_SIGUIENTE_HUECO;
     
     limpiar_log("particiones_tui.txt");
     
@@ -123,7 +123,7 @@ void test_sim() {
         tiempo_total += procesos[i].t_ejecucion;
     }
 
-    // --- BUCLE DE SIMULACIÓN (10 Instantes) ---
+    // --- BUCLE DE SIMULACIÓN ---
     printf("=== INICIO DE LA SIMULACIÓN COMPLEJA ===\n");
     printf("Memoria Total: %d\n\n", MEMORIA_TOTAL);
 
@@ -181,7 +181,7 @@ void run_gui(Memoria *m, Proceso *procesos, int num_procesos) {
     limpiar_log("particiones.txt");
 
     int reloj_sim = 0;
-    TipoAlgo algoritmo_actual = ALGO_PRIMER_HUECO;
+    TipoAlgo algoritmo_actual = ALGO_SIGUIENTE_HUECO;
 
     //Variables para repro automatica
     bool auto_play = false;
