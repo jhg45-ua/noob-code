@@ -4,6 +4,7 @@
 #include "ficheros.h"
 
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
 
@@ -73,11 +74,17 @@ void test_sim() {
 
     int reloj_sim = 0;
 
+    int tiempo_total; // Simulamos 20 instantes
+
+    for (int i = 0; i < num_procesos; i++) {
+        tiempo_total += procesos[i].t_ejecucion;
+    }
+
     // --- BUCLE DE SIMULACIÓN (10 Instantes) ---
     printf("=== INICIO DE LA SIMULACIÓN COMPLEJA ===\n");
     printf("Memoria Total: %d\n\n", MEMORIA_TOTAL);
 
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < tiempo_total; i++) {
         // Llamamos al motor de tiempo
         avanzar_tiempo(&m, procesos, num_procesos, &reloj_sim, algoritmo_actual, "particiones_tui.txt");
         
@@ -122,10 +129,25 @@ void run_gui(Memoria *m, Proceso *procesos, int num_procesos) {
     float tiempo_acumulado = 0.0f;
     float velocidad = 1.0f; // 1 segundo por tick
 
+    // Variables para los colores de los procesos
+    Color colores_prcesos[] = {
+        SKYBLUE,
+        PINK,
+        ORANGE,
+        LIME,
+        GOLD,
+        GREEN,
+        VIOLET,
+        MAROON,
+        BLUE,
+        RED,
+        PURPLE
+    };
+    int num_colores = sizeof(colores_prcesos) / sizeof(colores_prcesos[0]);
+
     // Main app loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // Update
 
         // Opcion A: Paso Manual(Tecla espacio)
         if (IsKeyPressed(KEY_SPACE))
@@ -163,12 +185,13 @@ void run_gui(Memoria *m, Proceso *procesos, int num_procesos) {
             DrawText("Simulador de Gestion de Memoria", 20, 20, 30, DARKGRAY);
             DrawText(TextFormat("Instante Actual: %d", reloj_sim), 20, 60, 20, BLACK);
 
-            DrawText("Pulsa ESPACIO para avanzar, P para auto play, R para resetear", 20, 120, 20, DARKGRAY);
+            DrawText("Pulsa ESPACIO para avanzar, P para auto play, R para resetear", 20, 90, 20, DARKGRAY);
+            DrawText("Pulsa ESC para salir", 20, 120, 20, DARKGRAY);
 
-            if (auto_play) DrawText("Auto Play: ON (P para Desactivar)", 20, 90, 20, DARKGREEN);
-            else DrawText("Auto Play: OFF (P para Activar)", 20, 90, 20, RED);
+            if (auto_play) DrawText("Auto Play: ON (P para Desactivar)", 20, 150, 20, DARKGREEN);
+            else DrawText("Auto Play: OFF (P para Activar)", 20, 150, 20, RED);
             
-            DrawText(TextFormat("Procesos Cargados: %d", num_procesos), 20, 150, 15, DARKGRAY);
+            DrawText(TextFormat("Procesos Cargados: %d", num_procesos), 20, 180, 15, DARKGRAY);
 
             // 2. Dibujar la barra de memoria
             // Escala: Pantalla / Memoria -> WIN_WIDTH / MEMORIA_TOTAL
@@ -182,8 +205,26 @@ void run_gui(Memoria *m, Proceso *procesos, int num_procesos) {
                 float x = MARGEN_IZQ + (p.dir_inicio * escala);
                 float ancho = p.tamano * escala;
 
-                // Colores: Verde (HUECO) vs Rojo/Azul (Proceso)
-                Color colorBloque = (p.estado == 0) ? GREEN : SKYBLUE; // Cambiar colores por pid con un switch
+                // Colores de los bloques
+                Color colorBloque;
+                Color colorHueco = (Color){227, 217, 132, 255};
+
+                // Determinar color segun estado
+                // Si es hueco, colorHueco, si es proceso, color segun indice de color_procesos
+                if (p.estado == 0) {
+                    colorBloque = colorHueco;
+                } else {
+                    // Buscar indice del proceso por nombre para asignar color
+                    int indice_color = 0;
+                    for (int j = 0; j < num_procesos; j++) {
+                        if (strcmp(procesos[j].nombre, p.nombre_proceso) == 0) {
+                            // Si hay mas procesos que colores, reutilizamos por ejemplo, con 6 colores en 15 procesos, el 15 usará el color 3
+                            indice_color = j % num_colores;
+                            break;
+                        }
+                    }
+                    colorBloque = colores_prcesos[indice_color];
+                }
 
                 // Dibujar el rectangulo
                 DrawRectangle(x, Y_BARRA, ancho, ALTO_BARRA, colorBloque);
@@ -233,7 +274,7 @@ void run_gui(Memoria *m, Proceso *procesos, int num_procesos) {
             } 
             else if (procesos[i].t_llegada <= reloj_sim) {
                 colorEstado = RED;      // Rojo para cola de espera
-                textoEstado = "ESPERA";
+                textoEstado = "COLA DE ESPERA";
             }
             else {
                 colorEstado = LIGHTGRAY; // Gris claro para los que aun no llegan

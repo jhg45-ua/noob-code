@@ -5,17 +5,23 @@
 #include <string.h>
 
 void inicializar_memoria(Memoria *m) {
+    // Inicializamos la memoria con un único hueco que ocupa toda la memoria disponible
     m->cant_particiones = 1;
 
+    // El último índice asignado empieza en 0
     m->ultimo_indice_asignado = 0;
 
+    // Única partición: Hueco de tamaño MEMORIA_TOTAL al inicio
     m->particiones[0].dir_inicio = 0;
     m->particiones[0].tamano = MEMORIA_TOTAL;
+    // Estado 0 indica que es un hueco libre
     m->particiones[0].estado = 0;
+    // Nombre del proceso "HUECO" para indicar que está libre
     strcpy(m->particiones[0].nombre_proceso, "HUECO");
 }
 
 void mostrar_estado(Memoria *m) {
+    // Recorremos todas las particiones y mostramos su estado en formato [dir_inicio nombre_proceso tamano]
     for (int i = 0; i < m->cant_particiones; i++) {
         printf("[%d %s %d]", m->particiones[i].dir_inicio, m->particiones[i].nombre_proceso, m->particiones[i].tamano);
     }
@@ -23,8 +29,10 @@ void mostrar_estado(Memoria *m) {
 }
 
 int ocupar_memoria(Memoria *m, int indice_hueco, Proceso p) {
+    // Obtenemos un puntero a la partición hueco que vamos a ocupar
     Particion *hueco = &m->particiones[indice_hueco];
     
+    // Verificamos que el hueco es libre y que cabe el proceso si no, error
     if (hueco->estado != 0 || hueco->tamano < p.mem_requerida) {
         printf("ERROR: no se puede asignar el proceso \n");
         return 0;

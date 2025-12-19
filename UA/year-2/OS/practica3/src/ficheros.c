@@ -41,9 +41,9 @@ int cargar_procesos(const char* ruta, Proceso procesos[]) {
             procesos[count].t_llegada = llegada;
 
             // Opcion 1: Aplicamos alinear_size para cumplir con la asignacion de 100 en 100
-            procesos[count].mem_requerida = alinear_size(mem);
+            // procesos[count].mem_requerida = alinear_size(mem);
             // Opcion 2: La memoria ya se aliena a la hora de asignar el proceso
-            // procesos[count].mem_requerida = mem;
+            procesos[count].mem_requerida = mem;
 
             procesos[count].t_ejecucion = ejec;
             

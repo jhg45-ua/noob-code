@@ -129,7 +129,7 @@ bool asignar_proceso(Memoria *m, Proceso p, TipoAlgo tipo_algo);
 /**
  * Avanza el tiempo de la simulación, gestionando procesos y memoria.
  * @param m Puntero a la estructura de memoria
- * @param agenda Array de procesos a gestionar
+ * @param procesos Array de procesos a gestionar
  * @param num_procesos Número de procesos en el array
  * @param reloj_actual Puntero al reloj actual de la simulación
  * @param algo Algoritmo de asignación de memoria a utilizar

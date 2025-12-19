@@ -1,0 +1,59 @@
+\doxysection{Referencia de la estructura Particion}
+\hypertarget{struct_particion}{}\label{struct_particion}\index{Particion@{Particion}}
+
+
+que representa una partición de memoria.  
+
+
+
+
+{\ttfamily \#include $<$sim\+\_\+engine.\+h$>$}
+
+\doxysubsubsection*{Campos de datos}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\+\_\+inicio}}
+\item 
+int \mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}
+\item 
+int \mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}
+\item 
+char \mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\+\_\+proceso}} \mbox{[}10\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+que representa una partición de memoria. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_particion_doc-variable-members}
+\doxysubsection{Documentación de campos}
+\Hypertarget{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}\index{Particion@{Particion}!dir\_inicio@{dir\_inicio}}
+\index{dir\_inicio@{dir\_inicio}!Particion@{Particion}}
+\doxysubsubsection{\texorpdfstring{dir\_inicio}{dir\_inicio}}
+{\footnotesize\ttfamily \label{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53} 
+int Particion\+::dir\+\_\+inicio}
+
+Dirección de inicio de la partición \Hypertarget{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}\index{Particion@{Particion}!estado@{estado}}
+\index{estado@{estado}!Particion@{Particion}}
+\doxysubsubsection{\texorpdfstring{estado}{estado}}
+{\footnotesize\ttfamily \label{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a} 
+int Particion\+::estado}
+
+Estado de la partición 0 -\/\texorpdfstring{$>$}{>} HUECO \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} 1 -\/\texorpdfstring{$>$}{>} PROCESO \Hypertarget{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}\index{Particion@{Particion}!nombre\_proceso@{nombre\_proceso}}
+\index{nombre\_proceso@{nombre\_proceso}!Particion@{Particion}}
+\doxysubsubsection{\texorpdfstring{nombre\_proceso}{nombre\_proceso}}
+{\footnotesize\ttfamily \label{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9} 
+char Particion\+::nombre\+\_\+proceso\mbox{[}10\mbox{]}}
+
+Nombre del proceso asignado o "{}\+HUECO"{} si está libre \Hypertarget{struct_particion_a44d43efa08e89cb916c4a465a77d6399}\index{Particion@{Particion}!tamano@{tamano}}
+\index{tamano@{tamano}!Particion@{Particion}}
+\doxysubsubsection{\texorpdfstring{tamano}{tamano}}
+{\footnotesize\ttfamily \label{struct_particion_a44d43efa08e89cb916c4a465a77d6399} 
+int Particion\+::tamano}
+
+Tamaño de la partición 
+
+La documentación de esta estructura está generada del siguiente archivo\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{sim__engine_8h}{sim\+\_\+engine.\+h}}\end{DoxyCompactItemize}

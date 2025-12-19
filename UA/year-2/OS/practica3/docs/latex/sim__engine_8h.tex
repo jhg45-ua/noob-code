@@ -1,0 +1,249 @@
+\doxysection{Referencia del archivo src/sim\+\_\+engine.h}
+\hypertarget{sim__engine_8h}{}\label{sim__engine_8h}\index{src/sim\_engine.h@{src/sim\_engine.h}}
+
+
+Declaraciones del motor de simulación de gestión de memoria.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsubsection*{Estructuras de datos}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_proceso}{Proceso}}
+\begin{DoxyCompactList}\small\item\em Estructura que representa un proceso. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_particion}{Particion}}
+\begin{DoxyCompactList}\small\item\em que representa una partición de memoria. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_memoria}{Memoria}}
+\begin{DoxyCompactList}\small\item\em Estructura que representa la memoria del sistema. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sim__engine_8h_a6264fff1e0ed016a7ce3d58e0534ea00}\label{sim__engine_8h_a6264fff1e0ed016a7ce3d58e0534ea00} 
+\#define {\bfseries MEMORIA\+\_\+\+TOTAL}~2000
+\begin{DoxyCompactList}\small\item\em Tamaño total de la memoria simulada. \end{DoxyCompactList}\item 
+\Hypertarget{sim__engine_8h_a6bb334d2cae8f7d1d61c25b3eba5e9b5}\label{sim__engine_8h_a6bb334d2cae8f7d1d61c25b3eba5e9b5} 
+\#define {\bfseries UNIDAD\+\_\+\+MINIMA}~100
+\begin{DoxyCompactList}\small\item\em Unidad mínima de asignación de memoria. \end{DoxyCompactList}\item 
+\Hypertarget{sim__engine_8h_ae420f0bf3db242485c8c837356c6ebba}\label{sim__engine_8h_ae420f0bf3db242485c8c837356c6ebba} 
+\#define {\bfseries MAX\+\_\+\+PARTICIONES}~50
+\begin{DoxyCompactList}\small\item\em Máximo número de particiones en la memoria. \end{DoxyCompactList}\item 
+\Hypertarget{sim__engine_8h_ab0f17287f3a9af76ef9109ec1dfce7a9}\label{sim__engine_8h_ab0f17287f3a9af76ef9109ec1dfce7a9} 
+\#define {\bfseries MAX\+\_\+\+PROCESOS}~100
+\begin{DoxyCompactList}\small\item\em Máximo número de procesos en la simulación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumeraciones}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}} \{ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}{ALGO\+\_\+\+PRIMER\+\_\+\+HUECO}}
+, \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426}{ALGO\+\_\+\+SIGUIENTE\+\_\+\+HUECO}}
+ \}
+\begin{DoxyCompactList}\small\item\em Tipos de algoritmos de asignación de memoria. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sim__engine_8h_a7525ea6570ccf752c8e9394b62042380}{inicializar\+\_\+memoria}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m)
+\item 
+void \mbox{\hyperlink{sim__engine_8h_a6df7a5ff87dd2abca3c64b3dcc88cf5a}{mostrar\+\_\+estado}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m)
+\item 
+int \mbox{\hyperlink{sim__engine_8h_a6a1089ddf1a175f89c026b773722dcd2}{ocupar\+\_\+memoria}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, int indice\+\_\+hueco, \mbox{\hyperlink{struct_proceso}{Proceso}} p)
+\item 
+void \mbox{\hyperlink{sim__engine_8h_a949ea609798d43a638d95faf7de9f681}{compactar}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m)
+\item 
+bool \mbox{\hyperlink{sim__engine_8h_a9a4646e9f9e8b178131b41945f7a8544}{liberar\+\_\+proceso}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, char \texorpdfstring{$\ast$}{*}nombre\+\_\+proceso)
+\item 
+int \mbox{\hyperlink{sim__engine_8h_a8f367671cb683a6dd983d657251a170b}{buscar\+\_\+hueco}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, int mem\+\_\+requerida, \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}} tipo\+\_\+algo)
+\item 
+int \mbox{\hyperlink{sim__engine_8h_ab6fef50a2cde39099d3c051aa7975738}{alinear\+\_\+size}} (int size)
+\item 
+bool \mbox{\hyperlink{sim__engine_8h_a47eaa39f311ae4f19e76eb9baca390d7}{asignar\+\_\+proceso}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, \mbox{\hyperlink{struct_proceso}{Proceso}} p, \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}} tipo\+\_\+algo)
+\item 
+void \mbox{\hyperlink{sim__engine_8h_a099adf88ebe7183b00ddc648cc1ffa5b}{avanzar\+\_\+tiempo}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, \mbox{\hyperlink{struct_proceso}{Proceso}} procesos\mbox{[}$\,$\mbox{]}, int num\+\_\+procesos, int \texorpdfstring{$\ast$}{*}reloj\+\_\+actual, \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}} algo, const char \texorpdfstring{$\ast$}{*}ruta\+\_\+log)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Declaraciones del motor de simulación de gestión de memoria. 
+
+\begin{DoxyAuthor}{Autor}
+Julian Hinojosa Gil 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+2025 
+\end{DoxyDate}
+
+
+\label{doc-enum-members}
+\Hypertarget{sim__engine_8h_doc-enum-members}
+\doxysubsection{Documentación de enumeraciones}
+\Hypertarget{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}\index{sim\_engine.h@{sim\_engine.h}!TipoAlgo@{TipoAlgo}}
+\index{TipoAlgo@{TipoAlgo}!sim\_engine.h@{sim\_engine.h}}
+\doxysubsubsection{\texorpdfstring{TipoAlgo}{TipoAlgo}}
+{\footnotesize\ttfamily \label{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6} 
+enum \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}}}
+
+
+
+Tipos de algoritmos de asignación de memoria. 
+
+\begin{DoxyEnumFields}[2]{Valores de enumeraciones}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALGO\_PRIMER\_HUECO@{ALGO\_PRIMER\_HUECO}!sim\_engine.h@{sim\_engine.h}}\index{sim\_engine.h@{sim\_engine.h}!ALGO\_PRIMER\_HUECO@{ALGO\_PRIMER\_HUECO}}}\Hypertarget{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}\label{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002} 
+ALGO\+\_\+\+PRIMER\+\_\+\+HUECO&Algoritmo de Primer Hueco \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALGO\_SIGUIENTE\_HUECO@{ALGO\_SIGUIENTE\_HUECO}!sim\_engine.h@{sim\_engine.h}}\index{sim\_engine.h@{sim\_engine.h}!ALGO\_SIGUIENTE\_HUECO@{ALGO\_SIGUIENTE\_HUECO}}}\Hypertarget{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426}\label{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426} 
+ALGO\+\_\+\+SIGUIENTE\+\_\+\+HUECO&Algoritmo de Siguiente Hueco \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{sim__engine_8h_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{sim__engine_8h_ab6fef50a2cde39099d3c051aa7975738}\index{sim\_engine.h@{sim\_engine.h}!alinear\_size@{alinear\_size}}
+\index{alinear\_size@{alinear\_size}!sim\_engine.h@{sim\_engine.h}}
+\doxysubsubsection{\texorpdfstring{alinear\_size()}{alinear\_size()}}
+{\footnotesize\ttfamily \label{sim__engine_8h_ab6fef50a2cde39099d3c051aa7975738} 
+int alinear\+\_\+size (\begin{DoxyParamCaption}\item[{int}]{size}{}\end{DoxyParamCaption})}
+
+Alinea el tamaño solicitado a múltiplos de UNIDAD\+\_\+\+MINIMA (100). 
+\begin{DoxyParams}{Parámetros}
+{\em size} & Tamaño solicitado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Tamaño alineado 
+\end{DoxyReturn}
+\Hypertarget{sim__engine_8h_a47eaa39f311ae4f19e76eb9baca390d7}\index{sim\_engine.h@{sim\_engine.h}!asignar\_proceso@{asignar\_proceso}}
+\index{asignar\_proceso@{asignar\_proceso}!sim\_engine.h@{sim\_engine.h}}
+\doxysubsubsection{\texorpdfstring{asignar\_proceso()}{asignar\_proceso()}}
+{\footnotesize\ttfamily \label{sim__engine_8h_a47eaa39f311ae4f19e76eb9baca390d7} 
+bool asignar\+\_\+proceso (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{\mbox{\hyperlink{struct_proceso}{Proceso}}}]{p}{, }\item[{\mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}}}]{tipo\+\_\+algo}{}\end{DoxyParamCaption})}
+
+Asigna un proceso a la memoria según el algoritmo especificado. 
+\begin{DoxyParams}{Parámetros}
+{\em m} & Puntero a la estructura de memoria \\
+\hline
+{\em p} & \doxylink{struct_proceso}{Proceso} a asignar \\
+\hline
+{\em tipo\+\_\+algo} & Algoritmo de búsqueda (primer hueco o siguiente hueco) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+true si se asignó correctamente, false en caso de error 
+\end{DoxyReturn}
+\Hypertarget{sim__engine_8h_a099adf88ebe7183b00ddc648cc1ffa5b}\index{sim\_engine.h@{sim\_engine.h}!avanzar\_tiempo@{avanzar\_tiempo}}
+\index{avanzar\_tiempo@{avanzar\_tiempo}!sim\_engine.h@{sim\_engine.h}}
+\doxysubsubsection{\texorpdfstring{avanzar\_tiempo()}{avanzar\_tiempo()}}
+{\footnotesize\ttfamily \label{sim__engine_8h_a099adf88ebe7183b00ddc648cc1ffa5b} 
+void avanzar\+\_\+tiempo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{\mbox{\hyperlink{struct_proceso}{Proceso}}}]{procesos}{\mbox{[}$\,$\mbox{]}, }\item[{int}]{num\+\_\+procesos}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{reloj\+\_\+actual}{, }\item[{\mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}}}]{algo}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{ruta\+\_\+log}{}\end{DoxyParamCaption})}
+
+Avanza el tiempo de la simulación, gestionando procesos y memoria. 
+\begin{DoxyParams}{Parámetros}
+{\em m} & Puntero a la estructura de memoria \\
+\hline
+{\em procesos} & Array de procesos a gestionar \\
+\hline
+{\em num\+\_\+procesos} & Número de procesos en el array \\
+\hline
+{\em reloj\+\_\+actual} & Puntero al reloj actual de la simulación \\
+\hline
+{\em algo} & Algoritmo de asignación de memoria a utilizar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+nada 
+\end{DoxyReturn}
+\Hypertarget{sim__engine_8h_a8f367671cb683a6dd983d657251a170b}\index{sim\_engine.h@{sim\_engine.h}!buscar\_hueco@{buscar\_hueco}}
+\index{buscar\_hueco@{buscar\_hueco}!sim\_engine.h@{sim\_engine.h}}
+\doxysubsubsection{\texorpdfstring{buscar\_hueco()}{buscar\_hueco()}}
+{\footnotesize\ttfamily \label{sim__engine_8h_a8f367671cb683a6dd983d657251a170b} 
+int buscar\+\_\+hueco (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{int}]{mem\+\_\+requerida}{, }\item[{\mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}}}]{tipo\+\_\+algo}{}\end{DoxyParamCaption})}
+
+Busca un hueco adecuado según el algoritmo especificado. 
+\begin{DoxyParams}{Parámetros}
+{\em m} & Puntero a la estructura de memoria \\
+\hline
+{\em mem\+\_\+requerida} & \doxylink{struct_memoria}{Memoria} requerida por el proceso \\
+\hline
+{\em tipo\+\_\+algo} & Algoritmo de búsqueda (primer hueco o siguiente hueco) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Índice del hueco encontrado, o -\/1 si no se encontró ninguno 
+\end{DoxyReturn}
+\Hypertarget{sim__engine_8h_a949ea609798d43a638d95faf7de9f681}\index{sim\_engine.h@{sim\_engine.h}!compactar@{compactar}}
+\index{compactar@{compactar}!sim\_engine.h@{sim\_engine.h}}
+\doxysubsubsection{\texorpdfstring{compactar()}{compactar()}}
+{\footnotesize\ttfamily \label{sim__engine_8h_a949ea609798d43a638d95faf7de9f681} 
+void compactar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{}\end{DoxyParamCaption})}
+
+Compacta la memoria uniendo huecos adyacentes. 
+\begin{DoxyParams}{Parámetros}
+{\em m} & Puntero a la estructura de memoria \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+nada 
+\end{DoxyReturn}
+\Hypertarget{sim__engine_8h_a7525ea6570ccf752c8e9394b62042380}\index{sim\_engine.h@{sim\_engine.h}!inicializar\_memoria@{inicializar\_memoria}}
+\index{inicializar\_memoria@{inicializar\_memoria}!sim\_engine.h@{sim\_engine.h}}
+\doxysubsubsection{\texorpdfstring{inicializar\_memoria()}{inicializar\_memoria()}}
+{\footnotesize\ttfamily \label{sim__engine_8h_a7525ea6570ccf752c8e9394b62042380} 
+void inicializar\+\_\+memoria (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{}\end{DoxyParamCaption})}
+
+Inicializa la estructura de memoria con un solo proceso de tipo hueco. 
+\begin{DoxyParams}{Parámetros}
+{\em m} & Puntero a la estructura de memoria a inicializar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+nada 
+\end{DoxyReturn}
+\Hypertarget{sim__engine_8h_a9a4646e9f9e8b178131b41945f7a8544}\index{sim\_engine.h@{sim\_engine.h}!liberar\_proceso@{liberar\_proceso}}
+\index{liberar\_proceso@{liberar\_proceso}!sim\_engine.h@{sim\_engine.h}}
+\doxysubsubsection{\texorpdfstring{liberar\_proceso()}{liberar\_proceso()}}
+{\footnotesize\ttfamily \label{sim__engine_8h_a9a4646e9f9e8b178131b41945f7a8544} 
+bool liberar\+\_\+proceso (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{nombre\+\_\+proceso}{}\end{DoxyParamCaption})}
+
+Libera un proceso de la memoria y compacta si es necesario. 
+\begin{DoxyParams}{Parámetros}
+{\em m} & Puntero a la estructura de memoria \\
+\hline
+{\em nombre\+\_\+proceso} & Nombre del proceso a liberar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+true si se liberó correctamente, false si no se encontró el proceso 
+\end{DoxyReturn}
+\Hypertarget{sim__engine_8h_a6df7a5ff87dd2abca3c64b3dcc88cf5a}\index{sim\_engine.h@{sim\_engine.h}!mostrar\_estado@{mostrar\_estado}}
+\index{mostrar\_estado@{mostrar\_estado}!sim\_engine.h@{sim\_engine.h}}
+\doxysubsubsection{\texorpdfstring{mostrar\_estado()}{mostrar\_estado()}}
+{\footnotesize\ttfamily \label{sim__engine_8h_a6df7a5ff87dd2abca3c64b3dcc88cf5a} 
+void mostrar\+\_\+estado (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{}\end{DoxyParamCaption})}
+
+Muestra el estado actual de la memoria en consola. 
+\begin{DoxyParams}{Parámetros}
+{\em m} & Puntero a la estructura de memoria \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+nada 
+\end{DoxyReturn}
+\Hypertarget{sim__engine_8h_a6a1089ddf1a175f89c026b773722dcd2}\index{sim\_engine.h@{sim\_engine.h}!ocupar\_memoria@{ocupar\_memoria}}
+\index{ocupar\_memoria@{ocupar\_memoria}!sim\_engine.h@{sim\_engine.h}}
+\doxysubsubsection{\texorpdfstring{ocupar\_memoria()}{ocupar\_memoria()}}
+{\footnotesize\ttfamily \label{sim__engine_8h_a6a1089ddf1a175f89c026b773722dcd2} 
+int ocupar\+\_\+memoria (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{int}]{indice\+\_\+hueco}{, }\item[{\mbox{\hyperlink{struct_proceso}{Proceso}}}]{p}{}\end{DoxyParamCaption})}
+
+Intenta ocupar un hueco de memoria con un proceso. 
+\begin{DoxyParams}{Parámetros}
+{\em m} & Puntero a la estructura de memoria \\
+\hline
+{\em indice\+\_\+hueco} & Índice del hueco donde se intentará asignar el proceso \\
+\hline
+{\em p} & \doxylink{struct_proceso}{Proceso} a asignar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+0 si se asignó correctamente, 1 en caso de error 
+\end{DoxyReturn}

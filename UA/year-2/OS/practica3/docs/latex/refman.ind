@@ -1,0 +1,146 @@
+\begin{theindex}
+
+  \item {ALGO\_PRIMER\_HUECO}
+    \subitem {sim\_engine.h}, \hyperpage{12}
+  \item {ALGO\_SIGUIENTE\_HUECO}
+    \subitem {sim\_engine.h}, \hyperpage{12}
+  \item {alinear\_size}
+    \subitem {sim\_engine.h}, \hyperpage{12}
+  \item {asignar\_proceso}
+    \subitem {sim\_engine.h}, \hyperpage{13}
+  \item {avanzar\_tiempo}
+    \subitem {sim\_engine.h}, \hyperpage{13}
+
+  \indexspace
+
+  \item {buscar\_hueco}
+    \subitem {sim\_engine.h}, \hyperpage{13}
+
+  \indexspace
+
+  \item {cant\_particiones}
+    \subitem {Memoria}, \hyperpage{5}
+  \item {cargar\_procesos}
+    \subitem {ficheros.h}, \hyperpage{9}
+  \item {compactar}
+    \subitem {sim\_engine.h}, \hyperpage{14}
+
+  \indexspace
+
+  \item {dir\_inicio}
+    \subitem {Particion}, \hyperpage{6}
+
+  \indexspace
+
+  \item {en\_memoria}
+    \subitem {Proceso}, \hyperpage{7}
+  \item {estado}
+    \subitem {Particion}, \hyperpage{6}
+
+  \indexspace
+
+  \item {ficheros.h}
+    \subitem {cargar\_procesos}, \hyperpage{9}
+    \subitem {guardar\_estado}, \hyperpage{10}
+    \subitem {limpiar\_log}, \hyperpage{10}
+  \item {finalizado}
+    \subitem {Proceso}, \hyperpage{7}
+
+  \indexspace
+
+  \item {guardar\_estado}
+    \subitem {ficheros.h}, \hyperpage{10}
+
+  \indexspace
+
+  \item {inicializar\_memoria}
+    \subitem {sim\_engine.h}, \hyperpage{14}
+
+  \indexspace
+
+  \item {liberar\_proceso}
+    \subitem {sim\_engine.h}, \hyperpage{14}
+  \item {limpiar\_log}
+    \subitem {ficheros.h}, \hyperpage{10}
+
+  \indexspace
+
+  \item {mem\_requerida}
+    \subitem {Proceso}, \hyperpage{7}
+  \item {Memoria}, \hyperpage{5}
+    \subitem {cant\_particiones}, \hyperpage{5}
+    \subitem {particiones}, \hyperpage{5}
+    \subitem {ultimo\_indice\_asignado}, \hyperpage{5}
+  \item {mostrar\_estado}
+    \subitem {sim\_engine.h}, \hyperpage{15}
+
+  \indexspace
+
+  \item {nombre}
+    \subitem {Proceso}, \hyperpage{8}
+  \item {nombre\_proceso}
+    \subitem {Particion}, \hyperpage{6}
+
+  \indexspace
+
+  \item {ocupar\_memoria}
+    \subitem {sim\_engine.h}, \hyperpage{15}
+
+  \indexspace
+
+  \item {Particion}, \hyperpage{6}
+    \subitem {dir\_inicio}, \hyperpage{6}
+    \subitem {estado}, \hyperpage{6}
+    \subitem {nombre\_proceso}, \hyperpage{6}
+    \subitem {tamano}, \hyperpage{6}
+  \item {particiones}
+    \subitem {Memoria}, \hyperpage{5}
+  \item {Proceso}, \hyperpage{7}
+    \subitem {en\_memoria}, \hyperpage{7}
+    \subitem {finalizado}, \hyperpage{7}
+    \subitem {mem\_requerida}, \hyperpage{7}
+    \subitem {nombre}, \hyperpage{8}
+    \subitem {t\_ejecucion}, \hyperpage{8}
+    \subitem {t\_final}, \hyperpage{8}
+    \subitem {t\_llegada}, \hyperpage{8}
+    \subitem {t\_restante}, \hyperpage{8}
+
+  \indexspace
+
+  \item {sim\_engine.h}
+    \subitem {ALGO\_PRIMER\_HUECO}, \hyperpage{12}
+    \subitem {ALGO\_SIGUIENTE\_HUECO}, \hyperpage{12}
+    \subitem {alinear\_size}, \hyperpage{12}
+    \subitem {asignar\_proceso}, \hyperpage{13}
+    \subitem {avanzar\_tiempo}, \hyperpage{13}
+    \subitem {buscar\_hueco}, \hyperpage{13}
+    \subitem {compactar}, \hyperpage{14}
+    \subitem {inicializar\_memoria}, \hyperpage{14}
+    \subitem {liberar\_proceso}, \hyperpage{14}
+    \subitem {mostrar\_estado}, \hyperpage{15}
+    \subitem {ocupar\_memoria}, \hyperpage{15}
+    \subitem {TipoAlgo}, \hyperpage{12}
+  \item {src/ficheros.h}, \hyperpage{9}, \hyperpage{11}
+  \item {src/sim\_engine.h}, \hyperpage{11}, \hyperpage{16}
+
+  \indexspace
+
+  \item {t\_ejecucion}
+    \subitem {Proceso}, \hyperpage{8}
+  \item {t\_final}
+    \subitem {Proceso}, \hyperpage{8}
+  \item {t\_llegada}
+    \subitem {Proceso}, \hyperpage{8}
+  \item {t\_restante}
+    \subitem {Proceso}, \hyperpage{8}
+  \item {tamano}
+    \subitem {Particion}, \hyperpage{6}
+  \item {TipoAlgo}
+    \subitem {sim\_engine.h}, \hyperpage{12}
+
+  \indexspace
+
+  \item {ultimo\_indice\_asignado}
+    \subitem {Memoria}, \hyperpage{5}
+
+\end{theindex}

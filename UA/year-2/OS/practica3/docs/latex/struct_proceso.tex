@@ -1,0 +1,91 @@
+\doxysection{Referencia de la estructura Proceso}
+\hypertarget{struct_proceso}{}\label{struct_proceso}\index{Proceso@{Proceso}}
+
+
+Estructura que representa un proceso.  
+
+
+
+
+{\ttfamily \#include $<$sim\+\_\+engine.\+h$>$}
+
+\doxysubsubsection*{Campos de datos}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{struct_proceso_a30e36b0957cc834bd7bd581f999390c0}{nombre}} \mbox{[}10\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_proceso_a3bdfce3dc9521ae195f824b63fa39177}{t\+\_\+llegada}}
+\item 
+int \mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\+\_\+requerida}}
+\item 
+int \mbox{\hyperlink{struct_proceso_a4c0f04511fcff56f38175cf4486f09a7}{t\+\_\+ejecucion}}
+\item 
+int \mbox{\hyperlink{struct_proceso_afb542b331040d95376c0ddb6809ff748}{t\+\_\+final}}
+\item 
+int \mbox{\hyperlink{struct_proceso_a50600ea4ddd8f2d410dbffb5138e9939}{t\+\_\+restante}}
+\item 
+bool \mbox{\hyperlink{struct_proceso_a8a5539157dd188274a43e5543fef3494}{en\+\_\+memoria}}
+\item 
+bool \mbox{\hyperlink{struct_proceso_a6e82a92ffdba51e1f513a4b462d2c7f6}{finalizado}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Estructura que representa un proceso. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_proceso_doc-variable-members}
+\doxysubsection{Documentación de campos}
+\Hypertarget{struct_proceso_a8a5539157dd188274a43e5543fef3494}\index{Proceso@{Proceso}!en\_memoria@{en\_memoria}}
+\index{en\_memoria@{en\_memoria}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{en\_memoria}{en\_memoria}}
+{\footnotesize\ttfamily \label{struct_proceso_a8a5539157dd188274a43e5543fef3494} 
+bool Proceso\+::en\+\_\+memoria}
+
+Indica si el proceso está en memoria \Hypertarget{struct_proceso_a6e82a92ffdba51e1f513a4b462d2c7f6}\index{Proceso@{Proceso}!finalizado@{finalizado}}
+\index{finalizado@{finalizado}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{finalizado}{finalizado}}
+{\footnotesize\ttfamily \label{struct_proceso_a6e82a92ffdba51e1f513a4b462d2c7f6} 
+bool Proceso\+::finalizado}
+
+Indica si el proceso ha finalizado \Hypertarget{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}\index{Proceso@{Proceso}!mem\_requerida@{mem\_requerida}}
+\index{mem\_requerida@{mem\_requerida}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{mem\_requerida}{mem\_requerida}}
+{\footnotesize\ttfamily \label{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0} 
+int Proceso\+::mem\+\_\+requerida}
+
+\doxylink{struct_memoria}{Memoria} requerida por el proceso \Hypertarget{struct_proceso_a30e36b0957cc834bd7bd581f999390c0}\index{Proceso@{Proceso}!nombre@{nombre}}
+\index{nombre@{nombre}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{nombre}{nombre}}
+{\footnotesize\ttfamily \label{struct_proceso_a30e36b0957cc834bd7bd581f999390c0} 
+char Proceso\+::nombre\mbox{[}10\mbox{]}}
+
+Nombre del proceso \Hypertarget{struct_proceso_a4c0f04511fcff56f38175cf4486f09a7}\index{Proceso@{Proceso}!t\_ejecucion@{t\_ejecucion}}
+\index{t\_ejecucion@{t\_ejecucion}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{t\_ejecucion}{t\_ejecucion}}
+{\footnotesize\ttfamily \label{struct_proceso_a4c0f04511fcff56f38175cf4486f09a7} 
+int Proceso\+::t\+\_\+ejecucion}
+
+Tiempo de ejecución del proceso \Hypertarget{struct_proceso_afb542b331040d95376c0ddb6809ff748}\index{Proceso@{Proceso}!t\_final@{t\_final}}
+\index{t\_final@{t\_final}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{t\_final}{t\_final}}
+{\footnotesize\ttfamily \label{struct_proceso_afb542b331040d95376c0ddb6809ff748} 
+int Proceso\+::t\+\_\+final}
+
+Tiempo de finalización del proceso \Hypertarget{struct_proceso_a3bdfce3dc9521ae195f824b63fa39177}\index{Proceso@{Proceso}!t\_llegada@{t\_llegada}}
+\index{t\_llegada@{t\_llegada}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{t\_llegada}{t\_llegada}}
+{\footnotesize\ttfamily \label{struct_proceso_a3bdfce3dc9521ae195f824b63fa39177} 
+int Proceso\+::t\+\_\+llegada}
+
+Tiempo de llegada del proceso \Hypertarget{struct_proceso_a50600ea4ddd8f2d410dbffb5138e9939}\index{Proceso@{Proceso}!t\_restante@{t\_restante}}
+\index{t\_restante@{t\_restante}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{t\_restante}{t\_restante}}
+{\footnotesize\ttfamily \label{struct_proceso_a50600ea4ddd8f2d410dbffb5138e9939} 
+int Proceso\+::t\+\_\+restante}
+
+Tiempo restante de ejecución 
+
+La documentación de esta estructura está generada del siguiente archivo\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{sim__engine_8h}{sim\+\_\+engine.\+h}}\end{DoxyCompactItemize}

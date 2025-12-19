@@ -1,0 +1,81 @@
+\doxysection{Referencia del archivo src/ficheros.h}
+\hypertarget{ficheros_8h}{}\label{ficheros_8h}\index{src/ficheros.h@{src/ficheros.h}}
+
+
+Declaraciones para la gestión de ficheros en la simulación de memoria.  
+
+
+{\ttfamily \#include "{}sim\+\_\+engine.\+h"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ficheros_8h_af760c80ad550bdf7a5312163e4c9b2d6}{cargar\+\_\+procesos}} (const char \texorpdfstring{$\ast$}{*}ruta, \mbox{\hyperlink{struct_proceso}{Proceso}} procesos\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{ficheros_8h_af7e2e00877e94e16b9c6f0f76103214b}{guardar\+\_\+estado}} (const char \texorpdfstring{$\ast$}{*}ruta, \mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, int instante)
+\item 
+void \mbox{\hyperlink{ficheros_8h_a695ae3585fde2a3664394810b70fe928}{limpiar\+\_\+log}} (const char \texorpdfstring{$\ast$}{*}ruta)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Declaraciones para la gestión de ficheros en la simulación de memoria. 
+
+\begin{DoxyAuthor}{Autor}
+Julian Hinojosa Gil 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+2025 
+\end{DoxyDate}
+
+
+\label{doc-func-members}
+\Hypertarget{ficheros_8h_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{ficheros_8h_af760c80ad550bdf7a5312163e4c9b2d6}\index{ficheros.h@{ficheros.h}!cargar\_procesos@{cargar\_procesos}}
+\index{cargar\_procesos@{cargar\_procesos}!ficheros.h@{ficheros.h}}
+\doxysubsubsection{\texorpdfstring{cargar\_procesos()}{cargar\_procesos()}}
+{\footnotesize\ttfamily \label{ficheros_8h_af760c80ad550bdf7a5312163e4c9b2d6} 
+int cargar\+\_\+procesos (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ruta}{, }\item[{\mbox{\hyperlink{struct_proceso}{Proceso}}}]{procesos}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+Carga los procesos desde un archivo de texto. 
+\begin{DoxyParams}{Parámetros}
+{\em ruta} & Ruta del archivo de entrada \\
+\hline
+{\em procesos} & Array donde se almacenarán los procesos cargados \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+cantidad de procesos cargados 
+\end{DoxyReturn}
+\Hypertarget{ficheros_8h_af7e2e00877e94e16b9c6f0f76103214b}\index{ficheros.h@{ficheros.h}!guardar\_estado@{guardar\_estado}}
+\index{guardar\_estado@{guardar\_estado}!ficheros.h@{ficheros.h}}
+\doxysubsubsection{\texorpdfstring{guardar\_estado()}{guardar\_estado()}}
+{\footnotesize\ttfamily \label{ficheros_8h_af7e2e00877e94e16b9c6f0f76103214b} 
+void guardar\+\_\+estado (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ruta}{, }\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{int}]{instante}{}\end{DoxyParamCaption})}
+
+Guarda el estado de la memoria en un archivo de texto. 
+\begin{DoxyParams}{Parámetros}
+{\em ruta} & Ruta del archivo de salida \\
+\hline
+{\em m} & Puntero a la estructura de memoria a inicializar \\
+\hline
+{\em instante} & Instante de tiempo actual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+nada 
+\end{DoxyReturn}
+\Hypertarget{ficheros_8h_a695ae3585fde2a3664394810b70fe928}\index{ficheros.h@{ficheros.h}!limpiar\_log@{limpiar\_log}}
+\index{limpiar\_log@{limpiar\_log}!ficheros.h@{ficheros.h}}
+\doxysubsubsection{\texorpdfstring{limpiar\_log()}{limpiar\_log()}}
+{\footnotesize\ttfamily \label{ficheros_8h_a695ae3585fde2a3664394810b70fe928} 
+void limpiar\+\_\+log (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ruta}{}\end{DoxyParamCaption})}
+
+Limpia el contenido de un archivo de texto. 
+\begin{DoxyParams}{Parámetros}
+{\em ruta} & Ruta del archivo a limpiar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+nada 
+\end{DoxyReturn}
