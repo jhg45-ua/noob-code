@@ -15,16 +15,18 @@ Contiene el material de estudio y práctica realizado antes del ingreso a la uni
 Código desarrollado durante los cursos del grado universitario, organizado por años y asignaturas.
 
 #### Year 1 (Primer Año)
-- **EC (Estructura de Computadores)**: Ejercicios en Ensamblador (`.asm`) sobre gestión de memoria, bucles y la FPU.
+- **EC (Estructura de Computadores)**: Ejercicios en Ensamblador (`.asm`) sobre gestión de memoria, bucles, FPU y prácticas de parciales.
 - **FBD (Fundamentos de Bases de Datos)**: Scripts SQL para la creación y manipulación de bases de datos.
-- **M2 (Matemáticas II)**: Uso de Python y Jupyter Notebooks para cálculo, resolución de ecuaciones e interpolación.
-- **P1 (Programación I)**: Proyectos en C, incluyendo el uso de la librería gráfica `gfx` y gestión de memoria dinámica.
-- **P2 (Programación II)**: Prácticas y exámenes relacionados con la continuación de la programación estructurada y modular.
+- **M2 (Matemáticas II)**: Uso de Python y Jupyter Notebooks para cálculo, derivadas, integrales, resolución de ecuaciones e interpolación.
+- **P1 (Programación I)**: Proyectos en C, incluyendo el uso de la librería gráfica `gfx`, gestión de memoria dinámica, prácticas (PR2-PR6) y exámenes parciales.
+- **P2 (Programación II)**: Prácticas, exámenes y testing en C++ relacionados con programación estructurada y modular.
 
 #### Year 2 (Segundo Año)
-- **OS (Sistemas Operativos)**: Prácticas de sistemas que incluyen el uso de `Makefiles`, gestión de procesos y llamadas al sistema.
+- **OS (Sistemas Operativos)**: Prácticas de sistemas con `Makefiles`, librerías propias y gestión de procesos.
+  - **Práctica 3 - Gestomemoria**: Simulador visual de algoritmos de gestión de memoria dinámica con particiones variables. Implementa algoritmos *First Fit* y *Next Fit* con interfaz gráfica usando Raylib.
 
 ## Historial de Actualizaciones
+- **19/12/2025**: Actualización de documentación y estructura del repositorio.
 - **29/11/2025**: Nuevas librerías de utilidades y actualización de documentación.
 - **24/11/2025**: Actualizaciones menores y correcciones en gestión de memoria.
 - **1/07/24**: Añadidas las prácticas a la carpeta C++ y más ejercicios de preparación para el examen de programación.
