@@ -1,0 +1,17 @@
+<map id="avanzar_tiempo" name="avanzar_tiempo">
+<area shape="rect" id="Node000001" title="Avanza un tick en la simulación." alt="" coords="5,104,119,130"/>
+<area shape="rect" id="Node000002" href="$sim__engine_8c.html#a47eaa39f311ae4f19e76eb9baca390d7" title="Asigna un proceso a la memoria." alt="" coords="167,55,283,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,101,168,84,163,87,108,106"/>
+<area shape="rect" id="Node000006" href="$ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="170,104,280,130"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="118,114,156,116,151,118,119,119"/>
+<area shape="rect" id="Node000007" href="$sim__engine_8c.html#a9a4646e9f9e8b178131b41945f7a8544" title="Libera un proceso de la memoria." alt="" coords="170,153,280,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="107,128,168,147,163,149,107,133"/>
+<area shape="rect" id="Node000003" href="$sim__engine_8c.html#ab6fef50a2cde39099d3c051aa7975738" title="Alinea un tamaño a múltiplos de UNIDAD_MINIMA." alt="" coords="344,5,435,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="270,52,332,35,327,37,271,57"/>
+<area shape="rect" id="Node000004" href="$sim__engine_8c.html#a8f367671cb683a6dd983d657251a170b" title="Busca un hueco adecuado según el algoritmo especificado." alt="" coords="338,55,441,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="283,65,326,67,320,68,284,70"/>
+<area shape="rect" id="Node000005" href="$sim__engine_8c.html#a6a1089ddf1a175f89c026b773722dcd2" title="Ocupa un hueco de memoria con un proceso." alt="" coords="331,104,448,130"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="271,78,332,99,327,99,270,84"/>
+<area shape="rect" id="Node000008" href="$sim__engine_8c.html#a949ea609798d43a638d95faf7de9f681" title="Compacta la memoria uniendo huecos adyacentes." alt="" coords="348,153,431,179"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="280,164,336,166,330,166,280,169"/>
+</map>

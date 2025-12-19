@@ -1,0 +1,16 @@
+<map id="src/sim_engine.c" name="src/sim_engine.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="137,5,257,31"/>
+<area shape="rect" id="Node000002" href="$sim__engine_8h.html" title="Motor de simulación de gestión de memoria con particiones variables." alt="" coords="5,153,104,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,28,86,46,63,61,45,80,39,94,38,108,45,138,39,139,33,109,34,92,40,78,60,57,84,41,138,24"/>
+<area shape="rect" id="Node000004" href="$ficheros_8h.html" title="Módulo de entrada/salida para la simulación de memoria." alt="" coords="54,79,132,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="178,34,125,72,121,68,181,29"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="157,79,237,105"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="198,29,200,64,195,62,196,34"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="262,79,322,105"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="213,29,266,69,261,70,213,34"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="346,79,411,105"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="228,29,336,72,331,74,228,34"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="17,226,92,252"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="56,177,57,211,52,210,53,181"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="88,103,71,140,66,138,85,107"/>
+</map>

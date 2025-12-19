@@ -1,0 +1,188 @@
+\doxysection{Referencia del archivo src/ficheros.c}
+\hypertarget{ficheros_8c}{}\label{ficheros_8c}\index{src/ficheros.c@{src/ficheros.c}}
+{\ttfamily \#include "{}ficheros.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include "{}../../lib/file\+\_\+utils.\+h"{}}\newline
+Gráfico de dependencias incluidas en ficheros.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ficheros_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}{SIZE\+\_\+\+BUFFER\+\_\+\+LECTURA}}~4096
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}{cargar\+\_\+procesos}} (const char \texorpdfstring{$\ast$}{*}ruta, \mbox{\hyperlink{struct_proceso}{Proceso}} procesos\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Carga los procesos desde un archivo de texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ficheros_8c_af7e2e00877e94e16b9c6f0f76103214b}{guardar\+\_\+estado}} (const char \texorpdfstring{$\ast$}{*}ruta, \mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, int instante)
+\begin{DoxyCompactList}\small\item\em Guarda el estado actual de la memoria en un archivo de log. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ficheros_8c_a695ae3585fde2a3664394810b70fe928}{limpiar\+\_\+log}} (const char \texorpdfstring{$\ast$}{*}ruta)
+\begin{DoxyCompactList}\small\item\em Limpia el contenido de un archivo de log. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{ficheros_8c_doc-define-members}
+\doxysubsection{Documentación de «define»}
+\Hypertarget{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}\index{ficheros.c@{ficheros.c}!SIZE\_BUFFER\_LECTURA@{SIZE\_BUFFER\_LECTURA}}
+\index{SIZE\_BUFFER\_LECTURA@{SIZE\_BUFFER\_LECTURA}!ficheros.c@{ficheros.c}}
+\doxysubsubsection{\texorpdfstring{SIZE\_BUFFER\_LECTURA}{SIZE\_BUFFER\_LECTURA}}
+{\footnotesize\ttfamily \label{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64} 
+\#define SIZE\+\_\+\+BUFFER\+\_\+\+LECTURA~4096}
+
+
+
+Definición en la línea \mbox{\hyperlink{ficheros_8c_source_l00009}{9}} del archivo \mbox{\hyperlink{ficheros_8c_source}{ficheros.\+c}}.
+
+
+
+Referenciado por \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{ficheros_8c_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}\index{ficheros.c@{ficheros.c}!cargar\_procesos@{cargar\_procesos}}
+\index{cargar\_procesos@{cargar\_procesos}!ficheros.c@{ficheros.c}}
+\doxysubsubsection{\texorpdfstring{cargar\_procesos()}{cargar\_procesos()}}
+{\footnotesize\ttfamily \label{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6} 
+int cargar\+\_\+procesos (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ruta}{, }\item[{\mbox{\hyperlink{struct_proceso}{Proceso}}}]{procesos}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Carga los procesos desde un archivo de texto. 
+
+Lee el archivo línea por línea y parsea cada proceso con el formato\+: {\ttfamily \texorpdfstring{$<$}{<}nombre\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}t\+\_\+llegada\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}mem\+\_\+requerida\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}t\+\_\+ejecucion\texorpdfstring{$>$}{>}}
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in}}  & {\em ruta} & Ruta del archivo de entrada \\
+\hline
+\mbox{\texttt{out}}  & {\em procesos} & Array donde se almacenarán los procesos cargados\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Cantidad de procesos cargados exitosamente 
+
+0 si hubo error al abrir/leer el archivo
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondición}
+El archivo debe existir y ser legible 
+
+procesos debe tener espacio para MAX\+\_\+\+PROCESOS elementos
+\end{DoxyPrecond}
+\begin{DoxyNote}{Nota}
+Usa llamadas POSIX (open, read) según requerimientos de la práctica 
+\end{DoxyNote}
+\begin{DoxyWarning}{Atención}
+El buffer interno es de 4KB, archivos más grandes se truncan 
+\end{DoxyWarning}
+
+
+Definición en la línea \mbox{\hyperlink{ficheros_8c_source_l00011}{11}} del archivo \mbox{\hyperlink{ficheros_8c_source}{ficheros.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00066}{Proceso\+::en\+\_\+memoria}}, \mbox{\hyperlink{sim__engine_8h_source_l00067}{Proceso\+::finalizado}}, \mbox{\hyperlink{sim__engine_8h_source_l00045}{MAX\+\_\+\+PROCESOS}}, \mbox{\hyperlink{sim__engine_8h_source_l00060}{Proceso\+::mem\+\_\+requerida}}, \mbox{\hyperlink{ficheros_8c_source_l00009}{SIZE\+\_\+\+BUFFER\+\_\+\+LECTURA}}, \mbox{\hyperlink{sim__engine_8h_source_l00061}{Proceso\+::t\+\_\+ejecucion}}, \mbox{\hyperlink{sim__engine_8h_source_l00059}{Proceso\+::t\+\_\+llegada}} y \mbox{\hyperlink{sim__engine_8h_source_l00065}{Proceso\+::t\+\_\+restante}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00056}{main()}}, \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}} y \mbox{\hyperlink{main_8c_source_l00095}{test\+\_\+sim()}}.
+
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ficheros_8c_af7e2e00877e94e16b9c6f0f76103214b}\index{ficheros.c@{ficheros.c}!guardar\_estado@{guardar\_estado}}
+\index{guardar\_estado@{guardar\_estado}!ficheros.c@{ficheros.c}}
+\doxysubsubsection{\texorpdfstring{guardar\_estado()}{guardar\_estado()}}
+{\footnotesize\ttfamily \label{ficheros_8c_af7e2e00877e94e16b9c6f0f76103214b} 
+void guardar\+\_\+estado (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ruta}{, }\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{int}]{instante}{}\end{DoxyParamCaption})}
+
+
+
+Guarda el estado actual de la memoria en un archivo de log. 
+
+Escribe una línea con formato\+: {\ttfamily \texorpdfstring{$<$}{<}instante\texorpdfstring{$>$}{>}\mbox{[}dir1, nombre1, tam1\mbox{]} \mbox{[}dir2, nombre2, tam2\mbox{]} ...}
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in}}  & {\em ruta} & Ruta del archivo de salida (se crea si no existe) \\
+\hline
+\mbox{\texttt{in}}  & {\em m} & Puntero a la estructura de memoria a guardar \\
+\hline
+\mbox{\texttt{in}}  & {\em instante} & Instante de tiempo actual de la simulación\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Nota}
+Usa modo append, no sobrescribe contenido previo 
+
+Permisos del archivo\+: 0644 (rw-\/r--r--) 
+\end{DoxyNote}
+
+
+Definición en la línea \mbox{\hyperlink{ficheros_8c_source_l00064}{64}} del archivo \mbox{\hyperlink{ficheros_8c_source}{ficheros.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00092}{Memoria\+::cant\+\_\+particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00078}{Particion\+::dir\+\_\+inicio}}, \mbox{\hyperlink{sim__engine_8h_source_l00081}{Particion\+::nombre\+\_\+proceso}}, \mbox{\hyperlink{sim__engine_8h_source_l00091}{Memoria\+::particiones}} y \mbox{\hyperlink{sim__engine_8h_source_l00079}{Particion\+::tamano}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}}.
+
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ficheros_8c_af7e2e00877e94e16b9c6f0f76103214b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ficheros_8c_a695ae3585fde2a3664394810b70fe928}\index{ficheros.c@{ficheros.c}!limpiar\_log@{limpiar\_log}}
+\index{limpiar\_log@{limpiar\_log}!ficheros.c@{ficheros.c}}
+\doxysubsubsection{\texorpdfstring{limpiar\_log()}{limpiar\_log()}}
+{\footnotesize\ttfamily \label{ficheros_8c_a695ae3585fde2a3664394810b70fe928} 
+void limpiar\+\_\+log (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ruta}{}\end{DoxyParamCaption})}
+
+
+
+Limpia el contenido de un archivo de log. 
+
+Abre el archivo con O\+\_\+\+TRUNC para borrar su contenido. Si no existe, lo crea vacío.
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in}}  & {\em ruta} & Ruta del archivo a limpiar\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Nota}
+Llamar al inicio de cada simulación para empezar con log limpio 
+\end{DoxyNote}
+
+
+Definición en la línea \mbox{\hyperlink{ficheros_8c_source_l00094}{94}} del archivo \mbox{\hyperlink{ficheros_8c_source}{ficheros.\+c}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}} y \mbox{\hyperlink{main_8c_source_l00095}{test\+\_\+sim()}}.
+
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{ficheros_8c_a695ae3585fde2a3664394810b70fe928_icgraph}
+\end{center}
+\end{figure}

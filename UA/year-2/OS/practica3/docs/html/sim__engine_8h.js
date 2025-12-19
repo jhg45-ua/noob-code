@@ -3,10 +3,10 @@ var sim__engine_8h =
     [ "Proceso", "struct_proceso.html", "struct_proceso" ],
     [ "Particion", "struct_particion.html", "struct_particion" ],
     [ "Memoria", "struct_memoria.html", "struct_memoria" ],
-    [ "MAX_PARTICIONES", "sim__engine_8h.html#ae420f0bf3db242485c8c837356c6ebba", null ],
-    [ "MAX_PROCESOS", "sim__engine_8h.html#ab0f17287f3a9af76ef9109ec1dfce7a9", null ],
-    [ "MEMORIA_TOTAL", "sim__engine_8h.html#a6264fff1e0ed016a7ce3d58e0534ea00", null ],
-    [ "UNIDAD_MINIMA", "sim__engine_8h.html#a6bb334d2cae8f7d1d61c25b3eba5e9b5", null ],
+    [ "MAX_PARTICIONES", "group__constantes.html#gae420f0bf3db242485c8c837356c6ebba", null ],
+    [ "MAX_PROCESOS", "group__constantes.html#gab0f17287f3a9af76ef9109ec1dfce7a9", null ],
+    [ "MEMORIA_TOTAL", "group__constantes.html#ga6264fff1e0ed016a7ce3d58e0534ea00", null ],
+    [ "UNIDAD_MINIMA", "group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5", null ],
     [ "TipoAlgo", "sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6", [
       [ "ALGO_PRIMER_HUECO", "sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002", null ],
       [ "ALGO_SIGUIENTE_HUECO", "sim__engine_8h.html#a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426", null ]

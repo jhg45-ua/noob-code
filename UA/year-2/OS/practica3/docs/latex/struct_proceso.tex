@@ -2,7 +2,7 @@
 \hypertarget{struct_proceso}{}\label{struct_proceso}\index{Proceso@{Proceso}}
 
 
-Estructura que representa un proceso.  
+Estructura que representa un proceso en el simulador.  
 
 
 
@@ -31,7 +31,21 @@ bool \mbox{\hyperlink{struct_proceso_a6e82a92ffdba51e1f513a4b462d2c7f6}{finaliza
 
 
 \doxysubsection{Descripción detallada}
-Estructura que representa un proceso. 
+Estructura que representa un proceso en el simulador. 
+
+Contiene toda la información necesaria para gestionar un proceso\+:
+\begin{DoxyItemize}
+\item Identificación y tiempos
+\item Requisitos de memoria
+\item Estado actual en la simulación 
+\end{DoxyItemize}\begin{Desc}
+\item[Ejemplos]\par
+\mbox{\hyperlink{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2practica3_2src_2sim_engine_8h-example}{/\+Users/julianhinojosagil/\+Documents/\+Dev/noob-\/code/\+UA/year-\/2/\+OS/practica3/src/sim\+\_\+engine.\+h}}.\end{Desc}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00057}{57}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
 
 \label{doc-variable-members}
 \Hypertarget{struct_proceso_doc-variable-members}
@@ -42,49 +56,109 @@ Estructura que representa un proceso.
 {\footnotesize\ttfamily \label{struct_proceso_a8a5539157dd188274a43e5543fef3494} 
 bool Proceso\+::en\+\_\+memoria}
 
-Indica si el proceso está en memoria \Hypertarget{struct_proceso_a6e82a92ffdba51e1f513a4b462d2c7f6}\index{Proceso@{Proceso}!finalizado@{finalizado}}
+true si está cargado en memoria 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00066}{66}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}} y \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}.
+
+\Hypertarget{struct_proceso_a6e82a92ffdba51e1f513a4b462d2c7f6}\index{Proceso@{Proceso}!finalizado@{finalizado}}
 \index{finalizado@{finalizado}!Proceso@{Proceso}}
 \doxysubsubsection{\texorpdfstring{finalizado}{finalizado}}
 {\footnotesize\ttfamily \label{struct_proceso_a6e82a92ffdba51e1f513a4b462d2c7f6} 
 bool Proceso\+::finalizado}
 
-Indica si el proceso ha finalizado \Hypertarget{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}\index{Proceso@{Proceso}!mem\_requerida@{mem\_requerida}}
+true si ya completó su ejecución 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00067}{67}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}} y \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}.
+
+\Hypertarget{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}\index{Proceso@{Proceso}!mem\_requerida@{mem\_requerida}}
 \index{mem\_requerida@{mem\_requerida}!Proceso@{Proceso}}
 \doxysubsubsection{\texorpdfstring{mem\_requerida}{mem\_requerida}}
 {\footnotesize\ttfamily \label{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0} 
 int Proceso\+::mem\+\_\+requerida}
 
-\doxylink{struct_memoria}{Memoria} requerida por el proceso \Hypertarget{struct_proceso_a30e36b0957cc834bd7bd581f999390c0}\index{Proceso@{Proceso}!nombre@{nombre}}
+\doxylink{struct_memoria}{Memoria} solicitada (se alineará a UNIDAD\+\_\+\+MINIMA) 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00060}{60}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00167}{asignar\+\_\+proceso()}}, \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}} y \mbox{\hyperlink{sim__engine_8c_source_l00031}{ocupar\+\_\+memoria()}}.
+
+\Hypertarget{struct_proceso_a30e36b0957cc834bd7bd581f999390c0}\index{Proceso@{Proceso}!nombre@{nombre}}
 \index{nombre@{nombre}!Proceso@{Proceso}}
 \doxysubsubsection{\texorpdfstring{nombre}{nombre}}
 {\footnotesize\ttfamily \label{struct_proceso_a30e36b0957cc834bd7bd581f999390c0} 
 char Proceso\+::nombre\mbox{[}10\mbox{]}}
 
-Nombre del proceso \Hypertarget{struct_proceso_a4c0f04511fcff56f38175cf4486f09a7}\index{Proceso@{Proceso}!t\_ejecucion@{t\_ejecucion}}
+Nombre/\+ID único del proceso (ej\+: "{}\+P1"{}) 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00058}{58}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00167}{asignar\+\_\+proceso()}} y \mbox{\hyperlink{sim__engine_8c_source_l00031}{ocupar\+\_\+memoria()}}.
+
+\Hypertarget{struct_proceso_a4c0f04511fcff56f38175cf4486f09a7}\index{Proceso@{Proceso}!t\_ejecucion@{t\_ejecucion}}
 \index{t\_ejecucion@{t\_ejecucion}!Proceso@{Proceso}}
 \doxysubsubsection{\texorpdfstring{t\_ejecucion}{t\_ejecucion}}
 {\footnotesize\ttfamily \label{struct_proceso_a4c0f04511fcff56f38175cf4486f09a7} 
 int Proceso\+::t\+\_\+ejecucion}
 
-Tiempo de ejecución del proceso \Hypertarget{struct_proceso_afb542b331040d95376c0ddb6809ff748}\index{Proceso@{Proceso}!t\_final@{t\_final}}
+Tiempo total de ejecución requerido 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00061}{61}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}}, \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}} y \mbox{\hyperlink{main_8c_source_l00095}{test\+\_\+sim()}}.
+
+\Hypertarget{struct_proceso_afb542b331040d95376c0ddb6809ff748}\index{Proceso@{Proceso}!t\_final@{t\_final}}
 \index{t\_final@{t\_final}!Proceso@{Proceso}}
 \doxysubsubsection{\texorpdfstring{t\_final}{t\_final}}
 {\footnotesize\ttfamily \label{struct_proceso_afb542b331040d95376c0ddb6809ff748} 
 int Proceso\+::t\+\_\+final}
 
-Tiempo de finalización del proceso \Hypertarget{struct_proceso_a3bdfce3dc9521ae195f824b63fa39177}\index{Proceso@{Proceso}!t\_llegada@{t\_llegada}}
+Instante en que finalizó (-\/1 si no ha terminado) 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00064}{64}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+\Hypertarget{struct_proceso_a3bdfce3dc9521ae195f824b63fa39177}\index{Proceso@{Proceso}!t\_llegada@{t\_llegada}}
 \index{t\_llegada@{t\_llegada}!Proceso@{Proceso}}
 \doxysubsubsection{\texorpdfstring{t\_llegada}{t\_llegada}}
 {\footnotesize\ttfamily \label{struct_proceso_a3bdfce3dc9521ae195f824b63fa39177} 
 int Proceso\+::t\+\_\+llegada}
 
-Tiempo de llegada del proceso \Hypertarget{struct_proceso_a50600ea4ddd8f2d410dbffb5138e9939}\index{Proceso@{Proceso}!t\_restante@{t\_restante}}
+Instante de llegada a la cola de procesos 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00059}{59}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}.
+
+\Hypertarget{struct_proceso_a50600ea4ddd8f2d410dbffb5138e9939}\index{Proceso@{Proceso}!t\_restante@{t\_restante}}
 \index{t\_restante@{t\_restante}!Proceso@{Proceso}}
 \doxysubsubsection{\texorpdfstring{t\_restante}{t\_restante}}
 {\footnotesize\ttfamily \label{struct_proceso_a50600ea4ddd8f2d410dbffb5138e9939} 
 int Proceso\+::t\+\_\+restante}
 
-Tiempo restante de ejecución 
+Ticks restantes para completar ejecución 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00065}{65}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}} y \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}.
+
+
 
 La documentación de esta estructura está generada del siguiente archivo\+:\begin{DoxyCompactItemize}
 \item 

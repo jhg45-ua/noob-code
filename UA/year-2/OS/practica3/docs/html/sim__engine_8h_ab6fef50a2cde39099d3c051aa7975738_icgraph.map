@@ -1,0 +1,14 @@
+<map id="alinear_size" name="alinear_size">
+<area shape="rect" id="Node000001" title="Alinea un tamaño a múltiplos de UNIDAD_MINIMA." alt="" coords="548,31,638,56"/>
+<area shape="rect" id="Node000002" href="$sim__engine_8c.html#a47eaa39f311ae4f19e76eb9baca390d7" title="Asigna un proceso a la memoria." alt="" coords="383,31,500,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="529,44,500,46,500,41,535,43"/>
+<area shape="rect" id="Node000003" href="$sim__engine_8c.html#a099adf88ebe7183b00ddc648cc1ffa5b" title="Avanza un tick en la simulación." alt="" coords="222,31,335,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="365,44,336,46,336,41,370,43"/>
+<area shape="rect" id="Node000004" href="$main_8c.html#aafb6af6e9fab822accd3e0f7133214bd" title="Ejecuta la interfaz gráfica con Raylib." alt="" coords="107,5,170,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="204,31,170,26,170,21,209,30"/>
+<area shape="rect" id="Node000006" href="$main_8c.html#a0739302f77016ac122f50d59015cfa1f" title="Ejecuta la simulación en modo terminal (TUI)." alt="" coords="103,55,174,80"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="209,56,175,64,174,59,204,56"/>
+<area shape="rect" id="Node000005" href="$main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="Punto de entrada principal del programa." alt="" coords="5,31,55,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="90,31,56,40,54,35,94,27"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="85,57,55,52,55,46,90,55"/>
+</map>

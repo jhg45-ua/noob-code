@@ -2,17 +2,26 @@
 \hypertarget{struct_memoria}{}\label{struct_memoria}\index{Memoria@{Memoria}}
 
 
-Estructura que representa la memoria del sistema.  
+Estructura principal que representa la memoria del sistema.  
 
 
 
 
 {\ttfamily \#include $<$sim\+\_\+engine.\+h$>$}
 
+
+
+Diagrama de colaboración de Memoria\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{struct_memoria__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Campos de datos}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{struct_particion}{Particion}} \mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}} \mbox{[}\mbox{\hyperlink{sim__engine_8h_ae420f0bf3db242485c8c837356c6ebba}{MAX\+\_\+\+PARTICIONES}}\mbox{]}
+\mbox{\hyperlink{struct_particion}{Particion}} \mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}} \mbox{[}\mbox{\hyperlink{group__constantes_gae420f0bf3db242485c8c837356c6ebba}{MAX\+\_\+\+PARTICIONES}}\mbox{]}
 \item 
 int \mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\+\_\+particiones}}
 \item 
@@ -21,7 +30,16 @@ int \mbox{\hyperlink{struct_memoria_a281aeea839c28dcef311e9902a74cccb}{ultimo\+\
 
 
 \doxysubsection{Descripción detallada}
-Estructura que representa la memoria del sistema. 
+Estructura principal que representa la memoria del sistema. 
+
+Gestiona un array de particiones que cubren todo el espacio de memoria. Inicialmente contiene una única partición (hueco) de tamaño MEMORIA\+\_\+\+TOTAL. \begin{Desc}
+\item[Ejemplos]\par
+\mbox{\hyperlink{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2practica3_2src_2sim_engine_8h-example}{/\+Users/julianhinojosagil/\+Documents/\+Dev/noob-\/code/\+UA/year-\/2/\+OS/practica3/src/sim\+\_\+engine.\+h}}.\end{Desc}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00090}{90}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
 
 \label{doc-variable-members}
 \Hypertarget{struct_memoria_doc-variable-members}
@@ -32,19 +50,43 @@ Estructura que representa la memoria del sistema.
 {\footnotesize\ttfamily \label{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d} 
 int Memoria\+::cant\+\_\+particiones}
 
-Cantidad de particiones actuales \Hypertarget{struct_memoria_a5172c2be2a019c0176b997b11e91655e}\index{Memoria@{Memoria}!particiones@{particiones}}
+Número actual de particiones (1 a MAX\+\_\+\+PARTICIONES) 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00092}{92}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00118}{buscar\+\_\+hueco()}}, \mbox{\hyperlink{sim__engine_8c_source_l00079}{compactar()}}, \mbox{\hyperlink{ficheros_8c_source_l00064}{guardar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{sim__engine_8c_source_l00100}{liberar\+\_\+proceso()}}, \mbox{\hyperlink{sim__engine_8c_source_l00023}{mostrar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00031}{ocupar\+\_\+memoria()}} y \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+\Hypertarget{struct_memoria_a5172c2be2a019c0176b997b11e91655e}\index{Memoria@{Memoria}!particiones@{particiones}}
 \index{particiones@{particiones}!Memoria@{Memoria}}
 \doxysubsubsection{\texorpdfstring{particiones}{particiones}}
 {\footnotesize\ttfamily \label{struct_memoria_a5172c2be2a019c0176b997b11e91655e} 
-\mbox{\hyperlink{struct_particion}{Particion}} Memoria\+::particiones\mbox{[}\mbox{\hyperlink{sim__engine_8h_ae420f0bf3db242485c8c837356c6ebba}{MAX\+\_\+\+PARTICIONES}}\mbox{]}}
+\mbox{\hyperlink{struct_particion}{Particion}} Memoria\+::particiones\mbox{[}\mbox{\hyperlink{group__constantes_gae420f0bf3db242485c8c837356c6ebba}{MAX\+\_\+\+PARTICIONES}}\mbox{]}}
 
-Array de particiones de memoria \Hypertarget{struct_memoria_a281aeea839c28dcef311e9902a74cccb}\index{Memoria@{Memoria}!ultimo\_indice\_asignado@{ultimo\_indice\_asignado}}
+Array de particiones (huecos y procesos) 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00091}{91}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00118}{buscar\+\_\+hueco()}}, \mbox{\hyperlink{sim__engine_8c_source_l00079}{compactar()}}, \mbox{\hyperlink{ficheros_8c_source_l00064}{guardar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{sim__engine_8c_source_l00100}{liberar\+\_\+proceso()}}, \mbox{\hyperlink{sim__engine_8c_source_l00023}{mostrar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00031}{ocupar\+\_\+memoria()}} y \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+\Hypertarget{struct_memoria_a281aeea839c28dcef311e9902a74cccb}\index{Memoria@{Memoria}!ultimo\_indice\_asignado@{ultimo\_indice\_asignado}}
 \index{ultimo\_indice\_asignado@{ultimo\_indice\_asignado}!Memoria@{Memoria}}
 \doxysubsubsection{\texorpdfstring{ultimo\_indice\_asignado}{ultimo\_indice\_asignado}}
 {\footnotesize\ttfamily \label{struct_memoria_a281aeea839c28dcef311e9902a74cccb} 
 int Memoria\+::ultimo\+\_\+indice\+\_\+asignado}
 
-Último índice asignado en particiones 
+Último índice usado (para Next Fit) 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00093}{93}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00118}{buscar\+\_\+hueco()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}} y \mbox{\hyperlink{sim__engine_8c_source_l00031}{ocupar\+\_\+memoria()}}.
+
+
 
 La documentación de esta estructura está generada del siguiente archivo\+:\begin{DoxyCompactItemize}
 \item 

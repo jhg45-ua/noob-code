@@ -2,7 +2,7 @@
 \hypertarget{struct_particion}{}\label{struct_particion}\index{Particion@{Particion}}
 
 
-que representa una partición de memoria.  
+Estructura que representa una partición de memoria.  
 
 
 
@@ -23,7 +23,20 @@ char \mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre
 
 
 \doxysubsection{Descripción detallada}
-que representa una partición de memoria. 
+Estructura que representa una partición de memoria. 
+
+Una partición puede ser\+:
+\begin{DoxyItemize}
+\item Un hueco libre (estado=0, nombre="{}\+HUECO"{})
+\item Un bloque ocupado por un proceso (estado=1) 
+\end{DoxyItemize}\begin{Desc}
+\item[Ejemplos]\par
+\mbox{\hyperlink{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2practica3_2src_2sim_engine_8h-example}{/\+Users/julianhinojosagil/\+Documents/\+Dev/noob-\/code/\+UA/year-\/2/\+OS/practica3/src/sim\+\_\+engine.\+h}}.\end{Desc}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00077}{77}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
 
 \label{doc-variable-members}
 \Hypertarget{struct_particion_doc-variable-members}
@@ -34,25 +47,57 @@ que representa una partición de memoria.
 {\footnotesize\ttfamily \label{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53} 
 int Particion\+::dir\+\_\+inicio}
 
-Dirección de inicio de la partición \Hypertarget{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}\index{Particion@{Particion}!estado@{estado}}
+Dirección de inicio en memoria (0 a MEMORIA\+\_\+\+TOTAL-\/1) 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00078}{78}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{ficheros_8c_source_l00064}{guardar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{sim__engine_8c_source_l00100}{liberar\+\_\+proceso()}}, \mbox{\hyperlink{sim__engine_8c_source_l00023}{mostrar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00031}{ocupar\+\_\+memoria()}} y \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+\Hypertarget{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}\index{Particion@{Particion}!estado@{estado}}
 \index{estado@{estado}!Particion@{Particion}}
 \doxysubsubsection{\texorpdfstring{estado}{estado}}
 {\footnotesize\ttfamily \label{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a} 
 int Particion\+::estado}
 
-Estado de la partición 0 -\/\texorpdfstring{$>$}{>} HUECO \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} 1 -\/\texorpdfstring{$>$}{>} PROCESO \Hypertarget{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}\index{Particion@{Particion}!nombre\_proceso@{nombre\_proceso}}
+Estado\+: 0=HUECO (libre), 1=PROCESO (ocupado) 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00080}{80}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00118}{buscar\+\_\+hueco()}}, \mbox{\hyperlink{sim__engine_8c_source_l00079}{compactar()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{sim__engine_8c_source_l00100}{liberar\+\_\+proceso()}}, \mbox{\hyperlink{sim__engine_8c_source_l00031}{ocupar\+\_\+memoria()}} y \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+\Hypertarget{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}\index{Particion@{Particion}!nombre\_proceso@{nombre\_proceso}}
 \index{nombre\_proceso@{nombre\_proceso}!Particion@{Particion}}
 \doxysubsubsection{\texorpdfstring{nombre\_proceso}{nombre\_proceso}}
 {\footnotesize\ttfamily \label{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9} 
 char Particion\+::nombre\+\_\+proceso\mbox{[}10\mbox{]}}
 
-Nombre del proceso asignado o "{}\+HUECO"{} si está libre \Hypertarget{struct_particion_a44d43efa08e89cb916c4a465a77d6399}\index{Particion@{Particion}!tamano@{tamano}}
+Nombre del proceso o "{}\+HUECO"{} si está libre 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00081}{81}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00079}{compactar()}}, \mbox{\hyperlink{ficheros_8c_source_l00064}{guardar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{sim__engine_8c_source_l00100}{liberar\+\_\+proceso()}}, \mbox{\hyperlink{sim__engine_8c_source_l00023}{mostrar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00031}{ocupar\+\_\+memoria()}} y \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+\Hypertarget{struct_particion_a44d43efa08e89cb916c4a465a77d6399}\index{Particion@{Particion}!tamano@{tamano}}
 \index{tamano@{tamano}!Particion@{Particion}}
 \doxysubsubsection{\texorpdfstring{tamano}{tamano}}
 {\footnotesize\ttfamily \label{struct_particion_a44d43efa08e89cb916c4a465a77d6399} 
 int Particion\+::tamano}
 
-Tamaño de la partición 
+Tamaño de la partición (múltiplo de UNIDAD\+\_\+\+MINIMA) 
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00079}{79}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00118}{buscar\+\_\+hueco()}}, \mbox{\hyperlink{sim__engine_8c_source_l00079}{compactar()}}, \mbox{\hyperlink{ficheros_8c_source_l00064}{guardar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{sim__engine_8c_source_l00023}{mostrar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00031}{ocupar\+\_\+memoria()}} y \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+
 
 La documentación de esta estructura está generada del siguiente archivo\+:\begin{DoxyCompactItemize}
 \item 

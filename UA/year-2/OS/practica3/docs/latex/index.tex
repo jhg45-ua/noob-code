@@ -1,0 +1,78 @@
+\chapter{Gestomemoria -\/ Simulador de Gestión de Memoria }
+\hypertarget{index}{}\label{index}\index{Gestomemoria -\/ Simulador de Gestión de Memoria@{Gestomemoria -\/ Simulador de Gestión de Memoria}}
+\label{index_mainpage}%
+\Hypertarget{index_mainpage}%
+\hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{Descripción}{Descripción}}\label{index_autotoc_md0}
+Simulador visual de algoritmos de gestión de memoria dinámica con particiones variables. Proyecto de la asignatura {\bfseries{Sistemas Operativos}} -\/ Universidad de Alicante.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Algoritmos Implementados}{Algoritmos Implementados}}\label{index_autotoc_md1}
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Algoritmo  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Descripción  \\
+{\bfseries{First Fit}}  &Asigna el primer hueco que sea suficientemente grande  \\
+{\bfseries{Next Fit}}  &Como First Fit, pero empieza desde la última posición asignada  \\
+\end{DoxyTable}
+\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Requisitos}{Requisitos}}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item CMake 3.\+11+
+\item \href{https://www.raylib.com/}{\texttt{Raylib}} (para la interfaz gráfica)
+\item Compilador C con soporte C17
+\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Compilación}{Compilación}}\label{index_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir\ build\ \&\&\ cd\ build}
+\DoxyCodeLine{cmake\ ..}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Uso}{Uso}}\label{index_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./gestomemoria}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{Controles (GUI)}{Controles (GUI)}}\label{index_autotoc_md5}
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Tecla  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Acción  \\
+{\ttfamily ESPACIO}  &Avanzar un tick de simulación  \\
+{\ttfamily P}  &Activar/desactivar reproducción automática  \\
+{\ttfamily R}  &Reiniciar simulación  \\
+{\ttfamily ESC}  &Salir  \\
+\end{DoxyTable}
+\hypertarget{index_autotoc_md6}{}\doxysection{\texorpdfstring{Formato del Archivo de Entrada}{Formato del Archivo de Entrada}}\label{index_autotoc_md6}
+El archivo {\ttfamily entrada.\+txt} debe seguir este formato\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<nombre\_proceso>\ <instante\_llegada>\ <memoria\_requerida>\ <tiempo\_ejecucion>}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{Ejemplo}{Ejemplo}}\label{index_autotoc_md7}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{P1\ 0\ 243\ 5}
+\DoxyCodeLine{P2\ 1\ 150\ 3}
+\DoxyCodeLine{P3\ 2\ 500\ 4}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{Arquitectura del Proyecto}{Arquitectura del Proyecto}}\label{index_autotoc_md8}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{src/}
+\DoxyCodeLine{├──\ main.c\ \ \ \ \ \ \ \ \ \ \#\ Punto\ de\ entrada,\ GUI\ (Raylib)\ y\ TUI}
+\DoxyCodeLine{├──\ sim\_engine.c/h\ \ \#\ Motor\ de\ simulación\ (asignación,\ liberación,\ compactación)}
+\DoxyCodeLine{└──\ ficheros.c/h\ \ \ \ \#\ Entrada/Salida\ de\ archivos}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md9}{}\doxysection{\texorpdfstring{Constantes de Configuración}{Constantes de Configuración}}\label{index_autotoc_md9}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Constante  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Valor  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Descripción  \\
+{\ttfamily \doxylink{group__constantes_ga6264fff1e0ed016a7ce3d58e0534ea00}{MEMORIA\+\_\+\+TOTAL}}  &2000  &Tamaño total de memoria simulada  \\
+{\ttfamily \doxylink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\+\_\+\+MINIMA}}  &100  &Alineación mínima de asignación  \\
+{\ttfamily \doxylink{group__constantes_gae420f0bf3db242485c8c837356c6ebba}{MAX\+\_\+\+PARTICIONES}}  &50  &Máximo de particiones simultáneas  \\
+{\ttfamily \doxylink{group__constantes_gab0f17287f3a9af76ef9109ec1dfce7a9}{MAX\+\_\+\+PROCESOS}}  &100  &Máximo de procesos en simulación  \\
+\end{DoxyTable}
+\hypertarget{index_autotoc_md10}{}\doxysection{\texorpdfstring{Autor}{Autor}}\label{index_autotoc_md10}
+{\bfseries{Julian Hinojosa Gil}} -\/ 2025\hypertarget{index_autotoc_md11}{}\doxysection{\texorpdfstring{Licencia}{Licencia}}\label{index_autotoc_md11}
+Proyecto académico -\/ Universidad de Alicante 

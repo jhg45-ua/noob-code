@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['unidad_5fminima_0',['UNIDAD_MINIMA',['../sim__engine_8h.html#a6bb334d2cae8f7d1d61c25b3eba5e9b5',1,'sim_engine.h']]]
+  ['margen_5fder_0',['MARGEN_DER',['../main_8c.html#a06cd488103fa8b4b583db7716d185244',1,'main.c']]],
+  ['margen_5fizq_1',['MARGEN_IZQ',['../main_8c.html#ac1184c172b23102c55ee631d560773b2',1,'main.c']]]
 ];

@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Gestor de Memoria - Práctica 3 OS
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
   </td>
@@ -93,7 +93,7 @@ $(function(){initNavTree('struct_particion.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>que representa una partición de memoria.  
+<p>Estructura que representa una partición de memoria.  
  <a href="#details">Más...</a></p>
 
 <p><code>#include &lt;<a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>&gt;</code></p>
@@ -106,7 +106,15 @@ Campos de datos</h2></td></tr>
 <tr class="memitem:a6a9530f295bf5f859a4ebe469751dfa9" id="r_a6a9530f295bf5f859a4ebe469751dfa9"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a9530f295bf5f859a4ebe469751dfa9">nombre_proceso</a> [10]</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
-<div class="textblock"><p>que representa una partición de memoria. </p>
+<div class="textblock"><p>Estructura que representa una partición de memoria. </p>
+<p>Una partición puede ser:</p><ul>
+<li>Un hueco libre (estado=0, nombre="HUECO")</li>
+<li>Un bloque ocupado por un proceso (estado=1) </li>
+</ul>
+<dl class="section examples"><dt>Ejemplos</dt><dd><a class="el" href="_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2practica3_2src_2sim_engine_8h-example.html#_a5">/Users/julianhinojosagil/Documents/Dev/noob-code/UA/year-2/OS/practica3/src/sim_engine.h</a>.</dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00077">77</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Documentación de campos</h2>
 <a id="ae1cc803e8a591302bcc4cfb0145fee53" name="ae1cc803e8a591302bcc4cfb0145fee53"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1cc803e8a591302bcc4cfb0145fee53">&#9670;&#160;</a></span>dir_inicio</h2>
@@ -119,7 +127,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Dirección de inicio de la partición </p>
+<p>Dirección de inicio en memoria (0 a MEMORIA_TOTAL-1) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00078">78</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="ficheros_8c_source.html#l00064">guardar_estado()</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="sim__engine_8c_source.html#l00100">liberar_proceso()</a>, <a class="el" href="sim__engine_8c_source.html#l00023">mostrar_estado()</a>, <a class="el" href="sim__engine_8c_source.html#l00031">ocupar_memoria()</a> y <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -134,7 +146,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Estado de la partición 0 -&gt; HUECO || 1 -&gt; PROCESO </p>
+<p>Estado: 0=HUECO (libre), 1=PROCESO (ocupado) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00080">80</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00118">buscar_hueco()</a>, <a class="el" href="sim__engine_8c_source.html#l00079">compactar()</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="sim__engine_8c_source.html#l00100">liberar_proceso()</a>, <a class="el" href="sim__engine_8c_source.html#l00031">ocupar_memoria()</a> y <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -149,7 +165,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Nombre del proceso asignado o "HUECO" si está libre </p>
+<p>Nombre del proceso o "HUECO" si está libre </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00081">81</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00079">compactar()</a>, <a class="el" href="ficheros_8c_source.html#l00064">guardar_estado()</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="sim__engine_8c_source.html#l00100">liberar_proceso()</a>, <a class="el" href="sim__engine_8c_source.html#l00023">mostrar_estado()</a>, <a class="el" href="sim__engine_8c_source.html#l00031">ocupar_memoria()</a> y <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -164,7 +184,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Tamaño de la partición </p>
+<p>Tamaño de la partición (múltiplo de UNIDAD_MINIMA) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00079">79</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00118">buscar_hueco()</a>, <a class="el" href="sim__engine_8c_source.html#l00079">compactar()</a>, <a class="el" href="ficheros_8c_source.html#l00064">guardar_estado()</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="sim__engine_8c_source.html#l00023">mostrar_estado()</a>, <a class="el" href="sim__engine_8c_source.html#l00031">ocupar_memoria()</a> y <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
 
 </div>
 </div>

@@ -1,0 +1,242 @@
+\doxysection{sim\+\_\+engine.\+c}
+\hypertarget{sim__engine_8c_source}{}\label{sim__engine_8c_source}\index{src/sim\_engine.c@{src/sim\_engine.c}}
+\mbox{\hyperlink{sim__engine_8c}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sim__engine_8h}{sim\_engine.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ficheros_8h}{ficheros.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}file\_utils.h"{}}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00007}\mbox{\hyperlink{sim__engine_8c_a7525ea6570ccf752c8e9394b62042380}{00007}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sim__engine_8c_a7525ea6570ccf752c8e9394b62042380}{inicializar\_memoria}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00008}00008\ \ \ \ \ \textcolor{comment}{//\ Inicializamos\ la\ memoria\ con\ un\ único\ hueco\ que\ ocupa\ toda\ la\ memoria\ disponible}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00009}00009\ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00011}00011\ \ \ \ \ \textcolor{comment}{//\ El\ último\ índice\ asignado\ empieza\ en\ 0}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00012}00012\ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a281aeea839c28dcef311e9902a74cccb}{ultimo\_indice\_asignado}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00014}00014\ \ \ \ \ \textcolor{comment}{//\ Única\ partición:\ Hueco\ de\ tamaño\ MEMORIA\_TOTAL\ al\ inicio}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00015}00015\ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[0].\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00016}00016\ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[0].\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ =\ \mbox{\hyperlink{group__constantes_ga6264fff1e0ed016a7ce3d58e0534ea00}{MEMORIA\_TOTAL}};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00017}00017\ \ \ \ \ \textcolor{comment}{//\ Estado\ 0\ indica\ que\ es\ un\ hueco\ libre}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00018}00018\ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[0].\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00019}00019\ \ \ \ \ \textcolor{comment}{//\ Nombre\ del\ proceso\ "{}HUECO"{}\ para\ indicar\ que\ está\ libre}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00020}00020\ \ \ \ \ strcpy(m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[0].\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ \textcolor{stringliteral}{"{}HUECO"{}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00021}00021\ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00023}\mbox{\hyperlink{sim__engine_8c_a6df7a5ff87dd2abca3c64b3dcc88cf5a}{00023}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sim__engine_8c_a6df7a5ff87dd2abca3c64b3dcc88cf5a}{mostrar\_estado}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00024}00024\ \ \ \ \ \textcolor{comment}{//\ Recorremos\ todas\ las\ particiones\ y\ mostramos\ su\ estado\ en\ formato\ [dir\_inicio\ nombre\_proceso\ tamano]}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00026}00026\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}[\%d\ \%s\ \%d]"{}},\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}},\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00028}00028\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00031}\mbox{\hyperlink{sim__engine_8c_a6a1089ddf1a175f89c026b773722dcd2}{00031}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sim__engine_8c_a6a1089ddf1a175f89c026b773722dcd2}{ocupar\_memoria}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \textcolor{keywordtype}{int}\ indice\_hueco,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ p)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ Obtenemos\ un\ puntero\ a\ la\ partición\ hueco\ que\ vamos\ a\ ocupar}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{struct_particion}{Particion}}\ *hueco\ =\ \&m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[indice\_hueco];}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00034}00034\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ Verificamos\ que\ el\ hueco\ es\ libre\ y\ que\ cabe\ el\ proceso\ si\ no,\ error}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (hueco-\/>\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ !=\ 0\ ||\ hueco-\/>\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ <\ p.\mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\_requerida}})\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00037}00037\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}ERROR:\ no\ se\ puede\ asignar\ el\ proceso\ \(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ CASO\ A:\ Ajuste\ Exacto\ (El\ proceso\ ocupa\ todo\ el\ hueco)}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (hueco-\/>\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ ==\ p.\mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\_requerida}})\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00043}00043\ \ \ \ \ \ \ \ \ hueco-\/>\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00044}00044\ \ \ \ \ \ \ \ \ strcpy(hueco-\/>\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ p.\mbox{\hyperlink{struct_proceso_a30e36b0957cc834bd7bd581f999390c0}{nombre}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00045}00045\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CASO\ B:\ Hay\ que\ dividir\ (El\ hueco\ es\ más\ grande)}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Verificamos\ que\ no\ desbordamos\ el\ array}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}}\ >=\ \mbox{\hyperlink{group__constantes_gae420f0bf3db242485c8c837356c6ebba}{MAX\_PARTICIONES}})\ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ DESPLAZAMIENTO:\ Movemos\ todo\ una\ posición\ a\ la\ derecha}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ desde\ el\ final\ hasta\ el\ siguiente\ al\ hueco\ actual}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}};\ i\ >\ indice\_hueco\ +\ 1;\ i-\/-\/)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i]\ =\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i\ -\/\ 1];}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tamano\_restante\ =\ hueco-\/>\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ -\/\ p.\mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\_requerida}};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dir\_nueva\ =\ hueco-\/>\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}}\ +\ p.\mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\_requerida}};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Crear\ el\ NUEVO\ hueco\ restante\ en\ la\ posición\ siguiente\ (i+1)}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[indice\_hueco\ +\ 1].\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}}\ =\ dir\_nueva;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00061}00061\ \ \ \ \ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[indice\_hueco\ +\ 1].\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ =\ tamano\_restante;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00062}00062\ \ \ \ \ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[indice\_hueco\ +\ 1].\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ =\ 0;\ \textcolor{comment}{//\ LIBRE}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00063}00063\ \ \ \ \ \ \ \ \ strcpy(m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[indice\_hueco\ +\ 1].\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ \textcolor{stringliteral}{"{}HUECO"{}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ Actualizar\ el\ hueco\ actual\ para\ convertirlo\ en\ PROCESO}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00066}00066\ \ \ \ \ \ \ \ \ hueco-\/>\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ =\ p.\mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\_requerida}};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00067}00067\ \ \ \ \ \ \ \ \ hueco-\/>\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ =\ 1;\ \textcolor{comment}{//\ OCUPADO}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00068}00068\ \ \ \ \ \ \ \ \ strcpy(hueco-\/>\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ p.\mbox{\hyperlink{struct_proceso_a30e36b0957cc834bd7bd581f999390c0}{nombre}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5.\ Actualizamos\ contadores}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00071}00071\ \ \ \ \ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}}++;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ Actualizamos\ el\ puntero\ para\ Next\ Fit\ (para\ cuando\ lo\ implementemos)}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00074}00074\ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a281aeea839c28dcef311e9902a74cccb}{ultimo\_indice\_asignado}}\ =\ indice\_hueco;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00075}00075\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;\ \textcolor{comment}{//\ Éxito}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00077}00077\ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00079}\mbox{\hyperlink{sim__engine_8c_a949ea609798d43a638d95faf7de9f681}{00079}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sim__engine_8c_a949ea609798d43a638d95faf7de9f681}{compactar}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00080}00080\ \ \ \ \ \textcolor{comment}{//\ Recorremos\ hasta\ el\ penúltimo\ elemento}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}}\ -\/\ 1;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ la\ partición\ actual\ y\ la\ siguiente\ son\ huecos,\ las\ unimos}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ ==\ 0\ \&\&\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i+1].\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Sumamos\ tamaños\ de\ las\ particiones}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ +=\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i+1].\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Movemos\ todas\ las\ particiones\ siguientes\ una\ posición\ a\ la\ izquierda}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ i\ +\ 1;\ j\ <\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}}\ -\/\ 1;\ j++)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[j]\ =\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[j+1];}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Actualizamos\ el\ contador\ de\ particiones}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}}-\/-\/;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ Retrocedemos\ el\ índice\ para\ revisar\ la\ nueva\ partición\ fusionada}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ i-\/-\/;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}[DEBUG]\ Compactacion\ realizada\ del\ proceso\ \%s\(\backslash\)n"{}},\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00096}00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00098}00098\ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00100}\mbox{\hyperlink{sim__engine_8c_a9a4646e9f9e8b178131b41945f7a8544}{00100}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{sim__engine_8c_a9a4646e9f9e8b178131b41945f7a8544}{liberar\_proceso}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \textcolor{keywordtype}{char}\ *nombre\_proceso)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ encontramos\ el\ proceso\ y\ esta\ ocupado,\ lo\ liberamos}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ ==\ 1\ \&\&\ strcmp(m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ nombre\_proceso)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Lo\ convertimos\ en\ hueco\ pasando\ a\ estado\ 0}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ \textcolor{stringliteral}{"{}HUECO"{}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}[DEBUG]\ Proceso\ \%s\ liberado\ en\ dir\ \%d\(\backslash\)n"{}},\ nombre\_proceso,\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Compactamos\ la\ memoria\ para\ unir\ huecos\ adyacentes}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a949ea609798d43a638d95faf7de9f681}{compactar}}(m);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00113}00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00115}00115\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00116}00116\ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00118}\mbox{\hyperlink{sim__engine_8c_a8f367671cb683a6dd983d657251a170b}{00118}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sim__engine_8c_a8f367671cb683a6dd983d657251a170b}{buscar\_hueco}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \textcolor{keywordtype}{int}\ mem\_requerida,\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}}\ tipo\_algo)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00119}00119\ \ \ \ \ \textcolor{comment}{//\ Algoritmo\ Primer\ Hueco}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00120}00120\ \ \ \ \ \textcolor{keywordflow}{if}\ (tipo\_algo\ ==\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}{ALGO\_PRIMER\_HUECO}})\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Recorremos\ todas\ las\ particiones\ buscando\ el\ primer\ hueco\ que\ quepa}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ es\ un\ hueco\ libre\ y\ cabe\ el\ proceso}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ ==\ 0\ \&\&\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ >=\ mem\_requerida)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;\ \textcolor{comment}{//\ Devolvemos\ el\ índice\ del\ hueco\ encontrado}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00128}00128\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00130}00130\ \ \ \ \ \textcolor{comment}{//\ Algoritmo\ Siguiente\ Hueco}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00131}00131\ \ \ \ \ \textcolor{keywordflow}{if}\ (tipo\_algo\ ==\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426}{ALGO\_SIGUIENTE\_HUECO}})\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ El\ punto\ de\ partida\ es\ el\ último\ índice\ asignado}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ inicio\ =\ m-\/>\mbox{\hyperlink{struct_memoria_a281aeea839c28dcef311e9902a74cccb}{ultimo\_indice\_asignado}};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sacamos\ el\ total\ de\ particiones\ para\ poder\ hacer\ la\ búsqueda\ circular}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ total\ =\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Recorremos\ todas\ las\ particiones\ empezando\ desde\ 'inicio'\ de\ forma\ circular}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ total;\ j++)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculamos\ el\ índice\ real\ con\ módulo\ para\ la\ circularidad}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ (inicio\ +\ j)\ \%\ total;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ es\ un\ hueco\ libre\ y\ cabe\ el\ proceso\ devolvemos\ su\ índice\ en\ la\ memoria}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_af3af9ca204c38ee3a6b1bc426df16e7a}{estado}}\ ==\ 0\ \&\&\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i].\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}}\ >=\ mem\_requerida)}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00145}00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00146}00146\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00148}00148\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00149}00149\ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00151}\mbox{\hyperlink{sim__engine_8c_ab6fef50a2cde39099d3c051aa7975738}{00151}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sim__engine_8c_ab6fef50a2cde39099d3c051aa7975738}{alinear\_size}}(\textcolor{keywordtype}{int}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00152}00152\ \ \ \ \ \textcolor{keywordtype}{int}\ tam\_final;\ \textcolor{comment}{//\ Variable\ para\ el\ tamaño\ final\ alineado}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00154}00154\ \ \ \ \ \textcolor{comment}{//\ Si\ el\ tamaño\ es\ mayor\ que\ la\ unidad\ mínima,\ lo\ alineamos}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00155}00155\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ >\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}})\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bloques\ =\ size\ /\ 100;\ \textcolor{comment}{//\ Cantidad\ de\ bloques\ completos\ de\ 100}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ \%\ 100\ !=\ 0)\ \textcolor{comment}{//\ Si\ hay\ resto}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ tam\_final\ =\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}}\ *\ bloques\ +\ 100;\ \textcolor{comment}{//\ Sumamos\ un\ bloque\ más}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ tam\_final\ =\ bloques\ *\ 100;\ \textcolor{comment}{//\ Exacto,\ no\ hay\ resto}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00161}00161\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00162}00162\ \ \ \ \ \ \ \ \ tam\_final\ =\ \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\_MINIMA}};\ \textcolor{comment}{//\ Si\ es\ menor\ o\ igual\ a\ 100,\ lo\ ajustamos\ a\ 100}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00163}00163\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00164}00164\ \ \ \ \ \textcolor{keywordflow}{return}\ tam\_final;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00165}00165\ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00167}\mbox{\hyperlink{sim__engine_8c_a47eaa39f311ae4f19e76eb9baca390d7}{00167}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{sim__engine_8c_a47eaa39f311ae4f19e76eb9baca390d7}{asignar\_proceso}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ p,\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}}\ tipo\_algo)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00168}00168\ \ \ \ \ \textcolor{comment}{//\ Calculamos\ el\ tamaño\ real\ alineado}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00169}00169\ \ \ \ \ \textcolor{keywordtype}{int}\ tam\_real\ =\ \mbox{\hyperlink{sim__engine_8c_ab6fef50a2cde39099d3c051aa7975738}{alinear\_size}}(p.\mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\_requerida}});}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00171}00171\ \ \ \ \ \textcolor{comment}{//\ [Opcional]\ Debug\ para\ ver\ el\ cambio}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00172}00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (tam\_real\ !=\ p.\mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\_requerida}})}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00173}00173\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}[DEBUG\ Alineacion]\ Proceso\ \%s\ pide\ \%d\ pero\ ocupara\ \%d\(\backslash\)n"{}},\ p.\mbox{\hyperlink{struct_proceso_a30e36b0957cc834bd7bd581f999390c0}{nombre}},\ p.\mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\_requerida}},\ tam\_real);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00174}00174\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00175}00175\ \ \ \ \ \textcolor{comment}{//\ Buscamos\ un\ hueco\ adecuado\ con\ el\ tamaño\ real\ y\ el\ algoritmo\ indicado}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00176}00176\ \ \ \ \ \textcolor{keywordtype}{int}\ pos\_mem\ =\ \mbox{\hyperlink{sim__engine_8c_a8f367671cb683a6dd983d657251a170b}{buscar\_hueco}}(m,\ tam\_real,\ tipo\_algo);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00178}00178\ \ \ \ \ \textcolor{comment}{//\ Si\ no\ se\ encontró\ hueco,\ devolvemos\ false}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00179}00179\ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\_mem\ ==\ -\/1)}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00180}00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00181}00181\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00182}00182\ \ \ \ \ \textcolor{comment}{//\ Actualizamos\ el\ requerimiento\ de\ memoria\ del\ proceso\ al\ tamaño\ real}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00183}00183\ \ \ \ \ p.\mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\_requerida}}\ =\ tam\_real;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00184}00184\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00185}00185\ \ \ \ \ \textcolor{comment}{//\ Intentamos\ ocupar\ el\ hueco\ encontrado}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00186}00186\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{sim__engine_8c_a6a1089ddf1a175f89c026b773722dcd2}{ocupar\_memoria}}(m,\ pos\_mem,\ p);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00187}00187\ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00189}\mbox{\hyperlink{sim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b}{00189}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b}{avanzar\_tiempo}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ procesos[],\ \textcolor{keywordtype}{int}\ num\_procesos,\ \textcolor{keywordtype}{int}\ *reloj\_actual,\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}}\ algo,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ruta\_log)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00190}00190\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/-\/-\/INSTANTE\ \%d-\/-\/-\/-\/\(\backslash\)n"{}},\ *reloj\_actual);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00192}00192\ \ \ \ \ \textcolor{comment}{//\ Paso\ 1\ y\ 2\ -\/>\ Envejecimiento\ y\ finalización\ de\ procesos}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00193}00193\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solo\ procesamos\ los\ que\ están\ en\ memoria\ y\ no\ han\ finalizado}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (procesos[i].en\_memoria\ \&\&\ !procesos[i].finalizado)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DEBUG:\ Ver\ cuánto\ le\ queda\ antes\ de\ restar\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}[DEBUG\ Vida]\ \%s\ tiene\ \%d\ ticks\ restantes.\(\backslash\)n"{}},\ procesos[i].nombre\ \ \ \ ,\ procesos[i].t\_restante);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ procesos[i].\mbox{\hyperlink{struct_proceso_a50600ea4ddd8f2d410dbffb5138e9939}{t\_restante}}-\/-\/;\ \textcolor{comment}{//\ Disminuimos\ su\ tiempo\ restante}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ ya\ no\ le\ queda\ tiempo,\ lo\ finalizamos}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (procesos[i].t\_restante\ <=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}-\/>\ FIN:\ El\ proceso\ \%s\ ha\ terminado.\ Liberando\ memoria...\(\backslash\)n"{}},\ procesos[i].nombre);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Liberamos\ su\ memoria}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sim__engine_8c_a9a4646e9f9e8b178131b41945f7a8544}{liberar\_proceso}}(m,\ procesos[i].nombre);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Marcamos\ el\ proceso\ como\ finalizado}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ procesos[i].\mbox{\hyperlink{struct_proceso_a8a5539157dd188274a43e5543fef3494}{en\_memoria}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ procesos[i].\mbox{\hyperlink{struct_proceso_a6e82a92ffdba51e1f513a4b462d2c7f6}{finalizado}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00211}00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00212}00212\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00214}00214\ \ \ \ \ \textcolor{comment}{//\ Paso\ 3\ -\/>\ Llegada\ de\ nuevos\ procesos}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00215}00215\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00216}00216\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Se\ busca\ proceso\ que\ no\ esté\ en\ memoria,\ no\ finalizado\ y\ que\ haya\ llegado\ o\ su\ momento\ ya\ haya\ pasado}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!procesos[i].en\_memoria\ \&\&\ !procesos[i].finalizado\ \&\&\ procesos[i].t\_llegada\ <=\ *reloj\_actual)\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}-\/>\ LLEGADA:\ \%s\ intenta\ entrar\ (Requiere\ \%d)\(\backslash\)n"{}},\ procesos[i].nombre,\ procesos[i].mem\_requerida);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentamos\ asignarlo\ en\ memoria}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{sim__engine_8c_a47eaa39f311ae4f19e76eb9baca390d7}{asignar\_proceso}}(m,\ procesos[i],\ algo))\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}EXITO:\ \%s\ asignado\ en\ memoria\ \(\backslash\)n"{}},\ procesos[i].nombre);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ procesos[i].\mbox{\hyperlink{struct_proceso_a8a5539157dd188274a43e5543fef3494}{en\_memoria}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Inicializamos\ su\ tiempo\ restante}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ procesos[i].\mbox{\hyperlink{struct_proceso_a50600ea4ddd8f2d410dbffb5138e9939}{t\_restante}}\ =\ procesos[i].\mbox{\hyperlink{struct_proceso_a4c0f04511fcff56f38175cf4486f09a7}{t\_ejecucion}};}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ se\ pudo\ asignar,\ se\ queda\ esperando,\ al\ ser\ t\_llegada\ <=\ reloj\_actual,\ volverá\ a\ intentar\ en\ el\ siguiente\ tick}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}ESPERA:\ No\ hay\ hueco\ para\ \%s.\ Esperara\ al\ siguente\ tick\ \(\backslash\)n"{}},\ procesos[i].nombre);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00230}00230\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00231}00231\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00233}00233\ \ \ \ \ \mbox{\hyperlink{ficheros_8c_af7e2e00877e94e16b9c6f0f76103214b}{guardar\_estado}}(ruta\_log,\ m,\ *reloj\_actual);}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00235}00235\ \ \ \ \ (*reloj\_actual)++;}
+\DoxyCodeLine{\Hypertarget{sim__engine_8c_source_l00236}00236\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Memoria - Práctica 3 OS: Archivo de código fuente src/ficheros.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('ficheros_8c_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">ficheros.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ficheros_8c.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="ficheros_8h.html">ficheros.h</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include&lt;fcntl.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;../../lib/file_utils.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64">    9</a></span><span class="preprocessor">#define SIZE_BUFFER_LECTURA 4096 </span><span class="comment">// Asumimos que el archivo de entrada no pesa más de 4KB</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6">   11</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6">cargar_procesos</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* ruta, <a class="code hl_struct" href="struct_proceso.html">Proceso</a> procesos[]) {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="comment">// 1. Abrir con open(Unix standard)</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">int</span> fd = open(ruta, O_RDONLY);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordflow">if</span> (fd == -1) {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        perror(<span class="stringliteral">&quot;Error abriendo fichero de entrada&quot;</span>);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">// 2. Leer TODO el archivo a un buffer usando file_utils.h</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">char</span> buffer_archivo[<a class="code hl_define" href="ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64">SIZE_BUFFER_LECTURA</a>];</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    memset(buffer_archivo, 0, <a class="code hl_define" href="ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64">SIZE_BUFFER_LECTURA</a>); <span class="comment">// Limpiamos el buffer para evitar basura</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    ssize_t leidos = read_all(fd, buffer_archivo, <a class="code hl_define" href="ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64">SIZE_BUFFER_LECTURA</a> - 1);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    close(fd); <span class="comment">// Ya tenemos los datos y por tanto cerramos el descriptor</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">if</span> (leidos == -1) {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        perror(<span class="stringliteral">&quot;Error al leer el fichero&quot;</span>);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// 3. Parsear el texto (linea por linea)</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">int</span> count = 0;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">char</span> *linea = strtok(buffer_archivo, <span class="stringliteral">&quot;\n&quot;</span>); <span class="comment">// Primera linea</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">while</span>(linea != NULL &amp;&amp; count &lt; <a class="code hl_define" href="group__constantes.html#gab0f17287f3a9af76ef9109ec1dfce7a9">MAX_PROCESOS</a>) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">char</span> nombre[10];</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">int</span> llegada, mem, ejec;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="comment">// Formato fuente: &lt;Proceso&gt; &lt;Instante_llegada&gt; &lt;Memoria_requerida&gt; &lt;Tiempo_de_ejecuccion&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">if</span> (sscanf(linea, <span class="stringliteral">&quot;%s %d %d %d&quot;</span>, nombre, &amp;llegada, &amp;mem, &amp;ejec) == 4) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="comment">// Copiamos al struct Proceso</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            strcpy(procesos[count].nombre, nombre);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            procesos[count].<a class="code hl_variable" href="struct_proceso.html#a3bdfce3dc9521ae195f824b63fa39177">t_llegada</a> = llegada;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            <span class="comment">// Opcion 1: Aplicamos alinear_size para cumplir con la asignacion de 100 en 100</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="comment">// procesos[count].mem_requerida = alinear_size(mem);</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="comment">// Opcion 2: La memoria ya se aliena a la hora de asignar el proceso</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            procesos[count].<a class="code hl_variable" href="struct_proceso.html#a89677fcfc2c31a180618d3ecdf9d6da0">mem_requerida</a> = mem;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            procesos[count].<a class="code hl_variable" href="struct_proceso.html#a4c0f04511fcff56f38175cf4486f09a7">t_ejecucion</a> = ejec;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="comment">// Inicializacion del estado del proceso</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            procesos[count].<a class="code hl_variable" href="struct_proceso.html#a50600ea4ddd8f2d410dbffb5138e9939">t_restante</a> = ejec;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            procesos[count].<a class="code hl_variable" href="struct_proceso.html#a8a5539157dd188274a43e5543fef3494">en_memoria</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            procesos[count].<a class="code hl_variable" href="struct_proceso.html#a6e82a92ffdba51e1f513a4b462d2c7f6">finalizado</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            count++;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        } </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="comment">// Siguiente linea</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        linea = strtok(NULL, <span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> count;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b">   64</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b">guardar_estado</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* ruta, <a class="code hl_struct" href="struct_memoria.html">Memoria</a> *m, <span class="keywordtype">int</span> instante) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// Abrimos el archivo en modo append y CREAT si no existe</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">int</span> fd = open(ruta, O_WRONLY | O_CREAT | O_APPEND, 0644);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">if</span> (fd == -1) {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        perror(<span class="stringliteral">&quot;Error al abrir o crear el archivo&quot;</span>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">char</span> buffer_linea[1024]; <span class="comment">// Buffer temporal</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// Formato fuente: &lt;instante_tiempo&gt; &lt;estado_memoria&gt; \n</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// 1. Escribimos el instante de tiempo</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">int</span> len = sprintf(buffer_linea, <span class="stringliteral">&quot;%d&quot;</span>, instante);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    write_all(fd, buffer_linea, len);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// 2. Recorremos las particiones</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; m-&gt;<a class="code hl_variable" href="struct_memoria.html#ae398c8e61b3aade21c6118c6cedf879d">cant_particiones</a>; i++) {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <a class="code hl_struct" href="struct_particion.html">Particion</a> p = m-&gt;<a class="code hl_variable" href="struct_memoria.html#a5172c2be2a019c0176b997b11e91655e">particiones</a>[i];</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="comment">// Formateamos una particion al formato requerido</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        len = sprintf(buffer_linea, <span class="stringliteral">&quot;[%d, %s, %d] &quot;</span>, p.<a class="code hl_variable" href="struct_particion.html#ae1cc803e8a591302bcc4cfb0145fee53">dir_inicio</a>, p.<a class="code hl_variable" href="struct_particion.html#a6a9530f295bf5f859a4ebe469751dfa9">nombre_proceso</a>, p.<a class="code hl_variable" href="struct_particion.html#a44d43efa08e89cb916c4a465a77d6399">tamano</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        write_all(fd, buffer_linea, len);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// 3. Salto de linea final</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    write_all(fd, <span class="stringliteral">&quot;\n&quot;</span>, 1);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    close(fd);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>}</div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="ficheros_8c.html#a695ae3585fde2a3664394810b70fe928">   94</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="ficheros_8c.html#a695ae3585fde2a3664394810b70fe928">limpiar_log</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* ruta) {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="comment">// O_TRUNC borra el contenido al abrir</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">int</span> fd = open(ruta, O_WRONLY | O_CREAT | O_TRUNC, 0644);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">if</span> (fd != -1) close(fd);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
+</div>
+<div class="ttc" id="aficheros_8c_html_a6343d21cab7d596befc99c216c5f3d64"><div class="ttname"><a href="ficheros_8c.html#a6343d21cab7d596befc99c216c5f3d64">SIZE_BUFFER_LECTURA</a></div><div class="ttdeci">#define SIZE_BUFFER_LECTURA</div><div class="ttdef"><b>Definition</b> <a href="#l00009">ficheros.c:9</a></div></div>
+<div class="ttc" id="aficheros_8c_html_a695ae3585fde2a3664394810b70fe928"><div class="ttname"><a href="ficheros_8c.html#a695ae3585fde2a3664394810b70fe928">limpiar_log</a></div><div class="ttdeci">void limpiar_log(const char *ruta)</div><div class="ttdoc">Limpia el contenido de un archivo de log.</div><div class="ttdef"><b>Definition</b> <a href="#l00094">ficheros.c:94</a></div></div>
+<div class="ttc" id="aficheros_8c_html_af760c80ad550bdf7a5312163e4c9b2d6"><div class="ttname"><a href="ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6">cargar_procesos</a></div><div class="ttdeci">int cargar_procesos(const char *ruta, Proceso procesos[])</div><div class="ttdoc">Carga los procesos desde un archivo de texto.</div><div class="ttdef"><b>Definition</b> <a href="#l00011">ficheros.c:11</a></div></div>
+<div class="ttc" id="aficheros_8c_html_af7e2e00877e94e16b9c6f0f76103214b"><div class="ttname"><a href="ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b">guardar_estado</a></div><div class="ttdeci">void guardar_estado(const char *ruta, Memoria *m, int instante)</div><div class="ttdoc">Guarda el estado actual de la memoria en un archivo de log.</div><div class="ttdef"><b>Definition</b> <a href="#l00064">ficheros.c:64</a></div></div>
+<div class="ttc" id="aficheros_8h_html"><div class="ttname"><a href="ficheros_8h.html">ficheros.h</a></div><div class="ttdoc">Módulo de entrada/salida para la simulación de memoria.</div></div>
+<div class="ttc" id="agroup__constantes_html_gab0f17287f3a9af76ef9109ec1dfce7a9"><div class="ttname"><a href="group__constantes.html#gab0f17287f3a9af76ef9109ec1dfce7a9">MAX_PROCESOS</a></div><div class="ttdeci">#define MAX_PROCESOS</div><div class="ttdoc">Máximo número de procesos que puede manejar la simulación.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00045">sim_engine.h:45</a></div></div>
+<div class="ttc" id="astruct_memoria_html"><div class="ttname"><a href="struct_memoria.html">Memoria</a></div><div class="ttdoc">Estructura principal que representa la memoria del sistema.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00090">sim_engine.h:90</a></div></div>
+<div class="ttc" id="astruct_memoria_html_a5172c2be2a019c0176b997b11e91655e"><div class="ttname"><a href="struct_memoria.html#a5172c2be2a019c0176b997b11e91655e">Memoria::particiones</a></div><div class="ttdeci">Particion particiones[MAX_PARTICIONES]</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00091">sim_engine.h:91</a></div></div>
+<div class="ttc" id="astruct_memoria_html_ae398c8e61b3aade21c6118c6cedf879d"><div class="ttname"><a href="struct_memoria.html#ae398c8e61b3aade21c6118c6cedf879d">Memoria::cant_particiones</a></div><div class="ttdeci">int cant_particiones</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00092">sim_engine.h:92</a></div></div>
+<div class="ttc" id="astruct_particion_html"><div class="ttname"><a href="struct_particion.html">Particion</a></div><div class="ttdoc">Estructura que representa una partición de memoria.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00077">sim_engine.h:77</a></div></div>
+<div class="ttc" id="astruct_particion_html_a44d43efa08e89cb916c4a465a77d6399"><div class="ttname"><a href="struct_particion.html#a44d43efa08e89cb916c4a465a77d6399">Particion::tamano</a></div><div class="ttdeci">int tamano</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00079">sim_engine.h:79</a></div></div>
+<div class="ttc" id="astruct_particion_html_a6a9530f295bf5f859a4ebe469751dfa9"><div class="ttname"><a href="struct_particion.html#a6a9530f295bf5f859a4ebe469751dfa9">Particion::nombre_proceso</a></div><div class="ttdeci">char nombre_proceso[10]</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00081">sim_engine.h:81</a></div></div>
+<div class="ttc" id="astruct_particion_html_ae1cc803e8a591302bcc4cfb0145fee53"><div class="ttname"><a href="struct_particion.html#ae1cc803e8a591302bcc4cfb0145fee53">Particion::dir_inicio</a></div><div class="ttdeci">int dir_inicio</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00078">sim_engine.h:78</a></div></div>
+<div class="ttc" id="astruct_proceso_html"><div class="ttname"><a href="struct_proceso.html">Proceso</a></div><div class="ttdoc">Estructura que representa un proceso en el simulador.</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00057">sim_engine.h:57</a></div></div>
+<div class="ttc" id="astruct_proceso_html_a3bdfce3dc9521ae195f824b63fa39177"><div class="ttname"><a href="struct_proceso.html#a3bdfce3dc9521ae195f824b63fa39177">Proceso::t_llegada</a></div><div class="ttdeci">int t_llegada</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00059">sim_engine.h:59</a></div></div>
+<div class="ttc" id="astruct_proceso_html_a4c0f04511fcff56f38175cf4486f09a7"><div class="ttname"><a href="struct_proceso.html#a4c0f04511fcff56f38175cf4486f09a7">Proceso::t_ejecucion</a></div><div class="ttdeci">int t_ejecucion</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00061">sim_engine.h:61</a></div></div>
+<div class="ttc" id="astruct_proceso_html_a50600ea4ddd8f2d410dbffb5138e9939"><div class="ttname"><a href="struct_proceso.html#a50600ea4ddd8f2d410dbffb5138e9939">Proceso::t_restante</a></div><div class="ttdeci">int t_restante</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00065">sim_engine.h:65</a></div></div>
+<div class="ttc" id="astruct_proceso_html_a6e82a92ffdba51e1f513a4b462d2c7f6"><div class="ttname"><a href="struct_proceso.html#a6e82a92ffdba51e1f513a4b462d2c7f6">Proceso::finalizado</a></div><div class="ttdeci">bool finalizado</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00067">sim_engine.h:67</a></div></div>
+<div class="ttc" id="astruct_proceso_html_a89677fcfc2c31a180618d3ecdf9d6da0"><div class="ttname"><a href="struct_proceso.html#a89677fcfc2c31a180618d3ecdf9d6da0">Proceso::mem_requerida</a></div><div class="ttdeci">int mem_requerida</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00060">sim_engine.h:60</a></div></div>
+<div class="ttc" id="astruct_proceso_html_a8a5539157dd188274a43e5543fef3494"><div class="ttname"><a href="struct_proceso.html#a8a5539157dd188274a43e5543fef3494">Proceso::en_memoria</a></div><div class="ttdeci">bool en_memoria</div><div class="ttdef"><b>Definition</b> <a href="sim__engine_8h_source.html#l00066">sim_engine.h:66</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="ficheros_8c.html">ficheros.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<map id="test_sim" name="test_sim">
+<area shape="rect" id="Node000001" title="Ejecuta la simulación en modo terminal (TUI)." alt="" coords="5,203,77,228"/>
+<area shape="rect" id="Node000002" href="$sim__engine_8c.html#a099adf88ebe7183b00ddc648cc1ffa5b" title="Avanza un tick en la simulación." alt="" coords="134,104,248,130"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,201,83,170,123,139,134,135,131,138,126,143,86,174,56,204"/>
+<area shape="rect" id="Node000010" href="$ficheros_8c.html#af760c80ad550bdf7a5312163e4c9b2d6" title="Carga los procesos desde un archivo de texto." alt="" coords="132,153,250,179"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="76,201,137,182,134,186,79,206"/>
+<area shape="rect" id="Node000011" href="$sim__engine_8c.html#a7525ea6570ccf752c8e9394b62042380" title="Inicializa la memoria con un único hueco libre." alt="" coords="125,203,257,228"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="76,213,111,214,107,217,78,218"/>
+<area shape="rect" id="Node000012" href="$ficheros_8c.html#a695ae3585fde2a3664394810b70fe928" title="Limpia el contenido de un archivo de log." alt="" coords="149,252,232,278"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="77,225,138,245,133,248,77,230"/>
+<area shape="rect" id="Node000013" href="$sim__engine_8c.html#a6df7a5ff87dd2abca3c64b3dcc88cf5a" title="Muestra el estado actual de la memoria en consola." alt="" coords="135,301,246,327"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="55,226,86,257,126,288,135,295,130,294,123,292,83,261,53,231"/>
+<area shape="rect" id="Node000003" href="$sim__engine_8c.html#a47eaa39f311ae4f19e76eb9baca390d7" title="Asigna un proceso a la memoria." alt="" coords="305,55,421,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="237,101,303,84,299,87,240,106"/>
+<area shape="rect" id="Node000007" href="$ficheros_8c.html#af7e2e00877e94e16b9c6f0f76103214b" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="308,104,418,130"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="247,114,295,116,290,118,248,119"/>
+<area shape="rect" id="Node000008" href="$sim__engine_8c.html#a9a4646e9f9e8b178131b41945f7a8544" title="Libera un proceso de la memoria." alt="" coords="308,153,418,179"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="238,128,304,148,298,149,239,133"/>
+<area shape="rect" id="Node000004" href="$sim__engine_8c.html#ab6fef50a2cde39099d3c051aa7975738" title="Alinea un tamaño a múltiplos de UNIDAD_MINIMA." alt="" coords="483,5,573,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="408,52,470,35,466,37,410,56"/>
+<area shape="rect" id="Node000005" href="$sim__engine_8c.html#a8f367671cb683a6dd983d657251a170b" title="Busca un hueco adecuado según el algoritmo especificado." alt="" coords="477,55,579,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="421,65,464,67,459,68,422,70"/>
+<area shape="rect" id="Node000006" href="$sim__engine_8c.html#a6a1089ddf1a175f89c026b773722dcd2" title="Ocupa un hueco de memoria con un proceso." alt="" coords="469,104,587,130"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="409,78,471,98,465,99,409,84"/>
+<area shape="rect" id="Node000009" href="$sim__engine_8c.html#a949ea609798d43a638d95faf7de9f681" title="Compacta la memoria uniendo huecos adyacentes." alt="" coords="487,153,569,179"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="418,164,474,166,469,167,419,169"/>
+</map>

@@ -24,6 +24,7 @@
 */
 var menudata={children:[
 {text:"Página principal",url:"index.html"},
+{text:"Topics",url:"topics.html"},
 {text:"Estructuras de datos",url:"annotated.html",children:[
 {text:"Estructuras de datos",url:"annotated.html"},
 {text:"Índice de estructuras de datos",url:"classes.html"},
@@ -33,8 +34,23 @@ var menudata={children:[
 {text:"Archivos",url:"files.html",children:[
 {text:"Lista de archivos",url:"files.html"},
 {text:"Globales",url:"globals.html",children:[
-{text:"Todos",url:"globals.html"},
+{text:"Todos",url:"globals.html",children:[
+{text:"a",url:"globals.html#index_a"},
+{text:"b",url:"globals.html#index_b"},
+{text:"c",url:"globals.html#index_c"},
+{text:"g",url:"globals.html#index_g"},
+{text:"i",url:"globals.html#index_i"},
+{text:"l",url:"globals.html#index_l"},
+{text:"m",url:"globals.html#index_m"},
+{text:"o",url:"globals.html#index_o"},
+{text:"r",url:"globals.html#index_r"},
+{text:"s",url:"globals.html#index_s"},
+{text:"t",url:"globals.html#index_t"},
+{text:"u",url:"globals.html#index_u"},
+{text:"w",url:"globals.html#index_w"},
+{text:"y",url:"globals.html#index_y"}]},
 {text:"Funciones",url:"globals_func.html"},
 {text:"Enumeraciones",url:"globals_enum.html"},
 {text:"Valores de enumeraciones",url:"globals_eval.html"},
-{text:"defines",url:"globals_defs.html"}]}]}]}
+{text:"defines",url:"globals_defs.html"}]}]},
+{text:"Ejemplos",url:"examples.html"}]}

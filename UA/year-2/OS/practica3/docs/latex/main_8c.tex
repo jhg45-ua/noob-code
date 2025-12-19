@@ -1,0 +1,343 @@
+\doxysection{Referencia del archivo src/main.c}
+\hypertarget{main_8c}{}\label{main_8c}\index{src/main.c@{src/main.c}}
+
+
+Punto de entrada del simulador de gestión de memoria.  
+
+
+{\ttfamily \#include $<$raylib.\+h$>$}\newline
+{\ttfamily \#include "{}sim\+\_\+engine.\+h"{}}\newline
+{\ttfamily \#include "{}ficheros.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+Gráfico de dependencias incluidas en main.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8c_a2e6ef411e0ff00ad889788b6cde701b5}{WIN\+\_\+\+WIDTH}}~1200
+\begin{DoxyCompactList}\small\item\em Ancho de la ventana gráfica en píxeles. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{main_8c_a0a33b1743038db1adbbf1045aa839b38}{WIN\+\_\+\+HEIGHT}}~750
+\begin{DoxyCompactList}\small\item\em Alto de la ventana gráfica en píxeles. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}{Y\+\_\+\+BARRA}}~250
+\begin{DoxyCompactList}\small\item\em Posición Y de la barra de memoria. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{main_8c_a4b57ead6f5dbf1347696e48526823ef3}{ALTO\+\_\+\+BARRA}}~100
+\begin{DoxyCompactList}\small\item\em Alto de la barra de memoria. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{main_8c_ac1184c172b23102c55ee631d560773b2}{MARGEN\+\_\+\+IZQ}}~50
+\begin{DoxyCompactList}\small\item\em Margen izquierdo de la interfaz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{main_8c_a06cd488103fa8b4b583db7716d185244}{MARGEN\+\_\+\+DER}}~50
+\begin{DoxyCompactList}\small\item\em Margen derecho de la interfaz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a0739302f77016ac122f50d59015cfa1f}{test\+\_\+sim}} ()
+\begin{DoxyCompactList}\small\item\em Ejecuta la simulación en modo terminal (TUI). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_aafb6af6e9fab822accd3e0f7133214bd}{run\+\_\+gui}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, \mbox{\hyperlink{struct_proceso}{Proceso}} \texorpdfstring{$\ast$}{*}procesos, int num\+\_\+procesos)
+\begin{DoxyCompactList}\small\item\em Ejecuta la interfaz gráfica con Raylib. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{main}} (int argc, char const \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Punto de entrada principal del programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Punto de entrada del simulador de gestión de memoria. 
+
+Implementa dos interfaces de usuario\+:
+\begin{DoxyItemize}
+\item {\bfseries{GUI}}\+: Interfaz gráfica con Raylib (proceso hijo)
+\item {\bfseries{TUI}}\+: Interfaz de terminal para depuración (proceso padre)
+\end{DoxyItemize}
+
+Usa fork() para ejecutar ambas interfaces en paralelo.
+
+\begin{DoxyAuthor}{Autor}
+Julian Hinojosa Gil 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+2025 
+\end{DoxyDate}
+\begin{DoxyVersion}{Versión}
+1.\+0 
+\end{DoxyVersion}
+
+
+Definición en el archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{main_8c_doc-define-members}
+\doxysubsection{Documentación de «define»}
+\Hypertarget{main_8c_a4b57ead6f5dbf1347696e48526823ef3}\index{main.c@{main.c}!ALTO\_BARRA@{ALTO\_BARRA}}
+\index{ALTO\_BARRA@{ALTO\_BARRA}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{ALTO\_BARRA}{ALTO\_BARRA}}
+{\footnotesize\ttfamily \label{main_8c_a4b57ead6f5dbf1347696e48526823ef3} 
+\#define ALTO\+\_\+\+BARRA~100}
+
+
+
+Alto de la barra de memoria. 
+
+
+
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00033}{33}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+\Hypertarget{main_8c_a06cd488103fa8b4b583db7716d185244}\index{main.c@{main.c}!MARGEN\_DER@{MARGEN\_DER}}
+\index{MARGEN\_DER@{MARGEN\_DER}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{MARGEN\_DER}{MARGEN\_DER}}
+{\footnotesize\ttfamily \label{main_8c_a06cd488103fa8b4b583db7716d185244} 
+\#define MARGEN\+\_\+\+DER~50}
+
+
+
+Margen derecho de la interfaz. 
+
+
+
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00037}{37}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+\Hypertarget{main_8c_ac1184c172b23102c55ee631d560773b2}\index{main.c@{main.c}!MARGEN\_IZQ@{MARGEN\_IZQ}}
+\index{MARGEN\_IZQ@{MARGEN\_IZQ}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{MARGEN\_IZQ}{MARGEN\_IZQ}}
+{\footnotesize\ttfamily \label{main_8c_ac1184c172b23102c55ee631d560773b2} 
+\#define MARGEN\+\_\+\+IZQ~50}
+
+
+
+Margen izquierdo de la interfaz. 
+
+
+
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00035}{35}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+\Hypertarget{main_8c_a0a33b1743038db1adbbf1045aa839b38}\index{main.c@{main.c}!WIN\_HEIGHT@{WIN\_HEIGHT}}
+\index{WIN\_HEIGHT@{WIN\_HEIGHT}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{WIN\_HEIGHT}{WIN\_HEIGHT}}
+{\footnotesize\ttfamily \label{main_8c_a0a33b1743038db1adbbf1045aa839b38} 
+\#define WIN\+\_\+\+HEIGHT~750}
+
+
+
+Alto de la ventana gráfica en píxeles. 
+
+
+
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00029}{29}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+\Hypertarget{main_8c_a2e6ef411e0ff00ad889788b6cde701b5}\index{main.c@{main.c}!WIN\_WIDTH@{WIN\_WIDTH}}
+\index{WIN\_WIDTH@{WIN\_WIDTH}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{WIN\_WIDTH}{WIN\_WIDTH}}
+{\footnotesize\ttfamily \label{main_8c_a2e6ef411e0ff00ad889788b6cde701b5} 
+\#define WIN\+\_\+\+WIDTH~1200}
+
+
+
+Ancho de la ventana gráfica en píxeles. 
+
+
+
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00027}{27}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+\Hypertarget{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873}\index{main.c@{main.c}!Y\_BARRA@{Y\_BARRA}}
+\index{Y\_BARRA@{Y\_BARRA}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Y\_BARRA}{Y\_BARRA}}
+{\footnotesize\ttfamily \label{main_8c_a3ebf1caaba75b8ec7d91ed2d4d345873} 
+\#define Y\+\_\+\+BARRA~250}
+
+
+
+Posición Y de la barra de memoria. 
+
+
+
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00031}{31}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{main_8c_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char const \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Punto de entrada principal del programa. 
+
+Crea dos procesos mediante fork()\+:
+\begin{DoxyItemize}
+\item \doxylink{struct_proceso}{Proceso} hijo\+: Ejecuta la interfaz gráfica (GUI)
+\item \doxylink{struct_proceso}{Proceso} padre\+: Ejecuta la interfaz de terminal (TUI)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em argc} & Número de argumentos (no utilizado) \\
+\hline
+{\em argv} & Array de argumentos (no utilizado)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+0 si la ejecución fue exitosa 
+
+-\/1 si hubo error en fork() 
+\end{DoxyReturn}
+
+
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00056}{56}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{sim__engine_8h_source_l00045}{MAX\+\_\+\+PROCESOS}}, \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}} y \mbox{\hyperlink{main_8c_source_l00095}{test\+\_\+sim()}}.
+
+Gráfico de llamadas de esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8c_aafb6af6e9fab822accd3e0f7133214bd}\index{main.c@{main.c}!run\_gui@{run\_gui}}
+\index{run\_gui@{run\_gui}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{run\_gui()}{run\_gui()}}
+{\footnotesize\ttfamily \label{main_8c_aafb6af6e9fab822accd3e0f7133214bd} 
+void run\+\_\+gui (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{\mbox{\hyperlink{struct_proceso}{Proceso}} \texorpdfstring{$\ast$}{*}}]{procesos}{, }\item[{int}]{num\+\_\+procesos}{}\end{DoxyParamCaption})}
+
+
+
+Ejecuta la interfaz gráfica con Raylib. 
+
+Crea una ventana de WIN\+\_\+\+WIDTH x WIN\+\_\+\+HEIGHT píxeles y muestra\+:
+\begin{DoxyItemize}
+\item Barra de memoria con particiones coloreadas
+\item Lista de procesos y su estado
+\item Controles interactivos
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in,out}}  & {\em m} & Puntero a la estructura de memoria del simulador \\
+\hline
+\mbox{\texttt{in,out}}  & {\em procesos} & Array de procesos a simular \\
+\hline
+\mbox{\texttt{in}}  & {\em num\+\_\+procesos} & Cantidad de procesos en el array\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Controles\+:}
+
+\begin{DoxyItemize}
+\item ESPACIO\+: Avanzar un tick
+\item P\+: Activar/desactivar auto-\/play
+\item R\+: Reiniciar simulación
+\item ESC\+: Salir
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Nota}
+Genera log en "{}particiones.\+txt"{} 
+
+Velocidad auto-\/play\+: 1 tick/segundo 
+\end{DoxyNote}
+
+
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00173}{173}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00103}{ALGO\+\_\+\+PRIMER\+\_\+\+HUECO}}, \mbox{\hyperlink{main_8c_source_l00033}{ALTO\+\_\+\+BARRA}}, \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}}, \mbox{\hyperlink{sim__engine_8h_source_l00092}{Memoria\+::cant\+\_\+particiones}}, \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}, \mbox{\hyperlink{sim__engine_8h_source_l00078}{Particion\+::dir\+\_\+inicio}}, \mbox{\hyperlink{sim__engine_8h_source_l00080}{Particion\+::estado}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{ficheros_8c_source_l00094}{limpiar\+\_\+log()}}, \mbox{\hyperlink{main_8c_source_l00037}{MARGEN\+\_\+\+DER}}, \mbox{\hyperlink{main_8c_source_l00035}{MARGEN\+\_\+\+IZQ}}, \mbox{\hyperlink{sim__engine_8h_source_l00036}{MEMORIA\+\_\+\+TOTAL}}, \mbox{\hyperlink{sim__engine_8h_source_l00081}{Particion\+::nombre\+\_\+proceso}}, \mbox{\hyperlink{sim__engine_8h_source_l00091}{Memoria\+::particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00079}{Particion\+::tamano}}, \mbox{\hyperlink{main_8c_source_l00029}{WIN\+\_\+\+HEIGHT}}, \mbox{\hyperlink{main_8c_source_l00027}{WIN\+\_\+\+WIDTH}} y \mbox{\hyperlink{main_8c_source_l00031}{Y\+\_\+\+BARRA}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00056}{main()}}.
+
+Gráfico de llamadas de esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_aafb6af6e9fab822accd3e0f7133214bd_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{main_8c_aafb6af6e9fab822accd3e0f7133214bd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8c_a0739302f77016ac122f50d59015cfa1f}\index{main.c@{main.c}!test\_sim@{test\_sim}}
+\index{test\_sim@{test\_sim}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{test\_sim()}{test\_sim()}}
+{\footnotesize\ttfamily \label{main_8c_a0739302f77016ac122f50d59015cfa1f} 
+void test\+\_\+sim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Ejecuta la simulación en modo terminal (TUI). 
+
+Carga procesos desde "{}entrada.\+txt"{} y ejecuta la simulación paso a paso, mostrando el estado en consola.
+
+\begin{DoxyNote}{Nota}
+Usa getchar() para avanzar manualmente entre ticks 
+
+Genera log en "{}particiones\+\_\+tui.\+txt"{} 
+
+Usa algoritmo First Fit por defecto 
+\end{DoxyNote}
+
+
+Definición en la línea \mbox{\hyperlink{main_8c_source_l00095}{95}} del archivo \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00103}{ALGO\+\_\+\+PRIMER\+\_\+\+HUECO}}, \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}}, \mbox{\hyperlink{ficheros_8c_source_l00011}{cargar\+\_\+procesos()}}, \mbox{\hyperlink{sim__engine_8c_source_l00007}{inicializar\+\_\+memoria()}}, \mbox{\hyperlink{ficheros_8c_source_l00094}{limpiar\+\_\+log()}}, \mbox{\hyperlink{sim__engine_8h_source_l00045}{MAX\+\_\+\+PROCESOS}}, \mbox{\hyperlink{sim__engine_8h_source_l00036}{MEMORIA\+\_\+\+TOTAL}}, \mbox{\hyperlink{sim__engine_8c_source_l00023}{mostrar\+\_\+estado()}} y \mbox{\hyperlink{sim__engine_8h_source_l00061}{Proceso\+::t\+\_\+ejecucion}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00056}{main()}}.
+
+Gráfico de llamadas de esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_a0739302f77016ac122f50d59015cfa1f_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{main_8c_a0739302f77016ac122f50d59015cfa1f_icgraph}
+\end{center}
+\end{figure}

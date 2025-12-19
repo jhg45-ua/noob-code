@@ -2,66 +2,84 @@
 \hypertarget{sim__engine_8h}{}\label{sim__engine_8h}\index{src/sim\_engine.h@{src/sim\_engine.h}}
 
 
-Declaraciones del motor de simulación de gestión de memoria.  
+Motor de simulación de gestión de memoria con particiones variables.  
 
 
 {\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Gráfico de dependencias incluidas en sim\+\_\+engine.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{sim__engine_8h__incl}
+\end{center}
+\end{figure}
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{sim__engine_8h__dep__incl}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Estructuras de datos}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_proceso}{Proceso}}
-\begin{DoxyCompactList}\small\item\em Estructura que representa un proceso. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Estructura que representa un proceso en el simulador. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_particion}{Particion}}
-\begin{DoxyCompactList}\small\item\em que representa una partición de memoria. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Estructura que representa una partición de memoria. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_memoria}{Memoria}}
-\begin{DoxyCompactList}\small\item\em Estructura que representa la memoria del sistema. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Estructura principal que representa la memoria del sistema. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{defines}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{sim__engine_8h_a6264fff1e0ed016a7ce3d58e0534ea00}\label{sim__engine_8h_a6264fff1e0ed016a7ce3d58e0534ea00} 
-\#define {\bfseries MEMORIA\+\_\+\+TOTAL}~2000
-\begin{DoxyCompactList}\small\item\em Tamaño total de la memoria simulada. \end{DoxyCompactList}\item 
-\Hypertarget{sim__engine_8h_a6bb334d2cae8f7d1d61c25b3eba5e9b5}\label{sim__engine_8h_a6bb334d2cae8f7d1d61c25b3eba5e9b5} 
-\#define {\bfseries UNIDAD\+\_\+\+MINIMA}~100
-\begin{DoxyCompactList}\small\item\em Unidad mínima de asignación de memoria. \end{DoxyCompactList}\item 
-\Hypertarget{sim__engine_8h_ae420f0bf3db242485c8c837356c6ebba}\label{sim__engine_8h_ae420f0bf3db242485c8c837356c6ebba} 
-\#define {\bfseries MAX\+\_\+\+PARTICIONES}~50
-\begin{DoxyCompactList}\small\item\em Máximo número de particiones en la memoria. \end{DoxyCompactList}\item 
-\Hypertarget{sim__engine_8h_ab0f17287f3a9af76ef9109ec1dfce7a9}\label{sim__engine_8h_ab0f17287f3a9af76ef9109ec1dfce7a9} 
-\#define {\bfseries MAX\+\_\+\+PROCESOS}~100
-\begin{DoxyCompactList}\small\item\em Máximo número de procesos en la simulación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\#define \mbox{\hyperlink{group__constantes_ga6264fff1e0ed016a7ce3d58e0534ea00}{MEMORIA\+\_\+\+TOTAL}}~2000
+\begin{DoxyCompactList}\small\item\em Tamaño total de la memoria simulada (en unidades). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__constantes_ga6bb334d2cae8f7d1d61c25b3eba5e9b5}{UNIDAD\+\_\+\+MINIMA}}~100
+\begin{DoxyCompactList}\small\item\em Unidad mínima de asignación. Toda memoria se alinea a múltiplos de este valor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__constantes_gae420f0bf3db242485c8c837356c6ebba}{MAX\+\_\+\+PARTICIONES}}~50
+\begin{DoxyCompactList}\small\item\em Máximo número de particiones simultáneas en memoria. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__constantes_gab0f17287f3a9af76ef9109ec1dfce7a9}{MAX\+\_\+\+PROCESOS}}~100
+\begin{DoxyCompactList}\small\item\em Máximo número de procesos que puede manejar la simulación. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Enumeraciones}
 \begin{DoxyCompactItemize}
 \item 
 enum \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}} \{ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}{ALGO\+\_\+\+PRIMER\+\_\+\+HUECO}}
 , \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426}{ALGO\+\_\+\+SIGUIENTE\+\_\+\+HUECO}}
  \}
-\begin{DoxyCompactList}\small\item\em Tipos de algoritmos de asignación de memoria. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Algoritmos de asignación de memoria disponibles. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Funciones}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{sim__engine_8h_a7525ea6570ccf752c8e9394b62042380}{inicializar\+\_\+memoria}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m)
-\item 
+\begin{DoxyCompactList}\small\item\em Inicializa la memoria con un único hueco libre. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sim__engine_8h_a6df7a5ff87dd2abca3c64b3dcc88cf5a}{mostrar\+\_\+estado}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m)
-\item 
+\begin{DoxyCompactList}\small\item\em Muestra el estado actual de la memoria en consola. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{sim__engine_8h_a6a1089ddf1a175f89c026b773722dcd2}{ocupar\+\_\+memoria}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, int indice\+\_\+hueco, \mbox{\hyperlink{struct_proceso}{Proceso}} p)
-\item 
+\begin{DoxyCompactList}\small\item\em Ocupa un hueco de memoria con un proceso. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sim__engine_8h_a949ea609798d43a638d95faf7de9f681}{compactar}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m)
-\item 
+\begin{DoxyCompactList}\small\item\em Compacta la memoria uniendo huecos adyacentes. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{sim__engine_8h_a9a4646e9f9e8b178131b41945f7a8544}{liberar\+\_\+proceso}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, char \texorpdfstring{$\ast$}{*}nombre\+\_\+proceso)
-\item 
+\begin{DoxyCompactList}\small\item\em Libera un proceso de la memoria. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{sim__engine_8h_a8f367671cb683a6dd983d657251a170b}{buscar\+\_\+hueco}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, int mem\+\_\+requerida, \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}} tipo\+\_\+algo)
-\item 
+\begin{DoxyCompactList}\small\item\em Busca un hueco adecuado según el algoritmo especificado. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{sim__engine_8h_ab6fef50a2cde39099d3c051aa7975738}{alinear\+\_\+size}} (int size)
-\item 
+\begin{DoxyCompactList}\small\item\em Alinea un tamaño a múltiplos de UNIDAD\+\_\+\+MINIMA. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{sim__engine_8h_a47eaa39f311ae4f19e76eb9baca390d7}{asignar\+\_\+proceso}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, \mbox{\hyperlink{struct_proceso}{Proceso}} p, \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}} tipo\+\_\+algo)
-\item 
+\begin{DoxyCompactList}\small\item\em Asigna un proceso a la memoria. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sim__engine_8h_a099adf88ebe7183b00ddc648cc1ffa5b}{avanzar\+\_\+tiempo}} (\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}m, \mbox{\hyperlink{struct_proceso}{Proceso}} procesos\mbox{[}$\,$\mbox{]}, int num\+\_\+procesos, int \texorpdfstring{$\ast$}{*}reloj\+\_\+actual, \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}} algo, const char \texorpdfstring{$\ast$}{*}ruta\+\_\+log)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Avanza un tick en la simulación. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Descripción detallada}
-Declaraciones del motor de simulación de gestión de memoria. 
+Motor de simulación de gestión de memoria con particiones variables. 
+
+Este módulo implementa la lógica central del simulador, incluyendo\+:
+\begin{DoxyItemize}
+\item Gestión de particiones de memoria (asignación/liberación)
+\item Algoritmos First Fit y Next Fit
+\item Compactación de huecos adyacentes
+\item Alineación de memoria a múltiplos de UNIDAD\+\_\+\+MINIMA
+\end{DoxyItemize}
 
 \begin{DoxyAuthor}{Autor}
 Julian Hinojosa Gil 
@@ -69,6 +87,13 @@ Julian Hinojosa Gil
 \begin{DoxyDate}{Fecha}
 2025 
 \end{DoxyDate}
+\begin{DoxyVersion}{Versión}
+1.\+0 
+\end{DoxyVersion}
+
+
+Definición en el archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
 
 
 \label{doc-enum-members}
@@ -82,18 +107,30 @@ enum \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Al
 
 
 
-Tipos de algoritmos de asignación de memoria. 
+Algoritmos de asignación de memoria disponibles. 
 
+\begin{DoxySeeAlso}{Ver también}
+\doxylink{sim__engine_8h_a8f367671cb683a6dd983d657251a170b}{buscar\+\_\+hueco()} 
+
+\doxylink{sim__engine_8h_a47eaa39f311ae4f19e76eb9baca390d7}{asignar\+\_\+proceso()} 
+\end{DoxySeeAlso}
 \begin{DoxyEnumFields}[2]{Valores de enumeraciones}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{ALGO\_PRIMER\_HUECO@{ALGO\_PRIMER\_HUECO}!sim\_engine.h@{sim\_engine.h}}\index{sim\_engine.h@{sim\_engine.h}!ALGO\_PRIMER\_HUECO@{ALGO\_PRIMER\_HUECO}}}\Hypertarget{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}\label{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002} 
-ALGO\+\_\+\+PRIMER\+\_\+\+HUECO&Algoritmo de Primer Hueco \\
+ALGO\+\_\+\+PRIMER\+\_\+\+HUECO&First Fit\+: busca desde el inicio de memoria \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{ALGO\_SIGUIENTE\_HUECO@{ALGO\_SIGUIENTE\_HUECO}!sim\_engine.h@{sim\_engine.h}}\index{sim\_engine.h@{sim\_engine.h}!ALGO\_SIGUIENTE\_HUECO@{ALGO\_SIGUIENTE\_HUECO}}}\Hypertarget{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426}\label{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426} 
-ALGO\+\_\+\+SIGUIENTE\+\_\+\+HUECO&Algoritmo de Siguiente Hueco \\
+ALGO\+\_\+\+SIGUIENTE\+\_\+\+HUECO&Next Fit\+: busca desde la última posición asignada \\
 \hline
 
 \end{DoxyEnumFields}
+\begin{Desc}
+\item[Ejemplos]\par
+\mbox{\hyperlink{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2practica3_2src_2sim_engine_8h-example}{/\+Users/julianhinojosagil/\+Documents/\+Dev/noob-\/code/\+UA/year-\/2/\+OS/practica3/src/sim\+\_\+engine.\+h}}.\end{Desc}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8h_source_l00102}{102}} del archivo \mbox{\hyperlink{sim__engine_8h_source}{sim\+\_\+engine.\+h}}.
+
 
 
 \label{doc-func-members}
@@ -105,145 +142,451 @@ ALGO\+\_\+\+SIGUIENTE\+\_\+\+HUECO&Algoritmo de Siguiente Hueco \\
 {\footnotesize\ttfamily \label{sim__engine_8h_ab6fef50a2cde39099d3c051aa7975738} 
 int alinear\+\_\+size (\begin{DoxyParamCaption}\item[{int}]{size}{}\end{DoxyParamCaption})}
 
-Alinea el tamaño solicitado a múltiplos de UNIDAD\+\_\+\+MINIMA (100). 
-\begin{DoxyParams}{Parámetros}
-{\em size} & Tamaño solicitado \\
+
+
+Alinea un tamaño a múltiplos de UNIDAD\+\_\+\+MINIMA. 
+
+Redondea hacia arriba para garantizar que la memoria asignada sea siempre múltiplo de 100.
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in}}  & {\em size} & Tamaño solicitado original\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-Tamaño alineado 
+Tamaño alineado (múltiplo de UNIDAD\+\_\+\+MINIMA)
 \end{DoxyReturn}
+\begin{DoxyParagraph}{Ejemplos\+:}
+
+\begin{DoxyItemize}
+\item alinear\+\_\+size(50) → 100
+\item alinear\+\_\+size(100) → 100 ~\newline
+
+\item alinear\+\_\+size(243) → 300 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8c_source_l00151}{151}} del archivo \mbox{\hyperlink{sim__engine_8c_source}{sim\+\_\+engine.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00039}{UNIDAD\+\_\+\+MINIMA}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00167}{asignar\+\_\+proceso()}}.
+
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sim__engine_8h_ab6fef50a2cde39099d3c051aa7975738_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{sim__engine_8h_a47eaa39f311ae4f19e76eb9baca390d7}\index{sim\_engine.h@{sim\_engine.h}!asignar\_proceso@{asignar\_proceso}}
 \index{asignar\_proceso@{asignar\_proceso}!sim\_engine.h@{sim\_engine.h}}
 \doxysubsubsection{\texorpdfstring{asignar\_proceso()}{asignar\_proceso()}}
 {\footnotesize\ttfamily \label{sim__engine_8h_a47eaa39f311ae4f19e76eb9baca390d7} 
 bool asignar\+\_\+proceso (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{\mbox{\hyperlink{struct_proceso}{Proceso}}}]{p}{, }\item[{\mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}}}]{tipo\+\_\+algo}{}\end{DoxyParamCaption})}
 
-Asigna un proceso a la memoria según el algoritmo especificado. 
-\begin{DoxyParams}{Parámetros}
-{\em m} & Puntero a la estructura de memoria \\
+
+
+Asigna un proceso a la memoria. 
+
+Realiza el flujo completo de asignación\+:
+\begin{DoxyEnumerate}
+\item Alinea la memoria requerida
+\item Busca un hueco según el algoritmo
+\item Ocupa el hueco encontrado
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in,out}}  & {\em m} & Puntero a la estructura de memoria \\
 \hline
-{\em p} & \doxylink{struct_proceso}{Proceso} a asignar \\
+\mbox{\texttt{in}}  & {\em p} & \doxylink{struct_proceso}{Proceso} a asignar \\
 \hline
-{\em tipo\+\_\+algo} & Algoritmo de búsqueda (primer hueco o siguiente hueco) \\
+\mbox{\texttt{in}}  & {\em tipo\+\_\+algo} & Algoritmo de búsqueda a usar\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-true si se asignó correctamente, false en caso de error 
+true si se asignó correctamente 
+
+false si no hay espacio suficiente
 \end{DoxyReturn}
+\begin{DoxySeeAlso}{Ver también}
+\doxylink{sim__engine_8h_ab6fef50a2cde39099d3c051aa7975738}{alinear\+\_\+size()}, \doxylink{sim__engine_8h_a8f367671cb683a6dd983d657251a170b}{buscar\+\_\+hueco()}, \doxylink{sim__engine_8h_a6a1089ddf1a175f89c026b773722dcd2}{ocupar\+\_\+memoria()} 
+\end{DoxySeeAlso}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8c_source_l00167}{167}} del archivo \mbox{\hyperlink{sim__engine_8c_source}{sim\+\_\+engine.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8c_source_l00151}{alinear\+\_\+size()}}, \mbox{\hyperlink{sim__engine_8c_source_l00118}{buscar\+\_\+hueco()}}, \mbox{\hyperlink{sim__engine_8h_source_l00060}{Proceso\+::mem\+\_\+requerida}}, \mbox{\hyperlink{sim__engine_8h_source_l00058}{Proceso\+::nombre}} y \mbox{\hyperlink{sim__engine_8c_source_l00031}{ocupar\+\_\+memoria()}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}}.
+
+Gráfico de llamadas de esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{sim__engine_8h_a47eaa39f311ae4f19e76eb9baca390d7_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sim__engine_8h_a47eaa39f311ae4f19e76eb9baca390d7_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{sim__engine_8h_a099adf88ebe7183b00ddc648cc1ffa5b}\index{sim\_engine.h@{sim\_engine.h}!avanzar\_tiempo@{avanzar\_tiempo}}
 \index{avanzar\_tiempo@{avanzar\_tiempo}!sim\_engine.h@{sim\_engine.h}}
 \doxysubsubsection{\texorpdfstring{avanzar\_tiempo()}{avanzar\_tiempo()}}
 {\footnotesize\ttfamily \label{sim__engine_8h_a099adf88ebe7183b00ddc648cc1ffa5b} 
 void avanzar\+\_\+tiempo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{\mbox{\hyperlink{struct_proceso}{Proceso}}}]{procesos}{\mbox{[}$\,$\mbox{]}, }\item[{int}]{num\+\_\+procesos}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{reloj\+\_\+actual}{, }\item[{\mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}}}]{algo}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{ruta\+\_\+log}{}\end{DoxyParamCaption})}
 
-Avanza el tiempo de la simulación, gestionando procesos y memoria. 
-\begin{DoxyParams}{Parámetros}
-{\em m} & Puntero a la estructura de memoria \\
+
+
+Avanza un tick en la simulación. 
+
+Ejecuta la lógica de un instante de tiempo\+:
+\begin{DoxyEnumerate}
+\item Envejece procesos en memoria (decrementa t\+\_\+restante)
+\item Finaliza procesos cuyo tiempo restante llegó a 0
+\item Intenta cargar nuevos procesos de la cola
+\item Guarda el estado en el log
+\item Incrementa el reloj
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in,out}}  & {\em m} & Puntero a la estructura de memoria \\
 \hline
-{\em procesos} & Array de procesos a gestionar \\
+\mbox{\texttt{in,out}}  & {\em procesos} & Array de procesos a gestionar \\
 \hline
-{\em num\+\_\+procesos} & Número de procesos en el array \\
+\mbox{\texttt{in}}  & {\em num\+\_\+procesos} & Número de procesos en el array \\
 \hline
-{\em reloj\+\_\+actual} & Puntero al reloj actual de la simulación \\
+\mbox{\texttt{in,out}}  & {\em reloj\+\_\+actual} & Puntero al reloj de simulación \\
 \hline
-{\em algo} & Algoritmo de asignación de memoria a utilizar \\
+\mbox{\texttt{in}}  & {\em algo} & Algoritmo de asignación a utilizar \\
+\hline
+\mbox{\texttt{in}}  & {\em ruta\+\_\+log} & Ruta del archivo de log para guardar estado\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Devuelve}
-nada 
-\end{DoxyReturn}
+\begin{DoxyPostcond}{Postcondición}
+(\texorpdfstring{$\ast$}{*}reloj\+\_\+actual) se incrementa en 1 
+\end{DoxyPostcond}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8c_source_l00189}{189}} del archivo \mbox{\hyperlink{sim__engine_8c_source}{sim\+\_\+engine.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8c_source_l00167}{asignar\+\_\+proceso()}}, \mbox{\hyperlink{sim__engine_8h_source_l00066}{Proceso\+::en\+\_\+memoria}}, \mbox{\hyperlink{sim__engine_8h_source_l00067}{Proceso\+::finalizado}}, \mbox{\hyperlink{ficheros_8c_source_l00064}{guardar\+\_\+estado()}}, \mbox{\hyperlink{sim__engine_8c_source_l00100}{liberar\+\_\+proceso()}}, \mbox{\hyperlink{sim__engine_8h_source_l00061}{Proceso\+::t\+\_\+ejecucion}} y \mbox{\hyperlink{sim__engine_8h_source_l00065}{Proceso\+::t\+\_\+restante}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}} y \mbox{\hyperlink{main_8c_source_l00095}{test\+\_\+sim()}}.
+
+Gráfico de llamadas de esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sim__engine_8h_a099adf88ebe7183b00ddc648cc1ffa5b_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{sim__engine_8h_a099adf88ebe7183b00ddc648cc1ffa5b_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{sim__engine_8h_a8f367671cb683a6dd983d657251a170b}\index{sim\_engine.h@{sim\_engine.h}!buscar\_hueco@{buscar\_hueco}}
 \index{buscar\_hueco@{buscar\_hueco}!sim\_engine.h@{sim\_engine.h}}
 \doxysubsubsection{\texorpdfstring{buscar\_hueco()}{buscar\_hueco()}}
 {\footnotesize\ttfamily \label{sim__engine_8h_a8f367671cb683a6dd983d657251a170b} 
 int buscar\+\_\+hueco (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{int}]{mem\+\_\+requerida}{, }\item[{\mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{Tipo\+Algo}}}]{tipo\+\_\+algo}{}\end{DoxyParamCaption})}
 
+
+
 Busca un hueco adecuado según el algoritmo especificado. 
-\begin{DoxyParams}{Parámetros}
-{\em m} & Puntero a la estructura de memoria \\
+
+Implementa los algoritmos\+:
+\begin{DoxyItemize}
+\item {\bfseries{First Fit}}\+: Busca desde el inicio (O(n) peor caso)
+\item {\bfseries{Next Fit}}\+: Busca desde última posición (búsqueda circular)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in}}  & {\em m} & Puntero a la estructura de memoria \\
 \hline
-{\em mem\+\_\+requerida} & \doxylink{struct_memoria}{Memoria} requerida por el proceso \\
+\mbox{\texttt{in}}  & {\em mem\+\_\+requerida} & \doxylink{struct_memoria}{Memoria} requerida (ya alineada) \\
 \hline
-{\em tipo\+\_\+algo} & Algoritmo de búsqueda (primer hueco o siguiente hueco) \\
+\mbox{\texttt{in}}  & {\em tipo\+\_\+algo} & Algoritmo a utilizar\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-Índice del hueco encontrado, o -\/1 si no se encontró ninguno 
+Índice del hueco encontrado (0 a cant\+\_\+particiones-\/1) 
+
+-\/1 si no hay hueco suficiente 
 \end{DoxyReturn}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8c_source_l00118}{118}} del archivo \mbox{\hyperlink{sim__engine_8c_source}{sim\+\_\+engine.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00103}{ALGO\+\_\+\+PRIMER\+\_\+\+HUECO}}, \mbox{\hyperlink{sim__engine_8h_source_l00104}{ALGO\+\_\+\+SIGUIENTE\+\_\+\+HUECO}}, \mbox{\hyperlink{sim__engine_8h_source_l00092}{Memoria\+::cant\+\_\+particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00080}{Particion\+::estado}}, \mbox{\hyperlink{sim__engine_8h_source_l00091}{Memoria\+::particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00079}{Particion\+::tamano}} y \mbox{\hyperlink{sim__engine_8h_source_l00093}{Memoria\+::ultimo\+\_\+indice\+\_\+asignado}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00167}{asignar\+\_\+proceso()}}.
+
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sim__engine_8h_a8f367671cb683a6dd983d657251a170b_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{sim__engine_8h_a949ea609798d43a638d95faf7de9f681}\index{sim\_engine.h@{sim\_engine.h}!compactar@{compactar}}
 \index{compactar@{compactar}!sim\_engine.h@{sim\_engine.h}}
 \doxysubsubsection{\texorpdfstring{compactar()}{compactar()}}
 {\footnotesize\ttfamily \label{sim__engine_8h_a949ea609798d43a638d95faf7de9f681} 
 void compactar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{}\end{DoxyParamCaption})}
 
+
+
 Compacta la memoria uniendo huecos adyacentes. 
-\begin{DoxyParams}{Parámetros}
-{\em m} & Puntero a la estructura de memoria \\
+
+Recorre las particiones y fusiona huecos consecutivos en uno solo. Se llama automáticamente después de liberar un proceso.
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in,out}}  & {\em m} & Puntero a la estructura de memoria\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Devuelve}
-nada 
-\end{DoxyReturn}
+\begin{DoxyPostcond}{Postcondición}
+No hay dos huecos consecutivos en el array 
+
+cant\+\_\+particiones puede disminuir 
+\end{DoxyPostcond}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8c_source_l00079}{79}} del archivo \mbox{\hyperlink{sim__engine_8c_source}{sim\+\_\+engine.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00092}{Memoria\+::cant\+\_\+particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00080}{Particion\+::estado}}, \mbox{\hyperlink{sim__engine_8h_source_l00081}{Particion\+::nombre\+\_\+proceso}}, \mbox{\hyperlink{sim__engine_8h_source_l00091}{Memoria\+::particiones}} y \mbox{\hyperlink{sim__engine_8h_source_l00079}{Particion\+::tamano}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00100}{liberar\+\_\+proceso()}}.
+
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sim__engine_8h_a949ea609798d43a638d95faf7de9f681_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{sim__engine_8h_a7525ea6570ccf752c8e9394b62042380}\index{sim\_engine.h@{sim\_engine.h}!inicializar\_memoria@{inicializar\_memoria}}
 \index{inicializar\_memoria@{inicializar\_memoria}!sim\_engine.h@{sim\_engine.h}}
 \doxysubsubsection{\texorpdfstring{inicializar\_memoria()}{inicializar\_memoria()}}
 {\footnotesize\ttfamily \label{sim__engine_8h_a7525ea6570ccf752c8e9394b62042380} 
 void inicializar\+\_\+memoria (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{}\end{DoxyParamCaption})}
 
-Inicializa la estructura de memoria con un solo proceso de tipo hueco. 
-\begin{DoxyParams}{Parámetros}
-{\em m} & Puntero a la estructura de memoria a inicializar \\
+
+
+Inicializa la memoria con un único hueco libre. 
+
+Configura la memoria con una sola partición de tipo hueco que ocupa todo el espacio disponible (MEMORIA\+\_\+\+TOTAL).
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{out}}  & {\em m} & Puntero a la estructura de memoria a inicializar\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Devuelve}
-nada 
-\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondición}
+m != NULL 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+m-\/\texorpdfstring{$>$}{>}cant\+\_\+particiones == 1 
+
+m-\/\texorpdfstring{$>$}{>}particiones\mbox{[}0\mbox{]}.tamano == MEMORIA\+\_\+\+TOTAL 
+\end{DoxyPostcond}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8c_source_l00007}{7}} del archivo \mbox{\hyperlink{sim__engine_8c_source}{sim\+\_\+engine.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00092}{Memoria\+::cant\+\_\+particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00078}{Particion\+::dir\+\_\+inicio}}, \mbox{\hyperlink{sim__engine_8h_source_l00080}{Particion\+::estado}}, \mbox{\hyperlink{sim__engine_8h_source_l00036}{MEMORIA\+\_\+\+TOTAL}}, \mbox{\hyperlink{sim__engine_8h_source_l00081}{Particion\+::nombre\+\_\+proceso}}, \mbox{\hyperlink{sim__engine_8h_source_l00091}{Memoria\+::particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00079}{Particion\+::tamano}} y \mbox{\hyperlink{sim__engine_8h_source_l00093}{Memoria\+::ultimo\+\_\+indice\+\_\+asignado}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00056}{main()}}, \mbox{\hyperlink{main_8c_source_l00173}{run\+\_\+gui()}} y \mbox{\hyperlink{main_8c_source_l00095}{test\+\_\+sim()}}.
+
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{sim__engine_8h_a7525ea6570ccf752c8e9394b62042380_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{sim__engine_8h_a9a4646e9f9e8b178131b41945f7a8544}\index{sim\_engine.h@{sim\_engine.h}!liberar\_proceso@{liberar\_proceso}}
 \index{liberar\_proceso@{liberar\_proceso}!sim\_engine.h@{sim\_engine.h}}
 \doxysubsubsection{\texorpdfstring{liberar\_proceso()}{liberar\_proceso()}}
 {\footnotesize\ttfamily \label{sim__engine_8h_a9a4646e9f9e8b178131b41945f7a8544} 
 bool liberar\+\_\+proceso (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{nombre\+\_\+proceso}{}\end{DoxyParamCaption})}
 
-Libera un proceso de la memoria y compacta si es necesario. 
-\begin{DoxyParams}{Parámetros}
-{\em m} & Puntero a la estructura de memoria \\
+
+
+Libera un proceso de la memoria. 
+
+Busca el proceso por nombre, lo convierte en hueco y compacta.
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in,out}}  & {\em m} & Puntero a la estructura de memoria \\
 \hline
-{\em nombre\+\_\+proceso} & Nombre del proceso a liberar \\
+\mbox{\texttt{in}}  & {\em nombre\+\_\+proceso} & Nombre del proceso a liberar\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-true si se liberó correctamente, false si no se encontró el proceso 
+true si se encontró y liberó el proceso 
+
+false si el proceso no estaba en memoria
 \end{DoxyReturn}
+\begin{DoxyNote}{Nota}
+Llama automáticamente a \doxylink{sim__engine_8h_a949ea609798d43a638d95faf7de9f681}{compactar()} tras liberar 
+\end{DoxyNote}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8c_source_l00100}{100}} del archivo \mbox{\hyperlink{sim__engine_8c_source}{sim\+\_\+engine.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00092}{Memoria\+::cant\+\_\+particiones}}, \mbox{\hyperlink{sim__engine_8c_source_l00079}{compactar()}}, \mbox{\hyperlink{sim__engine_8h_source_l00078}{Particion\+::dir\+\_\+inicio}}, \mbox{\hyperlink{sim__engine_8h_source_l00080}{Particion\+::estado}}, \mbox{\hyperlink{sim__engine_8h_source_l00081}{Particion\+::nombre\+\_\+proceso}} y \mbox{\hyperlink{sim__engine_8h_source_l00091}{Memoria\+::particiones}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00189}{avanzar\+\_\+tiempo()}}.
+
+Gráfico de llamadas de esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{sim__engine_8h_a9a4646e9f9e8b178131b41945f7a8544_cgraph}
+\end{center}
+\end{figure}
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sim__engine_8h_a9a4646e9f9e8b178131b41945f7a8544_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{sim__engine_8h_a6df7a5ff87dd2abca3c64b3dcc88cf5a}\index{sim\_engine.h@{sim\_engine.h}!mostrar\_estado@{mostrar\_estado}}
 \index{mostrar\_estado@{mostrar\_estado}!sim\_engine.h@{sim\_engine.h}}
 \doxysubsubsection{\texorpdfstring{mostrar\_estado()}{mostrar\_estado()}}
 {\footnotesize\ttfamily \label{sim__engine_8h_a6df7a5ff87dd2abca3c64b3dcc88cf5a} 
 void mostrar\+\_\+estado (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{}\end{DoxyParamCaption})}
 
+
+
 Muestra el estado actual de la memoria en consola. 
-\begin{DoxyParams}{Parámetros}
-{\em m} & Puntero a la estructura de memoria \\
+
+Imprime cada partición en formato\+: \mbox{[}dir\+\_\+inicio nombre tamano\mbox{]}
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in}}  & {\em m} & Puntero a la estructura de memoria\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Devuelve}
-nada 
-\end{DoxyReturn}
+\begin{DoxyNote}{Nota}
+Solo para depuración/\+TUI, no afecta el estado 
+\end{DoxyNote}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8c_source_l00023}{23}} del archivo \mbox{\hyperlink{sim__engine_8c_source}{sim\+\_\+engine.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00092}{Memoria\+::cant\+\_\+particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00078}{Particion\+::dir\+\_\+inicio}}, \mbox{\hyperlink{sim__engine_8h_source_l00081}{Particion\+::nombre\+\_\+proceso}}, \mbox{\hyperlink{sim__engine_8h_source_l00091}{Memoria\+::particiones}} y \mbox{\hyperlink{sim__engine_8h_source_l00079}{Particion\+::tamano}}.
+
+
+
+Referenciado por \mbox{\hyperlink{main_8c_source_l00095}{test\+\_\+sim()}}.
+
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{sim__engine_8h_a6df7a5ff87dd2abca3c64b3dcc88cf5a_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{sim__engine_8h_a6a1089ddf1a175f89c026b773722dcd2}\index{sim\_engine.h@{sim\_engine.h}!ocupar\_memoria@{ocupar\_memoria}}
 \index{ocupar\_memoria@{ocupar\_memoria}!sim\_engine.h@{sim\_engine.h}}
 \doxysubsubsection{\texorpdfstring{ocupar\_memoria()}{ocupar\_memoria()}}
 {\footnotesize\ttfamily \label{sim__engine_8h_a6a1089ddf1a175f89c026b773722dcd2} 
 int ocupar\+\_\+memoria (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_memoria}{Memoria}} \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{int}]{indice\+\_\+hueco}{, }\item[{\mbox{\hyperlink{struct_proceso}{Proceso}}}]{p}{}\end{DoxyParamCaption})}
 
-Intenta ocupar un hueco de memoria con un proceso. 
-\begin{DoxyParams}{Parámetros}
-{\em m} & Puntero a la estructura de memoria \\
+
+
+Ocupa un hueco de memoria con un proceso. 
+
+Maneja dos casos\+:
+\begin{DoxyItemize}
+\item {\bfseries{Ajuste exacto}}\+: El proceso ocupa todo el hueco
+\item {\bfseries{División}}\+: Se crea una nueva partición con el espacio sobrante
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parámetros}
+\mbox{\texttt{in,out}}  & {\em m} & Puntero a la estructura de memoria \\
 \hline
-{\em indice\+\_\+hueco} & Índice del hueco donde se intentará asignar el proceso \\
+\mbox{\texttt{in}}  & {\em indice\+\_\+hueco} & Índice del hueco en el array de particiones \\
 \hline
-{\em p} & \doxylink{struct_proceso}{Proceso} a asignar \\
+\mbox{\texttt{in}}  & {\em p} & \doxylink{struct_proceso}{Proceso} a asignar (se usa nombre y mem\+\_\+requerida)\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-0 si se asignó correctamente, 1 en caso de error 
+1 si se asignó correctamente 
+
+0 si hubo error (hueco ocupado, tamaño insuficiente o array lleno)
 \end{DoxyReturn}
+\begin{DoxyPrecond}{Precondición}
+0 \texorpdfstring{$<$}{<}= indice\+\_\+hueco \texorpdfstring{$<$}{<} m-\/\texorpdfstring{$>$}{>}cant\+\_\+particiones 
+
+m-\/\texorpdfstring{$>$}{>}particiones\mbox{[}indice\+\_\+hueco\mbox{]}.estado == 0 (es un hueco)
+\end{DoxyPrecond}
+\begin{DoxyWarning}{Atención}
+No verifica si el proceso ya existe en memoria 
+\end{DoxyWarning}
+
+
+Definición en la línea \mbox{\hyperlink{sim__engine_8c_source_l00031}{31}} del archivo \mbox{\hyperlink{sim__engine_8c_source}{sim\+\_\+engine.\+c}}.
+
+
+
+Hace referencia a \mbox{\hyperlink{sim__engine_8h_source_l00092}{Memoria\+::cant\+\_\+particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00078}{Particion\+::dir\+\_\+inicio}}, \mbox{\hyperlink{sim__engine_8h_source_l00080}{Particion\+::estado}}, \mbox{\hyperlink{sim__engine_8h_source_l00042}{MAX\+\_\+\+PARTICIONES}}, \mbox{\hyperlink{sim__engine_8h_source_l00060}{Proceso\+::mem\+\_\+requerida}}, \mbox{\hyperlink{sim__engine_8h_source_l00058}{Proceso\+::nombre}}, \mbox{\hyperlink{sim__engine_8h_source_l00081}{Particion\+::nombre\+\_\+proceso}}, \mbox{\hyperlink{sim__engine_8h_source_l00091}{Memoria\+::particiones}}, \mbox{\hyperlink{sim__engine_8h_source_l00079}{Particion\+::tamano}} y \mbox{\hyperlink{sim__engine_8h_source_l00093}{Memoria\+::ultimo\+\_\+indice\+\_\+asignado}}.
+
+
+
+Referenciado por \mbox{\hyperlink{sim__engine_8c_source_l00167}{asignar\+\_\+proceso()}}.
+
+Gráfico de llamadas a esta función\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sim__engine_8h_a6a1089ddf1a175f89c026b773722dcd2_icgraph}
+\end{center}
+\end{figure}

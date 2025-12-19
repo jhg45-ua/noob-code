@@ -1,0 +1,5 @@
+<map id="Memoria" name="Memoria">
+<area shape="rect" id="Node000001" title="Estructura principal que representa la memoria del sistema." alt="" coords="6,102,77,128"/>
+<area shape="rect" id="Node000002" href="$struct_particion.html" title="Estructura que representa una partición de memoria." alt="" coords="5,5,78,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="44,45,44,102,39,101,39,47"/>
+</map>

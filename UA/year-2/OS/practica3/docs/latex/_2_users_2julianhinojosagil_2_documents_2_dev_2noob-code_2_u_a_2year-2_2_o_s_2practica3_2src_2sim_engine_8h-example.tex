@@ -1,0 +1,83 @@
+\doxysection{/\+Users/julianhinojosagil/\+Documents/\+Dev/noob-\/code/\+UA/year-\/2/\+OS/practica3/src/sim\+\_\+engine.\+h}
+\hypertarget{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2practica3_2src_2sim_engine_8h-example}{}\label{_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2practica3_2src_2sim_engine_8h-example}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_memoria}{Memoria}}\ m;}
+\DoxyCodeLine{\mbox{\hyperlink{sim__engine_8c_a7525ea6570ccf752c8e9394b62042380}{inicializar\_memoria}}(\&m);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_proceso}{Proceso}}\ p\ =\ \{\textcolor{stringliteral}{"{}P1"{}},\ 0,\ 200,\ 5,\ 5,\ \textcolor{keyword}{false},\ \textcolor{keyword}{false}\};}
+\DoxyCodeLine{\mbox{\hyperlink{sim__engine_8c_a47eaa39f311ae4f19e76eb9baca390d7}{asignar\_proceso}}(\&m,\ p,\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}{ALGO\_PRIMER\_HUECO}});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#ifndef\ SIM\_ENGINE\_H}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ SIM\_ENGINE\_H}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ MEMORIA\_TOTAL\ 2000}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ UNIDAD\_MINIMA\ 100}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ MAX\_PARTICIONES\ 50}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ MAX\_PROCESOS\ 100}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ nombre[10];\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ t\_llegada;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ mem\_requerida;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ t\_ejecucion;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Variables\ de\ control\ de\ estado}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ t\_final;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ t\_restante;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ en\_memoria;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ finalizado;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\}\ \mbox{\hyperlink{struct_proceso}{Proceso}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ dir\_inicio;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ tamano;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ estado;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ nombre\_proceso[10];\ \ \ \ }
+\DoxyCodeLine{\}\ \mbox{\hyperlink{struct_particion}{Particion}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_particion}{Particion}}\ particiones[\mbox{\hyperlink{group__constantes_gae420f0bf3db242485c8c837356c6ebba}{MAX\_PARTICIONES}}];\ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ cant\_particiones;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ ultimo\_indice\_asignado;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\}\ \mbox{\hyperlink{struct_memoria}{Memoria}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a2eb7a0bc59e66b49256d4969b4d9c002}{ALGO\_PRIMER\_HUECO}},\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6a6550080046aace79db77279cb8298426}{ALGO\_SIGUIENTE\_HUECO}}\ \ \ \ }
+\DoxyCodeLine{\}\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{sim__engine_8c_a7525ea6570ccf752c8e9394b62042380}{inicializar\_memoria}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{sim__engine_8c_a6df7a5ff87dd2abca3c64b3dcc88cf5a}{mostrar\_estado}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sim__engine_8c_a6a1089ddf1a175f89c026b773722dcd2}{ocupar\_memoria}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \textcolor{keywordtype}{int}\ indice\_hueco,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ p);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{sim__engine_8c_a949ea609798d43a638d95faf7de9f681}{compactar}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{sim__engine_8c_a9a4646e9f9e8b178131b41945f7a8544}{liberar\_proceso}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \textcolor{keywordtype}{char}\ *nombre\_proceso);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sim__engine_8c_a8f367671cb683a6dd983d657251a170b}{buscar\_hueco}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \textcolor{keywordtype}{int}\ mem\_requerida,\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}}\ tipo\_algo);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sim__engine_8c_ab6fef50a2cde39099d3c051aa7975738}{alinear\_size}}(\textcolor{keywordtype}{int}\ size);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{sim__engine_8c_a47eaa39f311ae4f19e76eb9baca390d7}{asignar\_proceso}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ p,\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}}\ tipo\_algo);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{sim__engine_8c_a099adf88ebe7183b00ddc648cc1ffa5b}{avanzar\_tiempo}}(\mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ procesos[],\ \textcolor{keywordtype}{int}\ num\_procesos,\ \textcolor{keywordtype}{int}\ *reloj\_actual,\ \mbox{\hyperlink{sim__engine_8h_a186bb3e10a143cf48bda6c8d819869a6}{TipoAlgo}}\ algo,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ruta\_log);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ENGINE\_H}}
+
+\end{DoxyCodeInclude}
+ 

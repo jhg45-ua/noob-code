@@ -1,0 +1,104 @@
+\doxysection{ficheros.\+c}
+\hypertarget{ficheros_8c_source}{}\label{ficheros_8c_source}\index{src/ficheros.c@{src/ficheros.c}}
+\mbox{\hyperlink{ficheros_8c}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ficheros_8h}{ficheros.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00005}00005\ \textcolor{preprocessor}{\#include<fcntl.h>}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}../../lib/file\_utils.h"{}}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00009}\mbox{\hyperlink{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}{00009}}\ \textcolor{preprocessor}{\#define\ SIZE\_BUFFER\_LECTURA\ 4096\ }\textcolor{comment}{//\ Asumimos\ que\ el\ archivo\ de\ entrada\ no\ pesa\ más\ de\ 4KB}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00011}\mbox{\hyperlink{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}{00011}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6}{cargar\_procesos}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ruta,\ \mbox{\hyperlink{struct_proceso}{Proceso}}\ procesos[])\ \{}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00012}00012\ \ \ \ \ \textcolor{comment}{//\ 1.\ Abrir\ con\ open(Unix\ standard)}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{int}\ fd\ =\ open(ruta,\ O\_RDONLY);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (fd\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00015}00015\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ abriendo\ fichero\ de\ entrada"{}});}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00017}00017\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00019}00019\ \ \ \ \ \textcolor{comment}{//\ 2.\ Leer\ TODO\ el\ archivo\ a\ un\ buffer\ usando\ file\_utils.h}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer\_archivo[\mbox{\hyperlink{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}{SIZE\_BUFFER\_LECTURA}}];}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00021}00021\ \ \ \ \ memset(buffer\_archivo,\ 0,\ \mbox{\hyperlink{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}{SIZE\_BUFFER\_LECTURA}});\ \textcolor{comment}{//\ Limpiamos\ el\ buffer\ para\ evitar\ basura}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00023}00023\ \ \ \ \ ssize\_t\ leidos\ =\ read\_all(fd,\ buffer\_archivo,\ \mbox{\hyperlink{ficheros_8c_a6343d21cab7d596befc99c216c5f3d64}{SIZE\_BUFFER\_LECTURA}}\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00024}00024\ \ \ \ \ close(fd);\ \textcolor{comment}{//\ Ya\ tenemos\ los\ datos\ y\ por\ tanto\ cerramos\ el\ descriptor}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (leidos\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00026}00026\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ al\ leer\ el\ fichero"{}});}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//\ 3.\ Parsear\ el\ texto\ (linea\ por\ linea)}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00031}00031\ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{char}\ *linea\ =\ strtok(buffer\_archivo,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});\ \textcolor{comment}{//\ Primera\ linea}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{while}(linea\ !=\ NULL\ \&\&\ count\ <\ \mbox{\hyperlink{group__constantes_gab0f17287f3a9af76ef9109ec1dfce7a9}{MAX\_PROCESOS}})\ \{}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ nombre[10];}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ llegada,\ mem,\ ejec;}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Formato\ fuente:\ <Proceso>\ <Instante\_llegada>\ <Memoria\_requerida>\ <Tiempo\_de\_ejecuccion>}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sscanf(linea,\ \textcolor{stringliteral}{"{}\%s\ \%d\ \%d\ \%d"{}},\ nombre,\ \&llegada,\ \&mem,\ \&ejec)\ ==\ 4)\ \{}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copiamos\ al\ struct\ Proceso}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(procesos[count].nombre,\ nombre);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ procesos[count].\mbox{\hyperlink{struct_proceso_a3bdfce3dc9521ae195f824b63fa39177}{t\_llegada}}\ =\ llegada;}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Opcion\ 1:\ Aplicamos\ alinear\_size\ para\ cumplir\ con\ la\ asignacion\ de\ 100\ en\ 100}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ procesos[count].mem\_requerida\ =\ alinear\_size(mem);}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Opcion\ 2:\ La\ memoria\ ya\ se\ aliena\ a\ la\ hora\ de\ asignar\ el\ proceso}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ procesos[count].\mbox{\hyperlink{struct_proceso_a89677fcfc2c31a180618d3ecdf9d6da0}{mem\_requerida}}\ =\ mem;}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ procesos[count].\mbox{\hyperlink{struct_proceso_a4c0f04511fcff56f38175cf4486f09a7}{t\_ejecucion}}\ =\ ejec;}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Inicializacion\ del\ estado\ del\ proceso}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ procesos[count].\mbox{\hyperlink{struct_proceso_a50600ea4ddd8f2d410dbffb5138e9939}{t\_restante}}\ =\ ejec;}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ procesos[count].\mbox{\hyperlink{struct_proceso_a8a5539157dd188274a43e5543fef3494}{en\_memoria}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ procesos[count].\mbox{\hyperlink{struct_proceso_a6e82a92ffdba51e1f513a4b462d2c7f6}{finalizado}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Siguiente\ linea}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00058}00058\ \ \ \ \ \ \ \ \ linea\ =\ strtok(NULL,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00060}00060\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{return}\ count;}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00064}\mbox{\hyperlink{ficheros_8c_af7e2e00877e94e16b9c6f0f76103214b}{00064}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ficheros_8c_af7e2e00877e94e16b9c6f0f76103214b}{guardar\_estado}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ruta,\ \mbox{\hyperlink{struct_memoria}{Memoria}}\ *m,\ \textcolor{keywordtype}{int}\ instante)\ \{}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00065}00065\ \ \ \ \ \textcolor{comment}{//\ Abrimos\ el\ archivo\ en\ modo\ append\ y\ CREAT\ si\ no\ existe}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00066}00066\ \ \ \ \ \textcolor{keywordtype}{int}\ fd\ =\ open(ruta,\ O\_WRONLY\ |\ O\_CREAT\ |\ O\_APPEND,\ 0644);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (fd\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00068}00068\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ al\ abrir\ o\ crear\ el\ archivo"{}});}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00070}00070\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00072}00072\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer\_linea[1024];\ \textcolor{comment}{//\ Buffer\ temporal}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00074}00074\ \ \ \ \ \textcolor{comment}{//\ Formato\ fuente:\ <instante\_tiempo>\ <estado\_memoria>\ \(\backslash\)n}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//\ 1.\ Escribimos\ el\ instante\ de\ tiempo}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00076}00076\ \ \ \ \ \textcolor{keywordtype}{int}\ len\ =\ sprintf(buffer\_linea,\ \textcolor{stringliteral}{"{}\%d"{}},\ instante);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00077}00077\ \ \ \ \ write\_all(fd,\ buffer\_linea,\ len);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00079}00079\ \ \ \ \ \textcolor{comment}{//\ 2.\ Recorremos\ las\ particiones}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ m-\/>\mbox{\hyperlink{struct_memoria_ae398c8e61b3aade21c6118c6cedf879d}{cant\_particiones}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00081}00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_particion}{Particion}}\ p\ =\ m-\/>\mbox{\hyperlink{struct_memoria_a5172c2be2a019c0176b997b11e91655e}{particiones}}[i];}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Formateamos\ una\ particion\ al\ formato\ requerido}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00084}00084\ \ \ \ \ \ \ \ \ len\ =\ sprintf(buffer\_linea,\ \textcolor{stringliteral}{"{}[\%d,\ \%s,\ \%d]\ "{}},\ p.\mbox{\hyperlink{struct_particion_ae1cc803e8a591302bcc4cfb0145fee53}{dir\_inicio}},\ p.\mbox{\hyperlink{struct_particion_a6a9530f295bf5f859a4ebe469751dfa9}{nombre\_proceso}},\ p.\mbox{\hyperlink{struct_particion_a44d43efa08e89cb916c4a465a77d6399}{tamano}});}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00085}00085\ \ \ \ \ \ \ \ \ write\_all(fd,\ buffer\_linea,\ len);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00086}00086\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00088}00088\ \ \ \ \ \textcolor{comment}{//\ 3.\ Salto\ de\ linea\ final}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00089}00089\ \ \ \ \ write\_all(fd,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 1);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00091}00091\ \ \ \ \ close(fd);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00092}00092\ \}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00094}\mbox{\hyperlink{ficheros_8c_a695ae3585fde2a3664394810b70fe928}{00094}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ficheros_8c_a695ae3585fde2a3664394810b70fe928}{limpiar\_log}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ruta)\ \{}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00095}00095\ \ \ \ \ \textcolor{comment}{//\ O\_TRUNC\ borra\ el\ contenido\ al\ abrir}}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00096}00096\ \ \ \ \ \textcolor{keywordtype}{int}\ fd\ =\ open(ruta,\ O\_WRONLY\ |\ O\_CREAT\ |\ O\_TRUNC,\ 0644);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00097}00097\ \ \ \ \ \textcolor{keywordflow}{if}\ (fd\ !=\ -\/1)\ close(fd);}
+\DoxyCodeLine{\Hypertarget{ficheros_8c_source_l00098}00098\ \}}
+
+\end{DoxyCode}

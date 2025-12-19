@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gestor de Memoria - Práctica 3 OS: Página principal</title>
+<title>Gestor de Memoria - Práctica 3 OS: Gestomemoria - Simulador de Gestión de Memoria</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Gestor de Memoria - Práctica 3 OS
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
   </td>
@@ -88,10 +88,89 @@ $(function(){initNavTree('index.html','',''); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Documentación de Gestor de Memoria - Práctica 3 OS</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Gestomemoria - Simulador de Gestión de <a class="el" href="struct_memoria.html" title="Estructura principal que representa la memoria del sistema.">Memoria</a> </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="mainpage"></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
+Descripción</h1>
+<p>Simulador visual de algoritmos de gestión de memoria dinámica con particiones variables. Proyecto de la asignatura <b>Sistemas Operativos</b> - Universidad de Alicante.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+Algoritmos Implementados</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Algoritmo  </th><th class="markdownTableHeadNone">Descripción  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>First Fit</b>  </td><td class="markdownTableBodyNone">Asigna el primer hueco que sea suficientemente grande  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Next Fit</b>  </td><td class="markdownTableBodyNone">Como First Fit, pero empieza desde la última posición asignada  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Requisitos</h1>
+<ul>
+<li>CMake 3.11+</li>
+<li><a href="https://www.raylib.com/">Raylib</a> (para la interfaz gráfica)</li>
+<li>Compilador C con soporte C17</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Compilación</h1>
+<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake ..</div>
+<div class="line">make</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Uso</h1>
+<div class="fragment"><div class="line">./gestomemoria</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Controles (GUI)</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Tecla  </th><th class="markdownTableHeadNone">Acción  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">ESPACIO</span>  </td><td class="markdownTableBodyNone">Avanzar un tick de simulación  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">P</span>  </td><td class="markdownTableBodyNone">Activar/desactivar reproducción automática  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">R</span>  </td><td class="markdownTableBodyNone">Reiniciar simulación  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">ESC</span>  </td><td class="markdownTableBodyNone">Salir  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Formato del Archivo de Entrada</h1>
+<p>El archivo <span class="tt">entrada.txt</span> debe seguir este formato:</p>
+<div class="fragment"><div class="line">&lt;nombre_proceso&gt; &lt;instante_llegada&gt; &lt;memoria_requerida&gt; &lt;tiempo_ejecucion&gt;</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+Ejemplo</h2>
+<div class="fragment"><div class="line">P1 0 243 5</div>
+<div class="line">P2 1 150 3</div>
+<div class="line">P3 2 500 4</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+Arquitectura del Proyecto</h1>
+<div class="fragment"><div class="line">src/</div>
+<div class="line">├── main.c          # Punto de entrada, GUI (Raylib) y TUI</div>
+<div class="line">├── sim_engine.c/h  # Motor de simulación (asignación, liberación, compactación)</div>
+<div class="line">└── ficheros.c/h    # Entrada/Salida de archivos</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+Constantes de Configuración</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Constante  </th><th class="markdownTableHeadNone">Valor  </th><th class="markdownTableHeadNone">Descripción  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="group__constantes.html#ga6264fff1e0ed016a7ce3d58e0534ea00" title="Tamaño total de la memoria simulada (en unidades).">MEMORIA_TOTAL</a></span>  </td><td class="markdownTableBodyNone">2000  </td><td class="markdownTableBodyNone">Tamaño total de memoria simulada  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="group__constantes.html#ga6bb334d2cae8f7d1d61c25b3eba5e9b5" title="Unidad mínima de asignación. Toda memoria se alinea a múltiplos de este valor.">UNIDAD_MINIMA</a></span>  </td><td class="markdownTableBodyNone">100  </td><td class="markdownTableBodyNone">Alineación mínima de asignación  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="group__constantes.html#gae420f0bf3db242485c8c837356c6ebba" title="Máximo número de particiones simultáneas en memoria.">MAX_PARTICIONES</a></span>  </td><td class="markdownTableBodyNone">50  </td><td class="markdownTableBodyNone">Máximo de particiones simultáneas  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="group__constantes.html#gab0f17287f3a9af76ef9109ec1dfce7a9" title="Máximo número de procesos que puede manejar la simulación.">MAX_PROCESOS</a></span>  </td><td class="markdownTableBodyNone">100  </td><td class="markdownTableBodyNone">Máximo de procesos en simulación  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Autor</h1>
+<p><b>Julian Hinojosa Gil</b> - 2025</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+Licencia</h1>
+<p>Proyecto académico - Universidad de Alicante </p>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

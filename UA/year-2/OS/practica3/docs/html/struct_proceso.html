@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Gestor de Memoria - Práctica 3 OS
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
   </td>
@@ -93,7 +93,7 @@ $(function(){initNavTree('struct_proceso.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Estructura que representa un proceso.  
+<p>Estructura que representa un proceso en el simulador.  
  <a href="#details">Más...</a></p>
 
 <p><code>#include &lt;<a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>&gt;</code></p>
@@ -110,7 +110,16 @@ Campos de datos</h2></td></tr>
 <tr class="memitem:a6e82a92ffdba51e1f513a4b462d2c7f6" id="r_a6e82a92ffdba51e1f513a4b462d2c7f6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e82a92ffdba51e1f513a4b462d2c7f6">finalizado</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
-<div class="textblock"><p>Estructura que representa un proceso. </p>
+<div class="textblock"><p>Estructura que representa un proceso en el simulador. </p>
+<p>Contiene toda la información necesaria para gestionar un proceso:</p><ul>
+<li>Identificación y tiempos</li>
+<li>Requisitos de memoria</li>
+<li>Estado actual en la simulación </li>
+</ul>
+<dl class="section examples"><dt>Ejemplos</dt><dd><a class="el" href="_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2practica3_2src_2sim_engine_8h-example.html#_a2">/Users/julianhinojosagil/Documents/Dev/noob-code/UA/year-2/OS/practica3/src/sim_engine.h</a>.</dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00057">57</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Documentación de campos</h2>
 <a id="a8a5539157dd188274a43e5543fef3494" name="a8a5539157dd188274a43e5543fef3494"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8a5539157dd188274a43e5543fef3494">&#9670;&#160;</a></span>en_memoria</h2>
@@ -123,7 +132,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Indica si el proceso está en memoria </p>
+<p>true si está cargado en memoria </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00066">66</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00189">avanzar_tiempo()</a> y <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a>.</p>
 
 </div>
 </div>
@@ -138,7 +151,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Indica si el proceso ha finalizado </p>
+<p>true si ya completó su ejecución </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00067">67</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00189">avanzar_tiempo()</a> y <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a>.</p>
 
 </div>
 </div>
@@ -153,7 +170,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="struct_memoria.html" title="Estructura que representa la memoria del sistema.">Memoria</a> requerida por el proceso </p>
+<p><a class="el" href="struct_memoria.html" title="Estructura principal que representa la memoria del sistema.">Memoria</a> solicitada (se alineará a UNIDAD_MINIMA) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00060">60</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00167">asignar_proceso()</a>, <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a> y <a class="el" href="sim__engine_8c_source.html#l00031">ocupar_memoria()</a>.</p>
 
 </div>
 </div>
@@ -168,7 +189,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Nombre del proceso </p>
+<p>Nombre/ID único del proceso (ej: "P1") </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00058">58</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00167">asignar_proceso()</a> y <a class="el" href="sim__engine_8c_source.html#l00031">ocupar_memoria()</a>.</p>
 
 </div>
 </div>
@@ -183,7 +208,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Tiempo de ejecución del proceso </p>
+<p>Tiempo total de ejecución requerido </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00061">61</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00189">avanzar_tiempo()</a>, <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a> y <a class="el" href="main_8c_source.html#l00095">test_sim()</a>.</p>
 
 </div>
 </div>
@@ -198,7 +227,9 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Tiempo de finalización del proceso </p>
+<p>Instante en que finalizó (-1 si no ha terminado) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00064">64</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
 
 </div>
 </div>
@@ -213,7 +244,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Tiempo de llegada del proceso </p>
+<p>Instante de llegada a la cola de procesos </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00059">59</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a>.</p>
 
 </div>
 </div>
@@ -228,7 +263,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Tiempo restante de ejecución </p>
+<p>Ticks restantes para completar ejecución </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00065">65</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00189">avanzar_tiempo()</a> y <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a>.</p>
 
 </div>
 </div>

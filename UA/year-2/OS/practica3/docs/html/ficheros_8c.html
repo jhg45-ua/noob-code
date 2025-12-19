@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Memoria - Práctica 3 OS: Referencia del archivo src/ficheros.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('ficheros_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo ficheros.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="ficheros_8h_source.html">ficheros.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &quot;../../lib/file_utils.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependencias incluidas en ficheros.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="ficheros_8c__incl.png" border="0" usemap="#asrc_2ficheros_8c" loading="lazy" alt=""/></div>
+<map name="asrc_2ficheros_8c" id="asrc_2ficheros_8c">
+<area shape="rect" title=" " alt="" coords="271,5,371,31"/>
+<area shape="rect" href="ficheros_8h.html" title="Módulo de entrada/salida para la simulación de memoria." alt="" coords="15,79,94,105"/>
+<area shape="poly" title=" " alt="" coords="275,34,110,78,108,74,277,29"/>
+<area shape="rect" title=" " alt="" coords="118,79,178,105"/>
+<area shape="poly" title=" " alt="" coords="290,33,193,75,190,70,294,30"/>
+<area shape="rect" title=" " alt="" coords="202,79,265,105"/>
+<area shape="poly" title=" " alt="" coords="308,30,261,71,258,67,304,33"/>
+<area shape="rect" title=" " alt="" coords="289,79,353,105"/>
+<area shape="poly" title=" " alt="" coords="323,29,324,64,319,62,320,33"/>
+<area shape="rect" title=" " alt="" coords="378,79,435,105"/>
+<area shape="poly" title=" " alt="" coords="336,29,383,69,378,69,335,34"/>
+<area shape="rect" title=" " alt="" coords="460,79,527,105"/>
+<area shape="poly" title=" " alt="" coords="351,29,453,72,447,73,350,34"/>
+<area shape="rect" title=" " alt="" coords="551,79,672,105"/>
+<area shape="poly" title=" " alt="" coords="371,29,550,74,545,76,370,34"/>
+<area shape="rect" href="sim__engine_8h.html" title="Motor de simulación de gestión de memoria con particiones variables." alt="" coords="5,153,104,178"/>
+<area shape="poly" title=" " alt="" coords="55,102,57,137,52,136,54,107"/>
+<area shape="rect" title=" " alt="" coords="17,226,92,252"/>
+<area shape="poly" title=" " alt="" coords="56,177,57,211,52,210,53,181"/>
+</map>
+</div>
+</div>
+<p><a href="ficheros_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a6343d21cab7d596befc99c216c5f3d64" id="r_a6343d21cab7d596befc99c216c5f3d64"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6343d21cab7d596befc99c216c5f3d64">SIZE_BUFFER_LECTURA</a>&#160;&#160;&#160;4096</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:af760c80ad550bdf7a5312163e4c9b2d6" id="r_af760c80ad550bdf7a5312163e4c9b2d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af760c80ad550bdf7a5312163e4c9b2d6">cargar_procesos</a> (const char *ruta, <a class="el" href="struct_proceso.html">Proceso</a> procesos[])</td></tr>
+<tr class="memdesc:af760c80ad550bdf7a5312163e4c9b2d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carga los procesos desde un archivo de texto.  <br /></td></tr>
+<tr class="memitem:af7e2e00877e94e16b9c6f0f76103214b" id="r_af7e2e00877e94e16b9c6f0f76103214b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7e2e00877e94e16b9c6f0f76103214b">guardar_estado</a> (const char *ruta, <a class="el" href="struct_memoria.html">Memoria</a> *m, int instante)</td></tr>
+<tr class="memdesc:af7e2e00877e94e16b9c6f0f76103214b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guarda el estado actual de la memoria en un archivo de log.  <br /></td></tr>
+<tr class="memitem:a695ae3585fde2a3664394810b70fe928" id="r_a695ae3585fde2a3664394810b70fe928"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a695ae3585fde2a3664394810b70fe928">limpiar_log</a> (const char *ruta)</td></tr>
+<tr class="memdesc:a695ae3585fde2a3664394810b70fe928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpia el contenido de un archivo de log.  <br /></td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a id="a6343d21cab7d596befc99c216c5f3d64" name="a6343d21cab7d596befc99c216c5f3d64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6343d21cab7d596befc99c216c5f3d64">&#9670;&#160;</a></span>SIZE_BUFFER_LECTURA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SIZE_BUFFER_LECTURA&#160;&#160;&#160;4096</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="ficheros_8c_source.html#l00009">9</a> del archivo <a class="el" href="ficheros_8c_source.html">ficheros.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="ficheros_8c_source.html#l00011">cargar_procesos()</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="af760c80ad550bdf7a5312163e4c9b2d6" name="af760c80ad550bdf7a5312163e4c9b2d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af760c80ad550bdf7a5312163e4c9b2d6">&#9670;&#160;</a></span>cargar_procesos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cargar_procesos </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ruta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_proceso.html">Proceso</a></td>          <td class="paramname"><span class="paramname"><em>procesos</em></span>[]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Carga los procesos desde un archivo de texto. </p>
+<p>Lee el archivo línea por línea y parsea cada proceso con el formato: <span class="tt">&lt;nombre&gt; &lt;t_llegada&gt; &lt;mem_requerida&gt; &lt;t_ejecucion&gt;</span></p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ruta</td><td>Ruta del archivo de entrada </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">procesos</td><td>Array donde se almacenarán los procesos cargados</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Cantidad de procesos cargados exitosamente </dd>
+<dd>
+0 si hubo error al abrir/leer el archivo</dd></dl>
+<dl class="section pre"><dt>Precondición</dt><dd>El archivo debe existir y ser legible </dd>
+<dd>
+procesos debe tener espacio para MAX_PROCESOS elementos</dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>Usa llamadas POSIX (open, read) según requerimientos de la práctica </dd></dl>
+<dl class="section warning"><dt>Atención</dt><dd>El buffer interno es de 4KB, archivos más grandes se truncan </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="ficheros_8c_source.html#l00011">11</a> del archivo <a class="el" href="ficheros_8c_source.html">ficheros.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="sim__engine_8h_source.html#l00066">Proceso::en_memoria</a>, <a class="el" href="sim__engine_8h_source.html#l00067">Proceso::finalizado</a>, <a class="el" href="sim__engine_8h_source.html#l00045">MAX_PROCESOS</a>, <a class="el" href="sim__engine_8h_source.html#l00060">Proceso::mem_requerida</a>, <a class="el" href="ficheros_8c_source.html#l00009">SIZE_BUFFER_LECTURA</a>, <a class="el" href="sim__engine_8h_source.html#l00061">Proceso::t_ejecucion</a>, <a class="el" href="sim__engine_8h_source.html#l00059">Proceso::t_llegada</a> y <a class="el" href="sim__engine_8h_source.html#l00065">Proceso::t_restante</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00056">main()</a>, <a class="el" href="main_8c_source.html#l00173">run_gui()</a> y <a class="el" href="main_8c_source.html#l00095">test_sim()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="ficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6_icgraph.png" border="0" usemap="#aficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6_icgraph" loading="lazy" alt=""/></div>
+<map name="aficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6_icgraph" id="aficheros_8c_af760c80ad550bdf7a5312163e4c9b2d6_icgraph">
+<area shape="rect" title="Carga los procesos desde un archivo de texto." alt="" coords="222,21,339,46"/>
+<area shape="rect" href="main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="Punto de entrada principal del programa." alt="" coords="5,21,55,46"/>
+<area shape="poly" title=" " alt="" coords="220,17,164,9,133,8,103,11,56,25,54,20,102,6,133,3,165,4,225,16"/>
+<area shape="rect" href="main_8c.html#aafb6af6e9fab822accd3e0f7133214bd" title="Ejecuta la interfaz gráfica con Raylib." alt="" coords="107,21,170,46"/>
+<area shape="poly" title=" " alt="" coords="204,34,171,36,170,31,209,33"/>
+<area shape="rect" href="main_8c.html#a0739302f77016ac122f50d59015cfa1f" title="Ejecuta la simulación en modo terminal (TUI)." alt="" coords="103,70,174,96"/>
+<area shape="poly" title=" " alt="" coords="230,52,175,73,174,68,224,53"/>
+<area shape="poly" title=" " alt="" coords="89,35,56,36,54,31,93,32"/>
+<area shape="poly" title=" " alt="" coords="92,64,55,47,56,42,97,62"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af7e2e00877e94e16b9c6f0f76103214b" name="af7e2e00877e94e16b9c6f0f76103214b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7e2e00877e94e16b9c6f0f76103214b">&#9670;&#160;</a></span>guardar_estado()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void guardar_estado </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ruta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_memoria.html">Memoria</a> *</td>          <td class="paramname"><span class="paramname"><em>m</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>instante</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Guarda el estado actual de la memoria en un archivo de log. </p>
+<p>Escribe una línea con formato: <span class="tt">&lt;instante&gt;[dir1, nombre1, tam1] [dir2, nombre2, tam2] ...</span></p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ruta</td><td>Ruta del archivo de salida (se crea si no existe) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>Puntero a la estructura de memoria a guardar </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">instante</td><td>Instante de tiempo actual de la simulación</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Usa modo append, no sobrescribe contenido previo </dd>
+<dd>
+Permisos del archivo: 0644 (rw-r&ndash;r&ndash;) </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="ficheros_8c_source.html#l00064">64</a> del archivo <a class="el" href="ficheros_8c_source.html">ficheros.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="sim__engine_8h_source.html#l00092">Memoria::cant_particiones</a>, <a class="el" href="sim__engine_8h_source.html#l00078">Particion::dir_inicio</a>, <a class="el" href="sim__engine_8h_source.html#l00081">Particion::nombre_proceso</a>, <a class="el" href="sim__engine_8h_source.html#l00091">Memoria::particiones</a> y <a class="el" href="sim__engine_8h_source.html#l00079">Particion::tamano</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00189">avanzar_tiempo()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="ficheros_8c_af7e2e00877e94e16b9c6f0f76103214b_icgraph.png" border="0" usemap="#aficheros_8c_af7e2e00877e94e16b9c6f0f76103214b_icgraph" loading="lazy" alt=""/></div>
+<map name="aficheros_8c_af7e2e00877e94e16b9c6f0f76103214b_icgraph" id="aficheros_8c_af7e2e00877e94e16b9c6f0f76103214b_icgraph">
+<area shape="rect" title="Guarda el estado actual de la memoria en un archivo de log." alt="" coords="383,31,494,56"/>
+<area shape="rect" href="sim__engine_8c.html#a099adf88ebe7183b00ddc648cc1ffa5b" title="Avanza un tick en la simulación." alt="" coords="222,31,335,56"/>
+<area shape="poly" title=" " alt="" coords="365,44,336,46,336,41,371,43"/>
+<area shape="rect" href="main_8c.html#aafb6af6e9fab822accd3e0f7133214bd" title="Ejecuta la interfaz gráfica con Raylib." alt="" coords="107,5,170,31"/>
+<area shape="poly" title=" " alt="" coords="204,31,170,26,170,21,209,30"/>
+<area shape="rect" href="main_8c.html#a0739302f77016ac122f50d59015cfa1f" title="Ejecuta la simulación en modo terminal (TUI)." alt="" coords="103,55,174,80"/>
+<area shape="poly" title=" " alt="" coords="209,56,175,64,174,59,204,56"/>
+<area shape="rect" href="main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="Punto de entrada principal del programa." alt="" coords="5,31,55,56"/>
+<area shape="poly" title=" " alt="" coords="90,31,56,40,54,35,94,27"/>
+<area shape="poly" title=" " alt="" coords="85,57,55,52,55,46,90,55"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a695ae3585fde2a3664394810b70fe928" name="a695ae3585fde2a3664394810b70fe928"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a695ae3585fde2a3664394810b70fe928">&#9670;&#160;</a></span>limpiar_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void limpiar_log </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ruta</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Limpia el contenido de un archivo de log. </p>
+<p>Abre el archivo con O_TRUNC para borrar su contenido. Si no existe, lo crea vacío.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ruta</td><td>Ruta del archivo a limpiar</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Llamar al inicio de cada simulación para empezar con log limpio </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="ficheros_8c_source.html#l00094">94</a> del archivo <a class="el" href="ficheros_8c_source.html">ficheros.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="main_8c_source.html#l00173">run_gui()</a> y <a class="el" href="main_8c_source.html#l00095">test_sim()</a>.</p>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="ficheros_8c_a695ae3585fde2a3664394810b70fe928_icgraph.png" border="0" usemap="#aficheros_8c_a695ae3585fde2a3664394810b70fe928_icgraph" loading="lazy" alt=""/></div>
+<map name="aficheros_8c_a695ae3585fde2a3664394810b70fe928_icgraph" id="aficheros_8c_a695ae3585fde2a3664394810b70fe928_icgraph">
+<area shape="rect" title="Limpia el contenido de un archivo de log." alt="" coords="222,31,305,56"/>
+<area shape="rect" href="main_8c.html#aafb6af6e9fab822accd3e0f7133214bd" title="Ejecuta la interfaz gráfica con Raylib." alt="" coords="107,5,170,31"/>
+<area shape="poly" title=" " alt="" coords="204,32,171,27,171,22,209,32"/>
+<area shape="rect" href="main_8c.html#a0739302f77016ac122f50d59015cfa1f" title="Ejecuta la simulación en modo terminal (TUI)." alt="" coords="103,55,174,80"/>
+<area shape="poly" title=" " alt="" coords="209,54,175,63,174,58,204,55"/>
+<area shape="rect" href="main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="Punto de entrada principal del programa." alt="" coords="5,31,55,56"/>
+<area shape="poly" title=" " alt="" coords="90,31,56,40,54,35,94,27"/>
+<area shape="poly" title=" " alt="" coords="85,57,55,52,55,46,90,55"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="ficheros_8c.html">ficheros.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>

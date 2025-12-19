@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Gestor de Memoria - Práctica 3 OS
+   <div id="projectname">Gestor de Memoria - Práctica 3 OS<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">Simulador de gestión de memoria con algoritmos de Primer Hueco y Siguiente Hueco.</div>
   </td>
@@ -93,19 +93,34 @@ $(function(){initNavTree('struct_memoria.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Estructura que representa la memoria del sistema.  
+<p>Estructura principal que representa la memoria del sistema.  
  <a href="#details">Más...</a></p>
 
 <p><code>#include &lt;<a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagrama de colaboración de Memoria:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_memoria__coll__graph.png" border="0" usemap="#a_memoria_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="a_memoria_coll__map" id="a_memoria_coll__map">
+<area shape="rect" title="Estructura principal que representa la memoria del sistema." alt="" coords="6,102,77,128"/>
+<area shape="rect" href="struct_particion.html" title="Estructura que representa una partición de memoria." alt="" coords="5,5,78,31"/>
+<area shape="poly" title=" " alt="" coords="44,45,44,102,39,101,39,47"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">leyenda</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Campos de datos</h2></td></tr>
-<tr class="memitem:a5172c2be2a019c0176b997b11e91655e" id="r_a5172c2be2a019c0176b997b11e91655e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_particion.html">Particion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5172c2be2a019c0176b997b11e91655e">particiones</a> [<a class="el" href="sim__engine_8h.html#ae420f0bf3db242485c8c837356c6ebba">MAX_PARTICIONES</a>]</td></tr>
+<tr class="memitem:a5172c2be2a019c0176b997b11e91655e" id="r_a5172c2be2a019c0176b997b11e91655e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_particion.html">Particion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5172c2be2a019c0176b997b11e91655e">particiones</a> [<a class="el" href="group__constantes.html#gae420f0bf3db242485c8c837356c6ebba">MAX_PARTICIONES</a>]</td></tr>
 <tr class="memitem:ae398c8e61b3aade21c6118c6cedf879d" id="r_ae398c8e61b3aade21c6118c6cedf879d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae398c8e61b3aade21c6118c6cedf879d">cant_particiones</a></td></tr>
 <tr class="memitem:a281aeea839c28dcef311e9902a74cccb" id="r_a281aeea839c28dcef311e9902a74cccb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a281aeea839c28dcef311e9902a74cccb">ultimo_indice_asignado</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
-<div class="textblock"><p>Estructura que representa la memoria del sistema. </p>
+<div class="textblock"><p>Estructura principal que representa la memoria del sistema. </p>
+<p>Gestiona un array de particiones que cubren todo el espacio de memoria. Inicialmente contiene una única partición (hueco) de tamaño MEMORIA_TOTAL. </p>
+<dl class="section examples"><dt>Ejemplos</dt><dd><a class="el" href="_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2practica3_2src_2sim_engine_8h-example.html#_a0">/Users/julianhinojosagil/Documents/Dev/noob-code/UA/year-2/OS/practica3/src/sim_engine.h</a>.</dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00090">90</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Documentación de campos</h2>
 <a id="ae398c8e61b3aade21c6118c6cedf879d" name="ae398c8e61b3aade21c6118c6cedf879d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae398c8e61b3aade21c6118c6cedf879d">&#9670;&#160;</a></span>cant_particiones</h2>
@@ -118,7 +133,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Cantidad de particiones actuales </p>
+<p>Número actual de particiones (1 a MAX_PARTICIONES) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00092">92</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00118">buscar_hueco()</a>, <a class="el" href="sim__engine_8c_source.html#l00079">compactar()</a>, <a class="el" href="ficheros_8c_source.html#l00064">guardar_estado()</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="sim__engine_8c_source.html#l00100">liberar_proceso()</a>, <a class="el" href="sim__engine_8c_source.html#l00023">mostrar_estado()</a>, <a class="el" href="sim__engine_8c_source.html#l00031">ocupar_memoria()</a> y <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -129,11 +148,15 @@ Campos de datos</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_particion.html">Particion</a> Memoria::particiones[<a class="el" href="sim__engine_8h.html#ae420f0bf3db242485c8c837356c6ebba">MAX_PARTICIONES</a>]</td>
+          <td class="memname"><a class="el" href="struct_particion.html">Particion</a> Memoria::particiones[<a class="el" href="group__constantes.html#gae420f0bf3db242485c8c837356c6ebba">MAX_PARTICIONES</a>]</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Array de particiones de memoria </p>
+<p>Array de particiones (huecos y procesos) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00091">91</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00118">buscar_hueco()</a>, <a class="el" href="sim__engine_8c_source.html#l00079">compactar()</a>, <a class="el" href="ficheros_8c_source.html#l00064">guardar_estado()</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a>, <a class="el" href="sim__engine_8c_source.html#l00100">liberar_proceso()</a>, <a class="el" href="sim__engine_8c_source.html#l00023">mostrar_estado()</a>, <a class="el" href="sim__engine_8c_source.html#l00031">ocupar_memoria()</a> y <a class="el" href="main_8c_source.html#l00173">run_gui()</a>.</p>
 
 </div>
 </div>
@@ -148,7 +171,11 @@ Campos de datos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Último índice asignado en particiones </p>
+<p>Último índice usado (para Next Fit) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="sim__engine_8h_source.html#l00093">93</a> del archivo <a class="el" href="sim__engine_8h_source.html">sim_engine.h</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="sim__engine_8c_source.html#l00118">buscar_hueco()</a>, <a class="el" href="sim__engine_8c_source.html#l00007">inicializar_memoria()</a> y <a class="el" href="sim__engine_8c_source.html#l00031">ocupar_memoria()</a>.</p>
 
 </div>
 </div>

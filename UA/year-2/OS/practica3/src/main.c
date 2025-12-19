@@ -1,3 +1,18 @@
+/**
+ * @file main.c
+ * @brief Punto de entrada del simulador de gestión de memoria.
+ * 
+ * Implementa dos interfaces de usuario:
+ * - **GUI**: Interfaz gráfica con Raylib (proceso hijo)
+ * - **TUI**: Interfaz de terminal para depuración (proceso padre)
+ * 
+ * Usa fork() para ejecutar ambas interfaces en paralelo.
+ * 
+ * @author Julian Hinojosa Gil
+ * @date 2025
+ * @version 1.0
+ */
+
 #include <raylib.h>
 
 #include "sim_engine.h"
@@ -8,16 +23,36 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+/** @brief Ancho de la ventana gráfica en píxeles */
 #define WIN_WIDTH 1200
+/** @brief Alto de la ventana gráfica en píxeles */
 #define WIN_HEIGHT 750
+/** @brief Posición Y de la barra de memoria */
 #define Y_BARRA 250
+/** @brief Alto de la barra de memoria */
 #define ALTO_BARRA 100
+/** @brief Margen izquierdo de la interfaz */
 #define MARGEN_IZQ 50
+/** @brief Margen derecho de la interfaz */
 #define MARGEN_DER 50
 
+/* Declaraciones adelantadas */
 void test_sim();
 void run_gui(Memoria *m, Proceso *procesos, int num_procesos);
 
+/**
+ * @brief Punto de entrada principal del programa.
+ * 
+ * Crea dos procesos mediante fork():
+ * - Proceso hijo: Ejecuta la interfaz gráfica (GUI)
+ * - Proceso padre: Ejecuta la interfaz de terminal (TUI)
+ * 
+ * @param argc Número de argumentos (no utilizado)
+ * @param argv Array de argumentos (no utilizado)
+ * 
+ * @return 0 si la ejecución fue exitosa
+ * @return -1 si hubo error en fork()
+ */
 int main(int argc, char const* argv[])
 {
     pid_t pid = fork();
@@ -48,8 +83,14 @@ int main(int argc, char const* argv[])
 }
 
 /**
- * Prueba del motor de simulación en modo TUI (Terminal User Interface).
- * @return nada
+ * @brief Ejecuta la simulación en modo terminal (TUI).
+ * 
+ * Carga procesos desde "entrada.txt" y ejecuta la simulación
+ * paso a paso, mostrando el estado en consola.
+ * 
+ * @note Usa getchar() para avanzar manualmente entre ticks
+ * @note Genera log en "particiones_tui.txt"
+ * @note Usa algoritmo First Fit por defecto
  */
 void test_sim() {
     Memoria m;
@@ -109,11 +150,25 @@ void test_sim() {
 }
 
 /**
- * Ejecución de la interfaz gráfica usando Raylib.
- * @param m Puntero a la estructura de memoria
- * @param procesos Array de procesos
- * @param num_procesos Número de procesos en el array
- * @return nada
+ * @brief Ejecuta la interfaz gráfica con Raylib.
+ * 
+ * Crea una ventana de WIN_WIDTH x WIN_HEIGHT píxeles y muestra:
+ * - Barra de memoria con particiones coloreadas
+ * - Lista de procesos y su estado
+ * - Controles interactivos
+ * 
+ * @param[in,out] m Puntero a la estructura de memoria del simulador
+ * @param[in,out] procesos Array de procesos a simular
+ * @param[in] num_procesos Cantidad de procesos en el array
+ * 
+ * @par Controles:
+ * - ESPACIO: Avanzar un tick
+ * - P: Activar/desactivar auto-play
+ * - R: Reiniciar simulación
+ * - ESC: Salir
+ * 
+ * @note Genera log en "particiones.txt"
+ * @note Velocidad auto-play: 1 tick/segundo
  */
 void run_gui(Memoria *m, Proceso *procesos, int num_procesos) {
     InitWindow(WIN_WIDTH, WIN_HEIGHT, "Gestomemoria - Memory Simulator");

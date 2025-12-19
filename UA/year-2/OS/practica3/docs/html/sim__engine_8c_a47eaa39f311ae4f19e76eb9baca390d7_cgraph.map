@@ -1,0 +1,9 @@
+<map id="asignar_proceso" name="asignar_proceso">
+<area shape="rect" id="Node000001" title="Asigna un proceso a la memoria." alt="" coords="5,55,122,80"/>
+<area shape="rect" id="Node000002" href="$sim__engine_8c.html#ab6fef50a2cde39099d3c051aa7975738" title="Alinea un tamaño a múltiplos de UNIDAD_MINIMA." alt="" coords="183,5,274,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,52,170,35,166,38,110,56"/>
+<area shape="rect" id="Node000003" href="$sim__engine_8c.html#a8f367671cb683a6dd983d657251a170b" title="Busca un hueco adecuado según el algoritmo especificado." alt="" coords="177,55,280,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,65,164,67,159,68,122,70"/>
+<area shape="rect" id="Node000004" href="$sim__engine_8c.html#a6a1089ddf1a175f89c026b773722dcd2" title="Ocupa un hueco de memoria con un proceso." alt="" coords="170,104,287,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="109,78,171,98,166,100,109,84"/>
+</map>

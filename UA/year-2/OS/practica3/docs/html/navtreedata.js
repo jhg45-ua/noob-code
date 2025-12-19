@@ -25,6 +25,8 @@
 var NAVTREE =
 [
   [ "Gestor de Memoria - Práctica 3 OS", "index.html", [
+    [ "Gestomemoria - Simulador de Gestión de Memoria", "index.html", "index" ],
+    [ "Topics", "topics.html", "topics" ],
     [ "Estructuras de datos", "annotated.html", [
       [ "Estructuras de datos", "annotated.html", "annotated_dup" ],
       [ "Índice de estructuras de datos", "classes.html", null ],
@@ -42,13 +44,14 @@ var NAVTREE =
         [ "Valores de enumeraciones", "globals_eval.html", null ],
         [ "defines", "globals_defs.html", null ]
       ] ]
-    ] ]
+    ] ],
+    [ "Ejemplos", "examples.html", "examples" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"_2_users_2julianhinojosagil_2_documents_2_dev_2noob-code_2_u_a_2year-2_2_o_s_2practica3_2src_2sim_engine_8h-example.html"
 ];
 
 var SYNCONMSG = 'pulsar para deshabilitar sincronización';
