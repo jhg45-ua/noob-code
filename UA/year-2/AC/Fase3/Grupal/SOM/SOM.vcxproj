@@ -16,6 +16,11 @@
   <ItemGroup>
     <ClInclude Include="src\clasificacionSOM.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\clasificacionSOM.cpp" />
+    <ClCompile Include="src\io_utils.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2BFCCF9F-C163-5747-50F5-24C953AFAF2B}</ProjectGuid>
     <RootNamespace>SOM</RootNamespace>
