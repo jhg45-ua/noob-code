@@ -69,7 +69,7 @@
 		if (SOM.Neurona != NULL)
 		{
 			for (i = 0; i < SOM.Alto; i++)
-			if (SOM.Neurona[i] != NULL) free(SOM.Neurona[i]);
+				if (SOM.Neurona[i] != NULL) free(SOM.Neurona[i]);
 			free(SOM.Neurona);
 			SOM.Neurona = NULL;
 		}
