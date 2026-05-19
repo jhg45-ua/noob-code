@@ -30,6 +30,19 @@ struct Stats {
     long actualizaciones_desde_cota = 0;
 };
 
+struct Nodo {
+    int i, j;                   // Dónde estoy
+    long coste_acumulado;       // Pasos que he dado hasta llegar aquí (tu antigua 'k')
+    long cota_optimista;        // Heurística: (coste_acumulado + estimación hasta la meta)
+    std::vector<unsigned> ruta; // El historial exacto de movimientos para llegar aquí
+
+    // Queremos sacar siempre el camino con MENOR cota optimista,
+    // invertimos el operador (ponemos > en lugar de <).
+    bool operator>(const Nodo& otro) const {
+        return cota_optimista > otro.cota_optimista;
+    }
+};
+
 void mostrar_uso() {
     std::cerr << "Usage:\nmaze_bb [-p] [--p2D] -f file" << std::endl;
 }
@@ -95,7 +108,119 @@ const int dirs[9][2] = {
     {-1, -1} // 8: NW
 };
 
+// Función de estimación heurística: Distancia de Chebyshev al destino
+long estimacion(int filas, int columnas, int i, int j) {
+    return std::max(filas - 1 - i, columnas - 1 - j);
+}
 
+void maze_bb(const std::vector<std::vector<int>>& maze,
+             long& bestSol,
+             std::vector<unsigned>& best_path,
+             Stats& st) {
+             
+    int n = maze.size();
+    int m = maze[0].size();
+
+    // 1. Declarar la Lista de Nodos Vivos (LNV)
+    std::priority_queue<Nodo, std::vector<Nodo>, std::greater<Nodo>> LNV;
+
+    // 2. Crear nuestro primer explorador en la casilla (0,0)
+    Nodo inicial;
+    inicial.i = 0;
+    inicial.j = 0;
+    inicial.coste_acumulado = 1; // El primer paso cuenta
+    inicial.ruta = {};
+    inicial.cota_optimista = inicial.coste_acumulado + estimacion(n, m, 0, 0);
+
+    // 3. Meterlo a la cola
+    LNV.push(inicial);
+
+    // (Asegúrate de declarar la matriz 'costs' al principio de tu función maze_bb 
+    // para llevar el historial y evitar bucles infinitos)
+    std::vector<std::vector<long>> costs(n, std::vector<long>(m, INFINITO));
+    costs[0][0] = 1;
+
+    // 4. EL BUCLE INFINITO
+    while (!LNV.empty()) {
+        // Sacamos al explorador con "mejor pinta" (menor cota optimista)
+        Nodo actual = LNV.top();
+        LNV.pop();
+
+        // --- A) PODA TARDÍA (Prometedor pero descartado) ---
+        // Cuando este nodo entró en la cola era bueno, pero mientras esperaba
+        // alguien ha encontrado un récord (bestSol) mejor que su cota ideal.
+        if (actual.cota_optimista >= bestSol) {
+            st.prometedores_descartados++;
+            continue; // Lo matamos y pasamos al siguiente
+        }
+
+        // --- B) ¿HEMOS LLEGADO A LA META? (Nodo Hoja) ---
+        if (actual.i == n - 1 && actual.j == m - 1) {
+            st.hojas++; // Hemos tocado el final
+            
+            // Si el coste real con el que hemos llegado mejora el récord mundial
+            if (actual.coste_acumulado < bestSol) {
+                bestSol = actual.coste_acumulado;
+                best_path = actual.ruta;
+                st.actualizaciones_desde_hoja++; 
+            }
+            // Aunque mejore o no el récord, desde la meta NO se explora más allá
+            continue; 
+        }
+
+        // --- C) EXPANSIÓN DE LOS 8 VECINOS ---
+        // Si no es la meta, nos paramos en la casilla y miramos a nuestro alrededor
+        st.explorados++; 
+
+        for (int p = 0; p < 8; p++) {
+            unsigned direccion = orden_dirs[p];
+            int isig = actual.i + dirs[direccion][0];
+            int jsig = actual.j + dirs[direccion][1];
+
+            // 1. ¿Es Factible? (No me salgo del mapa y es un 1)
+            if (isig >= 0 && isig < n && jsig >= 0 && jsig < m && maze[isig][jsig] == 1) {
+                
+                long nuevo_coste = actual.coste_acumulado + 1;
+                long nueva_cota = nuevo_coste + estimacion(n, m, isig, jsig);
+
+                // 2. ¿Es Prometedor por Heurística Futura?
+                if (nueva_cota < bestSol) {
+                    
+                    // 3. ¿Es Prometedor por Historial Pasado? (Evitar ciclos y rutas peores)
+                    if (nuevo_coste < costs[isig][jsig]) {
+                        
+                        // ¡HA PASADO TODOS LOS FILTROS! 
+                        // Actualizamos el historial para que nadie vuelva por un camino peor
+                        costs[isig][jsig] = nuevo_coste;
+
+                        // Creamos el nuevo estado (el hijo) copiando la mochila del padre
+                        Nodo hijo;
+                        hijo.i = isig;
+                        hijo.j = jsig;
+                        hijo.coste_acumulado = nuevo_coste;
+                        hijo.cota_optimista = nueva_cota;
+                        hijo.ruta = actual.ruta;           // Copiamos la ruta que llevaba el padre
+                        hijo.ruta.push_back(direccion);    // Y le añadimos el nuevo paso
+                        
+                        // Lo metemos en la lista VIP. La cola lo ordenará mágicamente.
+                        LNV.push(hijo);
+                        st.visitados++; // Contabilizamos que hemos "tocado" un nodo válido
+
+                    } else {
+                        // Cortado por culpa del historial de la matriz 'costs'
+                        st.descartados_no_prometedores++;
+                    }
+                } else {
+                    // Cortado porque su estimación ideal ya es peor que nuestro bestSol
+                    st.descartados_no_prometedores++;
+                }
+            } else {
+                // Cortado por chocar con un muro o salirse del mapa
+                st.descartados_no_factibles++;
+            }
+        }
+    }
+}
 
 int main(int argc, char* argv[]) {
 
@@ -130,7 +255,7 @@ int main(int argc, char* argv[]) {
     auto start = std::chrono::high_resolution_clock::now();
 
     // 6. Llamada inicial al backtracking, empezando desde la posición (0, 0) con un coste acumulado de 1 (la celda de inicio)
-    // maze_bt(maze, 0, 0, 1, costs, current_path, bestSol, best_path, st);
+    maze_bb(maze, bestSol, best_path, st);
 
     // 7. Paramos el tiempo de ejecución del backtracking
     auto end = std::chrono::high_resolution_clock::now();
