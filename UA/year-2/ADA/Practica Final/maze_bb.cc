@@ -123,6 +123,7 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
 
     // 1. Declarar la Lista de Nodos Vivos (LNV)
     std::priority_queue<Nodo, std::vector<Nodo>, std::greater<Nodo>> LNV;
+    std::vector<std::vector<long>> costs(n, std::vector<long>(m, INFINITO));
 
     // 2. Crear nuestro primer explorador en la casilla (0,0)
     Nodo inicial;
@@ -132,12 +133,12 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
     inicial.ruta = {};
     inicial.cota_optimista = inicial.coste_acumulado + estimacion(n, m, 0, 0);
 
+    st.visitados++;
+    st.explorados++;
+
     // 3. Meterlo a la cola
     LNV.push(inicial);
 
-    // (Asegúrate de declarar la matriz 'costs' al principio de tu función maze_bb 
-    // para llevar el historial y evitar bucles infinitos)
-    std::vector<std::vector<long>> costs(n, std::vector<long>(m, INFINITO));
     costs[0][0] = 1;
 
     // 4. EL BUCLE INFINITO
@@ -173,6 +174,8 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
         st.explorados++; 
 
         for (int p = 0; p < 8; p++) {
+            st.visitados++;
+
             unsigned direccion = orden_dirs[p];
             int isig = actual.i + dirs[direccion][0];
             int jsig = actual.j + dirs[direccion][1];
@@ -203,9 +206,8 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
                         hijo.ruta.push_back(direccion);    // Y le añadimos el nuevo paso
                         
                         // Lo metemos en la lista VIP. La cola lo ordenará mágicamente.
+                        st.explorados++;
                         LNV.push(hijo);
-                        st.visitados++; // Contabilizamos que hemos "tocado" un nodo válido
-
                     } else {
                         // Cortado por culpa del historial de la matriz 'costs'
                         st.descartados_no_prometedores++;
