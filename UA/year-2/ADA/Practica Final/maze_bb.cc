@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <limits>
 #include <chrono>
+#include <queue>
 
 // Macro para representar el infinito, es el valor máximo de long, que es el tipo que usamos para los costes.
 #define INFINITO std::numeric_limits<long>::max()
