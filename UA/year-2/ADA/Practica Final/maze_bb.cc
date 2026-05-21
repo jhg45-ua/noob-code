@@ -34,7 +34,7 @@ struct Nodo {
     int i, j;                   // Dónde estoy
     long coste_acumulado;       // Pasos que he dado hasta llegar aquí (tu antigua 'k')
     long cota_optimista;        // Heurística: (coste_acumulado + estimación hasta la meta)
-    std::vector<unsigned> ruta; // El historial exacto de movimientos para llegar aquí
+    
 
     // Queremos sacar siempre el camino con MENOR cota optimista,
     // invertimos el operador (ponemos > en lugar de <).
@@ -124,13 +124,13 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
     // 1. Declarar la Lista de Nodos Vivos (LNV)
     std::priority_queue<Nodo, std::vector<Nodo>, std::greater<Nodo>> LNV;
     std::vector<std::vector<long>> costs(n, std::vector<long>(m, INFINITO));
+    std::vector<std::vector<unsigned>> from(n, std::vector<unsigned>(m, 0));
 
     // 2. Crear nuestro primer explorador en la casilla (0,0)
     Nodo inicial;
     inicial.i = 0;
     inicial.j = 0;
     inicial.coste_acumulado = 1; // El primer paso cuenta
-    inicial.ruta = {};
     inicial.cota_optimista = inicial.coste_acumulado + estimacion(n, m, 0, 0);
 
     st.visitados++;
@@ -157,15 +157,23 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
 
         // --- B) ¿HEMOS LLEGADO A LA META? (Nodo Hoja) ---
         if (actual.i == n - 1 && actual.j == m - 1) {
-            st.hojas++; // Hemos tocado el final
-            
-            // Si el coste real con el que hemos llegado mejora el récord mundial
+            st.hojas++; 
             if (actual.coste_acumulado < bestSol) {
                 bestSol = actual.coste_acumulado;
-                best_path = actual.ruta;
                 st.actualizaciones_desde_hoja++; 
+                
+                // ¡RECONSTRUCCIÓN INSTANTÁNEA!
+                best_path.clear();
+                int curr_i = n - 1, curr_j = m - 1;
+                while (curr_i != 0 || curr_j != 0) {
+                    unsigned move = from[curr_i][curr_j];
+                    best_path.push_back(move);
+                    // Damos un paso atrás invirtiendo el movimiento
+                    curr_i -= dirs[move][0];
+                    curr_j -= dirs[move][1];
+                }
+                std::reverse(best_path.begin(), best_path.end());
             }
-            // Aunque mejore o no el récord, desde la meta NO se explora más allá
             continue; 
         }
 
@@ -192,20 +200,15 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
                     // 3. ¿Es Prometedor por Historial Pasado? (Evitar ciclos y rutas peores)
                     if (nuevo_coste < costs[isig][jsig]) {
                         
-                        // ¡HA PASADO TODOS LOS FILTROS! 
-                        // Actualizamos el historial para que nadie vuelva por un camino peor
                         costs[isig][jsig] = nuevo_coste;
+                        from[isig][jsig] = direccion; // Anotamos cómo llegamos aquí
 
-                        // Creamos el nuevo estado (el hijo) copiando la mochila del padre
                         Nodo hijo;
                         hijo.i = isig;
                         hijo.j = jsig;
                         hijo.coste_acumulado = nuevo_coste;
                         hijo.cota_optimista = nueva_cota;
-                        hijo.ruta = actual.ruta;           // Copiamos la ruta que llevaba el padre
-                        hijo.ruta.push_back(direccion);    // Y le añadimos el nuevo paso
                         
-                        // Lo metemos en la lista VIP. La cola lo ordenará mágicamente.
                         st.explorados++;
                         LNV.push(hijo);
                     } else {
@@ -222,6 +225,47 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
             }
         }
     }
+}
+
+// Añadimos el parámetro greedy_path por referencia
+long greedy_initial_sol(const std::vector<std::vector<int>>& maze, std::vector<unsigned>& greedy_path) {
+    int n = maze.size();
+    int m = maze[0].size();
+    int i = 0, j = 0;
+    long steps = 1;
+    
+    std::vector<std::vector<bool>> visitado(n, std::vector<bool>(m, false));
+    visitado[0][0] = true;
+    greedy_path.clear(); // Limpiamos por si acaso
+
+    while (i != n - 1 || j != m - 1) {
+        int mejor_p = -1;
+        long mejor_dist = INFINITO;
+
+        for (int p = 1; p <= 8; p++) {
+            int isig = i + dirs[p][0];
+            int jsig = j + dirs[p][1];
+
+            if (isig >= 0 && isig < n && jsig >= 0 && jsig < m && maze[isig][jsig] == 1 && !visitado[isig][jsig]) {
+                long dist = estimacion(n, m, isig, jsig);
+                if (dist < mejor_dist) {
+                    mejor_dist = dist;
+                    mejor_p = p;
+                }
+            }
+        }
+
+        if (mejor_p == -1) return INFINITO;
+
+        // ¡Guardamos el paso que ha dado el voraz!
+        greedy_path.push_back(mejor_p);
+        
+        i += dirs[mejor_p][0];
+        j += dirs[mejor_p][1];
+        visitado[i][j] = true;
+        steps++;
+    }
+    return steps;
 }
 
 int main(int argc, char* argv[]) {
@@ -255,6 +299,12 @@ int main(int argc, char* argv[]) {
 
     // 5. Arrancamos el tiempo de ejecución del backtracking
     auto start = std::chrono::high_resolution_clock::now();
+
+    long greedy_sol = greedy_initial_sol(maze, best_path);
+    if (greedy_sol != INFINITO) {
+        bestSol = greedy_sol; // ¡Aquí está el truco!
+        // Opcional: Podrías incluso guardar la ruta que encontró el voraz en best_path
+    }
 
     // 6. Llamada inicial al backtracking, empezando desde la posición (0, 0) con un coste acumulado de 1 (la celda de inicio)
     maze_bb(maze, bestSol, best_path, st);
