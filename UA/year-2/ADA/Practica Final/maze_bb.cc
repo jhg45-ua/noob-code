@@ -7,6 +7,7 @@
 #include <limits>
 #include <chrono>
 #include <queue>
+#include <stack>
 
 // Macro para representar el infinito, es el valor máximo de long, que es el tipo que usamos para los costes.
 #define INFINITO std::numeric_limits<long>::max()
@@ -124,6 +125,8 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
 
     // 1. Declarar la Lista de Nodos Vivos (LNV)
     std::priority_queue<Nodo, std::vector<Nodo>, std::greater<Nodo>> LNV;
+    // std::queue<Nodo> LNV; // Si quisieras usar una cola normal, pero perderías la ordenación por cota optimista
+    // std::stack<Nodo> LNV; // Si quisieras usar una pila, pero perderías la ordenación por cota optimista
     std::vector<std::vector<long>> costs(n, std::vector<long>(m, INFINITO));
     std::vector<std::vector<unsigned>> from(n, std::vector<unsigned>(m, 0));
 
@@ -146,6 +149,8 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
     while (!LNV.empty()) {
         // Sacamos al explorador con "mejor pinta" (menor cota optimista)
         Nodo actual = LNV.top();
+        // Nodo actual = LNV.front(); // Si usaras una cola normal, pero perderías la ordenación por cota optimista
+        // Nodo actual = LNV.top(); // Si usaras una pila, pero perderías la ordenación por cota optimista
         LNV.pop();
 
         // --- A) PODA TARDÍA (Prometedor pero descartado) ---
