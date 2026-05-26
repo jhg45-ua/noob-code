@@ -185,7 +185,6 @@ void maze_bb(const std::vector<std::vector<int>>& maze,
 
         // --- C) EXPANSIÓN DE LOS 8 VECINOS ---
         // Si no es la meta, nos paramos en la casilla y miramos a nuestro alrededor
-        st.explorados++; 
 
         for (int p = 0; p < 8; p++) {
             st.visitados++;
@@ -294,16 +293,12 @@ int main(int argc, char* argv[]) {
     }
 
     // 3. Inicialización de estructuras para el backtracking
-    std::vector<std::vector<long>> costs(n, std::vector<long>(m, INFINITO));
-    std::vector<unsigned> current_path; // Vector para la ruta activa
     std::vector<unsigned> best_path;    // Vector para la ruta ganadora
     Stats st;
     long bestSol = INFINITO;
     
-    // 4. El coste para la celda de inicio es 1, ya que es el primer paso que damos (estamos en esa celda), y esto nos ayudará a evitar problemas con la estimación heurística y la comparación de costes.
-    costs[0][0] = 1;
 
-    // 5. Arrancamos el tiempo de ejecución del backtracking
+    // 4. Arrancamos el tiempo de ejecución del backtracking
     auto start = std::chrono::high_resolution_clock::now();
 
     long greedy_sol = greedy_initial_sol(maze, best_path);
@@ -312,10 +307,10 @@ int main(int argc, char* argv[]) {
         // Opcional: Podrías incluso guardar la ruta que encontró el voraz en best_path
     }
 
-    // 6. Llamada inicial al backtracking, empezando desde la posición (0, 0) con un coste acumulado de 1 (la celda de inicio)
+    // 5. Llamada inicial al backtracking, empezando desde la posición (0, 0) con un coste acumulado de 1 (la celda de inicio)
     maze_bb(maze, bestSol, best_path, st);
 
-    // 7. Paramos el tiempo de ejecución del backtracking
+    // 6. Paramos el tiempo de ejecución del backtracking
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> duration = end - start;
 
