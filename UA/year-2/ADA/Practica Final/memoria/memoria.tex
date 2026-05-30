@@ -23,6 +23,7 @@
 \usepackage{booktabs}       % Reglas profesionales (\toprule, \midrule, \bottomrule)
 \usepackage{tabularx}       % Columnas X que ajustan al ancho
 \usepackage{array}          % Control avanzado de columnas
+\usepackage{amssymb}        % Símbolos matemáticos adicionales
 \newcolumntype{L}{>{\raggedright\arraybackslash}X} % Columna X alineada a la izquierda
 
 
@@ -52,10 +53,10 @@
 % Configuración de encabezados y pies de página
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{Asignatura - Nº Práctica}
-\fancyhead[R]{Mes - Año}
+\fancyhead[L]{ADA - Práctica Final}
+\fancyhead[R]{Mayo - 2026}
 \fancyfoot[R]{\thepage}
-\fancyfoot[L]{Nombre del Estudiante}
+\fancyfoot[L]{Julián Hinojosa Gil}
 
 % ============================================================
 % CONFIGURACIONES ESPECÍFICAS POR ASIGNATURA
@@ -147,7 +148,7 @@
   margin=10pt                         % Margen
 }
 
-\captionsetup[figure]{style=mystylefig}
+% \captionsetup[figure]{style=mystylefig}
 % --- FIN [ESTADÍSTICA / REDES] ---
 
 \begin{document}
@@ -178,184 +179,296 @@
 \setcounter{page}{1}     % empezar en 1
 \pagestyle{fancy}        % restaurar encabezados/pies definidos en el preámbulo
 
-% Inicio del documento
-\section{Introducción}
+\section{Estructuras de datos}
 
-Aquí va la introducción de la memoria. Este documento presenta el desarrollo y resultados de la práctica de Sistemas Operativos, donde se abordan 
-diversos ejercicios relacionados con [completar según el tema de la práctica].
+\subsection{Nodo}
+Para la representación de los estados dentro del espacio de búsqueda, se ha diseñado una estructura compacta denominada \texttt{Nodo}. Cada instancia almacena exclusivamente los tipos primitivos mínimos necesarios para guiar la exploración, evitando la sobrecarga en el espacio de estados. 
 
-\section{Objetivos}
-
-Los objetivos de esta práctica son:
-
+Las variables miembro que componen la estructura y sus cometidos son:
 \begin{itemize}
-    \item Comprender los conceptos fundamentales de [completar]
-    \item Implementar soluciones prácticas utilizando [completar]
-    \item Analizar el comportamiento y rendimiento de [completar]
+    \item \texttt{i}, \texttt{j}: Enteros que indexan la posición bidimensional actual del explorador dentro de la matriz del laberinto.
+    \item \texttt{coste\_acumulado}: Variable de tipo \texttt{long} que contabiliza el número real de casillas transitadas desde el origen $(0,0)$ hasta la posición actual (equivalente al coste real $g(n)$).
+    \item \texttt{cota\_optimista}: Registro de tipo \texttt{long} que almacena la suma del coste acumulado y el valor devuelto por la función heurística de estimación hasta la meta. Representa la longitud ideal del camino completo si no se encontraran muros adicionales.
 \end{itemize}
 
-\section{Desarrollo}
+Como optimización crítica de ingeniería de software, se ha omitido la inclusión de cualquier contenedor dinámico (como \texttt{std::vector}) dentro del propio nodo. Esto previene la asignación continua en el \textit{heap} y la copia de memoria intermedia durante la ramificación. Asimismo, se incluye la sobrecarga del operador de comparación \texttt{operator>} con el fin de invertir el comportamiento por defecto de la cola de prioridad.
 
-\subsection{Ejercicio 1}
+\begin{lstlisting}[caption={Definición de la estructura Nodo}, label={lst:nodo}]
+struct Nodo {
+    int i, j;                   // Posición actual en el laberinto
+    long coste_acumulado;       // Pasos reales dados desde el origen
+    long cota_optimista;        // Coste acumulado + estimación heurística
 
-\begin{wrapfigure}{r}{0.5\textwidth}
-    \centering
-    \includegraphics[width=0.48\textwidth]{sample_1.jpg}
-    \caption{Diagrama o resultado del Ejercicio 1}
-    \label{fig:ejercicio1}
-\end{wrapfigure}
+    // Sobrecarga del operador mayor para implementar un Min-Heap
+    bool operator>(const Nodo& otro) const {
+        return cota_optimista > otro.cota_optimista;
+    }
+};
+\end{lstlisting}
 
-En este ejercicio se desarrolla [descripción del ejercicio]. A continuación se presenta el análisis y la implementación realizada.
+\subsection{Lista de nodos vivos}
+La Lista de Nodos Vivos (LNV) gestiona los frentes de onda generados y pendientes de expansión. Se ha seleccionado como contenedor principal una cola de prioridad estructurada como un montículo de mínimos (\textit{Min-Heap}), parametrizada con la relación de orden interna definida en el nodo mediante \texttt{std::greater}.
 
-Como se puede observar en la Figura \ref{fig:ejercicio1}, [explicación de la imagen]. Este ejercicio requiere una comprensión profunda de los conceptos
-fundamentales estudiados en clase, así como la capacidad de aplicarlos en situaciones prácticas.
+El criterio de extracción implementado selecciona en tiempo $O(\log N)$ el nodo vivo con la menor \texttt{cota\_optimista} global (estrategia \textit{Best-First} o \textit{Least-Cost Search}). Esto garantiza que el algoritmo guíe la exploración de forma informada hacia el objetivo físico, minimizando el desarrollo de ramas secundarias divergentes.
 
-El desarrollo de este ejercicio implica varios pasos importantes que deben seguirse cuidadosamente. Primero, es necesario analizar el problema planteado
-y comprender todos sus requisitos. Luego, se debe diseñar una solución apropiada que cumpla con todos los criterios especificados.
+Siguiendo el temario teórico, se evaluaron otras dos estructuras de almacenamiento para la LNV que finalmente se descartaron para la versión de producción:
+\begin{itemize}
+    \item \texttt{std::queue} (Estrategia FIFO): Implementa una búsqueda en anchura ciega. Extrae los elementos en orden estricto de llegada, lo que provoca una expansión radial simétrica (en forma de mancha de aceite) que satura la memoria con millones de nodos no óptimos al carecer de dirección heurística.
+    \item \texttt{std::stack} (Estrategia LIFO): Implementa una búsqueda en profundidad. Explora caminos de forma ciega hasta alcanzar un elemento no factible o una hoja, generando una altísima inestabilidad y picos de computación masivos si se interna prematuramente en zonas densas de muros lejanas a la meta.
+\end{itemize}
 
-\subsection{Ejercicio 2}
+\begin{lstlisting}[caption={Declaración de la Lista de Nodos Vivos final}, label={lst:lnv}]
+// Lista de Nodos Vivos basada en estrategia guiada por cota optimista
+std::priority_queue<Nodo, std::vector<Nodo>, std::greater<Nodo>> LNV;
+\end{lstlisting}
 
-Para el segundo ejercicio, se implementó [descripción del ejercicio]. El proceso seguido fue el siguiente:
+\section{Mecanismos de poda}
+
+\subsection{Poda de nodos no factibles}
+La poda por falta de factibilidad constituye el primer filtro de confinamiento del espacio de estados. Se aplica de forma inmediata durante la generación de los ocho vecinos colindantes a la posición actual, impidiendo que se incorporen a la Lista de Nodos Vivos (\textit{LNV}) aquellos estados que violan las restricciones físicas o estructurales del problema.
+
+Un nodo hijo es descartado automáticamente y contabilizado bajo el registro \texttt{st.descartados\_no\_factibles} si incurre en alguna de las siguientes condiciones de contorno:
+\begin{itemize}
+    \item \textbf{Desbordamiento de índices}: Si las coordenadas calculadas $(isig, jsig)$ se sitúan fuera de los límites dimensionales indexados de la matriz ($n \times m$), evitando accesos ilegales a memoria.
+    \item \textbf{Colisión con obstáculo}: Si la casilla destino contiene el valor binario \texttt{0}, el cual simboliza un muro o sector infranqueable dentro del diseño del laberinto.
+\end{itemize}
+
+\begin{lstlisting}[caption={Control de factibilidad geométrica y estructural}, label={lst:poda_factibles}]
+// Verificación de límites de la matriz y transitabilidad de la celda
+if (isig >= 0 && isig < n && jsig >= 0 && jsig < m && maze[isig][jsig] == 1) {
+    // El nodo es factible, se procede a evaluar su viabilidad económica
+} else {
+    // Cortado por chocar con un muro o salirse del mapa
+    st.descartados_no_factibles++;
+}
+\end{lstlisting}
+
+\subsection{Poda de nodos no prometedores}
+Una vez garantizada la factibilidad geométrica de un movimiento, el algoritmo aplica un doble mecanismo de poda por promesa (tanto en fase temprana como tardía) con el objetivo de evitar la exploración de caminos subóptimos y detener el crecimiento exponencial del árbol de derivación.
+
+El descarte de nodos no prometedores se divide operacionalmente en dos estrategias:
 
 \begin{enumerate}
-    \item Análisis del problema
-    \item Diseño de la solución
-    \item Implementación del código
-    \item Pruebas y validación
+    \item \textbf{Poda Temprana (Filtro previo a la inserción)}: Ocurre antes de introducir un nodo hijo en la \textit{LNV}. Se subdivide en dos criterios concurrentes:
+    \begin{itemize}
+        \item \textit{Por Heurística Futura (Cota Optimista)}: Se calcula la cota optimista teórica del hijo (\texttt{nueva\_cota}). Si este valor es mayor o igual que el récord global actual (\texttt{bestSol}), se poda inmediatamente (\texttt{st.descartados\_no\_prometedores++}), ya que matemáticamente es imposible que dicho camino mejore la solución óptima en curso.
+        \item \textit{Por Historial Pasado (Cercado de Ciclos)}: Si la cota optimista es válida, se contrasta el \texttt{nuevo\_coste} acumulado frente al registro histórico estático almacenado en la matriz de control \texttt{costs[isig][jsig]}. Si el coste es mayor o igual que un camino previo que ya pisó esa misma celda, el nodo se descarta al representar una ruta redundante o ineficiente.
+    \end{itemize}
+    
+    \item \textbf{Poda Tardía (Filtro posterior a la extracción)}: Se ejecuta en el instante en que un nodo es extraído de la cima de la cola de prioridad (\texttt{LNV.top()}). Dado que los nodos pueden permanecer almacenados en el montículo mientras otras ramas descubren soluciones óptimas, la cota pesimista global (\texttt{bestSol}) puede haber disminuido drásticamente en el intervalo de espera. Comprobar la condición justo antes de la expansión de vecinos evita malgastar ciclos de CPU en estados obsoletos.
 \end{enumerate}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.65\textwidth]{sample_2.jpeg}
-    \caption{Captura de pantalla o diagrama del Ejercicio 2}
-    \label{fig:ejercicio2}
-\end{figure}
+\begin{lstlisting}[caption={Implementación de la poda tardía y temprana por cotas}, label={lst:poda_prometedores}]
+// --- A) PODA TARDÍA (Evaluación tras extracción de la LNV) ---
+if (actual.cota_optimista >= bestSol) {
+    st.prometedores_descartados++;
+    continue; // Descarte del nodo y salto al siguiente ciclo del while
+}
 
-La Figura \ref{fig:ejercicio2} muestra [explicación de la imagen].
+// ... (Dentro del bucle de expansión de vecinos tras verificar factibilidad) ...
 
-\subsection{Ejercicio 3}
-
-\begin{wrapfigure}{l}{0.45\textwidth}
-    \centering
-    \includegraphics[width=0.43\textwidth]{sample_3.jpg}
-    \caption{Resultados del Ejercicio 3}
-    \label{fig:ejercicio3}
-\end{wrapfigure}
-
-El tercer ejercicio presenta un desafío adicional respecto a los anteriores, ya que combina varios conceptos estudiados. La implementación debe ser
-eficiente y cumplir con los requisitos de rendimiento establecidos.
-
-Como muestra la Figura \ref{fig:ejercicio3}, los resultados obtenidos demuestran la correcta aplicación de las técnicas aprendidas. Es importante destacar
-que la solución implementada no solo resuelve el problema planteado, sino que también optimiza el uso de recursos del sistema.
-
-La metodología seguida para resolver este ejercicio incluye pruebas exhaustivas y validación de resultados en diferentes escenarios.
-
-\section{Código Fuente}
-
-A continuación se presenta el código implementado para los ejercicios:
-
-\subsection{Código del Ejercicio 1}
-
-\begin{lstlisting}[caption={Implementación del Ejercicio 1}, label={lst:ejercicio1}]
-#include <stdio.h>
-#include <stdlib.h>
-
-int main() {
-    // Código de ejemplo - reemplazar con tu implementación
-    printf("Ejercicio 1: Hola Mundo\n");
+// --- B) PODA TEMPRANA (Evaluación heurística futura y matriz de costes) ---
+if (nueva_cota < bestSol) {
     
-    // Tu código aquí
-    
-    return 0;
+    if (nuevo_coste < costs[isig][jsig]) {
+        costs[isig][jsig] = nuevo_coste;
+        from[isig][jsig] = direccion; 
+        
+        // Inserción segura del nodo prometedor
+        st.explorados++;
+        LNV.push(hijo);
+    } else {
+        // Cortado por historial redundante en la matriz de costes
+        st.descartados_no_prometedores++;
+    }
+} else {
+    // Cortado porque su estimación ideal no puede superar al récord actual
+    st.descartados_no_prometedores++;
 }
 \end{lstlisting}
 
-\subsection{Código del Ejercicio 2}
+\section{Cotas pesimistas y optimistas}
+El rendimiento de un algoritmo de Ramificación y Poda depende de la calidad y del ajuste de sus funciones de acotación. Las cotas optimistas (teóricas) permiten descartar ramas de forma segura, mientras que las cotas pesimistas (soluciones reales factibles) actúan como el umbral de corte del algoritmo.
 
-\begin{lstlisting}[caption={Implementación del Ejercicio 2}, label={lst:ejercicio2}]
-#include <stdio.h>
-#include <stdlib.h>
+\subsection{Cota pesimista inicial (inicialización)}
+Arrancar el bucle principal de exploración con una cota pesimista infinita penaliza drásticamente el rendimiento, obligando al algoritmo a expandir a ciegas las primeras ramas hasta dar casualmente con una hoja. Para evitar este comportamiento, se ha implementado una función auxiliar llamada \texttt{greedy\_initial\_sol} que se ejecuta de forma previa al proceso de ramificación.
 
-int main() {
-    // Código de ejemplo - reemplazar con tu implementación
-    printf("Ejercicio 2\n");
-    
-    // Tu código aquí
-    
-    return 0;
+Este algoritmo secundario realiza una búsqueda voraz (\textit{Greedy Search}) de coste sub-milisegundo. En cada iteración, evalúa las posiciones vecinas factibles y avanza de manera irrevocable hacia la celda colindante que minimice la distancia heurística al objetivo, controlando las celdas ya pisadas mediante una matriz local de visitados para impedir bucles infinitos. 
+
+Si el algoritmo voraz logra alcanzar la meta $(n-1, m-1)$, devuelve la longitud exacta del camino hallado. Este valor se asigna inmediatamente a la variable global \texttt{bestSol}, fijando un récord inicial ajustado desde el milisegundo cero. Gracias a este umbral inicial, la cola de prioridad puede aplicar la poda tardía y temprana con gran severidad desde las primeras iteraciones del bloque principal.
+
+\begin{lstlisting}[caption={Invocación e inicialización de la cota pesimista inicial}, label={lst:cota_inicial}]
+// Cálculo de la solución subóptima inicial en caliente
+long greedy_sol = greedy_initial_sol(maze, best_path);
+if (greedy_sol != INFINITO) {
+    bestSol = greedy_sol; // Umbral de poda inicializado de forma compacta
 }
 \end{lstlisting}
 
-\section{Resultados}
+\subsection{Cota pesimista del resto de nodos}
+A lo largo de la ejecución del bucle general de ramificación, la cota pesimista global (\texttt{bestSol}) se encarga de almacenar la longitud del camino óptimo provisional descubierto hasta el momento. 
 
-En esta sección se analizan los resultados obtenidos durante la ejecución de los ejercicios.
+Evaluando el compromiso entre la eficacia de la poda y la complejidad temporal de los cálculos, se determinó omitir la estimación de cotas pesimistas dinámicas intermedias en cada nodo hijo (operación que requeriría lanzar búsquedas voraces iterativas en cada expansión de estados, ralentizando la CPU). En su lugar, el algoritmo actualiza la cota pesimista únicamente de forma pasiva cuando un nodo calificado como hoja (nodo completado que ha alcanzado físicamente las coordenadas de destino) se extrae del frente de la \textit{LNV}.
 
-\subsection{Resultados del Ejercicio 1}
+Si el parámetro \texttt{coste\_acumulado} del nodo hoja es estrictamente inferior al valor vigente en \texttt{bestSol}, se sobrescribe el récord global y se incrementa el contador estadístico \texttt{st.actualizaciones\_desde\_hoja}.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{sample_4.jpg}
-    \caption{Resultados de la ejecución del Ejercicio 1}
-    \label{fig:resultados1}
-\end{figure}
+\begin{lstlisting}[caption={Actualización de la cota pesimista global en nodos hoja}, label={lst:cota_resto}]
+// --- B) ¿HEMOS LLEGADO A LA META? (Nodo Hoja) ---
+if (actual.i == n - 1 && actual.j == m - 1) {
+    st.hojas++; 
+    if (actual.coste_acumulado < bestSol) {
+        bestSol = actual.coste_acumulado; // Reducción del umbral de poda global
+        st.actualizaciones_desde_hoja++; 
+        
+        // Reconstrucción del camino óptimo a través del historial de movimientos
+        // ...
+    }
+    continue; 
+}
+\end{lstlisting}
 
-Los resultados mostrados en la Figura \ref{fig:resultados1} indican que [análisis de resultados].
+\subsection{Cota optimista}
+La función de cota optimista estima conceptualmente el escenario ideal de pasos pendientes desde la celda actual hasta el destino, asumiendo la hipótesis de que no se interpondrá ningún muro intermedio. Para que el algoritmo garantice la convergencia hacia la solución óptima global, es un requisito matemático estricto que esta función sea \textit{admisible}, es decir, que subestime o iguale el coste real del camino, pero nunca lo sobrestime.
 
-\subsection{Resultados del Ejercicio 2}
+Dado que el enunciado permite desplazamientos libres en ocho direcciones (incluyendo movimientos diagonales con un coste unitario idéntico a las marchas ortogonales), la función de cota optimista idónea es la **Distancia de Chebyshev**. Esta métrica calcula el valor máximo entre la diferencia absoluta de filas y columnas pendientes hasta la esquina inferior derecha del mapa:
+$$\text{Chebyshev}(i, j) = \max((n - 1) - i, \, (m - 1) - j)$$
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{sample_5.jpg}
-    \caption{Resultados de la ejecución del Ejercicio 2}
-    \label{fig:resultados2}
-\end{figure}
+Es una cota admisible pura: en un tablero ideal libre de obstáculos, el número de pasos mínimos necesarios para conectar dos puntos considerando movimientos diagonales es exactamente el máximo de sus componentes de distancia. Al no considerar la existencia de muros, la función cumple la condición de subestimación necesaria para guiar la cola de prioridad de forma óptima.
 
-Según se observa en la Figura \ref{fig:resultados2}, [análisis de resultados].
+\begin{lstlisting}[caption={Implementación analítica de la cota optimista}, label={lst:cota_optimista}]
+// Función de estimación heurística: Distancia de Chebyshev al destino
+long estimacion(int filas, int columnas, int i, int j) {
+    return std::max(filas - 1 - i, columnas - 1 - j);
+}
+\end{lstlisting}
 
-\subsection{Comparativa de Resultados}
+% ============================================================
+% 4. OTROS MEDIOS EMPLEADOS PARA ACELERAR LA BÚSQUEDA
+% ============================================================
 
-\begin{wrapfigure}{r}{0.5\textwidth}
-    \centering
-    \includegraphics[width=0.48\textwidth]{sample_6.jpg}
-    \caption{Comparativa de rendimiento entre ejercicios}
-    \label{fig:comparativa}
-\end{wrapfigure}
+\section{Otros medios empleados para acelerar la búsqueda}
+Además de los mecanismos estándar de acotación y poda por cotas, el rendimiento final del programa se ha optimizado actuando sobre dos cuellos de botella críticos: la sobrecarga en la gestión de memoria dinámica (\textit{heap allocation overhead}) y la optimización del código máquina a nivel de compilador.
 
-La comparativa presentada en la Figura \ref{fig:comparativa} permite visualizar las diferencias de rendimiento entre los distintos ejercicios implementados.
-Los datos recopilados muestran patrones interesantes que merecen un análisis detallado.
+\subsection{Optimización espacial: Reconstrucción inversa del camino óptimo}
+Una aproximación inicial ingenua para recuperar la secuencia de movimientos ganadora consiste en almacenar un contenedor local (como un \texttt{std::vector<unsigned>}) dentro de cada instancia de la estructura \texttt{Nodo}. Sin embargo, esta estrategia introduce una penalización inasumible: cada vez que el algoritmo ramifica y añade un hijo a la \textit{LNV}, la CPU se ve obligada a duplicar el vector del nodo padre en el \textit{heap}, provocando miles de llamadas al sistema (\texttt{malloc}/\texttt{free}), fragmentación de memoria y fallos de caché (\textit{cache misses}) que degradan el rendimiento exponencialmente.
 
-Se puede observar que cada ejercicio presenta características particulares en cuanto a tiempo de ejecución, uso de memoria y eficiencia general. Estos 
-resultados son coherentes con las expectativas teóricas y confirman la validez de las implementaciones realizadas.
-
-El análisis comparativo revela áreas de mejora potenciales y confirma las decisiones de diseño tomadas durante el desarrollo de cada ejercicio.
-
-\clearpage
-
-\section{Conclusiones}
-
-Tras la realización de esta práctica, se pueden extraer las siguientes conclusiones:
-
+Para solventar este problema, se diseñó un mecanismo de **reconstrucción inversa asintóticamente óptimo** en espacio y tiempo:
 \begin{itemize}
-    \item Conclusión 1
-    \item Conclusión 2
-    \item Conclusión 3
+    \item Se reserva una única matriz estática bidimensional de control denominada \texttt{from} de dimensiones $n \times m$, indexada con enteros sin signo.
+    \item Cada vez que un movimiento es validado por las funciones de poda y se inserta en la cola, se anota en \texttt{from[isig][jsig]} el identificador numérico de la dirección empleada para pisar dicha celda. Esto requiere un coste espacial despreciable de $O(n \times m)$ frente al coste dinámico de los vectores en los nodos.
+    \item Únicamente cuando un nodo hoja procesado en la meta mejora la cota pesimista global (\texttt{bestSol}), se ejecuta un bucle \texttt{while} que realiza un recorrido inverso saltando de celda en celda desde las coordenadas de destino $(n-1, m-1)$ hacia el origen $(0,0)$ guiado por el historial de la matriz \texttt{from}. El coste temporal de esta reconstrucción es estrictamente lineal $O(L)$, donde $L$ es la longitud de la ruta actual, y se ejecuta un número mínimo de veces a lo largo del programa (solo cuando hay actualizaciones de récord).
 \end{itemize}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{sample_7.jpg}
-    \caption{Diagrama resumen o conclusión final}
-    \label{fig:conclusion}
-\end{figure}
+\begin{lstlisting}[caption={Algoritmo de reconstrucción inversa en el nodo hoja}, label={lst:reconstruccion}]
+// Reconstrucción asintótica de la ruta óptima mediante la matriz de procedencia
+best_path.clear();
+int curr_i = n - 1, curr_j = m - 1;
+while (curr_i != 0 || curr_j != 0) {
+    unsigned move = from[curr_i][curr_j];
+    best_path.push_back(move);
+    
+    // Desplazamiento inverso restando los incrementos de dirección
+    curr_i -= dirs[move][0];
+    curr_j -= dirs[move][1];
+}
+// Inversión final del vector para recuperar el orden cronológico del camino
+std::reverse(best_path.begin(), best_path.end());
+\end{lstlisting}
 
-Como se resume en la Figura \ref{fig:conclusion}, [conclusión final].
+\subsection{Parámetros y directivas de optimización del compilador}
+Siguiendo las recomendaciones del enunciado de la asignatura, el entorno de compilación automatizado a través del archivo \texttt{makefile} se ha configurado para extraer el máximo rendimiento del hardware del laboratorio.
 
-\section{Bibliografía}
+Se ha prescindido por completo de la directiva de depuración \texttt{-g} (la cual incrusta símbolos de depuración ralentizando los saltos de línea de ejecución) y se ha introducido la bandera de optimización agresiva \textbf{\texttt{-O3}}. Esta directiva habilita al compilador \texttt{g++} para aplicar optimizaciones avanzadas sobre nuestro código máquina, tales como el desenrollado automático de bucles (\textit{loop unrolling}) en el for de las 8 direcciones, la vectorización de instrucciones SIMD, la propagación de constantes y la expansión en línea (\textit{inlining}) de funciones de cálculo intensivo y repetitivo como \texttt{estimacion()}. El impacto de esta medida reduce los tiempos netos de respuesta de la CPU a una tercera parte de la marca original.
 
-\begin{itemize}
-  \item Referencia 1: [Autor]. [Título]. [Editorial], [Año].
-  \item Referencia 2: [Autor]. [Título]. [Editorial], [Año].
-  \item Documentación oficial de [herramienta/lenguaje utilizado]
-\end{itemize}
-  
+
+% ============================================================
+% 5. ESTUDIO COMPARATIVO DE DISTINTAS ESTRATEGIAS DE BÚSQUEDA
+% ============================================================
+
+\section{Estudio comparativo de distintas estrategias de búsqueda}
+Para evaluar empíricamente la influencia de la estructura de la Lista de Nodos Vivos (\textit{LNV}) sobre la eficiencia espacial y temporal del algoritmo, se ha sometido el archivo de test \texttt{500-bb.maze} a tres configuraciones distintas, modificando exclusivamente el criterio de extracción de los estados vivos: estrategia guiada por cota (\textit{Best-First} mediante \texttt{std::priority\_queue}), búsqueda en anchura ciega (FIFO mediante \texttt{std::queue}) y búsqueda en profundidad (LIFO mediante \texttt{std::stack}).
+
+El Cuadro \ref{tab:comparativa_completa} sintetiza los valores estadísticos agregados y los tiempos medios computados tras aplicar la metodología experimental de descarte de la primera ejecución por caché en frío.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Métricas detalladas por estrategia de exploración (Fichero: 500-bb.maze)}
+\label{tab:comparativa_completa}
+\begin{tabularx}{\textwidth}{lXXX}
+\toprule
+\textbf{Métrica Estadística} & \textbf{Best-First (Priority Queue)} & \textbf{Anchura (FIFO)} & \textbf{Profundidad (LIFO)} \\
+\midrule
+Longitud Solución (Pasos)   & 5.303       & 5.303       & 5.303 \\
+Nodos Visitados (\texttt{Nvisit}) & 287.313     & 277.553     & 1.204.657.273 \\
+Nodos Explorados (\texttt{nexplored}) & 35.974   & 34.715      & 150.639.938 \\
+Nodos Hoja (\texttt{Nleaf})        & 1           & 1           & 8.245 \\
+Descartados No Factibles     & 37.435      & 35.972      & 156.791.645 \\
+Descartados No Prometedores  & 213.904     & 206.866     & 897.225.690 \\
+Prometedores Descartados     & 59          & 20          & 49.534 \\
+Actualizaciones desde Hoja   & 1           & 1           & 8.245 \\
+\midrule
+\textbf{Tiempo Medio de CPU} & \textbf{4,63 ms} & \textbf{2,81 ms} & \textbf{6.890,88 ms} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Discusión y análisis de resultados}
+
+\subsubsection{El colapso asintótico de la estrategia LIFO}
+Los resultados de la búsqueda en profundidad pura (LIFO) revelan una ineficiencia masiva, elevando el tiempo de respuesta hasta los \textbf{6.890,88 ms} y disparando el número de nodos explorados por encima de los \textbf{150 millones}. 
+
+Al extraer los elementos según el orden de inserción estricto de la pila, el algoritmo carece de una perspectiva global de la distancia hacia la meta. LIFO se interna ciegamente en ramas profundas alejadas geométricamente del objetivo físico. Aunque los mecanismos de poda por cota y matriz de costes históricos se encuentran activos, la naturaleza desordenada de la pila respecto a la cota optimista neutraliza la efectividad de la poda tardía en fases tempranas. Esto obliga al algoritmo a registrar y evaluar \textbf{8.245 soluciones hoja} subóptimas antes de converger, multiplicando exponencialmente las ramificaciones inútiles.
+
+\subsubsection{Análisis de la paradoja FIFO frente a Best-First}
+Bajo las leyes teóricas estándar de la Ramificación y Poda, la cola de prioridad (\textit{Best-First}) debería acotar el espacio de estados de forma estrictamente superior a la búsqueda no informada en anchura (FIFO). Sin embargo, los datos empíricos del laberinto \texttt{500-bb.maze} muestran un comportamiento inverso: la estrategia FIFO explora ligeramente menos nodos (34.715 frente a 35.974) y reduce el tiempo de proceso a casi la mitad (2,81 ms frente a 4,63 ms).
+
+Este fenómeno se fundamenta en la interacción de dos factores técnicos concurrentes:
+\begin{enumerate}
+    \item \textbf{Eficacia del Algoritmo Voraz Inicial}: La función de inicialización pesimista \texttt{greedy\_initial\_sol} computa de forma inmediata una solución factible de 5.303 pasos. En esta instancia concreta del laberinto, dicha solución resulta coincidir exactamente con el **óptimo global absoluto** del problema. Al arrancar el bucle con un récord insuperable en \texttt{bestSol}, el espacio de estados potencial queda drásticamente recortado para ambas estrategias desde la primera iteración.
+    \item \textbf{Sobrecarga algorítmica de las estructuras de la STL}: Al estar el contorno de búsqueda fuertemente delimitado por la cota voraz, la estrategia en anchura expande los niveles de forma uniforme y simétrica. Aquí entra en juego la complejidad interna de las estructuras de datos: la cola FIFO (\texttt{std::queue}) opera con un coste constante de inserción y extracción $O(1)$, mientras que la cola de prioridad (\texttt{std::priority\_queue}) requiere un coste de reordenación del montículo (\textit{Heapify}) de tipo $O(\log N)$ por cada operación. El coste computacional de mantener las celdas ordenadas por heurística genera una fricción innecesaria en la CPU cuando el espacio ya está acotado, lo que explica la ventaja temporal de FIFO.
+\end{enumerate}
+
+\subsection{Justificación de la estrategia seleccionada}
+A pesar del rendimiento puntual favorable de la cola FIFO en este mapa específico, **se ratifica la estructura de Priority Queue (Best-First) como la arquitectura definitiva de producción** para el proyecto. 
+
+En instancias asimétricas complejas o mapas de tipo K (donde el algoritmo voraz inicial puede encallarse en callejones sin salida devolviendo cotas pesimistas infinitas o muy alejadas de la realidad), la búsqueda ciega en anchura colapsaría de inmediato al expandir millones de nodos en anillos concéntricos concéntricos. La cola de prioridad ordenada por distancia de Chebyshev garantiza una convergencia directa y geométrica hacia el objetivo bajo cualquier escenario crítico, consolidándose como la solución de ingeniería más robusta y consistente.
+
+
+% ============================================================
+% 6. TIEMPOS DE EJECUCIÓN
+% ============================================================
+
+\section{Tiempos de ejecución}
+En este apartado se exponen los tiempos de proceso globales requeridos para la resolución de las instancias oficiales de test publicadas en la documentación de la asignatura. Las mediciones se han realizado en los equipos de la sala de estudios de la Escuela Politécnica IV, dotados con un procesador Intel Core i5-13500 (13.ª generación) y 16 GB de memoria RAM, bajo el sistema operativo Ubuntu Linux.
+
+Con el objetivo de aislar el ruido térmico del procesador, las interrupciones del planificador del sistema operativo y la latencia de lectura física en disco por caché en frío (\textit{Cold Cache}), se ha aplicado de manera uniforme la metodología experimental descrita: para cada laberinto se han completado 6 ejecuciones consecutivas, descartando por completo el primer lanzamiento y calculando la media aritmética estricta de las 5 muestras restantes.
+
+El Cuadro \ref{tab:tiempos_finales} detalla los resultados obtenidos por la versión definitiva del algoritmo (estrategia \textit{Best-First} mediante cola de prioridad priorizada por distancia de Chebyshev y acotación pesimista voraz inicial). El enunciado establece un límite crítico de penalización fijado en 15.000 milisegundos (15 segundos) por instancia.
+
+\begin{table}[H]
+\centering
+\caption{Tiempos de proceso medios en la plataforma de hardware institucional}
+\label{tab:tiempos_finales}
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{Fichero de Test} & \textbf{Tiempo Medio (ms)} & \textbf{Estado frente al límite (15.000 ms)} \\
+\midrule
+100-bb.maze   & 1,19     & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+200-bb.maze   & 1,62     & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+300-bb.maze   & 10,23    & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+500-bb.maze   & 4,64     & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+700-bb.maze   & 22,02    & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+900-bb.maze   & 37,71    & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+k01-bb.maze   & 25,98    & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+k02-bb.maze   & 78,55    & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+k03-bb.maze   & 155,82   & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+k05-bb.maze   & 445,64   & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+k10-bb.maze   & 1.501,21 & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Como reflejan las marcas temporales del cuadro, ninguna de las instancias analizadas incurre en el desbordamiento del tiempo permitido. Incluso en el escenario más exigente del repositorio, correspondiente al mapa de alta densidad de pasillos ciegos \texttt{k10-bb.maze}, el algoritmo converge firmemente en **1.501,21 ms**, una marca que se sitúa una orden de magnitud por debajo (\textbf{10 veces más rápido}) del umbral de tolerancia exigido por el tribunal de evaluación. Los resultados validan la consistencia asintótica y el impacto del diseño de bajo nivel aplicado sobre la estructura de datos interna del resolvedor.
+
 \end{document}

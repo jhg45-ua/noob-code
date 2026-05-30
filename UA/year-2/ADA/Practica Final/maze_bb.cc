@@ -286,7 +286,7 @@ int main(int argc, char* argv[]) {
 
     // Caso especial: Si la celda de inicio es un muro, no hay solución posible, así que imprimimos los resultados correspondientes y salimos.
     if (maze[0][0] == 0) {
-        std::cout << "0\n0 0 0 0 0 0 0 0\n0.0\n";
+        std::cout << "0\n1 0 0 0 0 0 0 0\n0.0\n";
         if (arguments.p2D) std::cout << "0\n";
         if (arguments.p) std::cout << "<0>\n";
         return 0;

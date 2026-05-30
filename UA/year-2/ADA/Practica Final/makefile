@@ -12,4 +12,4 @@ tar: maze_bb.cc makefile
 	tar cvfz 48795869N.tar.gz maze_bb.cc makefile
 
 clean: 
-	rm -rf maze_bb maze_bb.dSYM *~ 48795869N.tar.gz
+	rm -rf maze_bb maze_bb.dSYM *~ 48795869N.tar.gz memoria/memoria.synctex.gz memoria/memoria.bbl memoria/memoria.pdf
