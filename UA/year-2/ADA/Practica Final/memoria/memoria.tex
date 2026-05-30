@@ -432,21 +432,30 @@ A pesar del rendimiento puntual favorable de la cola FIFO en este mapa específi
 
 En instancias asimétricas complejas o mapas de tipo K (donde el algoritmo voraz inicial puede encallarse en callejones sin salida devolviendo cotas pesimistas infinitas o muy alejadas de la realidad), la búsqueda ciega en anchura colapsaría de inmediato al expandir millones de nodos en anillos concéntricos concéntricos. La cola de prioridad ordenada por distancia de Chebyshev garantiza una convergencia directa y geométrica hacia el objetivo bajo cualquier escenario crítico, consolidándose como la solución de ingeniería más robusta y consistente.
 
-
 \section{Tiempos de ejecución}
-En este apartado se exponen los tiempos de proceso globales requeridos para la resolución de las instancias oficiales de test publicadas en la documentación de la asignatura. Las mediciones se han realizado en los equipos de la sala de estudios de la Escuela Politécnica IV, dotados con un procesador Intel Core i5-13500 (13.ª generación) y 16 GB de memoria RAM, bajo el sistema operativo Ubuntu Linux.
 
-Con el objetivo de aislar el ruido térmico del procesador, las interrupciones del planificador del sistema operativo y la latencia de lectura física en disco por caché en frío (\textit{Cold Cache}), se ha aplicado de manera uniforme la metodología experimental descrita: para cada laberinto se han completado 6 ejecuciones consecutivas, descartando por completo el primer lanzamiento y calculando la media aritmética estricta de las 5 muestras restantes.
+\subsection{Entorno de pruebas y especificaciones de hardware}
+Para garantizar la validez y reproducibilidad de los resultados obtenidos, todas las mediciones de rendimiento global se han realizado bajo un entorno controlado en los laboratorios de la Escuela Politécnica IV. Las especificaciones técnicas del hardware institucional empleado son las siguientes:
+\begin{itemize}
+    \item \textbf{Procesador (CPU)}: Intel Core i5-13500 (13.ª generación).
+    \item \textbf{Memoria RAM}: 16 GB DDR4.
+    \item \textbf{Sistema Operativo}: Ubuntu 24.04.
+    \item \textbf{Compilador}: GNU GCC (g++) utilizando la directiva de optimización agresiva -O3 y el estándar C++11.
+\end{itemize}
 
-El Cuadro \ref{tab:tiempos_finales} detalla los resultados obtenidos por la versión definitiva del algoritmo (estrategia \textit{Best-First} mediante cola de prioridad priorizada por distancia de Chebyshev y acotación pesimista voraz inicial). El enunciado establece un límite crítico de penalización fijado en 15.000 milisegundos (15 segundos) por instancia.
+\subsection{Resultados experimentales}
+Siguiendo la metodología descrita, se han completado 6 ejecuciones por cada archivo de prueba, descartando de forma sistemática el primer lanzamiento para neutralizar la latencia por lectura en frío de disco (Cold Cache). Los datos expuestos en el Cuadro \ref{tab:tiempos_finales} representan la media aritmética estricta de las 5 muestras restantes en caliente. 
+
+El tribunal de la asignatura fija un umbral crítico de tolerancia de 15.000 milisegundos (15 segundos) por instancia, penalizando cualquier desbordamiento temporal.
 
 \begin{table}[H]
 \centering
+\small
 \caption{Tiempos de proceso medios en la plataforma de hardware institucional}
 \label{tab:tiempos_finales}
-\begin{tabularx}{\textwidth}{lX}
+\begin{tabular}{l @{\hspace{3cm}} r}
 \toprule
-\textbf{Fichero de Test} & \textbf{Tiempo Medio (ms)} \\
+\textbf{Fichero de test} & \textbf{Tiempo Medio (ms)} \\
 \midrule
 100-bb.maze   & 1,19     \\
 200-bb.maze   & 1,62     \\
@@ -460,10 +469,10 @@ k03-bb.maze   & 155,82   \\
 k05-bb.maze   & 445,64   \\
 k10-bb.maze   & 1.501,21 \\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 \end{table}
 
-Como reflejan las marcas temporales del cuadro, ninguna de las instancias analizadas incurre en el desbordamiento del tiempo permitido. Incluso en el escenario más exigente del repositorio, correspondiente al mapa de alta densidad de pasillos ciegos \texttt{k10-bb.maze}, el algoritmo converge firmemente en **1.501,21 ms**, una marca que se sitúa una orden de magnitud por debajo (\textbf{10 veces más rápido}) del umbral de tolerancia exigido por el tribunal de evaluación. Los resultados validan la consistencia asintótica y el impacto del diseño de bajo nivel aplicado sobre la estructura de datos interna del resolvedor.
+Como se puede observar de forma directa en los resultados recopilados, el resolvedor desarrollado cumple holgadamente con los requisitos de eficiencia de la práctica. Incluso ante el escenario de máxima complejidad y densidad de caminos ciegos (\texttt{k10-bb.maze}), el algoritmo converge firmemente en poco más de un segundo y medio (1.501,21 ms), situándose un orden de magnitud por debajo del límite de exclusión del tribunal.
 
 \newpage
 \section*{Bibliografía}
