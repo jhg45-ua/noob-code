@@ -313,7 +313,7 @@ Evaluando el compromiso entre la eficacia de la poda y la complejidad temporal d
 Si el parámetro \texttt{coste\_acumulado} del nodo hoja es estrictamente inferior al valor vigente en \texttt{bestSol}, se sobrescribe el récord global y se incrementa el contador estadístico \texttt{st.actualizaciones\_desde\_hoja}.
 
 \begin{lstlisting}[caption={Actualización de la cota pesimista global en nodos hoja}, label={lst:cota_resto}]
-// --- B) ¿HEMOS LLEGADO A LA META? (Nodo Hoja) ---
+// --- B) HEMOS LLEGADO A LA META? (Nodo Hoja) ---
 if (actual.i == n - 1 && actual.j == m - 1) {
     st.hojas++; 
     if (actual.coste_acumulado < bestSol) {
@@ -359,6 +359,8 @@ Para solventar este problema, se diseñó un mecanismo de **reconstrucción inve
     \item Únicamente cuando un nodo hoja procesado en la meta mejora la cota pesimista global (\texttt{bestSol}), se ejecuta un bucle \texttt{while} que realiza un recorrido inverso saltando de celda en celda desde las coordenadas de destino $(n-1, m-1)$ hacia el origen $(0,0)$ guiado por el historial de la matriz \texttt{from}. El coste temporal de esta reconstrucción es estrictamente lineal $O(L)$, donde $L$ es la longitud de la ruta actual, y se ejecuta un número mínimo de veces a lo largo del programa (solo cuando hay actualizaciones de récord).
 \end{itemize}
 
+\newpage
+
 \begin{lstlisting}[caption={Algoritmo de reconstrucción inversa en el nodo hoja}, label={lst:reconstruccion}]
 // Reconstrucción asintótica de la ruta óptima mediante la matriz de procedencia
 best_path.clear();
@@ -366,7 +368,7 @@ int curr_i = n - 1, curr_j = m - 1;
 while (curr_i != 0 || curr_j != 0) {
     unsigned move = from[curr_i][curr_j];
     best_path.push_back(move);
-    
+
     // Desplazamiento inverso restando los incrementos de dirección
     curr_i -= dirs[move][0];
     curr_j -= dirs[move][1];
@@ -381,10 +383,6 @@ Siguiendo las recomendaciones del enunciado de la asignatura, el entorno de comp
 Se ha prescindido por completo de la directiva de depuración \texttt{-g} (la cual incrusta símbolos de depuración ralentizando los saltos de línea de ejecución) y se ha introducido la bandera de optimización agresiva \textbf{\texttt{-O3}}. Esta directiva habilita al compilador \texttt{g++} para aplicar optimizaciones avanzadas sobre nuestro código máquina, tales como el desenrollado automático de bucles (\textit{loop unrolling}) en el for de las 8 direcciones, la vectorización de instrucciones SIMD, la propagación de constantes y la expansión en línea (\textit{inlining}) de funciones de cálculo intensivo y repetitivo como \texttt{estimacion()}. El impacto de esta medida reduce los tiempos netos de respuesta de la CPU a una tercera parte de la marca original.
 
 
-% ============================================================
-% 5. ESTUDIO COMPARATIVO DE DISTINTAS ESTRATEGIAS DE BÚSQUEDA
-% ============================================================
-
 \section{Estudio comparativo de distintas estrategias de búsqueda}
 Para evaluar empíricamente la influencia de la estructura de la Lista de Nodos Vivos (\textit{LNV}) sobre la eficiencia espacial y temporal del algoritmo, se ha sometido el archivo de test \texttt{500-bb.maze} a tres configuraciones distintas, modificando exclusivamente el criterio de extracción de los estados vivos: estrategia guiada por cota (\textit{Best-First} mediante \texttt{std::priority\_queue}), búsqueda en anchura ciega (FIFO mediante \texttt{std::queue}) y búsqueda en profundidad (LIFO mediante \texttt{std::stack}).
 
@@ -395,7 +393,7 @@ El Cuadro \ref{tab:comparativa_completa} sintetiza los valores estadísticos agr
 \small
 \caption{Métricas detalladas por estrategia de exploración (Fichero: 500-bb.maze)}
 \label{tab:comparativa_completa}
-\begin{tabularx}{\textwidth}{lXXX}
+\begin{tabularx}{\textwidth}{l >{\raggedleft\arraybackslash}X >{\raggedleft\arraybackslash}X >{\raggedleft\arraybackslash}X}
 \toprule
 \textbf{Métrica Estadística} & \textbf{Best-First (Priority Queue)} & \textbf{Anchura (FIFO)} & \textbf{Profundidad (LIFO)} \\
 \midrule
@@ -435,10 +433,6 @@ A pesar del rendimiento puntual favorable de la cola FIFO en este mapa específi
 En instancias asimétricas complejas o mapas de tipo K (donde el algoritmo voraz inicial puede encallarse en callejones sin salida devolviendo cotas pesimistas infinitas o muy alejadas de la realidad), la búsqueda ciega en anchura colapsaría de inmediato al expandir millones de nodos en anillos concéntricos concéntricos. La cola de prioridad ordenada por distancia de Chebyshev garantiza una convergencia directa y geométrica hacia el objetivo bajo cualquier escenario crítico, consolidándose como la solución de ingeniería más robusta y consistente.
 
 
-% ============================================================
-% 6. TIEMPOS DE EJECUCIÓN
-% ============================================================
-
 \section{Tiempos de ejecución}
 En este apartado se exponen los tiempos de proceso globales requeridos para la resolución de las instancias oficiales de test publicadas en la documentación de la asignatura. Las mediciones se han realizado en los equipos de la sala de estudios de la Escuela Politécnica IV, dotados con un procesador Intel Core i5-13500 (13.ª generación) y 16 GB de memoria RAM, bajo el sistema operativo Ubuntu Linux.
 
@@ -450,25 +444,34 @@ El Cuadro \ref{tab:tiempos_finales} detalla los resultados obtenidos por la vers
 \centering
 \caption{Tiempos de proceso medios en la plataforma de hardware institucional}
 \label{tab:tiempos_finales}
-\begin{tabularx}{\textwidth}{lXX}
+\begin{tabularx}{\textwidth}{lX}
 \toprule
-\textbf{Fichero de Test} & \textbf{Tiempo Medio (ms)} & \textbf{Estado frente al límite (15.000 ms)} \\
+\textbf{Fichero de Test} & \textbf{Tiempo Medio (ms)} \\
 \midrule
-100-bb.maze   & 1,19     & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
-200-bb.maze   & 1,62     & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
-300-bb.maze   & 10,23    & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
-500-bb.maze   & 4,64     & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
-700-bb.maze   & 22,02    & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
-900-bb.maze   & 37,71    & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
-k01-bb.maze   & 25,98    & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
-k02-bb.maze   & 78,55    & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
-k03-bb.maze   & 155,82   & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
-k05-bb.maze   & 445,64   & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
-k10-bb.maze   & 1.501,21 & \checkmark \hspace{2mm} Correcto (Cumple holgadamente) \\
+100-bb.maze   & 1,19     \\
+200-bb.maze   & 1,62     \\
+300-bb.maze   & 10,23    \\
+500-bb.maze   & 4,64     \\
+700-bb.maze   & 22,02    \\
+900-bb.maze   & 37,71    \\
+k01-bb.maze   & 25,98    \\
+k02-bb.maze   & 78,55    \\
+k03-bb.maze   & 155,82   \\
+k05-bb.maze   & 445,64   \\
+k10-bb.maze   & 1.501,21 \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 Como reflejan las marcas temporales del cuadro, ninguna de las instancias analizadas incurre en el desbordamiento del tiempo permitido. Incluso en el escenario más exigente del repositorio, correspondiente al mapa de alta densidad de pasillos ciegos \texttt{k10-bb.maze}, el algoritmo converge firmemente en **1.501,21 ms**, una marca que se sitúa una orden de magnitud por debajo (\textbf{10 veces más rápido}) del umbral de tolerancia exigido por el tribunal de evaluación. Los resultados validan la consistencia asintótica y el impacto del diseño de bajo nivel aplicado sobre la estructura de datos interna del resolvedor.
+
+\newpage
+\section*{Bibliografía}
+\addcontentsline{toc}{section}{Bibliografía}
+
+\begin{itemize}
+    \item[1.] Morales García, J., Sánchez Cartagena, V. M., y Verdú Mas, J. L. (2026). \textit{Tema 7: Ramificación y Poda}. Departamento de Lenguajes y Sistemas Informáticos, Universitat d'Alacant.
+    \item[2.] Departamento de Lenguajes y Sistemas Informáticos (2026). \textit{Enunciado de la Práctica Final: Camino de coste mínimo y Ramificación y Poda}. Grado en Ingeniería Informática, Universitat d'Alacant.
+\end{itemize}
 
 \end{document}
