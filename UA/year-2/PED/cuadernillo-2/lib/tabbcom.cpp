@@ -331,6 +331,141 @@ TVectorCom TABBCom::Niveles() const {
 
 // ------------------------------------------------------
 
+// --------------------- Extra ---------------------
+
+bool TABBCom::InsertarExamen(TComplejo &c, int &tipoInsercion) {
+    if (c == TComplejo()) return false;
+
+    if (this->EsVacio()) {
+        this->nodo = new TNodoABB();
+        this->nodo->item = c;
+        tipoInsercion = 0;
+        return true;
+    }
+
+    if (nodo->item == c) return false;
+
+    if (EsMenor(c, nodo->item)) {
+        bool ok = nodo->iz.InsertarExamen(c, tipoInsercion);
+        if (ok) tipoInsercion = -1;
+        return ok;
+    } else {
+        bool ok = nodo->de.InsertarExamen(c, tipoInsercion);
+        if (ok) tipoInsercion = 1;
+        return ok;
+    }
+    
+}
+
+void TABBCom::Clasificar(TVectorCom v, TListaCom &L1, TListaCom &L2, TListaCom &L3) {
+    for (int i = 1; i <= v.Tamano(); i++) {
+        TComplejo p = v[i];
+
+        if (p == TComplejo()) continue;
+
+        int tipo = 0;
+
+        if (InsertarExamen(p, tipo)) {
+            if (tipo == 0) L1.InsCabeza(p);
+            else if (tipo == -1) L2.InsCabeza(p);
+            else if (tipo == 1) L3.InsCabeza(p);
+        }
+    }
+}
+
+TListaCom TABBCom::CaminosCom(TVectorCom &v) const {
+    TListaCom resultado;
+
+    for (int i = 1; i <= v.Tamano(); i++) {
+        TComplejo p = v[i];
+        if (p == TComplejo()) continue;
+
+        if (this->Buscar(p)) {
+            TListaCom camino;
+            const TABBCom *actual = this;
+
+            while (!actual->EsVacio()) {
+                camino.InsCabeza(actual->Raiz());
+
+                if (actual->Raiz() == p) break;
+
+                if (EsMenor(p, actual->Raiz())) actual = &(actual->nodo->iz);
+                else actual = &(actual->nodo->de);
+
+                // Bucle 2: Volcar el camino en la lista resultado según el módulo
+                if (static_cast<int>(p.Mod()) % 2 == 0) {
+                    // REGLA PAR: Insertar al principio de resultado
+                    TListaPos pCamino = camino.Primera();
+                    while (!pCamino.EsVacia()) {
+                        resultado.InsCabeza(camino.Obtener(pCamino));
+                        pCamino = pCamino.Siguiente();
+                    }
+                } else {
+                    // REGLA IMPAR: Insertar al final de resultado
+                    TListaPos pCamino = camino.Ultima();
+                    while (!pCamino.EsVacia()) {
+                        TComplejo elem = camino.Obtener(pCamino);
+                        if (resultado.EsVacia()) {
+                            resultado.InsCabeza(elem);
+                        } else {
+                            resultado.InsertarD(elem, resultado.Ultima());
+                        }
+                        pCamino = pCamino.Anterior();
+                    }
+                }
+            }
+        } else {
+            if (resultado.EsVacia()) resultado.InsCabeza(TComplejo());
+            else resultado.InsertarD(TComplejo(), resultado.Ultima());
+        }
+    }
+    return resultado;
+}
+
+TVectorCom TABBCom::ABBConCamino(TListaCom &lista) {
+    TVectorCom resultado; // Dimensión 0 por defecto
+    int totalElementos = 0;
+
+    TListaPos it = lista.Primera();
+    while (!it.EsVacia()) {
+        TComplejo p = lista.Obtener(it);
+
+        if (p != TComplejo() && !Buscar(p)) { // Saltamos vacíos y duplicados
+            Insertar(p); // 🌳 Insertamos en el árbol
+
+            // Extraemos el camino de forma inversa
+            TListaCom camino;
+            TABBCom *actual = this;
+            while (!actual->EsVacio()) {
+                camino.InsCabeza(actual->Raiz());
+                if (actual->Raiz() == p) {
+                    break;
+                }
+                if (EsMenor(p, actual->Raiz())) {
+                    actual = &(actual->nodo->iz);
+                } else {
+                    actual = &(actual->nodo->de);
+                }
+            }
+
+            // Redimensionamos el vector de salida
+            totalElementos += camino.Longitud();
+            resultado.Redimensionar(totalElementos);
+
+            // Volcamos el camino en orden directo
+            int indexVector = totalElementos - camino.Longitud() + 1;
+            TListaPos pCamino = camino.Ultima();
+            while (!pCamino.EsVacia()) {
+                resultado[indexVector] = camino.Obtener(pCamino);
+                indexVector++;
+                pCamino = pCamino.Anterior();
+            }
+        }
+        it = it.Siguiente();
+    }
+    return resultado;
+}
+
 std::ostream &operator<<(std::ostream &os, const TABBCom &arbol) {
     os << arbol.Niveles();
     return os;

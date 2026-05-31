@@ -6,6 +6,7 @@
 #define TABBCOM_H
 #include "tcomplejo.h"
 #include "tvectorcom.h"
+#include "tlistacom.h"
 #include <iostream>
 
 class TNodoABB;
@@ -46,6 +47,12 @@ public:
     TVectorCom Preorden() const;
     TVectorCom Postorden() const;
     TVectorCom Niveles() const;
+
+    // Metodos extra
+    bool TABBCom::InsertarExamen(TComplejo &c, int &tipoInsercion);
+    void TABBCom::Clasificar(TVectorCom v, TListaCom &L1, TListaCom &L2, TListaCom &L3);
+    TListaCom TABBCom::CaminosCom(TVectorCom &v) const;
+    TVectorCom TABBCom::ABBConCamino(TListaCom &lista);
 
     friend std::ostream &operator<<(std::ostream &, const TABBCom &);
 };
