@@ -25,6 +25,12 @@ public:
     TComplejo operator- (double) const;
     TComplejo operator* (double) const;
 
+    // Extra operadores de comparación
+    // MENOR que otro complejo (comparación lexicográfica: primero por parte real, luego por parte imaginaria)
+    bool operator< (const TComplejo&) const;
+    // MAYOR que otro complejo (comparación lexicográfica: primero por parte real, luego por parte imaginaria)
+    bool operator> (const TComplejo&) const;
+
     bool operator== (const TComplejo&) const;   // IGUALDAD de números complejos
     bool operator!= (const TComplejo&) const;   // DESIGUALDAD de números complejos
 

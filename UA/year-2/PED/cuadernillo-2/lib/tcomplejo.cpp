@@ -83,6 +83,45 @@ TComplejo TComplejo::operator* (double d) const {
 
 // ------------------- Comparacion -------------------
 
+// Extra operadores de comparación
+// Extra operadores de comparación basados en el MÓDULO
+
+// MENOR que otro complejo (Criterio: Módulo -> Parte Real -> Parte Imaginaria)
+bool TComplejo::operator<(const TComplejo& other) const {
+    // Calculamos los módulos al cuadrado para evitar el uso de sqrt()
+    double mod1_sq = (this->re * this->re) + (this->im * this->im);
+    double mod2_sq = (other.re * other.re) + (other.im * other.im);
+
+    // 1. Criterio principal: Módulo
+    if (mod1_sq != mod2_sq) {
+        return mod1_sq < mod2_sq;
+    }
+    // 2. Primer desempate: Parte Real
+    if (this->re != other.re) {
+        return this->re < other.re;
+    }
+    // 3. Segundo desempate: Parte Imaginaria
+    return this->im < other.im;
+}
+
+// MAYOR que otro complejo (Criterio: Módulo -> Parte Real -> Parte Imaginaria)
+bool TComplejo::operator>(const TComplejo& other) const {
+    // Calculamos los módulos al cuadrado
+    double mod1_sq = (this->re * this->re) + (this->im * this->im);
+    double mod2_sq = (other.re * other.re) + (other.im * other.im);
+
+    // 1. Criterio principal: Módulo
+    if (mod1_sq != mod2_sq) {
+        return mod1_sq > mod2_sq;
+    }
+    // 2. Primer desempate: Parte Real
+    if (this->re != other.re) {
+        return this->re > other.re;
+    }
+    // 3. Segundo desempate: Parte Imaginaria
+    return this->im > other.im;
+}
+
 bool TComplejo::operator== (const TComplejo &other) const {
     return (this->re == other.re && this->im == other.im);
 }
